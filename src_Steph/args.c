@@ -45,6 +45,7 @@ static int	ft_strlen_arg(char *str)
 	return (i);
 }
 
+/* param argc (unserquotes are one word) */
 int			count_args(char *str)
 {
 	int		n;

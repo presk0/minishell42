@@ -6,26 +6,15 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/06/25 21:59:03 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:17:10 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	not_escaped(char *str, int i)
-{
-	if (str)
-	{
-		if (!i || str[i - 1] != '\\')
-			return (1);
-		else
-			return (0);
-	}
-	return (0);
-}
 
 /* keep prompting if line not finished */
-int	line_not_finished(char *line)
+static int	line_not_finished(char *line)
 {
 	int		squote;
 	int		dquote;
@@ -38,9 +27,9 @@ int	line_not_finished(char *line)
 		return (0);
 	while (line[i])
 	{
-		if (line[i] == '\'' && not_escaped(line, i) && !dquote)
+		if (line[i] == '\'' && !dquote)
 			squote = !squote;
-		if (line[i] == '\"' && not_escaped(line, i) && !squote)
+		if (line[i] == '\"' && !squote)
 			dquote = !dquote;
 		i++;
 	}

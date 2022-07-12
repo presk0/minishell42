@@ -42,6 +42,7 @@ static void	rm_backslash(char **arg, int *i)
 	}
 }
 
+/* prend en compte backslash \\ */
 void		rm_token(char **arg)
 {
 	int		i;
@@ -53,7 +54,7 @@ void		rm_token(char **arg)
 		{
 			rm_char(arg, i);
 			i += ft_strlen_char(*arg + i, '\'');
-			rm_char(arg, i);
+			rm_char(arg, i); // remalloc
 		}
 		else if ((*arg)[i] == '"')
 		{

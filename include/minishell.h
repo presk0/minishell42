@@ -30,6 +30,8 @@ typedef struct		s_data
 	char	**cmds;
 }					t_data;
 
+char	*read_multilines(char *prompt);
+
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2

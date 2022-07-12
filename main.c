@@ -57,7 +57,7 @@ static int	check_error(t_data *param)
 	return (0);
 }
 
-static char	*ft_inputldup(const char *s, int len)
+static char	*ft_strldup(const char *s, int len)
 {
 	char	*ptr;
 	int		size;
@@ -108,7 +108,7 @@ static int	number_input(char *s, char c)
 	return (n[1]);
 }
 
-static int	set_input_len(char *s, char c)
+static int	set_str_len(char *s, char c)
 {
 	char	quote;
 	int		len;
@@ -142,8 +142,8 @@ static void	set_mat(char **mat, char *s, char c, int n)
 	i = 0;
 	while (i < n)
 	{
-		len = set_input_len(s, c);
-		mat[i] = ft_inputldup(s, len);
+		len = set_str_len(s, c);
+		mat[i] = ft_strldup(s, len);
 		s += len + 1;
 		i++;
 	}
@@ -170,7 +170,7 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	input = readline("\e[033m42mminishell $ \e[39m");
+	input = read_multilines("\e[033m42mminishell $ \e[39m");
 	if (!input)
 		return (0);
 	param->input = input;
@@ -225,10 +225,10 @@ void	ft_qsplit(char *input, char *sep)
 	while (input[i])
 	{
 		is_quoted = ft_is_quoted(input, i);
-		if (!is_quoted && !ft_inputncmp(&input[i], sep, ft_inputlen(sep)))
+		if (!is_quoted && !ft_inputncmp(&input[i], sep, ft_strlen(sep)))
 		{
-			split_left = ft_subinput(input, 0, i);
-			split_right = ft_subinput(input, i + ft_inputlen(sep), ft_inputlen(input));
+			split_left = ft_substr(input, 0, i);
+			split_right = ft_substr(input, i + ft_strlen(sep), ft_strlen(input));
 			//free(input);
 			//input = NULL;
 			//break;
@@ -240,9 +240,9 @@ void	ft_qsplit(char *input, char *sep)
 
 void	parser(t_data *param)
 {
-	(void)param;
-	return ;
+	param->cmds = ft_split_mini(param->input, '|');
 }
+
 void	print_tab(char **tableau)
 {
 	int	i = 0;
@@ -266,7 +266,8 @@ int main(int argc, char **argv, char **envp)
 		get_input(param);
 		if(check_error(param))
 			return (-1);
-		print_tab(ft_split_mini(param->input, '|'));
+		printf("%s\n", param->input);
+		//print_tab(ft_split_mini(param->input, '|'));
 		free(param->input);
 	}
 	return (0);
