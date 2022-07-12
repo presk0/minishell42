@@ -6,11 +6,11 @@
 #    By: supersko <supersko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/07/12 19:59:01 by supersko         ###   ########.fr        #
+#    Updated: 2022/07/12 20:35:23 by supersko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c prompting.c
+SRCS = main.c prompting.c utils.c init.c debug.c
 
 OBJS := ${SRCS:c=o}
 

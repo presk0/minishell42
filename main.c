@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
+/*   Updated: 2022/07/12 20:37:46 by supersko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 //
 //static void	sig_handler(int sig)
@@ -8,77 +20,6 @@
 //	//rl_replace_line("", 0);
 //	rl_redisplay();
 //}
-
-char	**ft_append_tab(char **tableau, char *str)
-{
-	int		tab_len;
-	char	**new_tab;
-
-	if (!str)
-		return (tableau);
-	tab_len = 0;
-	if (tableau)
-		while (tableau[tab_len])
-			tab_len++;
-	new_tab = malloc((tab_len++ + 2) * sizeof(char *));
-	//if (!new_tab)
-	//	return (NULL);
-	new_tab[tab_len--] = NULL;
-	new_tab[tab_len] = str;
-	while (tab_len--)
-		new_tab[tab_len] = tableau[tab_len];
-	free(tableau);
-	tableau = NULL;
-	return (new_tab);
-}
-
-static int	ft_is_quoted(char *c, int i)
-{
-	static int	squote;
-	static int	dquote;
-
-	if (!c)
-	{
-		squote = 0;
-		dquote = 0;
-	}
-	else
-	{
-		if (c[i] == '\'' && !dquote) // not_escaped(c, i) && 
-			squote = !squote;
-		else if (c[i] == '\"' && !squote) // not_escaped(c, i) && 
-			dquote = !dquote;
-		if (dquote)
-			return (2);
-		if (squote)
-			return (1);
-	}
-    return (0);
-}
-
-static int	check_error(t_data *param)
-{
-	int i;
-	int is_quoted;
-
-	ft_is_quoted(NULL, 0);	
-	i = 0;
-    while(param->input[i] != '\0')
-	{
-		is_quoted = ft_is_quoted(param->input, i);
-		if(!is_quoted && (param->input[i] == ';' || (param->input[i] == '|' && param->input[i + 1] == '|') || (param->input[i] == '&' && param->input[i + 1] == '&'  )))
-		{
-			printf("-minishell; error arg ; || &&\n");
-			param->retour = 2;
-			free(param->input);
-			//free_param
-			param->input = 0;
-			return (1);
-		}	
-		i++;
-	}
-	return (0);
-}
 
 /*
 char	*ft_strldup(const char *s, int len)
@@ -106,50 +47,6 @@ char	*ft_strldup(const char *s, int len)
 	return (ptr);
 }
 */
-
-int	get_input(t_data *param)
-{
-	char	*input;
-	int		ret;
-
-	ret = 1;
-	input = read_multilines("\e[033m42mminishell $ \e[39m");
-	if (!input)
-		return (0);
-	param->input = input;
-	return (ret);
-}
-
-char	**copy_env(char **envp, int add)
-{
-	int		len;
-	int		i;
-	char	**cpy;
-
-	len = 0;
-	while (envp[len])
-		len++;
-	cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
-	if (!cpy)
-		return (0);
-	i = -1;
-	while (++i < len)
-		cpy[i] = ft_strdup(envp[i]);
-	return (cpy);
-}
-
-t_data	*init_param(char **envp)
-{
-	t_data	*param;
-
-	param  = (t_data *)malloc(sizeof(t_data));
-	param->envp = copy_env(envp, 0);
-	param->argv = 0;
-	param->argc = 0;
-	param->retour = 0;
-	//param->var = 0;
-	return (param);
-}
 
 /*
 void	ft_qsplit(char *input, char *sep)
@@ -188,16 +85,6 @@ void	parser(t_data *param)
 }
 */
 
-void	print_tab(char **tableau)
-{
-	int	i = 0;
-	printf("------------------------\n");
-	while (tableau[i])
-	{
-		printf("%s*\n", tableau[i++]);
-	}
-	printf("------------------------\n");
-}
 
 int main(int argc, char **argv, char **envp)
 {

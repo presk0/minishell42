@@ -35,9 +35,20 @@ typedef struct		s_data
 	char	**cmds;
 }					t_data;
 
+int	get_input(t_data *param);
 char	*read_multilines(char *prompt);
 char	**ft_append_tab(char **tableau, char *str);
 char		**ft_split_mini(char *s, char c);
 char	*ft_strldup(const char *s, int len);
+char	**ft_append_tab(char **tableau, char *str);
+int	ft_is_quoted(char *c, int i);
+int	check_error(t_data *param);
+
+/* init */
+t_data	*init_param(char **envp);
+char	**copy_env(char **envp, int add);
+
+/* debug */
+void	print_tab(char **tableau);
 
 #endif
