@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ndionis <ndionis@student.42.fr>            +#+  +:+       +#+         #
+#    By: supersko <supersko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/06/25 18:39:18 by ndionis          ###   ########.fr        #
+#    Updated: 2022/07/12 16:39:09 by supersko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = *.c
+SRCS = main.c
 
 OBJS := ${SRCS:c=o}
 

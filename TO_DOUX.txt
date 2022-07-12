@@ -1,0 +1,16 @@
+Makefile:
+	reecrire *.c des sources en dur
+
+fonctioni free_param 
+	ex :  check_error
+Malloc / free :
+	get_input
+		input = read_line // free main
+
+	init_param
+		param  = (t_data *)malloc(sizeof(t_data));
+		param->envp = copy_env(envp, 0);
+
+	copy_env
+		cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
+		cpy[i] = ft_strdup(envp[i]);
