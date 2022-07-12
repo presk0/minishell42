@@ -63,10 +63,13 @@ static char	*ft_strldup(const char *s, int len)
 	int		size;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	size = 0;
 	while (s[size])
 		size++;
-	size = (len < size) ? len : size;
+	if (len < size)
+		size = len;
 	if (!(ptr = (char *)malloc(sizeof(char) * (size + 1)))	)
 		return (NULL);
 	i = 0;
