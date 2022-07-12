@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Tue Jul 12 18:51:46 2022
+# Make data base, printed on Tue Jul 12 19:59:14 2022
 
 # Variables
 
@@ -121,7 +122,6 @@ LESS = -R
 %D = $(patsubst %/,%,$(dir $%))
 # default
 MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
- 
 # default
 .VARIABLES := 
 # environment
@@ -234,7 +234,7 @@ debugfile: ctags
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-12 18:49:29
+#  Last modified 2022-07-12 19:59:01
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -289,7 +289,7 @@ test: ctags
 
 minishell: make_libftprintf make_libft
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-12 18:49:34
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -335,6 +335,7 @@ clean:
 
 make_libft:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 43):
@@ -363,6 +364,6 @@ ctags:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jul 12 18:51:46 2022
+# Finished Make data base on Tue Jul 12 19:59:14 2022
 
  

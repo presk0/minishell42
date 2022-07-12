@@ -18,6 +18,11 @@
 # include <readline/history.h>
 # include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
+# define INFILE 0
+# define OUTFILE 1
 
 typedef struct		s_data
 {
@@ -31,11 +36,8 @@ typedef struct		s_data
 }					t_data;
 
 char	*read_multilines(char *prompt);
-
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-# define INFILE 0
-# define OUTFILE 1
+char	**ft_append_tab(char **tableau, char *str);
+char		**ft_split_mini(char *s, char c);
+char	*ft_strldup(const char *s, int len);
 
 #endif

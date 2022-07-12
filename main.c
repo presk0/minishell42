@@ -9,6 +9,29 @@
 //	rl_redisplay();
 //}
 
+char	**ft_append_tab(char **tableau, char *str)
+{
+	int		tab_len;
+	char	**new_tab;
+
+	if (!str)
+		return (tableau);
+	tab_len = 0;
+	if (tableau)
+		while (tableau[tab_len])
+			tab_len++;
+	new_tab = malloc((tab_len++ + 2) * sizeof(char *));
+	//if (!new_tab)
+	//	return (NULL);
+	new_tab[tab_len--] = NULL;
+	new_tab[tab_len] = str;
+	while (tab_len--)
+		new_tab[tab_len] = tableau[tab_len];
+	free(tableau);
+	tableau = NULL;
+	return (new_tab);
+}
+
 static int	ft_is_quoted(char *c, int i)
 {
 	static int	squote;
@@ -57,7 +80,8 @@ static int	check_error(t_data *param)
 	return (0);
 }
 
-static char	*ft_strldup(const char *s, int len)
+/*
+char	*ft_strldup(const char *s, int len)
 {
 	char	*ptr;
 	int		size;
@@ -81,91 +105,7 @@ static char	*ft_strldup(const char *s, int len)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-static int	number_input(char *s, char c)
-{
-	int		n[2];
-	char	quote;
-
-	n[0] = -1;
-	n[1] = 1;
-	while (s[++n[0]])
-	{
-		if (s[n[0]] == '\\' && (s[n[0] + 1] == '\'' || s[n[0] + 1] == '"' ||
-								s[n[0] + 1] == '\\' || s[n[0] + 1] == c))
-			n[0]++;
-		else if (s[n[0]] == c)
-			n[1]++;
-		else if (s[n[0]] && (s[n[0]] == '"' || s[n[0]] == '\''))
-		{
-			quote = s[n[0]++];
-			while (s[n[0]] && s[n[0]] != quote)
-			{
-				if (s[n[0]] == '\\' &&
-				(s[n[0] + 1] == quote || s[n[0] + 1] == '\\') && quote == '"')
-					n[0]++;
-				n[0]++;
-			}
-		}
-	}
-	return (n[1]);
-}
-
-static int	set_str_len(char *s, char c)
-{
-	char	quote;
-	int		len;
-
-	len = -1;
-	while (s[++len] && s[len] != c)
-	{
-		if (s[len] == '\\' && (s[len + 1] == '\'' || s[len + 1] == '"' ||
-		s[len + 1] == '\\' || s[len + 1] == c))
-			len++;
-		else if (s[len] == '"' || s[len] == '\'')
-		{
-			quote = s[len++];
-			while (s[len] && s[len] != quote)
-			{
-				if (s[len] == '\\' &&
-				(s[len + 1] == quote || s[len + 1] == '\\') && quote == '"')
-					len++;
-				len++;
-			}
-		}
-	}
-	return (len);
-}
-
-static void	set_mat(char **mat, char *s, char c, int n)
-{
-	int i;
-	int len;
-
-	i = 0;
-	while (i < n)
-	{
-		len = set_str_len(s, c);
-		mat[i] = ft_strldup(s, len);
-		s += len + 1;
-		i++;
-	}
-}
-
-char		**ft_split_mini(char *s, char c)
-{
-	int		n;
-	char	**mat;
-
-	if (!s)
-		return (NULL);
-	n = number_input(s, c);
-	if (!(mat = (char **)ft_calloc(sizeof(char *), n + 1)))
-		return (NULL);
-	set_mat(mat, s, c, n);
-	return (mat);
-}
-
+*/
 
 int	get_input(t_data *param)
 {
@@ -241,10 +181,12 @@ void	ft_qsplit(char *input, char *sep)
 }
 */
 
+/*
 void	parser(t_data *param)
 {
 	param->cmds = ft_split_mini(param->input, '|');
 }
+*/
 
 void	print_tab(char **tableau)
 {
@@ -260,18 +202,21 @@ void	print_tab(char **tableau)
 int main(int argc, char **argv, char **envp)
 {
     t_data  *param;
+	char	**matrix;
     (void)argc;
     (void)argv;
 
 	param = init_param(envp);
+	matrix = NULL;
     while(42)
 	{
 		get_input(param);
 		if(check_error(param))
 			return (-1);
-		printf("%s\n", param->input);
-		//print_tab(ft_split_mini(param->input, '|'));
-		free(param->input);
+		//printf("%s\n", param->input);
+		matrix = ft_append_tab(matrix, param->input);
+		print_tab(matrix);
+		//free(param->input);
 	}
 	return (0);
 }
