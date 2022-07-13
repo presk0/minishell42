@@ -6,7 +6,7 @@
 /*   By: ndionis <ndionis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 12:36:53 by ndionis          ###   ########.fr       */
+/*   Updated: 2022/07/13 12:43:52 by ndionis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ static int	is_bonus(char *str, int i)
 
 int	check_error(t_data *param)
 {
-	int i;
-	int is_quoted;
+	int	i;
+	int	is_quoted;
 
-	ft_is_quoted(NULL, 0);	
+	ft_is_quoted(NULL, 0);
 	i = 0;
-	while(param->input[i] != '\0')
+	while (param->input[i] != '\0')
 	{
 		is_quoted = ft_is_quoted(param->input, i);
-		if(!is_quoted && is_bonus(param->input, i))
+		if (!is_quoted && is_bonus(param->input, i))
 		{
-			printf("-minishell; error arg ; || &&\n");
+			printf("minishell: error arg ; || &&\n");
 			param->retour = 2;
 			free(param->input);
-			//free_param
-			param->input = 0;
+			param->input = NULL;
 			return (1);
 		}	
 		i++;
@@ -80,7 +79,8 @@ char	*read_multilines(char *prompt)
 	int		quote_type;
 
 	line = readline(prompt);
-	while ((quote_type = line_not_finished(line)))
+	quote_type = line_not_finished(line);
+	while (quote_type)
 	{
 		if (quote_type == 1)
 			prompt = "quote> ";
@@ -91,6 +91,7 @@ char	*read_multilines(char *prompt)
 		line = ft_strjoin(line, tmp);
 		free(line_cpy);
 		free(tmp);
+		quote_type = line_not_finished(line);
 	}
 	return (line);
 }
