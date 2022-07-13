@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   prompting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndionis <ndionis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/12 20:40:24 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:36:53 by ndionis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	is_bonus(char *str, int i)
+{
+	if (str[i] == ';' || \
+		(!ft_strncmp(&str[i], "||", 2) || !ft_strncmp(&str[i], "&&", 2)))
+		return (1);
+	else
+		return (0);
+}
 
 int	check_error(t_data *param)
 {
@@ -22,7 +31,7 @@ int	check_error(t_data *param)
 	while(param->input[i] != '\0')
 	{
 		is_quoted = ft_is_quoted(param->input, i);
-		if(!is_quoted && (param->input[i] == ';' || (param->input[i] == '|' && param->input[i + 1] == '|') || (param->input[i] == '&' && param->input[i + 1] == '&'  )))
+		if(!is_quoted && is_bonus(param->input, i))
 		{
 			printf("-minishell; error arg ; || &&\n");
 			param->retour = 2;
