@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 17:37:57 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:13:58 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,19 @@ void	print_tab(char **tableau)
 		}
 	}
 	printf("------------------------\n");
+}
+
+char	**ft_insert_line(char **main_matrix, char *insert_matrix, int line_nb)
+{
+	int		main_mat_len;
+	char	new_matrix;
+
+	main_mat_len = ft_matrixlen(main_matrix);
+	if (line_nb > main_mat_len)
+		line_nb == main_mat_len;
+	else
+	{
+		
+	}
+
 }
