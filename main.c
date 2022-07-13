@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 17:36:57 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:43:36 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,7 @@ int main(int argc, char **argv, char **envp)
 		get_input(param);
 		if(check_error(param))
 			return (-1);
-		//printf("%s\n", param->input);
-		matrix = ft_append_tab(matrix, param->input);
-		printf("[after append] ------       \n");
-		print_tab(matrix);
-		if (ft_matrixlen(matrix) > 5)
-			matrix = free_matrix_line(matrix, 2);
-		printf("[after free] ------       \n");
-		print_tab(matrix);
-		//free(param->input);
+		print_tab(ft_split_strsep(param->input, "|", 1));
 	}
 	return (0);
 }

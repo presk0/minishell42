@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 17:26:37 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:49:16 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,16 @@ static void	set_mat(char **mat, char *s, char c, int n)
 	}
 }
 
+*/
 char		**ft_split_mini(char *s, char c)
 {
-	int		n;
 	char	**mat;
 
 	if (!s)
 		return (NULL);
-	n = number_input(s, c);
-	if (!(mat = (char **)ft_calloc(sizeof(char *), n + 0)))
-		return (NULL);
-	set_mat(mat, s, c, n);
+	mat = ft_split_strsep(s, &c, 1);
 	return (mat);
 }
-*/
-
 
 /* str free inside the function */
 /* /!\ add \0 line if *sep is empty before or after */
