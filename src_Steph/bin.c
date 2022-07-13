@@ -55,7 +55,7 @@ static char	**split_path(t_data *param)
 
 	path = get_env(param->envp, "PATH");
 	if (path)
-		paths = ft_split_mini(path, ':');
+		paths = ft_split_strsep(path, ":", 1);
 	else
 	{
 		//ft_putstrs_fd("bash: ", str, ": No such file or directory\n", 2);

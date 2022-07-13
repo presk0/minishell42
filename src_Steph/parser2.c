@@ -94,7 +94,7 @@ void		parser2(t_data *param)
 
 	if (check_error(param))
 		return ;
-	param->cmds = ft_split_mini(param->str, '|');
+	param->cmds = ft_split_strsep(param->str, "|", 1);
 	i = 0;
 	while (param->cmds[i])
 	{

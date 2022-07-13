@@ -6,21 +6,8 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/12 20:37:46 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:28:46 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_tab(char **tableau)
-{
-	int	i;
-
-	i = 0;
-	printf("------------------------\n");
-	while (tableau[i])
-	{
-		printf("%s*\n", tableau[i++]);
-	}
-	printf("------------------------\n");
-}

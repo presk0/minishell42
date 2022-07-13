@@ -6,12 +6,13 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/12 20:05:07 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:26:37 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
 static int	number_input(char *s, char c)
 {
 	int		n[1];
@@ -95,50 +96,49 @@ char		**ft_split_mini(char *s, char c)
 	set_mat(mat, s, c, n);
 	return (mat);
 }
+*/
 
 
-
-/*
-void	ft_split_strsep(char *str, char *sep)
+/* str free inside the function */
+/* /!\ add \0 line if *sep is empty before or after */
+char	**ft_split_strsep(char *str, char *sep, int is_char)
 {
 	int			i;
-	int			j;
+	int			matrix_len;
 	int			sep_len;
 	char		is_quoted;
+	char		*str_split[2];
+	char		**matrix_split;
 
 	if(!str)
-		return ;
-	sep_len = ft_strlen(str);
-	i = 0;
+		return NULL;
+	if (is_char)
+		sep_len = 1;
+	else
+		sep_len = ft_strlen(sep);
 	ft_is_quoted(NULL, 0);
+	matrix_split = NULL;
+	matrix_len = 1;
+	i = 0;
 	while (str[i])
 	{
 		is_quoted = ft_is_quoted(str, i);
-		if (!is_quoted && !ft_strncmp(&cmd_line[i], sep[j], sep_len + 1))
+		if (!is_quoted && !ft_strncmp(&str[i], sep, sep_len))
+		{
+			str_split[0] = ft_substr(str, 0, i);
+			str_split[1] = ft_substr(str, i + sep_len, ft_strlen(str));
+			if (matrix_split)
 			{
-				(*root)->data = ft_substr(sep[j], 0, ft_strlen(sep[j]));
-//				//reverse branches for a input, to facilitate priority execution
-//				if (!ft_strncmp("<<", sep[j], ft_strlen(sep[j])))
-//				{
-//					(*root)->right = new_node(ft_substr(cmd_line, 0, i), (*root));
-//					(*root)->left = new_node(ft_substr(cmd_line, i + ft_strlen(sep[j]), cmd_len), (*root));
-//				}
-//				else
-//				{
-					(*root)->left = new_node(ft_substr(cmd_line, 0, i), (*root));
-					(*root)->right = new_node(ft_substr(cmd_line, i + ft_strlen(sep[j]), cmd_len), (*root));
-//				}
-				free(cmd_line);
-				cmd_line = NULL;
-				break;
+				matrix_split = free_matrix_line(matrix_split, matrix_len - 1);
+				//free(str);
 			}
-			j++;
+			matrix_split = ft_append_tab(matrix_split, str_split[0]);
+			matrix_split = ft_append_tab(matrix_split, str_split[1]);
+			str = matrix_split[matrix_len++];
+			i = 0;
 		}
-		//if ((*root)->right)
-		//	break ;
-		i++;
+		if (i < (int)ft_strlen(str))
+			i++;
 	}
-	//if ((*root)->right)
-	//	node_split_multisep(&(*root)->right, sep);
+	return (matrix_split);
 }
-*/

@@ -6,20 +6,22 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/12 20:37:46 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:36:57 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-//
-//static void	sig_handler(int sig)
-//{
-//	(void)sig;
-//	printf("\n");
-//	rl_on_new_line();
-//	//rl_replace_line("", 0);
-//	rl_redisplay();
-//}
+
+/*
+static void	sig_handler(int sig)
+{
+	(void)sig;
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+*/
 
 /*
 char	*ft_strldup(const char *s, int len)
@@ -85,7 +87,6 @@ void	parser(t_data *param)
 }
 */
 
-
 int main(int argc, char **argv, char **envp)
 {
     t_data  *param;
@@ -102,6 +103,11 @@ int main(int argc, char **argv, char **envp)
 			return (-1);
 		//printf("%s\n", param->input);
 		matrix = ft_append_tab(matrix, param->input);
+		printf("[after append] ------       \n");
+		print_tab(matrix);
+		if (ft_matrixlen(matrix) > 5)
+			matrix = free_matrix_line(matrix, 2);
+		printf("[after free] ------       \n");
 		print_tab(matrix);
 		//free(param->input);
 	}
