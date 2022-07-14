@@ -22,16 +22,17 @@ void		parser(t_data *param)
 {
 	int i;
     int j = 0;
-	char	**cmd_split;
+	char	*input_file;
+	char	*output_file;
+	char	**cmd_matrix;
 
-	param->cmds = ft_split_strsep(param->str, "|", 1);
+	param->cmds = ft_split_strsep(param->input, "|", 1);
 	i = 0;
 	while (param->cmds[i])
 	{
 		// check input file
 		// clean input line
-
-		param->cmds = ft_split_strsep(param->str, "<", 0);
+		param->cmds[i] = ft_split_strsep(&param->cmds[i], "<", 0);
 		/*
 		check_env(&(param->cmds[i]), param);
 		param->argc = count_args(param->cmds[i]);
@@ -48,3 +49,4 @@ void		parser(t_data *param)
 	param->str = NULL;
 	free_matrix(param->cmds);
 }
+

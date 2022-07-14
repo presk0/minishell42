@@ -39,13 +39,14 @@ int	get_input(t_data *param);
 char	*read_multilines(char *prompt);
 char	**ft_append_tab(char **tableau, char *str);
 //bchar		**ft_split_mini(char *s, char c);
-char	**ft_split_strsep(char *str, char *sep, int is_char);
 char	*ft_strldup(const char *s, int len);
 char	**ft_append_tab(char **tableau, char *str);
 int		ft_is_quoted(char *c, int i);
 int		check_error(t_data *param);
-int		ft_matrixlen(char **matrix);
-char	**free_matrix_line(char **matrix, int line_nb);
+
+/* split */
+char	**ft_split_multistrsep(char *str, char **sep);
+char	**ft_split_strsep(char *str, char *sep, int is_char);
 
 /* init */
 t_data	*init_param(char **envp);
@@ -57,5 +58,9 @@ void	print_tab(char **tableau);
 /* strings */
 char    *del_first_word(char *str);
 char    *return_first_word(char *str);
+
+/* matrix */
+int	ft_matrixlen(char **matrix);
+char	**free_matrix_line(char **matrix, int line_nb);
 
 #endif

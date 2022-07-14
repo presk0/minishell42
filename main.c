@@ -91,7 +91,9 @@ int main(int argc, char **argv, char **envp)
 {
     t_data  *param;
 	char	**matrix;
+	char	**sep;
 	(void)matrix;
+	(void)sep;
     (void)argc;
     (void)argv;
 
@@ -102,9 +104,9 @@ int main(int argc, char **argv, char **envp)
 		get_input(param);
 		if(check_error(param))
 			return (-1);
-		fprintf(stderr, "[return_first_word] %s\n", return_first_word(param->input));
-		fprintf(stderr, "[del_first_word] %s\n", del_first_word(param->input));
-		free(param->input);
+		sep = ft_split(">>,>", ',');
+		print_tab(ft_split_multistrsep(param->input, sep));
+		//free(param->input);
 	}
 	return (0);
 }
