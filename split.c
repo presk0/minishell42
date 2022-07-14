@@ -67,47 +67,52 @@ char	**ft_split_strsep(char *str, char *sep, int is_char)
 	return (matrix_split);
 }
 
+static void refresh_matrix(char *str, char ***matrix, char *sep, int i)
+{
+	char	*str_split[3];
+	int		sep_len;
+
+	sep_len = ft_strlen(sep);
+	str_split[0] = ft_substr(str, 0, i);
+	str_split[1] = ft_substr(str, i, sep_len);
+	str_split[2] = ft_substr(str, i + sep_len, ft_strlen(str));
+	*matrix = free_matrix_line(*matrix, ft_matrixlen(*matrix) - 1);
+	*matrix = ft_append_tab(*matrix, str_split[0]);
+	*matrix = ft_append_tab(*matrix, str_split[1]);
+	*matrix = ft_append_tab(*matrix, str_split[2]);
+}
+
+static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init, char **sep)
+{
+	ft_is_quoted(NULL, 0);
+	*matrix_split = NULL;
+	*matrix_split = ft_append_tab(*matrix_split, ft_strdup(str));
+	*i = -1;
+	*sep_init = sep;
+}
+
 char	**ft_split_multistrsep(char *str, char **sep)
 {
 	int			i;
-	int			j;
-	int			matrix_len;
-	int			sep_nb;
 	char		is_quoted;
-	char		*str_split[3];
 	char		**matrix_split;
+	char		**sep_init;
 
-	if(!str)
-		return NULL;
-	sep_nb = ft_matrixlen(sep);
-	ft_is_quoted(NULL, 0);
-	matrix_split = NULL;
-	matrix_split = ft_append_tab(matrix_split, ft_strdup(str));
-	matrix_len = 1;
-	i = 0;
-	while (str[i])
+	init_vars(&i, &matrix_split, str, &sep_init, sep);
+	while (str && ++i < (int)ft_strlen(str))
 	{
 		is_quoted = ft_is_quoted(str, i);
-		j = 0;
-		while (j < sep_nb)
+		sep = sep_init;
+		while (sep && *sep)
 		{
-			if (!is_quoted && !ft_strncmp(&str[i], sep[j], ft_strlen(sep[j])))
+			if (!is_quoted && !ft_strncmp(&str[i], *sep, ft_strlen(*sep)))
 			{
-				str_split[0] = ft_substr(str, 0, i);
-				str_split[1] = ft_substr(str, i, ft_strlen(sep[j]));
-				str_split[2] = ft_substr(str, i + ft_strlen(sep[j]), ft_strlen(str));
-				matrix_split = free_matrix_line(matrix_split, matrix_len - 1);
-				matrix_split = ft_append_tab(matrix_split, str_split[0]);
-				matrix_split = ft_append_tab(matrix_split, str_split[1]);
-				matrix_split = ft_append_tab(matrix_split, str_split[2]);
-				matrix_len += 2;
-				str = matrix_split[matrix_len - 1];
-				i = 0;
+				refresh_matrix(str, &matrix_split, *sep, i);
+				str = matrix_split[ft_matrixlen(matrix_split) - 1];
+				i = -1;
 			}
-			j++;
+			sep++;
 		}
-		if (i < (int)ft_strlen(str))
-			i++;
 	}
 	return (matrix_split);
 }
