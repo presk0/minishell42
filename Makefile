@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c
+SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c
 
 OBJS := ${SRCS:c=o}
 

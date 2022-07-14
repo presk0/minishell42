@@ -16,7 +16,7 @@
 # include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <sys/_types/_posix_vdisable.h>
+//# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
 # define STDOUT 1
@@ -53,5 +53,9 @@ char	**copy_env(char **envp, int add);
 
 /* debug */
 void	print_tab(char **tableau);
+
+/* strings */
+char    *del_first_word(char *str);
+char    *return_first_word(char *str);
 
 #endif

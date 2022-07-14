@@ -29,6 +29,7 @@ int	ft_is_quoted(char *c, int i)
 			squote = !squote;
 		else if (c[i] == '\"' && !squote) // not_escaped(c, i) && 
 			dquote = !dquote;
+
 		if (dquote)
 			return (2);
 		if (squote)

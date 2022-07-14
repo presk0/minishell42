@@ -93,6 +93,7 @@ void	print_tab(char **tableau)
 	printf("------------------------\n");
 }
 
+/*
 char	**ft_insert_line(char **main_matrix, char *insert_matrix, int line_nb)
 {
 	int		main_mat_len;
@@ -103,7 +104,8 @@ char	**ft_insert_line(char **main_matrix, char *insert_matrix, int line_nb)
 		line_nb == main_mat_len;
 	else
 	{
-		
+
 	}
 
 }
+*/
