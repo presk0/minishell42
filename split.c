@@ -82,7 +82,7 @@ char	**ft_split_multistrsep(char *str, char **sep)
 	sep_nb = ft_matrixlen(sep);
 	ft_is_quoted(NULL, 0);
 	matrix_split = NULL;
-	matrix_split = ft_append_tab(matrix_split, str);
+	matrix_split = ft_append_tab(matrix_split, ft_strdup(str));
 	matrix_len = 1;
 	i = 0;
 	while (str[i])
