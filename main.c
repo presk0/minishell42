@@ -105,7 +105,7 @@ int main(int argc, char **argv, char **envp)
 		if(check_error(param))
 			return (-1);
 		sep = ft_split(">>,>", ',');
-		print_tab(ft_split_multistrsep(param->input, sep));
+		print_tab(ft_split_multistrsep(param->input, sep, 0));
 		//free(param->input);
 	}
 	return (0);

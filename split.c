@@ -15,16 +15,19 @@
 char		**ft_split_mini(char *s, char c)
 {
 	char	**mat;
+	char	sep[2];
 
 	if (!s)
 		return (NULL);
+	sep[0] = c;
+	sep[1] = '\0';
 	mat = ft_split_strsep(s, &c, 1);
 	return (mat);
 }
 
 /* str free inside the function */
 /* doesn't split if in quotes */
-/* /!\ add \0 line if *sep is empty before or after */
+/* /!\ add \0 line if is empty before or after *sep */
 char	**ft_split_strsep(char *str, char *sep, int is_char)
 {
 	int			i;
@@ -67,18 +70,20 @@ char	**ft_split_strsep(char *str, char *sep, int is_char)
 	return (matrix_split);
 }
 
-static void refresh_matrix(char *str, char ***matrix, char *sep, int i)
+static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)
 {
 	char	*str_split[3];
 	int		sep_len;
 
 	sep_len = ft_strlen(sep);
 	str_split[0] = ft_substr(str, 0, i);
-	str_split[1] = ft_substr(str, i, sep_len);
+	if (keep_sep)
+		str_split[1] = ft_substr(str, i, sep_len);
 	str_split[2] = ft_substr(str, i + sep_len, ft_strlen(str));
 	*matrix = free_matrix_line(*matrix, ft_matrixlen(*matrix) - 1);
 	*matrix = ft_append_tab(*matrix, str_split[0]);
-	*matrix = ft_append_tab(*matrix, str_split[1]);
+	if (keep_sep)
+		*matrix = ft_append_tab(*matrix, str_split[1]);
 	*matrix = ft_append_tab(*matrix, str_split[2]);
 }
 
@@ -91,7 +96,7 @@ static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init,
 	*sep_init = sep;
 }
 
-char	**ft_split_multistrsep(char *str, char **sep)
+char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)
 {
 	int			i;
 	char		is_quoted;
@@ -107,7 +112,7 @@ char	**ft_split_multistrsep(char *str, char **sep)
 		{
 			if (!is_quoted && !ft_strncmp(&str[i], *sep, ft_strlen(*sep)))
 			{
-				refresh_matrix(str, &matrix_split, *sep, i);
+				refresh_matrix(str, &matrix_split, *sep, i, keep_sep);
 				str = matrix_split[ft_matrixlen(matrix_split) - 1];
 				i = -1;
 			}
@@ -116,9 +121,3 @@ char	**ft_split_multistrsep(char *str, char **sep)
 	}
 	return (matrix_split);
 }
-
-/* find out if the last ope:
-	is not found : return 0;
-	is simple    : return 1;
-	is doubled   : return 2;
-*/

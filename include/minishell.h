@@ -45,7 +45,7 @@ int		ft_is_quoted(char *c, int i);
 int		check_error(t_data *param);
 
 /* split */
-char	**ft_split_multistrsep(char *str, char **sep);
+char	**ft_split_multistrsep(char *str, char **sep, int keep_sep);
 char	**ft_split_strsep(char *str, char *sep, int is_char);
 
 /* init */

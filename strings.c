@@ -20,7 +20,7 @@ int is_blank(char c)
         return (0);
 }
 
-char    *del_first_word(char *str)
+void    del_first_word(char **str)
 {
     int     i;
     char    *new_str;
@@ -29,21 +29,22 @@ char    *del_first_word(char *str)
     new_str = NULL;
     i = 0;
     ft_is_quoted(NULL, 0);
-    if (str)
+    if (str && *str)
     {
-        while (is_blank(str[i]) && str[i])
+        while (is_blank(*str[i]) && *str[i])
             i++;
-        is_quoted = ft_is_quoted(str, i);
-        while ((!is_blank(str[i]) || is_quoted) && str[i])
+        is_quoted = ft_is_quoted(*str, i);
+        while ((!is_blank(*str[i]) || is_quoted) && *str[i])
         {
             i++;
-            is_quoted = ft_is_quoted(str, i);
+            is_quoted = ft_is_quoted(*str, i);
         }
-        while (is_blank(str[i]) && str[i])
+        while (is_blank(*str[i]) && *str[i])
             i++;
-        new_str = ft_substr(str, i, ft_strlen(str));
+        new_str = ft_substr(*str, i, ft_strlen(*str));
     }
-    return (new_str);
+    free(*str);
+    *str = new_str;
 }
 
 char    *return_first_word(char *str)
@@ -72,12 +73,14 @@ char    *return_first_word(char *str)
     return (new_str);
 }
 
-/*
-void    pop(char **cmd, int i)
+char    *pop_first_wd(char **cmd)
 {
+    char *first_word;
 
+    first_word = return_first_word(*cmd);
+    del_first_word(cmd);
+    return (return_first_word);
 }
-*/
 
 /* modify cmd in_place 
 char **pop_item(char **cmd, char *operand)
