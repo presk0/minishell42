@@ -12,11 +12,29 @@
 
 #include "minishell.h"
 
-char	*return_env_var(char *var, size_t var_len, char *envp[])
+size_t	ft_var_len(char *var_start)
+{
+	size_t	len;
+
+	len = 0;
+	if (var_start)
+	{
+		while (*var_start && (ft_isalnum(*var_start) || *var_start == '_'))
+		{
+			var_start++;
+			len++;
+		}
+	}
+	return (len);
+}
+
+char	*return_env_var(char *var, char *envp[])
 {
 	size_t	i;
+	size_t var_len
 	size_t	spliter_index;
 
+	var_len = ft_var_len(var);
 	i = 0;
 	if (!var || !envp)
 		return (NULL);
@@ -32,22 +50,6 @@ char	*return_env_var(char *var, size_t var_len, char *envp[])
 		i++;
 	}
 	return (NULL);
-}
-
-size_t	ft_var_len(char *var_start)
-{
-	size_t	len;
-
-	len = 0;
-	if (var_start)
-	{
-		while (*var_start && (ft_isalnum(*var_start) || *var_start == '_'))
-		{
-			var_start++;
-			len++;
-		}
-	}
-	return (len);
 }
 
 //var_len does not consider the $
@@ -105,17 +107,4 @@ char	*convert_var_in_line(char *line, char *envp[])
 		i++;
 	}
 	return (line);
-}
-
-void	convert_var_in_node(t_cmd_tree **node, char **blabla)
-{
-	char	*line;
-
-	(void)blabla;
-	line = (*node)->data;
-	if (!ft_is_operand(line))
-	{
-		(*node)->data = convert_var_in_line(line, *node->envp);
-		line = (*node)->data;
-	}
 }

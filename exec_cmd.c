@@ -14,7 +14,7 @@
 
 // getenv output cannot be free (not malloc)
 // return NULL if path doesn't exist
-char	*get_path(char *cmd)
+char	*get_path(char *cmd, char *PATH)
 {
 	char	*str;
 	char	**env_tab;
@@ -27,7 +27,7 @@ char	*get_path(char *cmd)
 		close(file_fd);
 		return (ft_strdup(cmd));
 	}
-	str = getenv("PATH");
+	str = PATH;
 	env_tab = ft_split(str, ':');
 	i = 0;
 	cmd = ft_strjoin("/", cmd);
@@ -91,37 +91,6 @@ int	line_presplit(char *cmd)
 	return (tab_len);
 }
 
-char	**split_formated(t_cmd_tree *node)
-{
-	int 	i;
-	int 	new_i;
-	char	*cmd_path;
-	char	**cmd_split;
-
-	cmd_split = quotes_spaces_split(node->data);
-	if (!cmd_split)
-		return (NULL);
-	new_i = 0;
-	i = 0;
-	while (cmd_split[i])
-	{
-		if (*cmd_split[i] != '\0')
-		{
-			if (i != new_i)
-				cmd_split[new_i] = cmd_split[i];
-			new_i++;
-		}
-		else
-			free(cmd_split[i]);
-		i++;
-	}
-	cmd_split[new_i] = NULL;
-	cmd_path = get_path(cmd_split[0]);
-	free(cmd_split[0]);
-	cmd_split[0] = cmd_path;
-	return (cmd_split);
-}
-
 char	**quotes_spaces_split(char *line)
 {
 	int		i;
@@ -145,20 +114,33 @@ char	**quotes_spaces_split(char *line)
 	return (tab);
 }
 
-void	node_cmd(t_cmd_tree *node)
+char	**cmd_format(char *str, char *PATH)
 {
+	int 	i;
+	int 	new_i;
+	char	*cmd_path;
 	char	**cmd_split;
 
-	if (node && node->data && !ft_is_operand(node->data))
+	cmd_split = quotes_spaces_split(str);
+	if (!cmd_split)
+		return (NULL);
+	new_i = 0;
+	i = 0;
+	while (cmd_split[i])
 	{
-		cmd_split = split_formated(node);
-		if (!cmd_split)
-			cmd_split = ft_split ("/usr/bin/cat,command not found\n", ',');
-		if (execve(cmd_split[0], cmd_split, *node->envp) == -1)
+		if (*cmd_split[i] != '\0')
 		{
-			perror(NULL);
+			if (i != new_i)
+				cmd_split[new_i] = cmd_split[i];
+			new_i++;
 		}
-		ft_free_split(cmd_split);
-		
+		else
+			free(cmd_split[i]);
+		i++;
 	}
+	cmd_split[new_i] = NULL;
+	cmd_path = get_path(cmd_split[0], PATH);
+	free(cmd_split[0]);
+	cmd_split[0] = cmd_path;
+	return (cmd_split);
 }

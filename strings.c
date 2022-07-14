@@ -29,19 +29,19 @@ void    del_first_word(char **str)
     new_str = NULL;
     i = 0;
     ft_is_quoted(NULL, 0);
-    if (str && *str)
+    if (str && (*str))
     {
-        while (is_blank(*str[i]) && *str[i])
+        while (is_blank((*str)[i]) && (*str)[i])
             i++;
-        is_quoted = ft_is_quoted(*str, i);
-        while ((!is_blank(*str[i]) || is_quoted) && *str[i])
+        is_quoted = ft_is_quoted((*str), i);
+        while ((!is_blank((*str)[i]) || is_quoted) && (*str)[i])
         {
             i++;
-            is_quoted = ft_is_quoted(*str, i);
+            is_quoted = ft_is_quoted((*str), i);
         }
-        while (is_blank(*str[i]) && *str[i])
+        while (is_blank((*str)[i]) && (*str)[i])
             i++;
-        new_str = ft_substr(*str, i, ft_strlen(*str));
+        new_str = ft_substr((*str), i, ft_strlen(*str));
     }
     free(*str);
     *str = new_str;
@@ -79,7 +79,7 @@ char    *pop_first_wd(char **cmd)
 
     first_word = return_first_word(*cmd);
     del_first_word(cmd);
-    return (return_first_word);
+    return (first_word);
 }
 
 /* modify cmd in_place 

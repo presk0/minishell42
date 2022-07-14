@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+/*
 char		**ft_split_mini(char *s, char c)
 {
 	char	**mat;
@@ -24,6 +25,7 @@ char		**ft_split_mini(char *s, char c)
 	mat = ft_split_strsep(s, &c, 1);
 	return (mat);
 }
+*/
 
 /* str free inside the function */
 /* doesn't split if in quotes */

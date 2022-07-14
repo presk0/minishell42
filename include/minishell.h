@@ -56,8 +56,9 @@ char	**copy_env(char **envp, int add);
 void	print_tab(char **tableau);
 
 /* strings */
-char    *del_first_word(char *str);
+void	del_first_word(char **str);
 char    *return_first_word(char *str);
+char    *pop_first_wd(char **cmd);
 
 /* matrix */
 int	ft_matrixlen(char **matrix);

@@ -92,6 +92,8 @@ int main(int argc, char **argv, char **envp)
     t_data  *param;
 	char	**matrix;
 	char	**sep;
+	char	*str;
+	(void)str;
 	(void)matrix;
 	(void)sep;
     (void)argc;
@@ -104,8 +106,10 @@ int main(int argc, char **argv, char **envp)
 		get_input(param);
 		if(check_error(param))
 			return (-1);
-		sep = ft_split(">>,>", ',');
-		print_tab(ft_split_multistrsep(param->input, sep, 0));
+		printf("%s\n", param->input);
+		str = pop_first_wd(&param->input);
+		printf("first wd: %s\n", str);
+		printf("after pop: %s\n", param->input);
 		//free(param->input);
 	}
 	return (0);

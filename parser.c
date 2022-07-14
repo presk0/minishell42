@@ -21,32 +21,22 @@
 void		parser(t_data *param)
 {
 	int i;
-    int j = 0;
-	char	*input_file;
-	char	*output_file;
-	char	**cmd_matrix;
+	char **cmd_matrix;
+	char **sep;
 
-	param->cmds = ft_split_strsep(param->input, "|", 1);
+	sep = ft_split(">>,>,<<,<", ',');
 	i = 0;
+	// fork 
 	while (param->cmds[i])
 	{
+		// pipe
+		cmd_matrix = ft_split_multistrsep(param->input, sep, 1);
 		// check input file
 		// clean input line
-		param->cmds[i] = ft_split_strsep(&param->cmds[i], "<", 0);
-		/*
-		check_env(&(param->cmds[i]), param);
-		param->argc = count_args(param->cmds[i]);
-		param->argv = (char **)ft_calloc(sizeof(char *), (param->argc + 1));
-		set_args(param->argv, param->cmds[i], param->argc);
-        printf("argv = %s\n", param->argv[0]);
-        param->export = check_export(param);
-        check_command(param);
-		*/
-		free_matrix(param->argv);
+		// make (all) output files
 		i++;
 	}
-	free(param->str);
-	param->str = NULL;
+	free_matrix(sep);
 	free_matrix(param->cmds);
 }
 
