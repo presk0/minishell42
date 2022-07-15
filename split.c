@@ -29,7 +29,7 @@ char		**ft_split_mini(char *s, char c)
 
 /* str free inside the function */
 /* doesn't split if in quotes */
-/* /!\ add \0 line if is empty before or after *sep */
+/* /!\ add \0 line if is empty before or after *sep
 char	**ft_split_strsep(char *str, char *sep, int is_char)
 {
 	int			i;
@@ -71,6 +71,7 @@ char	**ft_split_strsep(char *str, char *sep, int is_char)
 	}
 	return (matrix_split);
 }
+*/
 
 static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)
 {

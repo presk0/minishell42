@@ -31,7 +31,7 @@ size_t	ft_var_len(char *var_start)
 char	*return_env_var(char *var, char *envp[])
 {
 	size_t	i;
-	size_t var_len
+	size_t var_len;
 	size_t	spliter_index;
 
 	var_len = ft_var_len(var);

@@ -96,6 +96,7 @@ char	*read_multilines(char *prompt)
 	return (line);
 }
 
+/*
 int	get_input(t_data *param)
 {
 	char	*input;
@@ -108,3 +109,4 @@ int	get_input(t_data *param)
 	param->input = input;
 	return (ret);
 }
+*/
