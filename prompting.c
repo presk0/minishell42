@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndionis <ndionis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 12:43:52 by ndionis          ###   ########.fr       */
+/*   Updated: 2022/07/18 18:58:07 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char	*read_multilines(char *prompt)
 	int		quote_type;
 
 	line = readline(prompt);
+	if (!line)
+		return (line);
 	quote_type = line_not_finished(line);
 	while (quote_type)
 	{

@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/11 17:51:43 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:59:04 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 // getenv output cannot be free (not malloc)
 // return NULL if path doesn't exist
+
+//int			exec_bin_to_fd
 char	*get_path(char *cmd, char *PATH)
 {
 	char	*str;
@@ -96,22 +98,22 @@ char	**quotes_spaces_split(char *line)
 	int		i;
 	int		nb_split;
 	int		next;
-	char	**tab;
+	char	**matrix;
 
 	nb_split = line_presplit(line);
-	tab = malloc(sizeof(char *) * (nb_split + 1));
+	matrix = malloc(sizeof(char *) * (nb_split + 1));
 	i = 0;
 	next = 0;
 	while (i < nb_split)
 	{
-		tab[i] = ft_strdup(&line[next]);
+		matrix[i] = ft_strdup(&line[next]);
 		next += ft_strlen(&line[next]) + 1;
 		//tmp = fprintf(stderr, "%s\n", &line[next]);
 		i++;
 	}
-	tab[i] = NULL;
+	matrix[i] = NULL;
 	free(line);
-	return (tab);
+	return (matrix);
 }
 
 char	**cmd_format(char *str, char *PATH)

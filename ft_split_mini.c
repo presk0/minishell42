@@ -83,3 +83,17 @@ char		**ft_split_mini(char *s, char c)
 	set_mat(mat, s, c, n);
 	return (mat);
 }
+
+char		**ft_split_mini(char *s, char c)
+{
+	int		n;
+	char	**mat;
+
+	if (!s)
+		return (NULL);
+	n = number_str(s, c);
+	if (!(mat = (char **)ft_calloc(sizeof(char *), n + 1)))
+		return (NULL);
+	set_mat(mat, s, c, n);
+	return (mat);
+}

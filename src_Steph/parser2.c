@@ -82,7 +82,7 @@ void	check_command(t_data *param)
 	fd = set_fd(param);
 	copy_args1(param);
 	if(check_built(fd, param))
-		check_bin(fd, param);
+		exec_bin_to_fd(fd, param);
 }
 
 
@@ -104,7 +104,7 @@ void		parser2(t_data *param)
 		param->argv = (char **)ft_calloc(sizeof(char *), (param->argc + 1));
 		set_args(param->argv, param->cmds[i], param->argc);
         printf("argv = %s\n", param->argv[0]);
-        param->export = check_export(param);
+//        param->export = check_export(param);
         check_command(param);
 		free_matrix(param->argv);
 		i++;

@@ -26,9 +26,15 @@
 
 typedef struct		s_data
 {
+
+
 	int		argc;
 	char	**argv;
 	char	**envp;
+	char	*path; // PATH/cmd;
+	char	*args; // args passed to execve;
+	char	**i_fname;
+	char	**o_fname;
 //	char	**var;
 	int		retour;
 	char	*input;
@@ -63,5 +69,17 @@ char    *pop_first_wd(char **cmd);
 /* matrix */
 int	ft_matrixlen(char **matrix);
 char	**free_matrix_line(char **matrix, int line_nb);
+
+/* env */
+char	*convert_var_in_line(char *line, char *envp[]);
+char	*return_env_var(char *var, char *envp[]);
+/* bin && initial */ /* format without path */
+int			exec_bin_to_fd(int fd, t_data *param); 
+
+/* parser */
+void		parser(t_data *param);
+
+/* cmd format */
+char	**cmd_format(char *str, char *PATH);
 
 #endif

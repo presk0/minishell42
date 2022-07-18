@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp.c                                             :+:      :+:    :+:   */
+/*   var_conv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/11 18:09:19 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/15 14:34:15 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_var_len(char *var_start)
 char	*return_env_var(char *var, char *envp[])
 {
 	size_t	i;
-	size_t var_len
+	size_t var_len;
 	size_t	spliter_index;
 
 	var_len = ft_var_len(var);
@@ -79,7 +79,7 @@ char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)
 	return (replacing_line);
 }
 
-char	*convert_var_in_line(char *line, char *envp[])
+char	*convert_var_in_line(char *line, char **envp)
 {
 	int		i;
 	int		is_quoted;
@@ -95,7 +95,7 @@ char	*convert_var_in_line(char *line, char *envp[])
 		if (line[i] == '$' && (is_quoted == 0 || is_quoted == 2))
 		{
 			var_len = ft_var_len(&line[i + 1]);
-			var_content = return_env_var(&line[i + 1], var_len, envp);
+			var_content = return_env_var(&line[i + 1], envp);
 			if (var_content)
 			{
 				new_line = convert_var(line, i, var_content, var_len);

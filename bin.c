@@ -71,6 +71,7 @@ static char	*search_bin(char *str, DIR **dir, struct dirent **d, t_data *param)
 	char		*path;
 	int			i;
 
+
 	if (!(paths = split_path(param)))
 		return (NULL);
 	i = -1;
@@ -91,8 +92,8 @@ static char	*search_bin(char *str, DIR **dir, struct dirent **d, t_data *param)
 	free_matrix(paths);
 	return (NULL);
 }
-
-int			check_bin(int fd, t_data *param)
+/* format without path */
+int			exec_bin_to_fd(int fd, t_data *param)
 {
 	DIR				*dir;
 	struct dirent	*d;

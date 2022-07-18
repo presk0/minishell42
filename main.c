@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ndionis <ndionis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 17:43:36 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:31:46 by ndionis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,19 @@ int main(int argc, char **argv, char **envp)
 	matrix = NULL;
     while(42)
 	{
-		get_input(param);
+		if (!get_input(param))
+			break;
 		if(check_error(param))
 			return (-1);
-		printf("%s\n", param->input);
-		str = pop_first_wd(&param->input);
-		printf("first wd: %s\n", str);
-		printf("after pop: %s\n", param->input);
+		//printf("%s\n", param->input);
+		//str = pop_first_wd(&param->input);
+		//printf("%s\n", ((return_env_var("PATH", param->envp))));
+		param->envp = ft_append_tab(param->envp, param->input);
+		print_tab(param->envp);
+		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
+		//printf("after pop: %s\n", param->input);
 		//free(param->input);
 	}
-	return (0);
+	//freall();
+	exit(0);
 }

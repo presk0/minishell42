@@ -19,11 +19,9 @@ int	set_fd(t_data *param)
     if (i == 1)
         return (check_redir(param, i, fd));
     else if(j == 1)
-        return (check_heredoc(param, j, fd));
+//        return (check_heredoc(param, j, fd));
     else
         return (1);
-
-
 }
 
 static int	count_redir(t_data *param)
@@ -68,26 +66,6 @@ void	copy_args1(t_data *param)
 }
 
 
-int	check_redir(t_data *param, int i, int fd)
-{
-
-
-	while(param->argv[i] != NULL)
-	{
-		if (!ft_memcmp(param->argv[i], ">", 2))
-		{
-			fd = open(param->argv[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-
-		}
-
-		else if(!ft_memcmp(param->argv[i], ">>", 3))
-			fd = open(param->argv[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-
-
-		i++;
-	}
-	return(fd);
-}
 
 int check_heredoc(t_data *param, int i, int fd)
 {
