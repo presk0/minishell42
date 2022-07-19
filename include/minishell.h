@@ -69,6 +69,7 @@ char    *pop_first_wd(char **cmd);
 /* matrix */
 int	ft_matrixlen(char **matrix);
 char	**free_matrix_line(char **matrix, int line_nb);
+char	*matrix_to_str(char **matrix);
 
 /* env */
 char	*convert_var_in_line(char *line, char *envp[]);

@@ -1,7 +1,6 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory `/Users/ndionis/minishell42'
 make -C libftprintf
- 
 make -C libft
 gcc -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address  main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c libftprintf/libftprintf.a libft/libft.a  -I./include libftprintf/libftprintf.a libft/libft.a -I./libftprintf/ -I./libft/ -o minishell
 make: Leaving directory `/Users/ndionis/minishell42'

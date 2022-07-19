@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/18 19:03:45 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 12:59:51 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void		parser(t_data *param)
 	//free_matrix(param->cmds);
 }
 
+/*
 int	check_redir(t_data *param)
 {
 	int	i;
@@ -86,7 +87,9 @@ int	check_redir(t_data *param)
 	}
 	return(fd);
 }
+*/
 
+/*
 char	**extract_ope_inplace(t_data param, char **sep)
 {
 	char	**matrix_out;
@@ -95,3 +98,4 @@ char	**extract_ope_inplace(t_data param, char **sep)
 	str = param->input;
 	
 }
+*/
