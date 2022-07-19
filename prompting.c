@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 14:44:45 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:05:09 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	get_input(t_data *param)
 	input = read_multilines("\e[033m42mminishell $ \e[39m");
 	if (!input)
 		return (0);
+	add_history(input);
 	param->input = input;
 	param->input_cleaned = input;
 	return (ret);

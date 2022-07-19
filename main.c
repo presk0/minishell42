@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 15:06:56 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:38:41 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,15 @@ int main(int argc, char **argv, char **envp)
 			return (-1);
 		//printf("%s\n", param->input);
 		//printf("%s\n", ((return_env_var("PATH", param->envp))));
-		sep = ft_split("<<,<", ',');
+		sep = ft_split(">>,>,<<,<", ',');
 		matrix = pop_names_from_sep(param, sep);
 		//param->envp = ft_append_tab(param->envp, param->input);
-		printf("[pop_input]\n");
+		printf("[pop_redir]\n");
 		print_tab(matrix);
 		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
 		printf("param->input_cleaned:\n\t[%s]\n", param->input_cleaned);
+		printf("-------------------------------------------------------------\n");
+		free(sep);
 		//free(param->input);
 	}
 	//freall();

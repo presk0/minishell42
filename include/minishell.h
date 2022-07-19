@@ -26,8 +26,6 @@
 
 typedef struct		s_data
 {
-
-
 	int		argc;
 	char	**argv;
 	char	**envp;
@@ -40,7 +38,7 @@ typedef struct		s_data
 	char	*input;
 	char	*input_cleaned;
 	char	**cmds;
-}					t_data;
+}	t_data;
 
 int	get_input(t_data *param);
 char	*read_multilines(char *prompt);
