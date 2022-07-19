@@ -6,23 +6,21 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 14:11:43 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:07:21 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *pop_input_filenames(char *cmd)
+char **pop_names_from_sep(t_data *param, char **sep)
 {
     char    *cmd_cpy;
-    char    **sep;
     char    **fname_matrix;
     char    **cmd_split;
     int     i;
 
-    sep = ft_split("<<,<", ',');
-    cmd_cpy = cmd;
-    cmd_split = ft_split_multisep(cmd, sep, 1);
+    cmd_cpy = param->input_cleaned;
+    cmd_split = ft_split_multistrsep(cmd_cpy, sep, 1);
     i = 1;
     fname_matrix = NULL;
     if (cmd_split && cmd_split[i])
@@ -31,7 +29,9 @@ char *pop_input_filenames(char *cmd)
         {
             fname_matrix = ft_append_tab(fname_matrix, pop_first_wd(&cmd_split[i++]));
         }
-
+        free(param->input_cleaned);
+        param->input_cleaned = matrix_to_str(cmd_split);
+        ft_free_split(cmd_split);
     }
     return (fname_matrix);
 }

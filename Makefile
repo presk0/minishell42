@@ -6,12 +6,12 @@
 #    By: supersko <supersko@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/07/15 14:31:49 by supersko         ###   ########.fr        #
+#    Updated: 2022/07/19 14:45:23 by supersko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
-	var_conv.c parser.c exec_cmd.c
+	var_conv.c parser.c exec_cmd.c get_filename.c
 
 OBJS := ${SRCS:c=o}
 

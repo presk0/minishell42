@@ -38,6 +38,7 @@ typedef struct		s_data
 //	char	**var;
 	int		retour;
 	char	*input;
+	char	*input_cleaned;
 	char	**cmds;
 }					t_data;
 
@@ -82,5 +83,8 @@ void		parser(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH);
+
+/* get filename */
+char **pop_names_from_sep(t_data *param, char **sep);
 
 #endif

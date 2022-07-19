@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 14:17:37 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:00:20 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char	*matrix_to_str(char **matrix)
 	int		i;
 	char	*str;
 	char	*new_str;
+	char	*str_add_space;
 
 	if (matrix)
 		str = ft_strdup(matrix[0]);
@@ -106,9 +107,13 @@ char	*matrix_to_str(char **matrix)
 	{
 		if (matrix[i][0] != '\0')
 		{
-			new_str = ft_strjoin(str, matrix[i]);
+			str_add_space = ft_strjoin(str, " ");
+			new_str = ft_strjoin(str_add_space, matrix[i]);
 			if (str)
 				free(str);
+			if (str_add_space)
+				free(str_add_space);
+			str_add_space = NULL;
 			str = new_str;
 		}
 		i++;

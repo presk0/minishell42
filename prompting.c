@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/18 18:58:07 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:44:45 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int	get_input(t_data *param)
 	if (!input)
 		return (0);
 	param->input = input;
+	param->input_cleaned = input;
 	return (ret);
 }
