@@ -38,6 +38,7 @@ typedef struct		s_data
 	char	*input;
 	char	*input_cleaned;
 	char	**cmds;
+	int		pid;
 }	t_data;
 
 int	get_input(t_data *param);
@@ -83,6 +84,10 @@ void		parser(t_data *param);
 char	**cmd_format(char *str, char *PATH);
 
 /* get filename */
-char **pop_names_from_sep(t_data *param, char **sep);
+char **pop_names_from_sep(t_data *param, int i, char **sep);
+
+/* pipe */
+void	execute(t_data *param, int i);
+void	child_process(t_data *param, int i, int *fd);
 
 #endif

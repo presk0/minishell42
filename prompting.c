@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 16:05:09 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:03:11 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*read_multilines(char *prompt)
 
 	line = readline(prompt);
 	if (!line)
-		return (line);
+		return (NULL);
 	quote_type = line_not_finished(line);
 	while (quote_type)
 	{

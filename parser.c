@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 12:59:51 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:52:37 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,86 @@ char	*clean_join(t_data param, char **cmd_matrix)
 }
 */
 
+int	is_input(char **matrix, int i)
+{
+	return (!strncmp("<", matrix[i - 1], 1));
+}
+
+int	is_output(char **matrix, int i)
+{
+	return (!strncmp(">", matrix[i - 1], 1));
+}
+
+int	*init_fd(char **fmatrix, int *in_out_redir)
+{
+	int		i_matrix;
+	int		*io_cpy;
+
+	if (!in_out_redir)
+		return (NULL);
+	io_cpy = in_out_redir;
+	if (fmatrix)
+	{
+		i_matrix = ft_matrixlen(fmatrix);
+		while (--i_matrix > 2)
+		{
+			if (is_input(fmatrix, i_matrix) && in_out_redir[0] == io_cpy[0])
+				in_out_redir[0] = open(fmatrix[i_matrix], O_RDONLY);
+			if (is_output(fmatrix, i_matrix) && in_out_redir[1] == io_cpy[1])
+				in_out_redir[1] = open(fmatrix[i_matrix], O_WRONLY);
+		}
+	}
+	if (in_out_redir[0] == io_cpy[0])
+		in_out_redir[0] = 0;
+	if (in_out_redir[1] == io_cpy[1])
+		in_out_redir[1] = 1;
+	return (in_out_redir);
+}
+
 void		parser(t_data *param)
 {
 	int		i;
-	char	**cmd_matrix;
+	char	**files_matrix;
 	char	**sep;
+	int		*fd;
 
 	//sep = ft_split(">>,>,<<,<", ',');
+	fd = malloc(sizeof(int) * 2);
+	//if (!fd)
+		//error
+	fd[0] = 0;
+	fd[1] = 1;
 	sep = ft_split("|", ' ');
 	param->cmds =ft_split_multistrsep(param->input, sep, 0);
+	printf("[pipe_split]\n");
+	print_tab(param->cmds);
 	free(sep);
+	sep = NULL;
 	i = 0;
-	// fork 
-	while (param->cmds[i])
+	sep = ft_split(">>,>,<<,<", ',');
+	while (param->cmds[i + 1])
 	{
-		// pipe
-		sep = ft_split("<<,<", ',');
-		cmd_matrix = ft_split_multistrsep(param->cmds[i], sep, 1);
-		printf("%s\n", param->cmds[i]);
-		// check input file
-		// clean input line
-		// make (all) output files
+		files_matrix = pop_names_from_sep(param, i, sep);
+		printf("[input_cleaned] %s\n", param->input_cleaned);
+		fd = init_fd(files_matrix, fd);
+		if (pipe(fd) == -1)
+			return ;
+//			error();
+		child_process(param, i, fd);
+		if (files_matrix)
+			ft_free_split(files_matrix);
+		files_matrix = NULL;
 		i++;
 	}
-	//free_matrix(sep);
-	//free_matrix(param->cmds);
+	close(fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	files_matrix = pop_names_from_sep(param, i, sep);
+	execute(param, i);
+	if (param->cmds)
+		ft_free_split(param->cmds);
+	if (sep)
+		ft_free_split(sep);
+	free(fd);
 }
 
 /*

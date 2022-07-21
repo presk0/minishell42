@@ -6,52 +6,39 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 17:05:30 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:43:44 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 /* helped with https://github.com/gabcollet/pipex */
 
-/* A simple error displaying function. */
+/* A simple error displaying function.
 void	error(void)
 {
 	perror("\033[31mError");
 	exit(EXIT_FAILURE);
 }
+*/
 
 /* Function that take the command and send it to find_path
- before executing it. */
-void	execute(char *argv, char **envp)
+ before executing it. 
+*/
+void	execute(t_data *param, int i)
 {
 	char	**cmd;
-	int 	i;
 	char	*path;
 	
-	i = -1;
-	cmd = ft_split(argv, ' ');
-	path = find_path(cmd[0], envp);
-	if (!path)	
-	{
-		while (cmd[++i])
-			free(cmd[i]);
-		free(cmd);
-		error();
-	}
-	if (execve(path, cmd, envp) == -1)
-		error();
+	path = return_env_var("PATH", param->envp);
+	cmd = cmd_format(param->input_cleaned, path);
+	printf("[cmd_tab] i=%d\n", i);
+	print_tab(cmd);
+	if (execve(cmd[0], cmd, param->envp) == -1)
+		return ;
+//		error();
 }
 
-/* Function to display error message when arguments are wrong */
-void	usage(void)
-{
-	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
-	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("    ./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
-	exit(EXIT_SUCCESS);
-}
-
-/* Function to open the files with the right flags */
+/* Function to open the files with the right flags 
 int	open_file(char *argv, int i)
 {
 	int	file;
@@ -67,24 +54,35 @@ int	open_file(char *argv, int i)
 		error();
 	return (file);
 }
+*/
 
-/* Child process that run inside a fork, take the filein, put the output inside
- a pipe and then close with the exec function */
-void	child_process(char **argv, char **envp, int *fd)
+void	child_process(t_data *param, int i, int *fd)
 {
-	int		filein;
+	pid_t	pid;
 
-	filein = open(argv[1], O_RDONLY, 0777);
-	if (filein == -1)
-		error();
-	dup2(fd[1], STDOUT_FILENO);
-	dup2(filein, STDIN_FILENO);
-	close(fd[0]);
-	execute(argv[2], envp);
+	if (pipe(fd) == -1)
+		return ;
+//		error();
+	pid = fork();
+	if (pid == -1)
+		return ;
+//		error();
+	if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		execute(param, i);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(pid, NULL, 0);
+	}
 }
 
 /* Parent process that take the data from the pipe, change the output for the
- fileout and also close with the exec function */
+ fileout and also close with the exec function 
 void	parent_process(char **argv, char **envp, int *fd)
 {
 	int		fileout;
@@ -97,30 +95,4 @@ void	parent_process(char **argv, char **envp, int *fd)
 	close(fd[1]);
 	execute(argv[3], envp);
 }
-
-/* Main function that run the child and parent process or display an error
- message if arguments are wrong */
-int	pipex(int argc, char **argv, char **envp)
-{
-	int		fd[2];
-	pid_t	pid1;
-
-	if (argc == 5)
-	{
-		if (pipe(fd) == -1)
-			error();
-		pid1 = fork();
-		if (pid1 == -1)
-			error();
-		if (pid1 == 0)
-			child_process(argv, envp, fd);
-		waitpid(pid1, NULL, 0);
-		parent_process(argv, envp, fd);
-	}
-	else
-	{
-		ft_putstr_fd("\033[31mError: Bad arguments\n\e[0m", 2);
-		ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
-	}
-	return (0);
-}
+*/
