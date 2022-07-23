@@ -89,7 +89,7 @@ void		parser(t_data *param)
 	fd[0] = 0;
 	fd[1] = 1;
 	sep = ft_split("|", ' ');
-	param->cmds =ft_split_multistrsep(param->input, sep, 0);
+	param->cmds = ft_split_multistrsep(param->input, sep, 0);
 	printf("[pipe_split]\n");
 	print_tab(param->cmds);
 	free(sep);
