@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/22 15:27:27 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/24 10:20:54 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void		parser(t_data *param)
 	char	**sep;
 	int		*fd;
 
-	//sep = ft_split(">>,>,<<,<", ',');
 	fd = malloc(sizeof(int) * 2);
 	//if (!fd)
 		//error
@@ -90,8 +89,8 @@ void		parser(t_data *param)
 	fd[1] = 1;
 	sep = ft_split("|", ' ');
 	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-	printf("[pipe_split]\n");
-	print_tab(param->cmds);
+	//fprintf(stderr, "[pipe_split]\n");
+	//print_tab(param->cmds);
 	free(sep);
 	sep = NULL;
 	i = 0;
@@ -99,7 +98,7 @@ void		parser(t_data *param)
 	while (param->cmds[i + 1])
 	{
 		files_matrix = pop_names_from_sep(param, i, sep);
-		printf("[input_cleaned] %s\n", param->input_cleaned);
+		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
 		fd = init_fd(files_matrix, fd);
 		if (pipe(fd) == -1)
 			return ;

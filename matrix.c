@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 15:00:20 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/24 09:58:04 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	print_tab(char **tableau)
 	int	i;
 
 	i = 0;
-	printf("------------------------\n");
+	fprintf(stderr, "------------------------\n");
 	if (tableau)
 	{
 		while (tableau[i])
 		{
-			printf("%s*\n", tableau[i++]);
+			fprintf(stderr, "%s*\n", tableau[i++]);
 		}
 	}
-	printf("------------------------\n");
+	fprintf(stderr, "------------------------\n");
 }
 
 char	*matrix_to_str(char **matrix)

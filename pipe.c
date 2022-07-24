@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/20 18:43:44 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/24 10:06:52 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	execute(t_data *param, int i)
 	char	**cmd;
 	char	*path;
 	
+	(void)i;
 	path = return_env_var("PATH", param->envp);
 	cmd = cmd_format(param->input_cleaned, path);
-	printf("[cmd_tab] i=%d\n", i);
-	print_tab(cmd);
+	//printf("[cmd_tab] i=%d\n", i);
+	//print_tab(cmd);
 	if (execve(cmd[0], cmd, param->envp) == -1)
 		return ;
 //		error();
