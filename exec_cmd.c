@@ -21,7 +21,6 @@ char	*get_path(char *cmd, char *PATH)
 	char	*str;
 	char	**env_tab;
 	int		i;
-	int		cmd_len;
 	int		file_fd;
 
 	if ((file_fd = open(cmd, O_RDONLY)) != -1)
@@ -33,7 +32,6 @@ char	*get_path(char *cmd, char *PATH)
 	env_tab = ft_split(str, ':');
 	i = 0;
 	cmd = ft_strjoin("/", cmd);
-	cmd_len = ft_strlen(cmd);
 	while (env_tab[i])
 	{
 		str = ft_strjoin(env_tab[i], cmd);

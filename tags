@@ -23,35 +23,61 @@ LIBFT_DIR	Makefile	/^LIBFT_DIR = libft\/$/;"	m
 LIBS	Makefile	/^LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)$/;"	m
 NAME	Makefile	/^NAME = minishell$/;"	m
 OBJS	Makefile	/^OBJS := ${SRCS:c=o}$/;"	m
-SRCS	Makefile	/^SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c$/;"	m
+SRCS	Makefile	/^SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\\$/;"	m
 all	Makefile	/^all: ${NAME}$/;"	t
 check_error	prompting.c	/^int	check_error(t_data *param)$/;"	f	typeref:typename:int
+child_process	pipe.c	/^void	child_process(t_data *param, int i, int *fd)$/;"	f	typeref:typename:void
 clean	Makefile	/^clean:$/;"	t
+cmd_format	exec_cmd.c	/^char	**cmd_format(char *str, char *PATH)$/;"	f	typeref:typename:char **
+convert_var	var_conv.c	/^char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)$/;"	f	typeref:typename:char *
+convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(char *line, char **envp)$/;"	f	typeref:typename:char *
 copy_env	init.c	/^char	**copy_env(char **envp, int add)$/;"	f	typeref:typename:char **
 ctags	Makefile	/^ctags:$/;"	t
 debug	Makefile	/^debug: debugfile$/;"	t
 debugfile	Makefile	/^debugfile: ctags$/;"	t
+del_first_word	strings.c	/^void    del_first_word(char **str)$/;"	f	typeref:typename:void
+exec_bin	bin.c	/^static void	exec_bin(int fd, char *path, t_data *param)$/;"	f	typeref:typename:void	file:
+exec_bin_to_fd	bin.c	/^int			exec_bin_to_fd(int fd, t_data *param)$/;"	f	typeref:typename:int
+execute	pipe.c	/^void	execute(t_data *param, int i)$/;"	f	typeref:typename:void
 fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
-ft_insert_line	matrix.c	/^char	**ft_insert_line(char **main_matrix, char *insert_matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
 ft_split_mini	ft_split_mini.c	/^char		**ft_split_mini(char *s, char c)$/;"	f	typeref:typename:char **
-ft_split_mini	split.c	/^char		**ft_split_mini(char *s, char c)$/;"	f	typeref:typename:char **
+ft_split_multistrsep	split.c	/^char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)$/;"	f	typeref:typename:char **
 ft_split_strsep	split.c	/^char	**ft_split_strsep(char *str, char *sep, int is_char)$/;"	f	typeref:typename:char **
+ft_var_len	var_conv.c	/^size_t	ft_var_len(char *var_start)$/;"	f	typeref:typename:size_t
 get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
+get_path	exec_cmd.c	/^char	*get_path(char *cmd, char *PATH)$/;"	f	typeref:typename:char *
+init_fd	parser.c	/^int	*init_fd(char **fmatrix, int *in_out_redir)$/;"	f	typeref:typename:int *
 init_param	init.c	/^t_data	*init_param(char **envp)$/;"	f	typeref:typename:t_data *
+init_vars	split.c	/^static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init, char **sep)$/;"	f	typeref:typename:void	file:
+is_blank	strings.c	/^int is_blank(char c)$/;"	f	typeref:typename:int
 is_bonus	prompting.c	/^static int	is_bonus(char *str, int i)$/;"	f	typeref:typename:int	file:
+is_input	parser.c	/^int	is_input(char **matrix, int i)$/;"	f	typeref:typename:int
+is_output	parser.c	/^int	is_output(char **matrix, int i)$/;"	f	typeref:typename:int
 line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/;"	f	typeref:typename:int	file:
+line_presplit	exec_cmd.c	/^int	line_presplit(char *cmd)$/;"	f	typeref:typename:int
 main	main.c	/^int main(int argc, char **argv, char **envp)$/;"	f	typeref:typename:int
 make_libft	Makefile	/^make_libft:$/;"	t
 make_libftprintf	Makefile	/^make_libftprintf:$/;"	t
+matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/;"	f	typeref:typename:char *
 number_str	ft_split_mini.c	/^static int	number_str(char *s, char c)$/;"	f	typeref:typename:int	file:
 parser	parser.c	/^void		parser(t_data *param)$/;"	f	typeref:typename:void
+pop_first_wd	strings.c	/^char    *pop_first_wd(char **cmd)$/;"	f	typeref:typename:char *
+pop_names_from_sep	get_filename.c	/^char **pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
 print_tab	matrix.c	/^void	print_tab(char **tableau)$/;"	f	typeref:typename:void
+quote_empty	exec_cmd.c	/^int	quote_empty(char *first_quote)$/;"	f	typeref:typename:int
+quotes_spaces_split	exec_cmd.c	/^char	**quotes_spaces_split(char *line)$/;"	f	typeref:typename:char **
 re	Makefile	/^re: fclean all$/;"	t
 read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/;"	f	typeref:typename:char *
+refresh_matrix	split.c	/^static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)$/;"	f	typeref:typename:void	file:
+return_env_var	var_conv.c	/^char	*return_env_var(char *var, char *envp[])$/;"	f	typeref:typename:char *
+return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
+search_bin	bin.c	/^static char	*search_bin(char *str, DIR **dir, struct dirent **d, t_data *param)$/;"	f	typeref:typename:char *	file:
+set_in	bin.c	/^static void	set_in(char **argv)$/;"	f	typeref:typename:void	file:
 set_mat	ft_split_mini.c	/^static void	set_mat(char **mat, char *s, char c, int n)$/;"	f	typeref:typename:void	file:
 set_str_len	ft_split_mini.c	/^static int	set_str_len(char *s, char c)$/;"	f	typeref:typename:int	file:
+split_path	bin.c	/^static char	**split_path(t_data *param)$/;"	f	typeref:typename:char **	file:
 test	Makefile	/^test: ctags$/;"	t
