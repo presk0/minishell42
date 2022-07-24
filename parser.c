@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 14:58:02 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/24 15:57:15 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,17 @@ char	*clean_join(t_data param, char **cmd_matrix)
 }
 */
 
-int	is_input(char **matrix, int i)
-{
-	return (!strncmp("<", matrix[i - 1], 1));
-}
-
-int	is_output(char **matrix, int i)
-{
-	return (!strncmp(">", matrix[i - 1], 1));
-}
-
-int	*init_fd(t_data *param, int *fd)
+void init_fd(t_data *param, int **fd, int **io_fd)
 {
 	int		i;
-	int		io_fd[2];
 
 	(void)io_fd;
-	if (!fd)
-		return (NULL);
-	fd[0] = 0;
-	fd[1] = 1;
-	io_fd[0] = 0;
-	io_fd[1] = 1;
+	if (!*fd)
+		return ;
+	(*fd)[0] = 0;
+	(*fd)[1] = 1;
+	(*io_fd)[0] = 0;
+	(*io_fd)[1] = 1;
 	if (param->f_matrix)
 	{
 		fprintf(stderr, "[init_fd]\n");
@@ -70,25 +59,93 @@ int	*init_fd(t_data *param, int *fd)
 		{
 			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
 			{
-				io_fd[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-				fprintf(stderr, "[init_fd] file opened: fd[1]= %d\n", fd[1]);
+				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
+				fprintf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*fd)[1]);
 			}
 			else if(!ft_memcmp(param->f_matrix[i], ">>", 3) && param->f_matrix[i + 1])
 			{
-				io_fd[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-				fprintf(stderr, "[init_fd] file opened: fd[1]= %d\n", fd[1]);
+				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
+				fprintf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*fd)[1]);
 			}
 			else if (!ft_memcmp(param->f_matrix[i], "<", 2) && param->f_matrix[i + 1])
 			{
-				io_fd[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
-				fprintf(stderr, "[init_fd] file opened: fd[0]= %d\n", fd[0]);
+				(*io_fd)[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
+				fprintf(stderr, "[init_fd] file opened: fd[0]= %d\n", (*fd)[0]);
 			}
 		}
-		fprintf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", fd[0], fd[1]);
-		dup2(io_fd[0], fd[0]);
-		dup2(io_fd[1], fd[1]);
+		fprintf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", (*fd)[0], (*fd)[1]);
 	}
-	return (fd);
+	dup2((*io_fd)[0], (*fd)[0]);
+	dup2((*io_fd)[1], (*fd)[1]);
+}
+
+void	reinit_after_pipe(t_data *param, int **io_fd)
+{
+
+	if (param->f_matrix)
+		ft_free_split(param->f_matrix);
+	param->f_matrix = NULL;
+	if ((*io_fd)[0] != 0)
+	{
+		close((*io_fd)[0]);
+		(*io_fd)[0] = 0;
+	}
+	if ((*io_fd)[1] != 1)
+	{
+		close((*io_fd)[1]);
+		(*io_fd)[1] = 1;
+	}
+}
+
+void		parser(t_data *param)
+{
+	int		i;
+	char	**sep;
+	int		*fd;
+	int		*io_fd;
+
+	fd = malloc(sizeof(int) * 2);
+	io_fd = malloc(sizeof(int) * 2);
+	//if (!fd)
+		//error
+	fd[0] = 0;
+	fd[1] = 1;
+	sep = ft_split("|", ' ');
+	param->cmds = ft_split_multistrsep(param->input, sep, 0);
+	//fprintf(stderr, "[pipe_split]\n");
+	//print_tab(param->cmds);
+	free(sep);
+	sep = NULL;
+	i = 0;
+	sep = ft_split(">>,>,<<,<", ',');
+	while (param->cmds[i + 1])
+	{
+		param->f_matrix = pop_names_from_sep(param, i, sep);
+		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
+		init_fd(param, &fd, &io_fd);
+	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
+		if (pipe(fd) == -1)
+			return ;
+		//	error();
+		child_process(param, i, fd);
+		reinit_after_pipe(param, &io_fd);
+		i++;
+	}
+	param->f_matrix = pop_names_from_sep(param, i, sep);
+	init_fd(param, &fd, &io_fd);
+	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
+	//dup2(fd[0], STDIN_FILENO);
+	//dup2(fd[1], STDOUT_FILENO);
+	execute(param, i);
+	reinit_after_pipe(param, &io_fd);
+	if (param->cmds)
+		ft_free_split(param->cmds);
+	if (sep)
+		ft_free_split(sep);
+	free(fd);
+	free(io_fd);
 }
 
 /*
@@ -120,55 +177,6 @@ int	*check_redir(t_data *param, int *fd)
 	return(fd);
 }
 */
-
-void		parser(t_data *param)
-{
-	int		i;
-	char	**sep;
-	int		*fd;
-
-	fd = malloc(sizeof(int) * 2);
-	//if (!fd)
-		//error
-	fd[0] = 0;
-	fd[1] = 1;
-	sep = ft_split("|", ' ');
-	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-	//fprintf(stderr, "[pipe_split]\n");
-	//print_tab(param->cmds);
-	free(sep);
-	sep = NULL;
-	i = 0;
-	sep = ft_split(">>,>,<<,<", ',');
-	while (param->cmds[i + 1])
-	{
-		param->f_matrix = pop_names_from_sep(param, i, sep);
-		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
-		fd = init_fd(param, fd);
-	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
-	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
-		if (pipe(fd) == -1)
-			return ;
-		//	error();
-		child_process(param, i, fd);
-		if (param->f_matrix)
-			ft_free_split(param->f_matrix);
-		param->f_matrix = NULL;
-		i++;
-	}
-	param->f_matrix = pop_names_from_sep(param, i, sep);
-	fd = init_fd(param, fd);
-	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
-	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
-	//dup2(fd[0], STDIN_FILENO);
-	//dup2(fd[1], STDOUT_FILENO);
-	execute(param, i);
-	if (param->cmds)
-		ft_free_split(param->cmds);
-	if (sep)
-		ft_free_split(sep);
-	free(fd);
-}
 
 /*
 char	**extract_ope_inplace(t_data param, char **sep)
