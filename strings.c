@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/19 13:02:46 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/24 11:33:08 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,12 @@ char    *pop_first_wd(char **cmd)
 {
     char *first_word;
 
-    first_word = return_first_word(*cmd);
-    del_first_word(cmd);
+    first_word = NULL;
+    if (cmd)
+    {
+        first_word = return_first_word(*cmd);
+        del_first_word(cmd);
+    }
     return (first_word);
 }
 

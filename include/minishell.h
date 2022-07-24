@@ -18,6 +18,7 @@
 # include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
 //# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
@@ -30,6 +31,7 @@ typedef struct		s_data
 {
 	int		argc;
 	char	**argv;
+	char	**f_matrix;
 	char	**envp;
 	char	*path; // PATH/cmd;
 	char	*args; // args passed to execve;
