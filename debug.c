@@ -11,3 +11,10 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void print_matrix(char *msg, char **matrix)
+{
+    if (msg)
+        fprintf(stderr, "%s\n", msg);
+    print_tab(matrix);
+}

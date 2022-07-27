@@ -40,7 +40,8 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
     }
     else
     {
-        free(param->input_cleaned);
+        if (param->input_cleaned)
+            ft_str_free(&param->input_cleaned);
         param->input_cleaned = matrix_to_str(cmd_split);
 	    //fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);

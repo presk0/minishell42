@@ -12,23 +12,23 @@
 
 #include "minishell.h"
 
-char	**copy_env(char **envp, int add)
-{
-	int		len;
-	int		i;
-	char	**cpy;
-
-	len = 0;
-	while (envp[len])
-		len++;
-	cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
-	if (!cpy)
-		return (0);
-	i = -1;
-	while (++i < len)
-		cpy[i] = ft_strdup(envp[i]);
-	return (cpy);
-}
+//char	**copy_env(char **envp, int add)
+//{
+//	int		len;
+//	int		i;
+//	char	**cpy;
+//
+//	len = 0;
+//	while (envp[len])
+//		len++;
+//	cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
+//	if (!cpy)
+//		return (0);
+//	i = -1;
+//	while (++i < len)
+//		cpy[i] = ft_strdup(envp[i]);
+//	return (cpy);
+//}
 
 t_data	*init_param(char **envp)
 {

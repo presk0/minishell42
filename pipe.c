@@ -24,17 +24,20 @@ void	error(void)
 /* Function that take the command and send it to find_path
  before executing it. 
 */
-void	execute(t_data *param, int i)
-{
-	char	**cmd;
-	char	*path;
-	
-	(void)i;
-	path = return_env_var("PATH", param->envp);
-	cmd = cmd_format(param->input_cleaned, path);
-	if (execve(cmd[0], cmd, param->envp) == -1)
-		exit(-1);
-}
+//void	execute(t_data *param, int i)
+//{
+//	char	**cmd;
+//	char	*path;
+//
+//	(void)i;
+//	path = return_env_var("PATH", param->envp);
+//	cmd = cmd_format(param->input_cleaned, path);
+//    printf("sw cmd [0] = %s\n", cmd[0]);
+//    printf("sw cmd [1] = %s\n", cmd[1]);
+//
+//	if (execve(cmd[0], cmd, param->envp) == -1)
+//		exit(-1);
+//}
 
 /* Function to open the files with the right flags 
 int	open_file(char *argv, int i)
@@ -57,7 +60,7 @@ int	open_file(char *argv, int i)
 void	child_process(t_data *param, int i, int *fd)
 {
 	pid_t	pid;
-
+    printf("entree child\n");
 	if (pipe(fd) == -1)
 		return ;
 //		error();
@@ -69,7 +72,7 @@ void	child_process(t_data *param, int i, int *fd)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		execute(param, i);
+		execute2(param, i);
 	}
 	else
 	{

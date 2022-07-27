@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
-	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c
+	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c execute.c env.c bin2.c
 
 OBJS := ${SRCS:c=o}
 

@@ -42,9 +42,11 @@ char	*clean_join(t_data param, char **cmd_matrix)
 void init_fd(t_data *param, int **fd, int **io_fd)
 {
 	int		i;
-
+    int len;
+    printf("entree init fd\n");
 	(void)io_fd;
-	if (!*fd)
+	i = 0;
+    if (!*fd)
 		return ;
 	(*fd)[0] = 0;
 	(*fd)[1] = 1;
@@ -54,8 +56,8 @@ void init_fd(t_data *param, int **fd, int **io_fd)
 	{
 		fprintf(stderr, "[init_fd]\n");
 		print_tab(param->f_matrix);
-		i = ft_matrixlen(param->f_matrix);
-		while (--i >= 0)
+		len = ft_matrixlen(param->f_matrix);
+		while (i < len)
 		{
 			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
 			{
@@ -72,6 +74,7 @@ void init_fd(t_data *param, int **fd, int **io_fd)
 				(*io_fd)[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
 				fprintf(stderr, "[init_fd] file opened: fd[0]= %d\n", (*fd)[0]);
 			}
+            i++;
 		}
 		fprintf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", (*fd)[0], (*fd)[1]);
 	}
@@ -112,19 +115,20 @@ void		parser(t_data *param)
 	fd[1] = 1;
 	sep = ft_split("|", ' ');
 	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-	//fprintf(stderr, "[pipe_split]\n");
-	//print_tab(param->cmds);
+	fprintf(stderr, "[pipe_split]\n");
+	print_tab(param->cmds);
 	free(sep);
 	sep = NULL;
 	i = 0;
 	sep = ft_split(">>,>,<<,<", ',');
-	while (param->cmds[i + 1])
+	while (param->cmds[i])
 	{
 		param->f_matrix = pop_names_from_sep(param, i, sep);
-		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
+		fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
 		init_fd(param, &fd, &io_fd);
-	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
-	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
+
+        fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+	    fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
 		if (pipe(fd) == -1)
 			return ;
 		//	error();
@@ -132,13 +136,18 @@ void		parser(t_data *param)
 		reinit_after_pipe(param, &io_fd);
 		i++;
 	}
-	param->f_matrix = pop_names_from_sep(param, i, sep);
-	init_fd(param, &fd, &io_fd);
-	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
-	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
-	//dup2(fd[0], STDIN_FILENO);
-	//dup2(fd[1], STDOUT_FILENO);
-	execute(param, i);
+	//param->f_matrix = pop_names_from_sep(param, i, sep);
+
+	//init_fd(param, &fd, &io_fd);
+//    fprintf(stderr,"test cde1");
+//	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+//	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
+//	dup2(fd[0], STDIN_FILENO);
+//	dup2(fd[1], STDOUT_FILENO);
+	//execute2(param, i);
+    while (wait(NULL) != -1);
+    close(fd[0]);
+    close(fd[1]);
 	reinit_after_pipe(param, &io_fd);
 	if (param->cmds)
 		ft_free_split(param->cmds);

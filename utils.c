@@ -37,3 +37,10 @@ int	ft_is_quoted(char *c, int i)
 	}
 	return (0);
 }
+
+void    ft_str_free(char **str)
+{
+    if (*str)
+        free(*str);
+    *str = NULL;
+}

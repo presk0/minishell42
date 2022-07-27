@@ -41,7 +41,7 @@ char	*return_env_var(char *var, char *envp[])
 	while (envp[i])
 	{
 		spliter_index = ft_strlen_char(envp[i], '=');
-		if (!ft_strncmp(var, envp[i], spliter_index))
+		if (!ft_strncmp(var, envp[i], var_len))
 		{
 			if (spliter_index == var_len)
 				return (ft_substr(envp[i], spliter_index + 1, \

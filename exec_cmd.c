@@ -110,37 +110,40 @@ char	**quotes_spaces_split(char *line)
 		i++;
 	}
 	matrix[i] = NULL;
-	free(line);
+	ft_str_free(&line);
+    //fprintf(stderr, "[quote_space_split] line = %s\n", line);
+
 	return (matrix);
 }
 
-char	**cmd_format(char *str, char *PATH)
-{
-	int 	i;
-	int 	new_i;
-	char	*cmd_path;
-	char	**cmd_split;
-
-	cmd_split = quotes_spaces_split(str);
-	if (!cmd_split)
-		return (NULL);
-	new_i = 0;
-	i = 0;
-	while (cmd_split[i])
-	{
-		if (*cmd_split[i] != '\0')
-		{
-			if (i != new_i)
-				cmd_split[new_i] = cmd_split[i];
-			new_i++;
-		}
-		else
-			free(cmd_split[i]);
-		i++;
-	}
-	cmd_split[new_i] = NULL;
-	cmd_path = get_path(cmd_split[0], PATH);
-	free(cmd_split[0]);
-	cmd_split[0] = cmd_path;
-	return (cmd_split);
-}
+//char	**cmd_format(char *str, char *PATH, t_data *param)
+//{
+//	int 	i;
+//	int 	new_i;
+//	char	*cmd_path;
+//	char	**cmd_split;
+//
+//
+//	cmd_split = quotes_spaces_split(str);
+//	if (!cmd_split)
+//		return (NULL);
+//	new_i = 0;
+//	i = 0;
+//	while (cmd_split[i])
+//	{
+//		if (*cmd_split[i] != '\0')
+//		{
+//			if (i != new_i)
+//				cmd_split[new_i] = cmd_split[i];
+//			new_i++;
+//		}
+//		else
+//			free(cmd_split[i]);
+//		i++;
+//	}
+//	cmd_split[new_i] = NULL;
+//	cmd_path = get_path(cmd_split[0], PATH);
+//	free(cmd_split[0]);
+//	cmd_split[0] = cmd_path;
+//	return (cmd_split);
+//}

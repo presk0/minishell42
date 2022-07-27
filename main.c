@@ -109,14 +109,33 @@ int main(int argc, char **argv, char **envp)
 			break;
 		if(check_error(param))
 			return (-1);
-		pid = fork();
-		if (pid == 0)
-		{
-			parser(param);
-			exit(0);
-		}
-		else
-			wait(NULL);
+		//pid = fork();
+		//pid = fork();
+		//if (pid == 0)
+		//{
+        parser(param);
+            //exit(0);
+//        pid_t	pid;
+//
+//
+////		error();
+//        pid = fork();
+//        if (pid == -1)
+//            return (-1);
+////		error();
+//        if (pid == 0)
+//        {
+//            parser(param);
+//        }
+//        else
+//        {
+//
+//            waitpid(pid, NULL, 0);
+//        }
+            //}
+		//else
+		//	wait(NULL);
+        //print_tab(quotes_spaces_split(param->input));
 		//printf("%s\n", param->input);
 		//printf("%s\n", ((return_env_var("PATH", param->envp))));
 		//param->envp = ft_append_tab(param->envp, param->input);
