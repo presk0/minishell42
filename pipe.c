@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 12:33:13 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:27:30 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,30 @@ void	execute(t_data *param, int i)
 {
 	char	**cmd;
 	char	*path;
-	
+
 	(void)i;
-	path = return_env_var("PATH", param->envp);
-	cmd = cmd_format(param->input_cleaned, path);
-	if (execve(cmd[0], cmd, param->envp) == -1)
-		exit(-1);
+	
+	i = verif_bultin(param);
+	fprintf(stderr, "%d\n", i);
+		if (!i)
+		{
+			path = return_env_var("PATH", param->envp);
+			cmd = cmd_format(param->input_cleaned, path);
+			printf("cmd = %s\n", cmd[0]);
+			printf("cmd = %s\n", cmd[1]);
+			if (execve(cmd[0], cmd, param->envp) == -1)
+				exit(-1);
+		}
+		else
+		{
+			cmd_split_sw(param);
+			check_built(1, param);
+		} 
+		
+	
+	
 }
+
 
 /* Function to open the files with the right flags 
 int	open_file(char *argv, int i)
