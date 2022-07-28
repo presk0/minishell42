@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 12:33:13 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:41:42 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	execute(t_data *param, int i)
 	
 	(void)i;
 	path = return_env_var("PATH", param->envp);
-	cmd = cmd_format(param->input_cleaned, path);
+	cmd = cmd_format(param->input_cleaned, path, 0);
 	if (execve(cmd[0], cmd, param->envp) == -1)
 		exit(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 12:31:51 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:55:09 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
     cmd_cpy = param->cmds[i];
     //fprintf(stderr, "[pop_name_from_sep] cmd_split, i = %d\n", i);
     cmd_split = ft_split_multistrsep(cmd_cpy, sep, 1);
-    //print_tab(cmd_split);
+    print_tab(cmd_split);
     j = 1;
     fname_matrix = NULL;
     if (cmd_split && cmd_split[j])
@@ -33,10 +33,10 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
         {
             fname_matrix = ft_append_tab(fname_matrix, pop_first_wd(&cmd_split[j++]));
         }
-        free(param->input_cleaned);
-        param->input_cleaned = NULL;
+        if (param->input_cleaned)
+            free(param->input_cleaned);
         param->input_cleaned = matrix_to_str(cmd_split);
-	    //fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
+	    fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
     }
     else
@@ -47,7 +47,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
             param->input_cleaned = NULL;
         }
         param->input_cleaned = matrix_to_str(cmd_split);
-	    //fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
+	    fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
 
     }

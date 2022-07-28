@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 13:26:52 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:38:06 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ char	**quotes_spaces_split(char *line)
 	return (matrix);
 }
 
-char	**cmd_format(char *str, char *PATH)
+char	**cmd_format(char *str, char *PATH, int is_builtin)
 {
 	int 	i;
 	int 	new_i;
@@ -141,8 +141,11 @@ char	**cmd_format(char *str, char *PATH)
 		i++;
 	}
 	cmd_split[new_i] = NULL;
-	cmd_path = get_path(cmd_split[0], PATH);
-	free(cmd_split[0]);
-	cmd_split[0] = cmd_path;
+	if (!is_builtin)
+	{
+		cmd_path = get_path(cmd_split[0], PATH);
+		free(cmd_split[0]);
+		cmd_split[0] = cmd_path;
+	}
 	return (cmd_split);
 }

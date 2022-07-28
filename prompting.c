@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 13:29:24 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:00:54 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,10 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	line_cpy = strdup(line);
-	free(line);
-	return (line_cpy);
+	//line_cpy = strdup(line);
+	//free(line);
+	//return (line_cpy);
+	return (line);
 }
 
 int	get_input(t_data *param)
