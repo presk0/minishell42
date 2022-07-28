@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 16:14:36 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:44:29 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,43 @@ void	parser(t_data *param)
 	param->cmds = ft_split_mini(param->input, '|');
 }
 */
+//extern void	rl_replace_line(const char *text, int clear_undo);
+
+/*
+void	    ctrlbacksl(int sig) {
+
+    (void)sig;
+    //    int pid = 0;
+//
+//    pid = get_pid();
+//    printf("pid= %d\n", pid);
+//
+//    if (kill(pid, SIGKILL) != -1) {
+//    printf("^\\Quit: %d\n", sig);
+//
+//    }
+//    else
+
+    //exit(0);
+    ft_putendl_fd("", 1);
+    rl_replace_line("", 0);
+    rl_on_new_line();
+    rl_redisplay();
+}
+*/
+
+/*
+void	ctrlc(int sig)
+{
+	(void)sig;
+
+
+    ft_putendl_fd("", 1);
+    rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
+*/
 
 int main(int argc, char **argv, char **envp)
 {
@@ -101,8 +138,29 @@ int main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
 
+    struct termios  tmp;
+	(void)tmp;
+
+
+   
+
 	param = init_param(envp);
+
 	matrix = NULL;
+
+
+
+
+/*
+ 	tcgetattr(0, &tmp);
+
+    tmp.c_lflag &= ~ECHOCTL;
+    tmp.c_lflag |= ECHO;
+    tcgetattr(0, &param->save);
+    tcsetattr(0, 0, &tmp);
+	signal(SIGINT, ctrlc);
+    signal(SIGQUIT, ctrlbacksl);
+	*/
     while(42)
 	{
 		if (!get_input(param))
@@ -114,6 +172,7 @@ int main(int argc, char **argv, char **envp)
 		fprintf(stderr, "[main] param_input : %s\n", param->input);
 		if(check_error(param))
 			return (-1);
+		
 		pid = fork();
 		if (pid == 0)
 		{

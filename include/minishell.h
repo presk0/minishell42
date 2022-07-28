@@ -18,7 +18,7 @@
 # include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
+# include <sys/_types/_posix_vdisable.h>
 //# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
@@ -43,6 +43,7 @@ typedef struct		s_data
 	char	*input_cleaned;
 	char	**cmds;
 	int		pid;
+	struct termios save;
 }	t_data;
 
 int	get_input(t_data *param);
@@ -93,5 +94,31 @@ char **pop_names_from_sep(t_data *param, int i, char **sep);
 /* pipe */
 void	execute(t_data *param, int i);
 void	child_process(t_data *param, int i, int *fd);
+
+
+/*bultins*/
+
+char	**cmd_format2(char *str, char **envp);
+char    **cmd_split_sw(t_data *param);
+int     check_built(int fd, t_data *param);
+void	run_echo(int fd, t_data *param);
+void	run_exit(t_data *param);
+char	**quotes_spaces_split(char *line);
+void		cd_command(t_data *param);
+char     **run_unset(t_data *param);
+void	run_env(t_data *param, int fd);
+void	error(t_data *param);
+
+
+/* env*/
+char    **new_env(char **envp, int i);
+char	**copy_env(char **envp, int add);
+char	*get_env(char **envp, char *env);
+char		**export_command(t_data *param, int j);
+int verif_bultin(t_data *param);
+
+/* signaux */
+void	    ctrlbacksl(int sig);
+void		ctrlc(int sig);
 
 #endif

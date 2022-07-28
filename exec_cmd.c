@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 13:38:06 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:35:59 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	**quotes_spaces_split(char *line)
 		i++;
 	}
 	matrix[i] = NULL;
-	free(line);
+	//free(line);
 	return (matrix);
 }
 

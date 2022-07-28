@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strings.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 11:33:08 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:41:34 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char    *return_first_word(char *str)
     start = 0;
     if (str)
     {
-        while (is_blank(str[start]) && str[start])
+        while (str[start] && is_blank(str[start]))
             start++;
         end = start;
         is_quoted = ft_is_quoted(str, end);
