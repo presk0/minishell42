@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 17:07:05 by swalter          ###   ########.fr       */
+/*   Updated: 2022/07/28 17:44:29 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	parser(t_data *param)
 */
 //extern void	rl_replace_line(const char *text, int clear_undo);
 
+/*
 void	    ctrlbacksl(int sig) {
 
     (void)sig;
@@ -107,11 +108,10 @@ void	    ctrlbacksl(int sig) {
     rl_replace_line("", 0);
     rl_on_new_line();
     rl_redisplay();
-
-
-
-
 }
+*/
+
+/*
 void	ctrlc(int sig)
 {
 	(void)sig;
@@ -121,12 +121,8 @@ void	ctrlc(int sig)
     rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-
-
-
-
-
 }
+*/
 
 int main(int argc, char **argv, char **envp)
 {
@@ -143,6 +139,7 @@ int main(int argc, char **argv, char **envp)
     (void)argv;
 
     struct termios  tmp;
+	(void)tmp;
 
 
    
@@ -154,6 +151,7 @@ int main(int argc, char **argv, char **envp)
 
 
 
+/*
  	tcgetattr(0, &tmp);
 
     tmp.c_lflag &= ~ECHOCTL;
@@ -162,10 +160,16 @@ int main(int argc, char **argv, char **envp)
     tcsetattr(0, 0, &tmp);
 	signal(SIGINT, ctrlc);
     signal(SIGQUIT, ctrlbacksl);
+	*/
     while(42)
 	{
 		if (!get_input(param))
 			break;
+		if (!strcmp(param->input, ""))
+			continue;
+		else
+			add_history(param->input);
+		fprintf(stderr, "[main] param_input : %s\n", param->input);
 		if(check_error(param))
 			return (-1);
 		
@@ -177,7 +181,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		else
 			wait(NULL);
-		//printf("%s\n", param->input);
 		//printf("%s\n", ((return_env_var("PATH", param->envp))));
 		//param->envp = ft_append_tab(param->envp, param->input);
 		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
@@ -185,5 +188,5 @@ int main(int argc, char **argv, char **envp)
 		//free(param->input);
 	}
 	//freall();
-	exit(0);
+	exit(param->retour);
 }

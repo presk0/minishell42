@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 15:57:15 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:03:01 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ char	*clean_join(t_data param, char **cmd_matrix)
 void init_fd(t_data *param, int **fd, int **io_fd)
 {
 	int		i;
-
+	int		len;
+	(void)io_fd;
+	if (!fd)
+		return ;
+	i = 0;
 	(void)io_fd;
 	if (!*fd)
 		return ;
@@ -54,8 +58,8 @@ void init_fd(t_data *param, int **fd, int **io_fd)
 	{
 		fprintf(stderr, "[init_fd]\n");
 		print_tab(param->f_matrix);
-		i = ft_matrixlen(param->f_matrix);
-		while (--i >= 0)
+		len = ft_matrixlen(param->f_matrix);
+		while (i < len)
 		{
 			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
 			{
@@ -72,6 +76,7 @@ void init_fd(t_data *param, int **fd, int **io_fd)
 				(*io_fd)[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
 				fprintf(stderr, "[init_fd] file opened: fd[0]= %d\n", (*fd)[0]);
 			}
+			i++;
 		}
 		fprintf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", (*fd)[0], (*fd)[1]);
 	}
@@ -96,7 +101,6 @@ void	reinit_after_pipe(t_data *param, int **io_fd)
 		(*io_fd)[1] = 1;
 	}
 }
-
 void		parser(t_data *param)
 {
 	int		i;

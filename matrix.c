@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 09:58:04 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:40:44 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char	*matrix_to_str(char **matrix)
 	char	*new_str;
 	char	*str_add_space;
 
+	str = NULL;
 	if (matrix)
 		str = ft_strdup(matrix[0]);
 	i = 1;

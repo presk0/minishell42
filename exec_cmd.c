@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 16:08:31 by swalter          ###   ########.fr       */
+/*   Updated: 2022/07/28 17:35:59 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*get_path(char *cmd, char *PATH)
 	int		i;
 	int		file_fd;
 
+	if (!cmd)
+		return (NULL);
 	if ((file_fd = open(cmd, O_RDONLY)) != -1)
 	{
 		close(file_fd);
@@ -114,7 +116,7 @@ char	**quotes_spaces_split(char *line)
 	return (matrix);
 }
 
-char	**cmd_format(char *str, char *PATH)
+char	**cmd_format(char *str, char *PATH, int is_builtin)
 {
 	int 	i;
 	int 	new_i;
@@ -139,8 +141,11 @@ char	**cmd_format(char *str, char *PATH)
 		i++;
 	}
 	cmd_split[new_i] = NULL;
-	cmd_path = get_path(cmd_split[0], PATH);
-	free(cmd_split[0]);
-	cmd_split[0] = cmd_path;
+	if (!is_builtin)
+	{
+		cmd_path = get_path(cmd_split[0], PATH);
+		free(cmd_split[0]);
+		cmd_split[0] = cmd_path;
+	}
 	return (cmd_split);
 }

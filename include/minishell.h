@@ -86,7 +86,7 @@ int			exec_bin_to_fd(int fd, t_data *param);
 void		parser(t_data *param);
 
 /* cmd format */
-char	**cmd_format(char *str, char *PATH);
+char	**cmd_format(char *str, char *PATH, int is_builtin);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);

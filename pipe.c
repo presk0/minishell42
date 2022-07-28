@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 16:27:30 by swalter          ###   ########.fr       */
+/*   Updated: 2022/07/28 17:42:09 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	execute(t_data *param, int i)
 		if (!i)
 		{
 			path = return_env_var("PATH", param->envp);
-			cmd = cmd_format(param->input_cleaned, path);
+			cmd = cmd_format(param->input_cleaned, path, 0);
 			printf("cmd = %s\n", cmd[0]);
 			printf("cmd = %s\n", cmd[1]);
 			if (execve(cmd[0], cmd, param->envp) == -1)
