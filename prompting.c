@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 14:00:54 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:15:00 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,23 @@ char	*read_multilines(char *prompt)
 	return (line);
 }
 
+/* check if param input is an available exit cmd
+int	ft_is_exit(t_data *param)
+{
+	char	**cmds;
+	char	**cmd_fmt;
+	char	**sep;
+
+	sep = ft_split("|", ' ');
+	cmds = ft_split_multistrsep(param->input, sep, 0);
+	if (ft_matrixlen(cmds == 1))
+	{
+		cmd_fmt = cmd_format(cmd[0], "PATH", 1)
+		if (cmd_fmt[0])
+	}
+}
+*/
+
 int	get_input(t_data *param)
 {
 	char	*input;
@@ -108,9 +125,9 @@ int	get_input(t_data *param)
 
 	ret = 1;
 	input = read_multilines("\e[023m42mminishell $ \e[39m");
-	if (!input)
-		return (0);
 	param->input = input;
+	if (!param->input)
+		return (0);
 	//param->input_cleaned = input;
 	return (ret);
 }

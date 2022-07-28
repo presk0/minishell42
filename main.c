@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 13:57:05 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:14:36 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,5 @@ int main(int argc, char **argv, char **envp)
 		//free(param->input);
 	}
 	//freall();
-	exit(0);
+	exit(param->retour);
 }

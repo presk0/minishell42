@@ -8,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This program built for i386-apple-darwin11.3.0
  
 
-# Make data base, printed on Thu Jul 28 13:26:52 2022
+# Make data base, printed on Thu Jul 28 16:52:18 2022
 
 # Variables
 
@@ -45,7 +45,7 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 16)
 OBJS := main.o prompting.o utils.o init.o debug.o split.o matrix.o strings.o var_conv.o parser.o exec_cmd.o get_filename.o pipe.o
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cb540032s9/T/vscode-ipc-e46bf514-0e61-4188-99cb-ef0ed28791e4.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cb540032s9/T/vscode-ipc-06f939b4-a91e-4704-91dc-5bb1aa050d57.sock
 # makefile (from `Makefile', line 24)
 LIBFTPRINTF_DIR = libftprintf/
 # environment
@@ -55,7 +55,7 @@ PATH = /Users/ndionis/.brew/bin:/Users/ndionis/.brew/bin:/Users/ndionis/bin:/usr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-LaunchInstanceID = 8169478E-5235-481D-B026-3B0F4D6C429B
+LaunchInstanceID = 4DFDB2E9-3AC7-4BF4-962A-1E3434014D51
 # environment
 VSCODE_LOG_STACK = false
 # environment
@@ -65,7 +65,7 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `Makefile', line 23)
 LIBFT_DIR = libft/
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.msrSf10zsR/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.Ez0P5y3FgX/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -141,7 +141,7 @@ MFLAGS = -Rrqp
 # environment
 MAIL = ndionis@student.42mulhouse.fr
 # environment
-XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000001.Electron
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x1000000a.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -163,7 +163,7 @@ LC_ALL = C
 # makefile (from `Makefile', line 27)
 LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)
 # environment
-SECURITYSESSIONID = 186a7
+SECURITYSESSIONID = 186d0
 # makefile (from `Makefile', line 26)
 LIBFTPRINTF_AR = libftprintf.a
 # automatic
@@ -177,7 +177,7 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 39502
+VSCODE_PID = 68548
 # variable set hash-table stats:
 # Load=83/1024=8%, Rehash=0, Collisions=3/112=3%
 
@@ -187,9 +187,9 @@ VSCODE_PID = 39502
 
 # Directories
 
-# . (device 16777225, inode 1609585): 38 files, no impossibilities.
+# . (device 16777225, inode 1609585): 34 files, no impossibilities.
 
-# 38 files, no impossibilities in 1 directories.
+# 34 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -289,7 +289,7 @@ test: ctags
 
 minishell: make_libftprintf make_libft
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-28 12:41:06
+#  Last modified 2022-07-28 16:15:05
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -364,6 +364,6 @@ ctags:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Thu Jul 28 13:26:52 2022
+# Finished Make data base on Thu Jul 28 16:52:18 2022
 
  
