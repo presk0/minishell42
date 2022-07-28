@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: supersko <supersko@student.42.fr>          +#+  +:+       +#+         #
+#    By: swalter <swalter@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/07/20 16:50:55 by supersko         ###   ########.fr        #
+#    Updated: 2022/07/28 17:13:15 by swalter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
-	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c
+	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c
 
 OBJS := ${SRCS:c=o}
 

@@ -123,8 +123,8 @@ void		parser(t_data *param)
 		param->f_matrix = pop_names_from_sep(param, i, sep);
 		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
 		init_fd(param, &fd, &io_fd);
-	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
-	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
+	//fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+	//fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
 		if (pipe(fd) == -1)
 			return ;
 		//	error();
