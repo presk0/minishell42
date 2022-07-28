@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 17:07:05 by swalter          ###   ########.fr       */
+/*   Updated: 2022/07/28 17:54:42 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	parser(t_data *param)
 */
 //extern void	rl_replace_line(const char *text, int clear_undo);
 
+/*
 void	    ctrlbacksl(int sig) {
 
     (void)sig;
@@ -128,6 +129,7 @@ void	ctrlc(int sig)
 
 }
 
+*/
 int main(int argc, char **argv, char **envp)
 {
     t_data  *param;
@@ -142,7 +144,7 @@ int main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
 
-    struct termios  tmp;
+    //struct termios  tmp;
 
 
    
@@ -154,6 +156,7 @@ int main(int argc, char **argv, char **envp)
 
 
 
+	/*
  	tcgetattr(0, &tmp);
 
     tmp.c_lflag &= ~ECHOCTL;
@@ -162,13 +165,18 @@ int main(int argc, char **argv, char **envp)
     tcsetattr(0, 0, &tmp);
 	signal(SIGINT, ctrlc);
     signal(SIGQUIT, ctrlbacksl);
+	*/
     while(42)
 	{
 		if (!get_input(param))
 			break;
 		if(check_error(param))
 			return (-1);
-		
+		if (!ft_strncmp(param->input, "", 1))
+		{
+			free(param->input);
+			continue ;
+		}
 		pid = fork();
 		if (pid == 0)
 		{
