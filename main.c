@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/20 17:31:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:24:16 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,10 @@ int main(int argc, char **argv, char **envp)
 	{
 		if (!get_input(param))
 			break;
+		if (!strcmp(param->input, ""))
+			continue;
+		else
+			add_history(param->input);
 		if(check_error(param))
 			return (-1);
 		pid = fork();

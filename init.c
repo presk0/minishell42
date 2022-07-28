@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/12 20:37:46 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:31:33 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_data	*init_param(char **envp)
 	param->argv = 0;
 	param->argc = 0;
 	param->retour = 0;
+	param->input_cleaned = NULL;
 	//param->var = 0;
 	return (param);
 }

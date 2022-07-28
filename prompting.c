@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/20 13:03:11 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:29:24 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	return (line);
+	line_cpy = strdup(line);
+	free(line);
+	return (line_cpy);
 }
 
 int	get_input(t_data *param)
@@ -104,11 +106,10 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	input = read_multilines("\e[033m42mminishell $ \e[39m");
+	input = read_multilines("\e[023m42mminishell $ \e[39m");
 	if (!input)
 		return (0);
-	add_history(input);
 	param->input = input;
-	param->input_cleaned = input;
+	//param->input_cleaned = input;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/18 18:59:04 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 13:26:52 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*get_path(char *cmd, char *PATH)
 	int		i;
 	int		file_fd;
 
+	if (!cmd)
+		return (NULL);
 	if ((file_fd = open(cmd, O_RDONLY)) != -1)
 	{
 		close(file_fd);

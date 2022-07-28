@@ -88,7 +88,7 @@ int main(int argc, char **argv, char **envp)
 		ret = get_input(param);
 		if (!strcmp(param->str, ""))
 			continue;
-		add_history(param->str);
+
 		check_quotes(param->str,0 );
 		check_dquotes(param->str, 0);
 		//	continue;

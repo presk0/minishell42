@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/24 14:58:02 by supersko         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:34:02 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	is_output(char **matrix, int i)
 int	*init_fd(t_data *param, int *fd)
 {
 	int		i;
+	int		len;
 	int		io_fd[2];
-
 	(void)io_fd;
 	if (!fd)
 		return (NULL);
@@ -61,12 +61,13 @@ int	*init_fd(t_data *param, int *fd)
 	fd[1] = 1;
 	io_fd[0] = 0;
 	io_fd[1] = 1;
+	i = 0;
 	if (param->f_matrix)
 	{
 		fprintf(stderr, "[init_fd]\n");
 		print_tab(param->f_matrix);
-		i = ft_matrixlen(param->f_matrix);
-		while (--i >= 0)
+		len = ft_matrixlen(param->f_matrix);
+		while (i < len)
 		{
 			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
 			{
@@ -83,6 +84,7 @@ int	*init_fd(t_data *param, int *fd)
 				io_fd[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
 				fprintf(stderr, "[init_fd] file opened: fd[0]= %d\n", fd[0]);
 			}
+			i++;
 		}
 		fprintf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", fd[0], fd[1]);
 		dup2(io_fd[0], fd[0]);
@@ -90,13 +92,12 @@ int	*init_fd(t_data *param, int *fd)
 	}
 	return (fd);
 }
-
 /*
 int	*check_redir(t_data *param, int *fd)
 {
 	int	i;
 	int		io_cpy[2];
-	
+
 	io_cpy[0] = fd[0];
 	io_cpy[1] = fd[1];
 	i = 0;
@@ -120,13 +121,11 @@ int	*check_redir(t_data *param, int *fd)
 	return(fd);
 }
 */
-
 void		parser(t_data *param)
 {
 	int		i;
 	char	**sep;
 	int		*fd;
-
 	fd = malloc(sizeof(int) * 2);
 	//if (!fd)
 		//error
@@ -143,9 +142,9 @@ void		parser(t_data *param)
 	while (param->cmds[i + 1])
 	{
 		param->f_matrix = pop_names_from_sep(param, i, sep);
-		//fprintf(stderr, "[input_cleaned] %s\n", param->input_cleaned);
-		fd = init_fd(param, fd);
+		fprintf(stderr, "[parser]param->cmds[%d]\n", i);
 	fprintf(stderr, "[parser] %s\n", param->input_cleaned);
+		fd = init_fd(param, fd);
 	fprintf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
 		if (pipe(fd) == -1)
 			return ;
