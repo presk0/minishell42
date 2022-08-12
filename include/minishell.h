@@ -87,12 +87,14 @@ void		parser(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
+int	redir_out(t_data *param, int i, int fd);
+int	redir_in(t_data *param, int i, int fd);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);
 
 /* pipe */
-void	execute(t_data *param, int i);
+void	execute(t_data *param, int i, int *fd);
 void	child_process(t_data *param, int i, int *fd);
 
 
@@ -109,6 +111,7 @@ char     **run_unset(t_data *param);
 void	run_env(t_data *param, int fd);
 void	error(t_data *param);
 
+void	set_in(char **argv);
 
 /* env*/
 char    **new_env(char **envp, int i);

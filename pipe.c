@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 17:42:09 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:14:24 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,42 @@ void	error(void)
 /* Function that take the command and send it to find_path
  before executing it. 
 */
-void	execute(t_data *param, int i)
+void	execute(t_data *param, int i, int *fd)
 {
 	char	**cmd;
 	char	*path;
+	int		pid;
 
 	(void)i;
 	
 	i = verif_bultin(param);
-	fprintf(stderr, "%d\n", i);
-		if (!i)
+	
+	if (!i)
+	{
+		fprintf(stderr, "[execute] go to exec\n");
+		path = return_env_var("PATH", param->envp);
+		cmd = cmd_format(param->input_cleaned, path, 0);
+		pid = fork();
+		if (pid == 0)
 		{
-			path = return_env_var("PATH", param->envp);
-			cmd = cmd_format(param->input_cleaned, path, 0);
-			printf("cmd = %s\n", cmd[0]);
-			printf("cmd = %s\n", cmd[1]);
+			if (fd[1] >= 1)
+				dup2(fd[1], STDOUT_FILENO);
+			if (fd[0] >= 0)
+				dup2(fd[0], STDIN_FILENO);
 			if (execve(cmd[0], cmd, param->envp) == -1)
 				exit(-1);
 		}
 		else
-		{
-			cmd_split_sw(param);
-			check_built(1, param);
-		} 
+			wait(NULL);
+	}
+	else
+	{
+		fprintf(stderr, "[execute] go to builtin\n");
+		cmd_split_sw(param);
+		check_built(fd[1], param);
+	} 
+		fprintf(stderr, "[execute] finished\n");
 		
-	
 	
 }
 
@@ -84,14 +95,14 @@ void	child_process(t_data *param, int i, int *fd)
 //		error();
 	if (pid == 0)
 	{
-		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		execute(param, i);
+		close(fd[0]);
+		execute(param, i, fd);
 	}
 	else
 	{
-		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
+		close(fd[1]);
 		waitpid(pid, NULL, 0);
 	}
 }

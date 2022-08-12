@@ -193,6 +193,7 @@ int check_built(int fd, t_data *param)
 void	run_echo(int fd, t_data *param)
 {	int i = 0;
 
+		fprintf(stderr, "[run echo] fd= %d\n", fd);
 	if (param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3))
 		i = 1;
 	while(i++ < param->argc)

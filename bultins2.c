@@ -53,6 +53,7 @@ int check_built(int fd, t_data *param)
 	char	*path;
 	char	cwd[4097];
 
+	fprintf(stderr, "[check_builtin] fd= %d\n", fd);
 	if (!ft_memcmp(param->argv[0], "echo", 5))
 		run_echo(fd, param);
 	else if (!ft_memcmp(param->argv[0], "cd", 3))
@@ -95,8 +96,7 @@ int check_built(int fd, t_data *param)
 
 void run_echo(int fd, t_data *param) {
     int i = 0;
-    printf("run echo ok\n");
-    printf("argc = %d\n", param->argc);
+   fprintf(stderr, "[run echo] fd= %d\n", fd);
     if (param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3))
         i = 1;
     while (i++ < param->argc) {

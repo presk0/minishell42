@@ -1,0 +1,178 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
+/*   Updated: 2022/08/12 15:22:42 by supersko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+void	set_in(char **argv)
+{
+	int		fd;
+	int		i;
+
+	i = 0;
+	while (argv[i] && ft_memcmp(argv[i], "<", 2))
+		i++;
+	if (argv[i])
+	{
+		fd = open(argv[i + 1], O_RDONLY, 0666);
+		if (fd < 0)
+		{
+			ft_putstr_fd("Couldn't read from file.\n", 2);
+			return ;
+		}
+		dup2(fd, 0);
+		close(fd);
+	}
+}
+
+int	redir_out(t_data *param, int i, int fd)
+{
+	int		ret;
+	int 	len;
+	char	c;
+
+	len = ft_matrixlen(param->f_matrix);
+	while (i < len)
+	{
+		if (!ft_memcmp(param->f_matrix[i], ">", 2))
+			fd = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
+		else if (!ft_memcmp(param->f_matrix[i], ">>", 3))
+		{
+			fd = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
+			ret = 0;
+			while ((ret = read(fd, &c, 1)))
+				if (ret == -1)
+				{
+					write(2, "Couldn't read file\n", 19);
+					break ;
+				}
+		}
+		i++;
+		if (param->f_matrix[i] &&
+		(!ft_memcmp(param->f_matrix[i], ">>", 3) ||
+		!ft_memcmp(param->f_matrix[i], ">", 2)))
+			close(fd);
+	}
+	return (fd);
+}
+
+int	redir_in(t_data *param, int i, int fd)
+{
+	int		ret;
+	int 	len;
+	char	c;
+
+	fprintf(stderr, "[redir_in] start fd[0] = %d\n", fd);
+	len = ft_matrixlen(param->f_matrix);
+	while (i < len)
+	{
+		if (!ft_memcmp(param->f_matrix[i], "<", 2))
+			fd = open(param->f_matrix[i + 1], O_RDONLY, 0666);
+		else if (!ft_memcmp(param->f_matrix[i], "<<", 3))
+		{
+			fd = open(param->f_matrix[i + 1], O_RDONLY, 0666);
+			ret = 0;
+			while ((ret = read(fd, &c, 1)))
+				if (ret == -1)
+				{
+					write(2, "Couldn't read file\n", 19);
+					break ;
+				}
+		}
+		i++;
+		if (param->f_matrix[i] &&
+		(!ft_memcmp(param->f_matrix[i], "<<", 3) ||
+		!ft_memcmp(param->f_matrix[i], "<", 2)))
+			close(fd);
+	}
+	fprintf(stderr, "[redir_in] end fd[0] = %d\n", fd);
+	return (fd);
+}
+
+/*
+static int	set_fd(t_data *param)
+{
+	int		i;
+	int		fd;
+
+	i = 0;
+	fd = 1;
+	while (param->argv[i] && ft_memcmp(param->argv[i], ">", 2)
+			&& ft_memcmp(param->argv[i], ">>", 3))
+		i++;
+	if (!param->argv[i])
+		return (1);
+	return (redirect(param, i, fd));
+}
+
+static int	count_redir(t_data *param)
+{
+	int	count;
+	int	i;
+
+	i = -1;
+	count = 0;
+	while (++i < param->argc)
+	{
+		if (!ft_memcmp(param->argv[i], ">", 2) ||
+			!ft_memcmp(param->argv[i], ">>", 3))
+		{
+			count++;
+			i++;
+		}
+	}
+	return (count);
+}
+
+static void	copy_args1(t_data *param)
+{
+	int		i;
+	int		j;
+	char	**args;
+
+	param->argc -= count_redir(param) * 2;
+	args = (char **)ft_calloc(sizeof(char *), param->argc + 1);
+	i = 0;
+	j = 0;
+	while (j < param->argc)
+	{
+		if (!ft_memcmp(param->argv[i], ">", 2) ||
+			!ft_memcmp(param->argv[i], ">>", 3))
+			i += 2;
+		else
+			args[j++] = ft_strdup(param->argv[i++]);
+	}
+	free_matrix(param->argv);
+	param->argv = args;
+}
+*/
+
+/*
+char		**check_command(char *str, t_data *param)
+{
+	int		fd;
+
+	if (param->argv[0] && *(param->argv[0]))
+	{
+		fd = set_fd(param);
+		copy_args1(param);
+		param->ret = check_builtins(fd, param);
+		if (param->ret == 127 && (param->ret = check_bin(fd, param)) == 127)
+		{
+			ft_putstrs_fd(0, str, ": command not found.\n", 2);
+			param->ret = 127;
+		}
+		if (fd != 1)
+			close(fd);
+	}
+	return (param->envp);
+}
+*/

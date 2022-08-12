@@ -13,6 +13,8 @@
 		"utility": "c",
 		"vector": "c",
 		"_posix_vdisable.h": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"__bit_reference": "c",
+		"chrono": "c"
 	}
 }

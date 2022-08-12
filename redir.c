@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 int	set_fd(t_data *param)
 {
 	int		i;
@@ -13,9 +11,8 @@ int	set_fd(t_data *param)
 	while (param->argv[i] && ft_memcmp(param->argv[i], ">", 2)
 		   && ft_memcmp(param->argv[i], ">>", 3))
 		i++;
-    while (param->argv[j] && ft_memcmp(param->argv[j], "<<", 3))
-        j++;
-
+    //while (param->argv[j] && ft_memcmp(param->argv[j], "<<", 3))
+    //    j++;
     if (i == 1)
         return (check_redir(param, i, fd));
     else if(j == 1)

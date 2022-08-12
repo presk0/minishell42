@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 17:44:29 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/12 10:55:05 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,14 +173,14 @@ int main(int argc, char **argv, char **envp)
 		if(check_error(param))
 			return (-1);
 		
-		pid = fork();
-		if (pid == 0)
-		{
+		//pid = fork();
+		//if (pid == 0)
+		//{
 			parser(param);
-			exit(0);
-		}
-		else
-			wait(NULL);
+		//	exit(0);
+		//}
+		//else
+		//	wait(NULL);
 		//printf("%s\n", ((return_env_var("PATH", param->envp))));
 		//param->envp = ft_append_tab(param->envp, param->input);
 		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));

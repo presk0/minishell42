@@ -1,6 +1,7 @@
 #include "minishell.h"
 
-static void	set_in(char **argv)
+/*
+void	set_in(char **argv)
 {
 	int		fd;
 	int		i;
@@ -92,7 +93,8 @@ static char	*search_bin(char *str, DIR **dir, struct dirent **d, t_data *param)
 	free_matrix(paths);
 	return (NULL);
 }
-/* format without path */
+*/
+/* format without path 
 int			exec_bin_to_fd(int fd, t_data *param)
 {
 	DIR				*dir;
@@ -111,3 +113,4 @@ int			exec_bin_to_fd(int fd, t_data *param)
 	free(pre_path);
 	return (param->retour);
 }
+*/
