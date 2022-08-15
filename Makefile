@@ -27,7 +27,7 @@ LIBFT_AR = libft.a
 LIBFTPRINTF_AR = libftprintf.a
 LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)
 
-INCLUDES = -I./$(HEADERS) $(LIBS) -I./$(LIBFTPRINTF_DIR) -I./$(LIBFT_DIR)
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTPRINTF_DIR) -I./$(LIBFT_DIR)
 CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
 
 CC = gcc

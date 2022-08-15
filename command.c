@@ -33,52 +33,61 @@ void	set_in(char **argv)
 	}
 }
 
-int	redir_out(t_data *param, int i, int fd)
+int	redir_out(char **f_matrix)
 {
 	int		ret;
 	int 	len;
-	char	c;
+	int last_redir;
+	int	fd;
+	int	i;
 
-	len = ft_matrixlen(param->f_matrix);
+(void) ret;
+	len = ft_matrixlen(f_matrix);
+	last_redir = 0;
+	i = 0;
+	fd = 0;
 	while (i < len)
 	{
-		if (!ft_memcmp(param->f_matrix[i], ">", 2))
-			fd = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-		else if (!ft_memcmp(param->f_matrix[i], ">>", 3))
+		if (!ft_memcmp(f_matrix[i], ">", 2))
+			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
+		else if (!ft_memcmp(f_matrix[i], ">>", 3))
 		{
-			fd = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-			ret = 0;
-			while ((ret = read(fd, &c, 1)))
-				if (ret == -1)
-				{
-					write(2, "Couldn't read file\n", 19);
-					break ;
-				}
+			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
+		}
+		if (!ft_memcmp(f_matrix[i], "<", 1))
+		{
+			if (last_redir)
+				close(last_redir);
+			last_redir = fd;
 		}
 		i++;
-		if (param->f_matrix[i] &&
-		(!ft_memcmp(param->f_matrix[i], ">>", 3) ||
-		!ft_memcmp(param->f_matrix[i], ">", 2)))
-			close(fd);
 	}
 	return (fd);
 }
 
-int	redir_in(t_data *param, int i, int fd)
+int	redir_in(char **f_matrix)
 {
 	int		ret;
 	int 	len;
-	char	c;
+	int 	fd;
+	int	i;
+	int last_redir;
 
-	fprintf(stderr, "[redir_in] start fd[0] = %d\n", fd);
-	len = ft_matrixlen(param->f_matrix);
-	while (i < len)
+(void)ret;
+	len = ft_matrixlen(f_matrix);
+	i = 0;
+	last_redir = 0;
+	fd = 1;
+	while (i < len && f_matrix[i + 1] && f_matrix[i])
 	{
-		if (!ft_memcmp(param->f_matrix[i], "<", 2))
-			fd = open(param->f_matrix[i + 1], O_RDONLY, 0666);
-		else if (!ft_memcmp(param->f_matrix[i], "<<", 3))
+		if (!ft_memcmp(f_matrix[i], "<", 2))
 		{
-			fd = open(param->f_matrix[i + 1], O_RDONLY, 0666);
+			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
+		}
+			/*
+		else if (!ft_memcmp(f_matrix[i], "<<", 3))
+		{
+			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
 			ret = 0;
 			while ((ret = read(fd, &c, 1)))
 				if (ret == -1)
@@ -87,11 +96,14 @@ int	redir_in(t_data *param, int i, int fd)
 					break ;
 				}
 		}
+		*/
+		if (!ft_memcmp(f_matrix[i], "<", 1))
+		{
+			if (last_redir)
+				close(last_redir);
+			last_redir = fd;
+		}
 		i++;
-		if (param->f_matrix[i] &&
-		(!ft_memcmp(param->f_matrix[i], "<<", 3) ||
-		!ft_memcmp(param->f_matrix[i], "<", 2)))
-			close(fd);
 	}
 	fprintf(stderr, "[redir_in] end fd[0] = %d\n", fd);
 	return (fd);

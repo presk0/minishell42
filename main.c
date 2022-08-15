@@ -163,6 +163,10 @@ int main(int argc, char **argv, char **envp)
 	*/
     while(42)
 	{
+
+    // Configure readline to auto-complete paths when the tab key is hit.
+//    rl_bind_key('\t', rl_complete);
+
 		if (!get_input(param))
 			break;
 		if (!strcmp(param->input, ""))
@@ -185,7 +189,6 @@ int main(int argc, char **argv, char **envp)
 		//param->envp = ft_append_tab(param->envp, param->input);
 		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
 		//printf("-------------------------------------------------------------\n");
-		//free(param->input);
 	}
 	//freall();
 	exit(param->retour);

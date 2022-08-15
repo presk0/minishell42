@@ -124,6 +124,9 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
+	if (param->input)
+		free(param->input);
+	param->input = ((void *)0);
 	input = read_multilines("\e[023m42mminishell $ \e[39m");
 	param->input = input;
 	if (!param->input)

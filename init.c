@@ -40,6 +40,7 @@ t_data	*init_param(char **envp)
 	param->argc = 0;
 	param->retour = 0;
 	param->input_cleaned = NULL;
+	param->input = NULL;
 	//param->var = 0;
 	return (param);
 }

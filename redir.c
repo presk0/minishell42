@@ -1,5 +1,52 @@
 #include "minishell.h"
 
+/*
+ 
+
+int main () 
+{
+    int fds[2]; 
+
+    pid_t pid; 
+ 
+//    /* Create a pipe. File descriptors for the two ends of the pipe are 
+ //      placed in fds. 
+    pipe (fds); 
+  //  /* Fork a child process. 
+    pid = fork (); 
+    if (pid == (pid_t) 0) {
+ //      /* This is the child process. Close our copy of the write end of 
+//
+ //         the file descriptor. 
+       close (fds[1]); 
+//       /* Connect the read end of the pipe to standard input. 
+       dup2 (fds[0], STDIN_FILENO); 
+//       /* Replace the child process with the "sort" program. 
+       execlp ("sort", "sort", 0); 
+    } 
+    else {
+ //      /* This is the parent process. 
+       FILE* stream; 
+       /* Close our copy of the read end of the file descriptor. 
+       close (fds[0]); 
+ //      /* Convert the write file descriptor to a FILE object, and write 
+//
+          to it. 
+       stream = fdopen (fds[1], "w"); 
+       fprintf (stream, "This is a test.\n"); 
+       fprintf (stream, "Hello, world.\n"); 
+       fprintf (stream, "My dog has fleas.\n"); 
+       fprintf (stream, "This program is great.\n"); 
+       fprintf (stream, "One fish, two fish.\n"); 
+       fflush (stream); 
+       close (fds[1]); 
+//       /* Wait for the child process to finish. 
+       waitpid (pid, NULL, 0); 
+    } 
+    return 0; 
+}
+*/
+
 int	set_fd(t_data *param)
 {
 	int		i;
@@ -8,11 +55,9 @@ int	set_fd(t_data *param)
     j = 0;
 	i = 0;
 	fd = 1;
-	while (param->argv[i] && ft_memcmp(param->argv[i], ">", 2)
-		   && ft_memcmp(param->argv[i], ">>", 3))
+	while (param->f_matrix[i] && ft_memcmp(param->f_matrix[i], ">", 2)
+		   && ft_memcmp(param->f_matrix[i], ">>", 3))
 		i++;
-    //while (param->argv[j] && ft_memcmp(param->argv[j], "<<", 3))
-    //    j++;
     if (i == 1)
         return (check_redir(param, i, fd));
     else if(j == 1)

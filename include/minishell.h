@@ -1,3 +1,4 @@
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <sys/types.h>
@@ -16,9 +17,8 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <dirent.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/_types/_posix_vdisable.h>
+# include "readline/readline.h"
+# include "readline/history.h"
 //# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
@@ -87,8 +87,8 @@ void		parser(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
-int	redir_out(t_data *param, int i, int fd);
-int	redir_in(t_data *param, int i, int fd);
+int	redir_out(char **f_matrix);
+int	redir_in(char **f_matrix);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);

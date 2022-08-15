@@ -11,6 +11,54 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+#include <stdlib.h> 
+
+#include <stdio.h> 
+
+#include <unistd.h> 
+
+/* Write COUNT copies of MESSAGE to STREAM, pausing for a second 
+void writer (const char* message, int count, FILE* stream) 
+{
+    for (; count > 0; --count) {
+       fprintf (stream, "%s\n", message); 
+       fflush (stream); 
+       sleep (1); 
+    } 
+} 
+
+void reader (FILE* stream) 
+{
+    char buffer[1024]; 
+    while (!feof (stream) 
+           && !ferror (stream) 
+           && fgets (buffer, sizeof (buffer), stream) != NULL) 
+       fputs (buffer, stdout); 
+} 
+//https://www.makelinux.net/alp/
+int school_pipe() 
+{
+    int fds[2]; 
+    pid_t pid; 
+    pipe (fds); 
+    pid = fork (); 
+    if (pid == (pid_t) 0) {
+      FILE* stream; 
+      close (fds[1]); 
+      stream = fdopen (fds[0], "r"); 
+      reader (stream); 
+        close (fds[0]); 
+      } 
+      else {
+        FILE* stream; 
+        close (fds[0]); 
+        stream = fdopen (fds[1], "w"); 
+        writer ("Hello, world.", 5, stream); 
+        close (fds[1]); 
+      } 
+      return 0; 
+*/
 /* helped with https://github.com/gabcollet/pipex */
 
 /* A simple error displaying function.
@@ -39,18 +87,40 @@ void	execute(t_data *param, int i, int *fd)
 		fprintf(stderr, "[execute] go to exec\n");
 		path = return_env_var("PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
+		free(path);
 		pid = fork();
+		fprintf(stderr, "[execute] forked \n");
 		if (pid == 0)
 		{
-			if (fd[1] >= 1)
+			fprintf(stderr, "[execute pid = %d`] forked \n", pid);
+			if (fd[1] != 1)
+			{
 				dup2(fd[1], STDOUT_FILENO);
-			if (fd[0] >= 0)
+			fprintf(stderr, "[execute pid = %d`] dup to fd[1] \n", pid);
+			}
+			if (fd[0] != 0)
+			{
 				dup2(fd[0], STDIN_FILENO);
-			if (execve(cmd[0], cmd, param->envp) == -1)
-				exit(-1);
+			fprintf(stderr, "[execute pid = %d`] dup to fd[0] \n", pid);
+			}
+			fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
+			if (execve(cmd[0], cmd, param->envp) <= -1)
+				exit(1);
+			if (cmd)
+				ft_free_split(cmd);
+			cmd = NULL;
+			fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
+			exit(0);
 		}
 		else
-			wait(NULL);
+		{
+			fprintf(stderr, "[execute pid = %d] beforwait\n", pid);
+			if (cmd)
+				ft_free_split(cmd);
+			cmd = NULL;
+			waitpid(pid, NULL, 0);
+			fprintf(stderr, "[execute pid = %d] after wait\n", pid);
+		}
 	}
 	else
 	{
@@ -59,10 +129,7 @@ void	execute(t_data *param, int i, int *fd)
 		check_built(fd[1], param);
 	} 
 		fprintf(stderr, "[execute] finished\n");
-		
-	
 }
-
 
 /* Function to open the files with the right flags 
 int	open_file(char *argv, int i)
@@ -95,13 +162,13 @@ void	child_process(t_data *param, int i, int *fd)
 //		error();
 	if (pid == 0)
 	{
-		dup2(fd[1], STDOUT_FILENO);
+		//dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		execute(param, i, fd);
 	}
 	else
 	{
-		dup2(fd[0], STDIN_FILENO);
+		//dup2(fd[0], STDIN_FILENO);
 		close(fd[1]);
 		waitpid(pid, NULL, 0);
 	}
