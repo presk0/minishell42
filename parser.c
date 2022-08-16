@@ -120,17 +120,12 @@ void		parser(t_data *param)
 	sep = NULL;
 	i = 0;
 	sep = ft_split(">>,>,<<,<", ',');
-
 	//fd[0] = redir_in(param->f_matrix);
 	//print_tab(param->cmds);
-
 	while(param->cmds[i])
 	{
-		
 		i++;
 	}
-	////printf("nombre de coomades %d\n", i );
-	
 	if(i == 1)
 	{
 		param->f_matrix = pop_names_from_sep(param, 0, sep);
@@ -142,23 +137,15 @@ void		parser(t_data *param)
 		i = 0;
 		while (param->cmds[i])
 		{
-	//f//printf(stderr, "[parser] while loop fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
-	//f//printf(stderr, "[parser] pipe fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
-		//fd[1] = redir_out(param->f_matrix);
-	//f//printf(stderr, "[parser] %s\n", param->input_cleaned);
-	//f//printf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
 			param->f_matrix = pop_names_from_sep(param, i, sep);
 			child_process(param, i, fd);
 			i++;
 		//fd[0] = redir_in(param->f_matrix);
 		}
 	//param->f_matrix = pop_names_from_sep(param, i, sep);
-	//f//printf(stderr, "[parser] %s\n", param->input_cleaned);
-	//f//printf(stderr, "[parser] fd[0] = %d, fd[1] = %d\n", fd[0], fd[1]);
 	//fd[0] = redir_in(param->f_matrix);
 		//fd[1] = redir_out(param->f_matrix);
 		//close(fd[1]);
-		close(fd[0]);	
 	}
 	if (param->cmds)
 		ft_free_split(param->cmds);

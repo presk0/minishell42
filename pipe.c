@@ -72,6 +72,8 @@ void	error(void)
 /* Function that take the command and send it to find_path
  before executing it. 
 */
+
+
 void	execute(t_data *param, int i, int *fd)
 {
 	char	**cmd;
@@ -156,6 +158,39 @@ int	open_file(char *argv, int i)
 }
 */
 
+void	exec_pipe(t_data *param, int i, int *fd)
+{
+	char	**cmd;
+	char	*path;
+
+	(void)i;
+	
+	i = verif_bultin(param);
+	if (!i)
+	{
+		path = return_env_var("PATH", param->envp);
+		cmd = cmd_format(param->input_cleaned, path, 0);
+		free(path);
+		if (execve(cmd[0], cmd, param->envp) == -1)
+		{
+			//free()
+			//error
+			exit(-1);
+		}
+		if (cmd)
+			ft_free_split(cmd);
+		cmd = NULL;
+		if (cmd)
+			ft_free_split(cmd);
+		cmd = NULL;
+	}
+	else
+	{
+		cmd_split_sw(param);
+		check_built(fd[1], param);
+	} 
+}
+
 void	child_process(t_data *param, int i, int *fd)
 {
 	pid_t	pid;
@@ -170,14 +205,16 @@ void	child_process(t_data *param, int i, int *fd)
 	if (pid == 0)
 	{
 		//fprintf(stderr, "[child process] pid =	%d\n", pid);
-		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		execute(param, i, fd);
+		close(fd[0]);
+		close(fd[1]);
+		exec_pipe(param, i, fd);
 	}
 	else
 	{
-		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
+		close(fd[1]);
+		close(fd[0]);
 		waitpid(pid, NULL, 0);
 		//fprintf(stderr, "[child process] pid =	%d\n", pid);
 		//wait(NULL);

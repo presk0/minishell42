@@ -6,11 +6,10 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 13:01:29 2022
+# Make data base, printed on Tue Aug 16 20:28:56 2022
 
 # Variables
 
- 
 # environment
 GDK_BACKEND = x11
 # environment
@@ -31,10 +30,8 @@ LC_NAME = fr_FR.UTF-8
 LC_NUMERIC = fr_FR.UTF-8
 # environment
 VSCODE_CWD = /home/honey
-# makefile (from 'Makefile', line 27)
-LIBFTPRINTF_AR = libftprintf.a
 # makefile (from 'Makefile', line 28)
-LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)
+LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
 # environment
 LC_ADDRESS = fr_FR.UTF-8
 # default
@@ -64,13 +61,13 @@ XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/d
 # automatic
 %F = $(notdir $%)
 # environment
-CONDA_PROMPT_MODIFIER = (base) 
-# environment
 VSCODE_CODE_CACHE_PATH = /home/honey/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+# makefile (from 'Makefile', line 25)
+LIBFTprintf_DIR = libftprintf/
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.C6U3Q1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.U39RQ1
 # default
 .LOADED := 
 # default
@@ -79,14 +76,10 @@ XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.C6U3Q1
 MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/honey/minishell42
-# makefile (from 'Makefile', line 25)
-LIBFTPRINTF_DIR = libftprintf/
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'Makefile', line 13)
-SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c
+SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c export.c
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -106,25 +99,21 @@ XDG_SESSION_DESKTOP = ubuntu
 # makefile (from 'Makefile', line 1)
 MAKEFILE_LIST := Makefile
 # environment
-CONDA_SHLVL = 1
-# environment
 SNAP_REEXEC = 
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 4819
+VSCODE_PID = 4449
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
-# environment
-CONDA_PYTHON_EXE = /home/honey/anaconda3/bin/python
 # makefile (from 'Makefile', line 30)
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTPRINTF_DIR) -I./$(LIBFT_DIR)
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
 # environment
-SESSION_MANAGER = local/pote:@/tmp/.ICE-unix/1281,unix/pote:/tmp/.ICE-unix/1281
+SESSION_MANAGER = local/pote:@/tmp/.ICE-unix/1284,unix/pote:/tmp/.ICE-unix/1284
 # automatic
 *F = $(notdir $*)
 # environment
@@ -138,11 +127,9 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # makefile (from 'Makefile', line 17)
-OBJS := main.o prompting.o utils.o init.o debug.o split.o matrix.o strings.o var_conv.o parser.o exec_cmd.o get_filename.o pipe.o bultins2.o env.o verif_bultin.o command.o bin.o
+OBJS := main.o prompting.o utils.o init.o debug.o split.o matrix.o strings.o var_conv.o parser.o exec_cmd.o get_filename.o pipe.o bultins2.o env.o verif_bultin.o command.o bin.o export.o
 # environment
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
-# environment
-CONDA_PREFIX = /home/honey/anaconda3
 # makefile
 SHELL = /bin/sh
 # default
@@ -157,14 +144,12 @@ GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 SHLVL = 0
 # environment
 MAKELEVEL := 0
-# environment
-IM_CONFIG_CHECK_ENV = 1
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = O4RrpBabFz5j8rwGu-G0BY0A6y0iycc6Zh9MW4CLcG1tRPT1E6ba
 # environment
-PATH = /home/honey/.local/bin:/home/honey/anaconda3/bin:/home/honey/anaconda3/condabin:/home/honey/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH = /home/honey/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 # default
 MAKEFILES := 
 # environment
@@ -180,7 +165,7 @@ LC_TIME = fr_FR.UTF-8
 # environment
 SNAP = /snap/code/104
 # environment
-INVOCATION_ID = ee17c4d673334f8b9101f74fb00d944a
+INVOCATION_ID = a30e0d7d5c4345cdb476f868749d4c7a
 # environment
 SNAP_REVISION = 104
 # environment
@@ -191,16 +176,12 @@ USERNAME = honey
 GNOME_SETUP_DISPLAY = :1
 # environment
 LC_TELEPHONE = fr_FR.UTF-8
-# environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
 # makefile (from 'Makefile', line 21)
 NAME = minishell
 # environment
 XDG_CURRENT_DESKTOP = Unity
-# environment
-LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
@@ -210,8 +191,6 @@ ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-CONDA_DEFAULT_ENV = base
-# environment
 LOGNAME = honey
 # environment
 GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
@@ -220,7 +199,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1307
+SYSTEMD_EXEC_PID = 1315
 # environment
 DISPLAY = :0
 # environment
@@ -236,13 +215,11 @@ SNAP_DATA = /var/snap/code/104
 # environment
 SNAP_CONTEXT = O4RrpBabFz5j8rwGu-G0BY0A6y0iycc6Zh9MW4CLcG1tRPT1E6ba
 # environment
-MANAGERPID = 1134
+MANAGERPID = 1136
 # environment
 LC_MEASUREMENT = fr_FR.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4752
-# environment
-_ = /snap/code/104/usr/share/code/code
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4401
 # environment
 LC_PAPER = fr_FR.UTF-8
 # environment
@@ -252,9 +229,7 @@ CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/honey/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-_CE_M = 
-# environment
-JOURNAL_STREAM = 8:28922
+JOURNAL_STREAM = 8:29712
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -289,6 +264,8 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 27)
+LIBFTprintf_AR = libftprintf.a
 # makefile (from 'Makefile', line 33)
 CC = gcc
 # environment
@@ -296,28 +273,24 @@ SNAP_USER_DATA = /home/honey/snap/code/104
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
- 
-CONDA_EXE = /home/honey/anaconda3/bin/conda
-# environment
-_CE_CONDA = 
-# environment
 GDMSESSION = ubuntu
 # environment
 LC_IDENTIFICATION = fr_FR.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=147/1024=14%, Rehash=0, Collisions=11/183=6%
+# Load=134/1024=13%, Rehash=0, Collisions=7/170=4%
 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
 
 # Directories
+ 
 
-# . (device 2051, inode 25698368): 41 files, no impossibilities.
+# . (device 2051, inode 25698368): 43 files, no impossibilities.
 
-# 41 files, no impossibilities in 1 directories.
+# 43 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -364,7 +337,7 @@ debugfile: ctags
 
 minishell: make_libftprintf make_libft
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-14 12:57:35.749497329
+#  Last modified 2022-08-15 09:45:20.688455042
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -383,7 +356,7 @@ debug: debugfile
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-14 12:57:27.721561227
+#  Last modified 2022-08-16 19:25:56.88995559
 #  File has been updated.
 #  Successfully updated.
 
@@ -428,7 +401,6 @@ all: minishell
 # Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
 fclean: clean
- 
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -474,12 +446,12 @@ ctags:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 57 / storage = 501 B / avg = 8 B
-# current buf: size = 8162 B / used = 501 B / count = 57 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 59 / storage = 521 B / avg = 8 B
+# current buf: size = 8162 B / used = 521 B / count = 59 / avg = 8 B
 
-# strcache performance: lookups = 93 / hit rate = 38%
+# strcache performance: lookups = 95 / hit rate = 37%
 # hash-table stats:
-# Load=57/8192=1%, Rehash=0, Collisions=0/93=0%
-# Finished Make data base on Sun Aug 14 13:01:29 2022
+# Load=59/8192=1%, Rehash=0, Collisions=0/95=0%
+# Finished Make data base on Tue Aug 16 20:28:56 2022
 
  
