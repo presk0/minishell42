@@ -119,7 +119,7 @@ char	**copy_env(char **envp, int add);
 char	*get_env(char **envp, char *env);
 char		**export_command(t_data *param, int j);
 int verif_bultin(t_data *param);
-
+void    print_env_tri(t_data *param);
 /* signaux */
 void	    ctrlbacksl(int sig);
 void		ctrlc(int sig);
