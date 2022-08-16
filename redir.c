@@ -33,11 +33,11 @@ int main ()
 //
           to it. 
        stream = fdopen (fds[1], "w"); 
-       fprintf (stream, "This is a test.\n"); 
-       fprintf (stream, "Hello, world.\n"); 
-       fprintf (stream, "My dog has fleas.\n"); 
-       fprintf (stream, "This program is great.\n"); 
-       fprintf (stream, "One fish, two fish.\n"); 
+       f//printf (stream, "This is a test.\n"); 
+       f//printf (stream, "Hello, world.\n"); 
+       f//printf (stream, "My dog has fleas.\n"); 
+       f//printf (stream, "This program is great.\n"); 
+       f//printf (stream, "One fish, two fish.\n"); 
        fflush (stream); 
        close (fds[1]); 
 //       /* Wait for the child process to finish. 

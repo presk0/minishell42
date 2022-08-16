@@ -110,7 +110,7 @@ void		cd_command(t_data *param);
 char     **run_unset(t_data *param);
 void	run_env(t_data *param, int fd);
 void	error(t_data *param);
-
+char    **run_export(t_data *param);
 void	set_in(char **argv);
 
 /* env*/

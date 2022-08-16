@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/12 16:14:24 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:23:01 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,54 +81,61 @@ void	execute(t_data *param, int i, int *fd)
 	(void)i;
 	
 	i = verif_bultin(param);
-	
+	//printf("execute i = %d\n", i);
 	if (!i)
 	{
-		fprintf(stderr, "[execute] go to exec\n");
+		//fprintf(stderr, "[execute] go to exec\n");
 		path = return_env_var("PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);
 		pid = fork();
-		fprintf(stderr, "[execute] forked \n");
+		//fprintf(stderr, "[execute] forked \n");
 		if (pid == 0)
 		{
-			fprintf(stderr, "[execute pid = %d`] forked \n", pid);
+			//fprintf(stderr, "[execute pid = %d`] forked \n", pid);
 			if (fd[1] != 1)
 			{
 				dup2(fd[1], STDOUT_FILENO);
-			fprintf(stderr, "[execute pid = %d`] dup to fd[1] \n", pid);
+			//fprintf(stderr, "[execute pid = %d`] dup to fd[1] \n", pid);
 			}
 			if (fd[0] != 0)
 			{
 				dup2(fd[0], STDIN_FILENO);
-			fprintf(stderr, "[execute pid = %d`] dup to fd[0] \n", pid);
+			//(stderr, "[execute pid = %d`] dup to fd[0] \n", pid);
 			}
-			fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
+			//fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
 				exit(1);
 			if (cmd)
 				ft_free_split(cmd);
 			cmd = NULL;
-			fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
+			//fprintf(stderr, "[execute pid = %d`] exec fd[0] \n", pid);
 			exit(0);
+			// if ((execve(cmd[0], cmd, param->envp)) && errno == EACCES)
+			// {
+			// param->retour = 126;
+			// ft_putstr_fd("pas commande bin valide", 2);
+			// }	
+			// exit(param->retour);
+
 		}
 		else
 		{
-			fprintf(stderr, "[execute pid = %d] beforwait\n", pid);
+			//fprintf(stderr, "[execute pid = %d] beforwait\n", pid);
 			if (cmd)
 				ft_free_split(cmd);
 			cmd = NULL;
 			waitpid(pid, NULL, 0);
-			fprintf(stderr, "[execute pid = %d] after wait\n", pid);
+			//fprintf(stderr, "[execute pid = %d] after wait\n", pid);
 		}
 	}
 	else
 	{
-		fprintf(stderr, "[execute] go to builtin\n");
+		//fprintf(stderr, "[execute] go to builtin\n");
 		cmd_split_sw(param);
 		check_built(fd[1], param);
 	} 
-		fprintf(stderr, "[execute] finished\n");
+		//fprintf(stderr, "[execute] finished\n");
 }
 
 /* Function to open the files with the right flags 
@@ -152,7 +159,7 @@ int	open_file(char *argv, int i)
 void	child_process(t_data *param, int i, int *fd)
 {
 	pid_t	pid;
-
+	//fprintf(stderr, "[child process]\n");
 	if (pipe(fd) == -1)
 		return ;
 //		error();
@@ -162,16 +169,20 @@ void	child_process(t_data *param, int i, int *fd)
 //		error();
 	if (pid == 0)
 	{
-		//dup2(fd[1], STDOUT_FILENO);
+		//fprintf(stderr, "[child process] pid =	%d\n", pid);
 		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
 		execute(param, i, fd);
 	}
 	else
 	{
-		//dup2(fd[0], STDIN_FILENO);
 		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
 		waitpid(pid, NULL, 0);
+		//fprintf(stderr, "[child process] pid =	%d\n", pid);
+		//wait(NULL);
 	}
+	//return (fd[1]);
 }
 
 /* Parent process that take the data from the pipe, change the output for the

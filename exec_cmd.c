@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 17:35:59 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*get_path(char *cmd, char *PATH)
 	{
 		str = ft_strjoin(env_tab[i], cmd);
 		file_fd = open(str, O_RDONLY);
-		//fprintf(stderr, "[output]: %d\n", file_fd);
+		//f//printf(stderr, "[output]: %d\n", file_fd);
 		if (file_fd != -1)
 			break ;
 		close(file_fd);
@@ -108,7 +108,7 @@ char	**quotes_spaces_split(char *line)
 	{
 		matrix[i] = ft_strdup(&line[next]);
 		next += ft_strlen(&line[next]) + 1;
-		//tmp = fprintf(stderr, "%s\n", &line[next]);
+		//tmp = f//printf(stderr, "%s\n", &line[next]);
 		i++;
 	}
 	matrix[i] = NULL;
