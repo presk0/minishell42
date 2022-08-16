@@ -14,3 +14,8 @@ Malloc / free :
 	copy_env
 		cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
 		cpy[i] = ft_strdup(envp[i]);
+		
+		
+		
+		
+		https://github.com/lyutsiya91/pipex
