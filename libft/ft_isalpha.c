@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:48:16 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	main(void)
 	{
 		if (isalpha(ii) != ft_isalpha(ii))
 		{
-			fprintf(stderr, "isalpha(%c) = %d\n", (char)ii, isalpha(ii));
-			fprintf(stderr, "ft_isalpha(%c) = %d\n", (char)ii, ft_isalpha(ii));
+			f//printf(stderr, "isalpha(%c) = %d\n", (char)ii, isalpha(ii));
+			f//printf(stderr, "ft_isalpha(%c) = %d\n", (char)ii, ft_isalpha(ii));
 			return (error_msg(ii, "isalpha"));
 		}
 		ii++;

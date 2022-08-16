@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: supersko <supersko@student.42.fr>          +#+  +:+       +#+         #
+#    By: swalter <swalter@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/08/12 12:48:31 by supersko         ###   ########.fr        #
+#    Updated: 2022/08/16 13:01:23 by swalter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
 	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c\
-	command.c bin.c
+	command.c bin.c export.c
 
 OBJS := ${SRCS:c=o}
 
@@ -22,12 +22,12 @@ NAME = minishell
 DEBUG_NAME = a.out
 HEADERS = include
 LIBFT_DIR = libft/
-LIBFTPRINTF_DIR = libftprintf/
+LIBFTprintf_DIR = libftprintf/
 LIBFT_AR = libft.a
-LIBFTPRINTF_AR = libftprintf.a
-LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)
+LIBFTprintf_AR = libftprintf.a
+LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
 
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTPRINTF_DIR) -I./$(LIBFT_DIR)
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
 CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
 
 CC = gcc

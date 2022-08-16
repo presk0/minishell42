@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,33 @@ int test_memmove(int len)
 	ft_memmove(s2 + 3, s2 + 2, len);
 	if (ft_strncmp(s1, s2, 1000))
 	{
-		fprintf(stderr, "memmove(str) = [%s]\n\
+		f//printf(stderr, "memmove(str) = [%s]\n\
 			ft_memmove(str) = [%s]\n\
 			len = %d\n\
 			", s1, s2, len);
-		fprintf(stderr, "\n");
+		f//printf(stderr, "\n");
 		return (1);
 	}
 	memmove(s1 + 3, s1 + 2, len);
 	ft_memmove(s2 + 3, s2 + 2, len);
 	if (ft_strncmp(s1, s2, 1000))
 	{
-		fprintf(stderr, " memmove(str) = [%s]\n\
+		f//printf(stderr, " memmove(str) = [%s]\n\
 			ft_memmove(str) = [%s]\n\
 			len = %d\n\
 			", s1, s2, len);
-		fprintf(stderr, "\n");
+		f//printf(stderr, "\n");
 		return (1);
 	}
 	memmove(s1 + 3, s1 + 3, len);
 	ft_memmove(s2 + 3, s2 + 3, len);
 	if (ft_strncmp(s1, s2, 1000))
 	{
-		fprintf(stderr, " memmove(str) = [%s]\n\
+		f//printf(stderr, " memmove(str) = [%s]\n\
 			ft_memmove(str) = [%s]\n\
 			len = %d\n\
 			", s1, s2, len);
-		fprintf(stderr, "\n");
+		f//printf(stderr, "\n");
 		return (1);
 	}
 	return (0);

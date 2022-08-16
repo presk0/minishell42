@@ -25,18 +25,18 @@ void		parser(t_data *param)
 		set_args(param->argv, param->cmds[i], param->argc);
 		//command_or_pipe(param, i);
 		check_built(param);
-		printf("param cmds %s\n", param->cmds[i]);
+		//printf("param cmds %s\n", param->cmds[i]);
 		check_built(fd, param);
 		// while(*param->argv)
 		// {
-		// 	printf("param argv %s\n", *param->argv);
+		// 	//printf("param argv %s\n", *param->argv);
 		// 	param->argv++;
-		// 	//printf("param argv %s\n", param->export[0]);
+		// 	////printf("param argv %s\n", param->export[0]);
 			
 		// }	
 		i++;
 
-		//printf("param export %s/n", param->export[0]);
+		////printf("param export %s/n", param->export[0]);
 		//free_matrix(param->argv);
 	}
 	

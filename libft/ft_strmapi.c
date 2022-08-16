@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int	main(void)
 {
 	char str[] = "abcdef";
 	//char (*func)(unsigned int, char);
-	fprintf(stderr, "%s\n", ft_strmapi(str, &f));
+	f//printf(stderr, "%s\n", ft_strmapi(str, &f));
 }
 */

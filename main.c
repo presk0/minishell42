@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/12 10:55:05 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 13:04:29 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	sig_handler(int sig)
 {
 	(void)sig;
-	printf("\n");
+	//printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
@@ -95,10 +95,10 @@ void	    ctrlbacksl(int sig) {
     //    int pid = 0;
 //
 //    pid = get_pid();
-//    printf("pid= %d\n", pid);
+//    //printf("pid= %d\n", pid);
 //
 //    if (kill(pid, SIGKILL) != -1) {
-//    printf("^\\Quit: %d\n", sig);
+//    //printf("^\\Quit: %d\n", sig);
 //
 //    }
 //    else
@@ -173,7 +173,7 @@ int main(int argc, char **argv, char **envp)
 			continue;
 		else
 			add_history(param->input);
-		fprintf(stderr, "[main] param_input : %s\n", param->input);
+		//printf(stderr, "[main] param_input : %s\n", param->input);
 		if(check_error(param))
 			return (-1);
 		
@@ -185,10 +185,10 @@ int main(int argc, char **argv, char **envp)
 		//}
 		//else
 		//	wait(NULL);
-		//printf("%s\n", ((return_env_var("PATH", param->envp))));
+		////printf("%s\n", ((return_env_var("PATH", param->envp))));
 		//param->envp = ft_append_tab(param->envp, param->input);
-		//printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
-		//printf("-------------------------------------------------------------\n");
+		////printf("conv_var_in_line: %s\n", convert_var_in_line(param->input, envp));
+		////printf("-------------------------------------------------------------\n");
 	}
 	//freall();
 	exit(param->retour);

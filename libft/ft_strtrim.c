@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:33:46 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int main(void)
 	char s[100];
 
 	strcpy(s, "- a a -");
-	fprintf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
+	f//printf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
 	strcpy(s, "    --");
-	fprintf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
+	f//printf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
 	strcpy(s, "f f");
-	fprintf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
+	f//printf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
 	strcpy(s, "a");
-	fprintf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
+	f//printf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
 	strcpy(s, "");
-	fprintf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
+	f//printf(stderr, "[%s] -> [%s]\n", s, ft_strtrim(s, " -"));
 }
 */

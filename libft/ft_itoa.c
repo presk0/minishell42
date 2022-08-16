@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 19:17:07 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ int main(void)
 	char	*strnb;
 
 	strnb = ft_itoa(-123);
-	fprintf(stderr, "%s\n", strnb);
+	f//printf(stderr, "%s\n", strnb);
 	free(strnb);
 
 	strnb = ft_itoa(-0);
-	fprintf(stderr, "%s\n", strnb);
+	f//printf(stderr, "%s\n", strnb);
 	free(strnb);
 
 	strnb = ft_itoa(1230);
-	fprintf(stderr, "%s\n", strnb);
+	f//printf(stderr, "%s\n", strnb);
 	free(strnb);
 }
 */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int test_memchr(char *str, char c)
 		ret = memchr(str, c, ii) - ft_memchr(str, c, ii);
 		if (ret)
 		{
-			fprintf(stderr, "[bug] at str: %s, c: %c, n = %d\n", str, c, ii);
+			f//printf(stderr, "[bug] at str: %s, c: %c, n = %d\n", str, c, ii);
 			return (1);
 		}
 		ii++;
@@ -61,6 +61,6 @@ int	main(int argc, char *argv[])
 	test_memchr("abc", '\0');
 	test_memchr("", 'a');
 	test_memchr("", '\0');
-	fprintf(stderr, "test finished\n");
+	f//printf(stderr, "test finished\n");
 }
 */

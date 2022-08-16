@@ -21,5 +21,5 @@ void	check_doll(char *str)
 		i++;
 	}
 	if (dollar == 1 && quote == 0)
-		printf("remplace dollar");
+		//printf("remplace dollar");
 }

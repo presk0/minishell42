@@ -140,10 +140,10 @@ int check_built(int fd, t_data *param)
 	char	*pwd;
 	char 	*path;
 	char 	cwd[4097];
-//printf(" argc = %d\n", param->argc);
-	//printf(" argv = %s\n", param->argv[0]);
+////printf(" argc = %d\n", param->argc);
+	////printf(" argv = %s\n", param->argv[0]);
 	if (!ft_memcmp(param->argv[0], "echo", 4))
-		//printf("cde  = echo\n");
+		////printf("cde  = echo\n");
 		run_echo(fd, param);
 	else if (!ft_memcmp(param->argv[0], "cd", 3))
 	{
@@ -184,7 +184,7 @@ int check_built(int fd, t_data *param)
 //        heredoc(param);
     else
 		return (1);
-		//printf("non connu\n");
+		////printf("non connu\n");
 
 	return (0);
 }
@@ -193,7 +193,7 @@ int check_built(int fd, t_data *param)
 void	run_echo(int fd, t_data *param)
 {	int i = 0;
 
-		fprintf(stderr, "[run echo] fd= %d\n", fd);
+		f//printf(stderr, "[run echo] fd= %d\n", fd);
 	if (param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3))
 		i = 1;
 	while(i++ < param->argc)
@@ -229,6 +229,6 @@ void	run_env(t_data *param, int fd)
 void	error(t_data *param) {
 
 	if (param->argc > 0 && !ft_memcmp(param->argv[0], "$?", 3))
-		printf("%d\n", param->retour);
+		//printf("%d\n", param->retour);
 
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:48:16 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int test_strlen(char *str, int buf_size)
 {
 	if (strlen(str) != ft_strlen(str))
 	{
-		fprintf(stderr, "differents output for str=%s\n\t\
+		f//printf(stderr, "differents output for str=%s\n\t\
 			strlen(str) = %lu; ft_strlen(str) = %lu\nbuf_size = %d\n",\
 			str, strlen(str), ft_strlen(str), buf_size);
 		return (1);
@@ -52,6 +52,6 @@ int	main(int argc, char *argv[])
 		test_strlen(str, ii);
 		ii++;
 	}
-	fprintf(stderr, "can be a good job ;)\n");
+	f//printf(stderr, "can be a good job ;)\n");
 }
 */

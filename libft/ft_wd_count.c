@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wd_count.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 13:09:34 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int	ft_wd_count(char *str, char sep)
 #include <stdio.h>
 int main()
 {
-	fprintf(stderr, "%d\n", ft_wd_count(NULL, 0));
-	fprintf(stderr, "%d\n", ft_wd_count("a", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count(" a", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count("a ", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count(" a ", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count("a a", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count("a a ", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count(" a a", ' '));
-	fprintf(stderr, "%d\n", ft_wd_count(" a a ", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count(NULL, 0));
+	f//printf(stderr, "%d\n", ft_wd_count("a", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count(" a", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count("a ", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count(" a ", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count("a a", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count("a a ", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count(" a a", ' '));
+	f//printf(stderr, "%d\n", ft_wd_count(" a a ", ' '));
 }
 */

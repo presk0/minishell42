@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:08:18 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int test_strlcat(char *str, char *to_append, int len)
 	if ((ret0 = strncmp(s1, s2, len)) || (ret1 = strlcat(s1, to_append, len))\
 	!= (ret2 = ft_strlcat(s2, to_append, len)))
 	{
-		fprintf(stderr, "Error when len = %d, src = [%s], dst = [%s]\n\
+		f//printf(stderr, "Error when len = %d, src = [%s], dst = [%s]\n\
 			%3d <-- s1 (   strlcat): [%s]\n\
 			%3d <-- s2 (ft_strlcat): [%s]\n\n",\
 			len, to_append, str, ret1, s1, ret2, s2);

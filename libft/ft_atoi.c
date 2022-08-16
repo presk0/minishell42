@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:48:16 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,40 +64,40 @@ int	main(void)
 	strcpy(nb, "2147483647");
 	if (atoi(nb) != ft_atoi(nb))
 	{
-		fprintf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
-		fprintf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
+		f//printf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
+		f//printf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
 		free(nb);
 	}
 	strcpy(nb, " 	-2147483648");
 	if (atoi(nb) != ft_atoi(nb))
 	{
-		fprintf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
-		fprintf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
+		f//printf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
+		f//printf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
 		free(nb);
 	}
 	strcpy(nb, " 	-0aa");
 	if (atoi(nb) != ft_atoi(nb))
 	{
-		fprintf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
-		fprintf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
+		f//printf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
+		f//printf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
 		free(nb);
 	}
 	strcpy(nb, "");
 	if (atoi(nb) != ft_atoi(nb))
 	{
-		fprintf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
-		fprintf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
+		f//printf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
+		f//printf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
 		free(nb);
 	}
 	strcpy(nb, "   -0002365s654");
 	if (atoi(nb) != ft_atoi(nb))
 	{
-		fprintf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
-		fprintf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
+		f//printf(stderr, "atoi(%s) = %d\n", nb, atoi(nb));
+		f//printf(stderr, "ft_atoi(%s) = %d\n", nb, ft_atoi(nb));
 		free(nb);
 	}
-	fprintf(stderr, "All tested\n");
-	fprintf(stderr, "All tested\n");
+	f//printf(stderr, "All tested\n");
+	f//printf(stderr, "All tested\n");
 	free(nb);
 	return (0);
 }

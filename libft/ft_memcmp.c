@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int test_memcmp(char *s1, char *s2, int len)
 		return (1);
 	else
 	{
-		fprintf(stderr, "[BUG]\ns1 = %s, s2 %s\nmemcmp = %d\nft_memcmp = %d\nlen = %d\n\
+		f//printf(stderr, "[BUG]\ns1 = %s, s2 %s\nmemcmp = %d\nft_memcmp = %d\nlen = %d\n\
 		\n", s1, s2, memcmp(s1, s2, len), ft_memcmp(s1, s2, len), len);
 		return (0);
 	}

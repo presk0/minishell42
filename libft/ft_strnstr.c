@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int test_strnstr(char *haystack, char *needle, unsigned int len)
 	if ((r1 = ft_strnstr(haystack, needle, len)) !=\
    	(r2 = strnstr(haystack, needle, len)))
 	{
-		fprintf(stderr, "[BUG] strnstr:\n\
+		f//printf(stderr, "[BUG] strnstr:\n\
 			outputs differents when:\n\
 			haystack = [%s]; needle = [%s]; len = %d\n\
 			ft_strnstr(haystack, needle, len)	= [%s]\n\

@@ -32,7 +32,7 @@ char    **check_export(t_data *param)
         }
     }
     else
-        printf("pas trouve\n");
+        //printf("pas trouve\n");
 
     return(export);
 
@@ -49,7 +49,7 @@ char    **new_env_export(char *str, char **envp) // new env apres unset
     int k = 0;
     char *export;
     export = str;
-    printf(" export arg = %s\n", export);
+    //printf(" export arg = %s\n", export);
     while(envp[len])
     {
         len++;
@@ -57,7 +57,7 @@ char    **new_env_export(char *str, char **envp) // new env apres unset
     }
 
     new = ft_calloc(sizeof(char *),(len) + 1);
-    printf("len = %d\n", len);
+    //printf("len = %d\n", len);
     j = 0;
     while(j <= len)
     {
@@ -68,7 +68,7 @@ char    **new_env_export(char *str, char **envp) // new env apres unset
 
     while(new[k])
     {
-        printf("new[%d] = %s\n", k, new[k]);
+        //printf("new[%d] = %s\n", k, new[k]);
         k++;
     }
 

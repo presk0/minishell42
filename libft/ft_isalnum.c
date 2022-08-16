@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:48:16 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	main(int argc, char *argv[])
 	{
 		if (isalnum(ii) != ft_isalnum(ii))
 		{
-			fprintf(stderr, "isalnum(%c) = %d\n", (char)ii, isalnum(ii));
-			fprintf(stderr, "ft_isalnum(%c) = %d\n", (char)ii, ft_isalnum(ii));
+			f//printf(stderr, "isalnum(%c) = %d\n", (char)ii, isalnum(ii));
+			f//printf(stderr, "ft_isalnum(%c) = %d\n", (char)ii, ft_isalnum(ii));
 			return (error_msg(ii, "isalnum"));
 		}
 		ii++;
 	}
 	(void)argc;
-	fprintf(stderr, "%s have same output from same input\n", argv[0]);
+	f//printf(stderr, "%s have same output from same input\n", argv[0]);
 	return (0);
 }
 */

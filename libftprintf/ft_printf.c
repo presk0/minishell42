@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_//printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -73,60 +73,60 @@ int main(void)
 {
 	int strlen;
 
-	strlen = ft_printf("a%ia\n", 42);
-	fprintf(stderr, "strlen: %d\n", strlen);
-	ft_printf("\n");
+	strlen = ft_//printf("a%ia\n", 42);
+	f//printf(stderr, "strlen: %d\n", strlen);
+	ft_//printf("\n");
 
-	fprintf(stderr, "%d\n", fprintf(stderr, "%d, %p0000\n", 10, &strlen));
-	fprintf(stderr, "%d\n", ft_printf("%d, %p0000\n", 10, &strlen));
-	fprintf(stderr, "retour de printf: %d\n", fprintf(stderr, " %i %i %i %i %i %i %i\n",  NULL,
+	f//printf(stderr, "%d\n", f//printf(stderr, "%d, %p0000\n", 10, &strlen));
+	f//printf(stderr, "%d\n", ft_//printf("%d, %p0000\n", 10, &strlen));
+	f//printf(stderr, "retour de //printf: %d\n", f//printf(stderr, " %i %i %i %i %i %i %i\n",  NULL,
 	LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
-	fprintf(stderr, "retour de printf: %d\n", ft_printf(" %i %i %i %i %i %i %i\n", NULL,
+	f//printf(stderr, "retour de //printf: %d\n", ft_//printf(" %i %i %i %i %i %i %i\n", NULL,
 	LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42));
-	fprintf(stderr, "retour de printf: %d\n", ft_printf("%x\n", -42));
-	fprintf(stderr, "retour de printf: %d\n", fprintf(stderr, "%x\n", -42));
-	fprintf(stderr, "(printf    : %d)", fprintf(stderr, "%c", '0'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", ft_printf("%c", '0'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c ", '0'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c ", '0'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c", '0' - 256)); 
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c", '0' - 256)); 
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf("%c ", '0' + 256));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, "%c ", '0' + 256));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c %c %c ", '0', 0, '1'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c %c %c ", '0', 0, '1'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c %c %c ", ' ', ' ', ' '));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c %c %c ", ' ', ' ', ' '));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c %c %c ", '1', '2', '3'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c %c %c ", '1', '2', '3'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c %c %c ", '2', '1', 0));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c %c %c ", '2', '1', 0));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(printf    : %d)", ft_printf(" %c %c %c ", 0, '1', '2'));
-	fprintf(stderr, "\n");
-	fprintf(stderr, "(ft_printf : %d)", fprintf(stderr, " %c %c %c ", 0, '1', '2'));
+	f//printf(stderr, "retour de //printf: %d\n", ft_//printf("%x\n", -42));
+	f//printf(stderr, "retour de //printf: %d\n", f//printf(stderr, "%x\n", -42));
+	f//printf(stderr, "(//printf    : %d)", f//printf(stderr, "%c", '0'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", ft_//printf("%c", '0'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c ", '0'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c ", '0'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c", '0' - 256)); 
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c", '0' - 256)); 
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf("%c ", '0' + 256));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, "%c ", '0' + 256));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c %c %c ", '0', 0, '1'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c %c %c ", '0', 0, '1'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c %c %c ", ' ', ' ', ' '));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c %c %c ", ' ', ' ', ' '));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c %c %c ", '1', '2', '3'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c %c %c ", '1', '2', '3'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c %c %c ", '2', '1', 0));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c %c %c ", '2', '1', 0));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(//printf    : %d)", ft_//printf(" %c %c %c ", 0, '1', '2'));
+	f//printf(stderr, "\n");
+	f//printf(stderr, "(ft_//printf : %d)", f//printf(stderr, " %c %c %c ", 0, '1', '2'));
 }
 	*/

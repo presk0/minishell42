@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:31:55 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_split(char const *s, char c)
 
 void put_header(void)
 {
-	fprintf(stderr, "****************************************************\n");
+	f//printf(stderr, "****************************************************\n");
 }
 
 int main(void)
@@ -73,60 +73,60 @@ int main(void)
 	sortie = ft_split("Phrase de      test", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	sortie = ft_split("P", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	sortie = ft_split("", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	sortie = ft_split(" a ", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	sortie = ft_split(" a", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	sortie = ft_split("a ", ' ');
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
 
 	put_header();
 	ii = 0;
 	while (sortie[ii] != NULL)
-		 fprintf(stderr, "%s\n", sortie[ii++]); 
-		 fprintf(stderr, "+++++++++"); 
+		 f//printf(stderr, "%s\n", sortie[ii++]); 
+		 f//printf(stderr, "+++++++++"); 
 }
 	char s[10];
 	strcpy(s, "");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, "  ");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, "a");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, "a ");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, " a");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, " a ");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, "  aa  ");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 	strcpy(s, "bb   bb");
-	fprintf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
+	f//printf(stderr, "for [%s] -> %d\n", s, _count(s, ' '));
 }
 */

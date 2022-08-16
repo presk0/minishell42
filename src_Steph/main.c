@@ -41,7 +41,7 @@ int	check_dquotes(char *str, int i)
 static void	sig_handler(int sig)
 {
 	(void)sig;
-	printf("\n");
+	//printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();

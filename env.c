@@ -6,7 +6,7 @@ char    **new_env(char **envp, int i) // new env apres unset
     int j;
     int len = 0;
     int k = 0;
-    printf("debut new env\n");
+    //printf("debut new env\n");
 
     while(envp[len])
     {
@@ -14,7 +14,7 @@ char    **new_env(char **envp, int i) // new env apres unset
 
     }
 
-    printf(" len = %d", len);
+    //printf(" len = %d", len);
     new = ft_calloc(sizeof(char *),(len));
     j = 0;
     while(j < i)
@@ -31,7 +31,7 @@ char    **new_env(char **envp, int i) // new env apres unset
     }
     while(new[k])
     {
-        printf("new[%d] = %s\n", k, new[k]);
+        //printf("new[%d] = %s\n", k, new[k]);
         k++;
     }
 

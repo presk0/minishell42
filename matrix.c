@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/28 12:40:44 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 14:19:32 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ void	print_tab(char **tableau)
 	int	i;
 
 	i = 0;
-	fprintf(stderr, "------------------------\n");
+	printf("------------------------\n");
 	if (tableau)
 	{
 		while (tableau[i])
 		{
-			fprintf(stderr, "%s*\n", tableau[i++]);
+			printf("%s*\n", tableau[i++]);
 		}
 	}
-	fprintf(stderr, "------------------------\n");
+	printf("------------------------\n");
 }
 
 char	*matrix_to_str(char **matrix)

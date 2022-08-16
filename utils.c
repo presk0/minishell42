@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 17:28:46 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:30:22 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_is_quoted(char *c, int i)
 			squote = !squote;
 		else if (c[i] == '\"' && !squote) // not_escaped(c, i) && 
 			dquote = !dquote;
-
 		if (dquote)
 			return (2);
 		if (squote)

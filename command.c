@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/08/12 15:22:42 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 13:05:27 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	redir_out(char **f_matrix)
 	len = ft_matrixlen(f_matrix);
 	last_redir = 0;
 	i = 0;
-	fd = 0;
+	fd = 1;
 	while (i < len)
 	{
 		if (!ft_memcmp(f_matrix[i], ">", 2))
@@ -77,7 +77,7 @@ int	redir_in(char **f_matrix)
 	len = ft_matrixlen(f_matrix);
 	i = 0;
 	last_redir = 0;
-	fd = 1;
+	fd = 0;
 	while (i < len && f_matrix[i + 1] && f_matrix[i])
 	{
 		if (!ft_memcmp(f_matrix[i], "<", 2))
@@ -105,7 +105,7 @@ int	redir_in(char **f_matrix)
 		}
 		i++;
 	}
-	fprintf(stderr, "[redir_in] end fd[0] = %d\n", fd);
+	//printf(stderr, "[redir_in] end fd[0] = %d\n", fd);
 	return (fd);
 }
 

@@ -103,7 +103,7 @@ void		parser2(t_data *param)
 		param->argc = count_args(param->cmds[i]);
 		param->argv = (char **)ft_calloc(sizeof(char *), (param->argc + 1));
 		set_args(param->argv, param->cmds[i], param->argc);
-        printf("argv = %s\n", param->argv[0]);
+        //printf("argv = %s\n", param->argv[0]);
 //        param->export = check_export(param);
         check_command(param);
 		free_matrix(param->argv);

@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 {
 
 	char *s = "  \"  test || \"   ";
-	printf("%s\n", s);
+	//printf("%s\n", s);
     check_dquotes(s, 0);
 	return (0);
 

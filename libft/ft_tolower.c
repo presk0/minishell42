@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:48:16 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	main(void)
 	{
 		if (tolower(ii) != ft_tolower(ii))
 		{
-			fprintf(stderr, "tolower(%c) = %d\n", (char)ii, tolower(ii));
-			fprintf(stderr, "ft_tolower(%c) = %d\n", (char)ii, ft_tolower(ii));
+			f//printf(stderr, "tolower(%c) = %d\n", (char)ii, tolower(ii));
+			f//printf(stderr, "ft_tolower(%c) = %d\n", (char)ii, ft_tolower(ii));
 			return (error_msg(ii, "tolower"));
 		}
 		ii++;
 	}
-	fprintf(stderr, "You r da man ;)\n");
+	f//printf(stderr, "You r da man ;)\n");
 	return (0);
 }
 */

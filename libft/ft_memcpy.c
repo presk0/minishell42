@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int test_memcpy(char *to_cpy, int len)
 	{
 		if (s1[ii] != s2[ii])
 		{
-			fprintf(stderr, "differents output for str=[%s]\nmemcpy(str) = [%s]\n\
+			f//printf(stderr, "differents output for str=[%s]\nmemcpy(str) = [%s]\n\
 			ft_memcpy(str) = [%s]\nlen = %d\n"\
 			, to_cpy, s1, s2, len);
-			fprintf(stderr, "\n");
-			fprintf(stderr, "\n");
+			f//printf(stderr, "\n");
+			f//printf(stderr, "\n");
 			return (1);
 		}
 		ii++;

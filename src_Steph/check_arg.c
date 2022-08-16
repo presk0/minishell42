@@ -10,7 +10,7 @@ void	check_arg(t_data *param)
 	while(param->cmds[i])
 	{
 		while(param->argv[j]) {
-			printf(" argc %d, %s\n", j, param->argv[j]);
+			//printf(" argc %d, %s\n", j, param->argv[j]);
 			j++;
 		}
 		i++;

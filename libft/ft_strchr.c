@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 15:51:11 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int test_strchr(char *str, char c)
 	ret = strchr(str, c) - ft_strchr(str, c);
 	if (ret)
 	{
-		fprintf(stderr, "[bug] at str: %s, c: %c\n", str, c);
+		f//printf(stderr, "[bug] at str: %s, c: %c\n", str, c);
 		return (1);
 	}
 	return (0);
@@ -78,6 +78,6 @@ int	main(int argc, char *argv[])
 	test_strchr("abc", '\0');
 	test_strchr("", 'a');
 	test_strchr("", '\0');
-	fprintf(stderr, "test finished\n");
+	f//printf(stderr, "test finished\n");
 }
 */

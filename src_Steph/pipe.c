@@ -95,7 +95,7 @@ void		command_or_pipe(t_data *param, int j)
 		i++;
 	if (!param->argv[i])
 		//param->envp = check_command(param->cmds[j], param);
-		printf("check_command");
+		//printf("check_command");
 	else if (param->cmds[j])
 	{
 		pipe(fds);

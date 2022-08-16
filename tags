@@ -9,7 +9,7 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	5.9.0	//
-${NAME}	Makefile	/^${NAME}: make_libftprintf make_libft$/;"	t
+${NAME}	Makefile	/^${NAME}: make_libft//printf make_libft$/;"	t
 %.o	Makefile	/^%.o: %.c$/;"	t
 Attachments	eval.html	/^<h3 class="font-weight-bold mb-1">Attachments<\/h3>$/;"	j
 CC	Makefile	/^CC = gcc$/;"	m
@@ -18,13 +18,13 @@ Conclusion	eval.html	/^<h3 class="font-weight-bold mb-1">Conclusion<\/h3>$/;"	j
 DEBUG_NAME	Makefile	/^DEBUG_NAME = a.out$/;"	m
 Guidelines	eval.html	/^<h3 class="font-weight-bold mb-1">Guidelines<\/h3>$/;"	j
 HEADERS	Makefile	/^HEADERS = include$/;"	m
-INCLUDES	Makefile	/^INCLUDES = -I.\/usr\/include -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFTPRINTF_DIR) -I.\/$(LIBFT_DIR)$/;"	m
+INCLUDES	Makefile	/^INCLUDES = -I.\/usr\/include -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFT//printf_DIR) -I.\/$(LIBFT_DIR)$/;"	m
 Introduction	eval.html	/^<h3 class="font-weight-bold mb-1">Introduction<\/h3>$/;"	j
-LIBFTPRINTF_AR	Makefile	/^LIBFTPRINTF_AR = libftprintf.a$/;"	m
-LIBFTPRINTF_DIR	Makefile	/^LIBFTPRINTF_DIR = libftprintf\/$/;"	m
+LIBFT//printf_AR	Makefile	/^LIBFT//printf_AR = libft//printf.a$/;"	m
+LIBFT//printf_DIR	Makefile	/^LIBFT//printf_DIR = libft//printf\/$/;"	m
 LIBFT_AR	Makefile	/^LIBFT_AR = libft.a$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR = libft\/$/;"	m
-LIBS	Makefile	/^LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)$/;"	m
+LIBS	Makefile	/^LIBS = $(LIBFT//printf_DIR)$(LIBFT//printf_AR) $(LIBFT_DIR)$(LIBFT_AR)$/;"	m
 NAME	Makefile	/^NAME = minishell$/;"	m
 OBJS	Makefile	/^OBJS := ${SRCS:c=o}$/;"	m
 Partie bonus	eval.html	/^<h3 class="font-weight-bold mb-1">Partie bonus<\/h3>$/;"	j
@@ -83,7 +83,7 @@ line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/;"	f	t
 line_presplit	exec_cmd.c	/^int	line_presplit(char *cmd)$/;"	f	typeref:typename:int
 main	main.c	/^int main(int argc, char **argv, char **envp)$/;"	f	typeref:typename:int
 make_libft	Makefile	/^make_libft:$/;"	t
-make_libftprintf	Makefile	/^make_libftprintf:$/;"	t
+make_libft//printf	Makefile	/^make_libft//printf:$/;"	t
 matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/;"	f	typeref:typename:char *
 new_env	env.c	/^char    **new_env(char **envp, int i) \/\/ new env apres unset$/;"	f	typeref:typename:char **
 number_str	ft_split_mini.c	/^static int	number_str(char *s, char c)$/;"	f	typeref:typename:int	file:

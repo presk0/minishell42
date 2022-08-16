@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 14:29:28 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/04 14:41:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ size_t	ft_strlen_char(char *str, char sep)
 #include <stdio.h>
 int main()
 {
-	fprintf(stderr, "%zu\n", ft_strlen_char(NULL, 0));
-	fprintf(stderr, "%zu\n", ft_strlen_char("a", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char(" a", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char("a ", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char(" a ", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char("a a", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char("a a ", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char(" a a", ' '));
-	fprintf(stderr, "%zu\n", ft_strlen_char(" a a ", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char(NULL, 0));
+	f//printf(stderr, "%zu\n", ft_strlen_char("a", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char(" a", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char("a ", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char(" a ", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char("a a", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char("a a ", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char(" a a", ' '));
+	f//printf(stderr, "%zu\n", ft_strlen_char(" a a ", ' '));
 }
 
 */
