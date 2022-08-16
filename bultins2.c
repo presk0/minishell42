@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:41:51 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/16 13:05:05 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:04:49 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int check_built(int fd, t_data *param)
 	}
 	else if (!ft_memcmp(param->argv[0], "env", 4))
 		run_env(param, fd);
+	else if (!ft_memcmp(param->argv[0], "/", 1) || !ft_memcmp(param->argv[0], "./", 2) || !ft_memcmp(param->argv[0], "../", 3))
+		cde_bash(param);
 	else if (!ft_memcmp(param->argv[0], "$?", 3))
 		error(param);
 	else

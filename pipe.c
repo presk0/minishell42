@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/16 14:23:01 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:21:46 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	execute(t_data *param, int i, int *fd)
 	(void)i;
 	
 	i = verif_bultin(param);
-	//printf("execute i = %d\n", i);
+	printf("execute i = %d\n", i);
 	if (!i)
 	{
 		//fprintf(stderr, "[execute] go to exec\n");
@@ -176,9 +176,11 @@ void	child_process(t_data *param, int i, int *fd)
 	}
 	else
 	{
+		
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		waitpid(pid, NULL, 0);
+		
 		//fprintf(stderr, "[child process] pid =	%d\n", pid);
 		//wait(NULL);
 	}

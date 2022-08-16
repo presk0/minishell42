@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/16 14:35:34 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/16 15:56:44 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void		parser(t_data *param)
 	//fd[0] = redir_in(param->f_matrix);
 		//fd[1] = redir_out(param->f_matrix);
 		//close(fd[1]);
-		close(fd[0]);	
+		//close(fd[0]);	
 	}
 	if (param->cmds)
 		ft_free_split(param->cmds);

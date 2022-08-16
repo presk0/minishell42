@@ -6,11 +6,33 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:40:10 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/16 10:54:44 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:12:56 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static char	*ft_strldup(const char *s, int len)
+{
+	char	*ptr;
+	int		size;
+	int		i;
+
+	size = 0;
+	while (s[size])
+		size++;
+	size = (len < size) ? len : size;
+	if (!(ptr = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		ptr[i] = s[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
 
 static void	set_filename(int len, char **new, char *str)
 {

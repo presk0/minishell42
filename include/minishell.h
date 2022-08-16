@@ -50,7 +50,7 @@ int	get_input(t_data *param);
 char	*read_multilines(char *prompt);
 char	**ft_append_tab(char **tableau, char *str);
 //bchar		**ft_split_mini(char *s, char c);
-char	*ft_strldup(const char *s, int len);
+//char	*ft_strldup(const char *s, int len);
 char	**ft_append_tab(char **tableau, char *str);
 int		ft_is_quoted(char *c, int i);
 int		check_error(t_data *param);
@@ -112,6 +112,7 @@ void	run_env(t_data *param, int fd);
 void	error(t_data *param);
 char    **run_export(t_data *param);
 void	set_in(char **argv);
+void	cde_bash(t_data *param);
 
 /* env*/
 char    **new_env(char **envp, int i);

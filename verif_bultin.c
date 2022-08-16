@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 08:26:00 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/16 10:34:52 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:06:38 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	verif_bultin(t_data *param)
 		return (1);
 	else if (!ft_strncmp("exit", param->input_cleaned, 4))
 		return (1);
+	else if (!ft_memcmp(param->input_cleaned, "/", 1) || !ft_memcmp(param->input_cleaned, "./", 2) || !ft_memcmp(param->input_cleaned, "../", 3))
+		return (1);	
 	else
 		return (0);
 }
