@@ -107,8 +107,8 @@ int     check_built(int fd, t_data *param);
 void	run_echo(int fd, t_data *param);
 void	run_exit(t_data *param);
 char	**quotes_spaces_split(char *line);
-void		cd_command(t_data *param);
-char     **run_unset(t_data *param);
+void	cd_command(t_data *param);
+char    **run_unset(t_data *param);
 void	run_env(t_data *param, int fd);
 void	error(t_data *param);
 char    **run_export(t_data *param);
@@ -116,14 +116,14 @@ void	set_in(char **argv);
 void	cde_bash(t_data *param);
 
 /* env*/
-char    **new_env(char **envp, int i);
+char	**new_env(char **envp, int i);
 char	**copy_env(char **envp, int add);
 char	*get_env(char **envp, char *env);
-char		**export_command(t_data *param, int j);
-int verif_bultin(t_data *param);
+char	**export_command(t_data *param, int j);
+int 	verif_bultin(t_data *param);
 void    print_env_tri(t_data *param);
 /* signaux */
-void	    ctrlbacksl(int sig);
-void		ctrlc(int sig);
+void	ctrlbacksl(int sig);
+void	ctrlc(int sig);
 
 #endif

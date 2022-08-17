@@ -6,11 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/08/17 11:23:34 by swalter          ###   ########.fr       */
-=======
-/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
+/*   Updated: 2022/08/17 12:39:51 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +112,7 @@ int	get_input(t_data *param)
 	if (param->input)
 		free(param->input);
 	param->input = ((void *)0);
+	
 	input = read_multilines("\e[033m42mminishell $ \e[39m");
 	param->input = input;
 	if (!param->input)

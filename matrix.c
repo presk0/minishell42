@@ -6,11 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/08/17 11:24:04 by swalter          ###   ########.fr       */
-=======
-/*   Updated: 2022/08/16 14:19:32 by swalter          ###   ########.fr       */
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
+/*   Updated: 2022/08/17 12:07:30 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +24,8 @@ char	**ft_append_tab(char **matrix, char *str)
 		while (matrix[tab_len])
 			tab_len++;
 	new_tab = malloc((tab_len++ + 2) * sizeof(char *));
-	//if (!new_tab)
-	//	return (NULL);
+	if (!new_tab)
+		return (NULL);
 	new_tab[tab_len--] = NULL;
 	new_tab[tab_len] = str;
 	while (tab_len--)

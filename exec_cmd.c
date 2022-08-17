@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/17 12:09:20 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ char	*get_path(char *cmd, char *PATH)
 	{
 		str = ft_strjoin(env_tab[i], cmd);
 		file_fd = open(str, O_RDONLY);
-		//f//printf(stderr, "[output]: %d\n", file_fd);
 		if (file_fd != -1)
 			break ;
 		close(file_fd);
-		//free(env_tab[i]);
 		i++;
 		free(str);
 		str = NULL;

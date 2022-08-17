@@ -6,17 +6,13 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:03:16 by swalter           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/08/17 09:48:10 by swalter          ###   ########.fr       */
-=======
-/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
+/*   Updated: 2022/08/17 12:05:14 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-  #include "minishell.h"
-  
-  static char **tri_env(t_data *param)
+#include "minishell.h"
+
+static char	**tri_env(t_data *param)
 {
     char **tableau;
     int i;
@@ -49,13 +45,8 @@ void    print_env_tri(t_data *param)
 
     while(tabl[i] != NULL)
     {
-<<<<<<< HEAD
         printf("declare -x ");
         printf("%s\n", tabl[i]);
-=======
-        //printf("declare -x ");
-        //printf("%s\n", tabl[i]);
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
         i++;
 
     }

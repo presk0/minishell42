@@ -1,26 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: swalter <swalter@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/08/16 16:07:33 by swalter          ###   ########.fr        #
-=======
-#    Updated: 2022/08/16 13:01:23 by swalter          ###   ########.fr        #
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
-#                                                                              #
-# **************************************************************************** #
+
+
+
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
 	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c\
-<<<<<<< HEAD
 	command.c bin.c export.c cde_bash.c
-=======
-	command.c bin.c export.c
->>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
 
 OBJS := ${SRCS:c=o}
 
