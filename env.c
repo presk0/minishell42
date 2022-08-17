@@ -1,20 +1,14 @@
 #include "minishell.h"
 
-char    **new_env(char **envp, int i) // new env apres unset
+char    **new_env(char **envp, int i)
 {
     char **new;
     int j;
     int len = 0;
     int k = 0;
-    //printf("debut new env\n");
 
     while(envp[len])
-    {
         len++;
-
-    }
-
-    //printf(" len = %d", len);
     new = ft_calloc(sizeof(char *),(len));
     j = 0;
     while(j < i)
@@ -30,20 +24,10 @@ char    **new_env(char **envp, int i) // new env apres unset
         j++;
     }
     while(new[k])
-    {
-        //printf("new[%d] = %s\n", k, new[k]);
         k++;
-    }
-
-
     free(envp);
     return (new);
 }
-
-
-
-
-
 
 char	*get_env(char **envp, char *env)
 {

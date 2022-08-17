@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:03:16 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/17 09:48:10 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void    print_env_tri(t_data *param)
 
     while(tabl[i] != NULL)
     {
-        //printf("declare -x ");
-        //printf("%s\n", tabl[i]);
+        printf("declare -x ");
+        printf("%s\n", tabl[i]);
         i++;
 
     }

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/17 09:29:22 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char    *return_first_word(char *str)
         is_quoted = ft_is_quoted(str, end);
         while ((!is_blank(str[end]) || is_quoted) && str[end])
         {
-//            f//printf(stderr, "[return_first_wd] is_quoted:%d\n", is_quoted);
+            //fprintf(stderr, "[return_first_wd] is_quoted:%d\n", is_quoted);
             end++;
             is_quoted = ft_is_quoted(str, end);
         }

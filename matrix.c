@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/16 14:19:32 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/17 11:24:04 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,19 +121,3 @@ char	*matrix_to_str(char **matrix)
 	}
 	return (str);
 }
-/*
-char	**ft_insert_line(char **main_matrix, char *insert_matrix, int line_nb)
-{
-	int		main_mat_len;
-	char	new_matrix;
-
-	main_mat_len = ft_matrixlen(main_matrix);
-	if (line_nb > main_mat_len)
-		line_nb == main_mat_len;
-	else
-	{
-
-	}
-
-}
-*/
