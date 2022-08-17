@@ -6,12 +6,17 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:40:10 by swalter           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/16 16:12:56 by swalter          ###   ########.fr       */
+=======
+/*   Updated: 2022/08/16 10:54:44 by swalter          ###   ########.fr       */
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+<<<<<<< HEAD
 static char	*ft_strldup(const char *s, int len)
 {
 	char	*ptr;
@@ -34,6 +39,8 @@ static char	*ft_strldup(const char *s, int len)
 	return (ptr);
 }
 
+=======
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
 static void	set_filename(int len, char **new, char *str)
 {
     int		i;

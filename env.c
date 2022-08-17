@@ -6,9 +6,20 @@ char    **new_env(char **envp, int i)
     int j;
     int len = 0;
     int k = 0;
+<<<<<<< HEAD
+=======
+    //printf("debut new env\n");
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
 
     while(envp[len])
         len++;
+<<<<<<< HEAD
+=======
+
+    }
+
+    //printf(" len = %d", len);
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
     new = ft_calloc(sizeof(char *),(len));
     j = 0;
     while(j < i)
@@ -24,6 +35,11 @@ char    **new_env(char **envp, int i)
         j++;
     }
     while(new[k])
+<<<<<<< HEAD
+=======
+    {
+        //printf("new[%d] = %s\n", k, new[k]);
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
         k++;
     free(envp);
     return (new);

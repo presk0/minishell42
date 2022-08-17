@@ -6,7 +6,11 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/17 11:23:34 by swalter          ###   ########.fr       */
+=======
+/*   Updated: 2022/08/16 12:48:19 by swalter          ###   ########.fr       */
+>>>>>>> d99f63367bfec85cd0167a65469c2abadbea92e0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +37,7 @@ int	check_error(t_data *param)
 		is_quoted = ft_is_quoted(param->input, i);
 		if (!is_quoted && is_bonus(param->input, i))
 		{
-			printf("minishell: error arg ; || &&\n");
+			//printf("minishell: error arg ; || &&\n");
 			param->retour = 2;
 			free(param->input);
 			param->input = NULL;
