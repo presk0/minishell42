@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 12:39:51 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/23 17:55:04 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,13 @@ char	*read_multilines(char *prompt)
 
 int	get_input(t_data *param)
 {
-	char	*input;
-	int		ret;
-
-	ret = 1;
 	if (param->input)
 		free(param->input);
 	param->input = ((void *)0);
 	
-	input = read_multilines("\e[033m42mminishell $ \e[39m");
-	param->input = input;
-	if (!param->input)
+	fflush(stdin);
+	param->input = read_multilines("\e[033m42mminishell $ \e[39m");
+	if (param->input == NULL)
 		return (0);
-	return (ret);
+	return (1);
 }

@@ -1,7 +1,7 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/home/honey/minishell42'
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/ndionis/minishell42'
 make -C libftprintf
 make -C libft
-gcc -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address  main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c libftprintf/libftprintf.a libft/libft.a  -I./usr/include -I./include libftprintf/libftprintf.a libft/libft.a -I./libftprintf/ -I./libft/ -o minishell
-make: Leaving directory '/home/honey/minishell42'
+gcc -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address  main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c export.c cde_bash.c libftprintf/libftprintf.a libft/libft.a  -I./usr/include -I./include libftprintf/libftprintf.a libft/libft.a -I./libftprintf/ -I./libft/ -o minishell
+make: Leaving directory `/Users/ndionis/minishell42'
  

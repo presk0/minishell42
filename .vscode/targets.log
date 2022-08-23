@@ -1,313 +1,185 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.3
-# Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2020 Free Software Foundation, Inc.
-# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-# This is free software: you are free to change and redistribute it.
-# There is NO WARRANTY, to the extent permitted by law.
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
 
-# Make data base, printed on Sun Aug 14 13:01:29 2022
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Tue Aug 23 17:21:55 2022
 
 # Variables
 
- 
-# environment
-GDK_BACKEND = x11
-# environment
-LC_ALL = C
-# environment
-GNOME_SHELL_SESSION_MODE = ubuntu
-# environment
-SSH_AGENT_LAUNCHER = gnome-keyring
-# makefile (from 'Makefile', line 26)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 18)
 LIBFT_AR = libft.a
 # environment
-SNAP_INSTANCE_KEY = 
-# environment
-GJS_DEBUG_OUTPUT = stderr
-# environment
-LC_NAME = fr_FR.UTF-8
-# environment
-LC_NUMERIC = fr_FR.UTF-8
-# environment
-VSCODE_CWD = /home/honey
-# makefile (from 'Makefile', line 27)
-LIBFTPRINTF_AR = libftprintf.a
-# makefile (from 'Makefile', line 28)
-LIBS = $(LIBFTPRINTF_DIR)$(LIBFTPRINTF_AR) $(LIBFT_DIR)$(LIBFT_AR)
-# environment
-LC_ADDRESS = fr_FR.UTF-8
-# default
-MAKE_COMMAND := make
-# makefile (from 'Makefile', line 22)
-DEBUG_NAME = a.out
-# environment
-QT_ACCESSIBILITY = 1
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from `Makefile', line 22)
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/ndionis/minishell42
+# makefile
+SHELL = /bin/sh
 # environment
-SNAP_INSTANCE_NAME = code
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/104/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+_ = /usr/bin/make
+# makefile (from `Makefile', line 23)
+CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
 # environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `Makefile', line 9)
+OBJS := main.o prompting.o utils.o init.o debug.o split.o matrix.o strings.o var_conv.o parser.o exec_cmd.o get_filename.o pipe.o bultins2.o env.o verif_bultin.o command.o bin.o export.o cde_bash.o
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000cb540032s9/T/vscode-ipc-5b172376-6e8c-41ce-b4a1-176cd17e1336.sock
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Users/ndionis/.brew/bin:/Users/ndionis/.brew/bin:/Users/ndionis/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+LaunchInstanceID = 5FAF5AD0-FDE8-4882-9453-8BF5DDBF8CDF
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
 # default
-.VARIABLES := 
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile', line 16)
+LIBFT_DIR = libft/
 # environment
-PWD = /home/honey/minishell42
-# automatic
-%D = $(patsubst %/,%,$(dir $%))
-# environment
-XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-# automatic
-^D = $(patsubst %/,%,$(dir $^))
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.7cdRmEyMo8/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
-CONDA_PROMPT_MODIFIER = (base) 
+VSCODE_PIPE_LOGGING = true
 # environment
-VSCODE_CODE_CACHE_PATH = /home/honey/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
+PWD = /Users/ndionis/minishell42
 # environment
-LANG = C
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.C6U3Q1
-# default
-.LOADED := 
-# default
-.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
-# makefile
-MAKEFLAGS = pqrR
-# makefile
-CURDIR := /home/honey/minishell42
-# makefile (from 'Makefile', line 25)
-LIBFTPRINTF_DIR = libftprintf/
-# environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
-# makefile (from 'Makefile', line 13)
-SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c
-# automatic
-*D = $(patsubst %/,%,$(dir $*))
-# environment
-MFLAGS = -pqrR
-# environment
-SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
-# default
-.SHELLFLAGS := -c
-# environment
-WAYLAND_DISPLAY = wayland-0
-# environment
-XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
-# automatic
-+D = $(patsubst %/,%,$(dir $+))
-# environment
-XDG_SESSION_DESKTOP = ubuntu
-# makefile (from 'Makefile', line 1)
-MAKEFILE_LIST := Makefile
-# environment
-CONDA_SHLVL = 1
-# environment
-SNAP_REEXEC = 
-# automatic
-@F = $(notdir $@)
-# environment
-VSCODE_PID = 4819
-# environment
-XDG_SESSION_TYPE = wayland
-# automatic
-?D = $(patsubst %/,%,$(dir $?))
-# environment
-BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
-# environment
-CONDA_PYTHON_EXE = /home/honey/anaconda3/bin/python
-# makefile (from 'Makefile', line 30)
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTPRINTF_DIR) -I./$(LIBFT_DIR)
-# environment
-SESSION_MANAGER = local/pote:@/tmp/.ICE-unix/1281,unix/pote:/tmp/.ICE-unix/1281
-# automatic
-*F = $(notdir $*)
-# environment
-CHROME_DESKTOP = code-url-handler.desktop
-# environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# automatic
-<D = $(patsubst %/,%,$(dir $<))
-# environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# default
-MAKE_HOST := x86_64-pc-linux-gnu
-# makefile (from 'Makefile', line 17)
-OBJS := main.o prompting.o utils.o init.o debug.o split.o matrix.o strings.o var_conv.o parser.o exec_cmd.o get_filename.o pipe.o bultins2.o env.o verif_bultin.o command.o bin.o
-# environment
-GNOME_DESKTOP_SESSION_ID = this-is-deprecated
-# environment
-CONDA_PREFIX = /home/honey/anaconda3
-# makefile
-SHELL = /bin/sh
-# default
-MAKECMDGOALS := all
-# environment
-XMODIFIERS = @im=ibus
-# makefile (from 'Makefile', line 23)
-HEADERS = include
-# environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
-# environment
-SHLVL = 0
-# environment
-MAKELEVEL := 0
-# environment
-IM_CONFIG_CHECK_ENV = 1
-# default
-MAKE = $(MAKE_COMMAND)
-# environment
-SNAP_COOKIE = O4RrpBabFz5j8rwGu-G0BY0A6y0iycc6Zh9MW4CLcG1tRPT1E6ba
-# environment
-PATH = /home/honey/.local/bin:/home/honey/anaconda3/bin:/home/honey/anaconda3/condabin:/home/honey/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
-# default
-MAKEFILES := 
-# environment
-LC_MONETARY = fr_FR.UTF-8
-# automatic
-^F = $(notdir $^)
-# makefile (from 'Makefile', line 24)
-LIBFT_DIR = libft/
-# environment
-SNAP_USER_COMMON = /home/honey/snap/code/common
-# environment
-LC_TIME = fr_FR.UTF-8
-# environment
-SNAP = /snap/code/104
-# environment
-INVOCATION_ID = ee17c4d673334f8b9101f74fb00d944a
-# environment
-SNAP_REVISION = 104
-# environment
-SNAP_REAL_HOME = /home/honey
-# environment
-USERNAME = honey
-# environment
-GNOME_SETUP_DISPLAY = :1
-# environment
-LC_TELEPHONE = fr_FR.UTF-8
-# environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
-# automatic
-?F = $(notdir $?)
-# makefile (from 'Makefile', line 21)
-NAME = minishell
-# environment
-XDG_CURRENT_DESKTOP = Unity
-# environment
-LS_COLORS = 
-# automatic
-+F = $(notdir $+)
-# environment
-DESKTOP_SESSION = ubuntu
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
-# 'override' directive
-GNUMAKEFLAGS := 
-# environment
-CONDA_DEFAULT_ENV = base
-# environment
-LOGNAME = honey
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
-# environment
-SNAP_ARCH = amd64
-# makefile
-.DEFAULT_GOAL := all
-# environment
-SYSTEMD_EXEC_PID = 1307
-# environment
-DISPLAY = :0
-# environment
-USER = honey
-# environment
-GTK_MODULES = gail:atk-bridge
-# default
-MAKE_VERSION := 4.3
-# environment
-DISABLE_WAYLAND = 1
-# environment
-SNAP_DATA = /var/snap/code/104
-# environment
-SNAP_CONTEXT = O4RrpBabFz5j8rwGu-G0BY0A6y0iycc6Zh9MW4CLcG1tRPT1E6ba
-# environment
-MANAGERPID = 1134
-# environment
-LC_MEASUREMENT = fr_FR.UTF-8
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4752
-# environment
-_ = /snap/code/104/usr/share/code/code
-# environment
-LC_PAPER = fr_FR.UTF-8
-# environment
-XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'Makefile', line 31)
-CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
-# environment
-GDK_PIXBUF_MODULE_FILE = /home/honey/snap/code/common/.cache/gdk-pixbuf-loaders.cache
-# environment
-_CE_M = 
-# environment
-JOURNAL_STREAM = 8:28922
-# environment
-XDG_SESSION_CLASS = user
+MANPATH = /usr/local/man:
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-HOME = /home/honey
-# environment
-QT_IM_MODULE = ibus
-# environment
-ELECTRON_RUN_AS_NODE = 1
-# environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-6fe01d47-1.70.1-main.sock
-# environment
-SNAP_NAME = code
-# environment
-GSETTINGS_SCHEMA_DIR = /snap/code/104/usr/share/glib-2.0/schemas
-# environment
-IM_CONFIG_PHASE = 1
+HOME = /Users/ndionis
 # default
-.RECIPEPREFIX := 
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/ndionis/Library/Application Support/Code/CachedData/30d9c6cd9483b2cc586687151bcbcd635f373630
+# environment
+LOGNAME = ndionis
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# makefile (from `Makefile', line 19)
+LIBFTprintf_AR = libftprintf.a
+# makefile (from `Makefile', line 15)
+HEADERS = include
+# environment
+ZSH = /Users/ndionis/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from `Makefile', line 5)
+SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c command.c bin.c export.c cde_bash.c
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 25)
+CC = gcc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = supersko
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 13)
+NAME = minishell
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000cb540032s9/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/ndionis/Library/Application Support/Code/1.68.1-main.sock
+# makefile (from `Makefile', line 14)
+DEBUG_NAME = a.out
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MAIL = ndionis@student.42mulhouse.fr
+# environment
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000023.Electron
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x18B29:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
 # automatic
 <F = $(notdir $<)
+# makefile (from `Makefile', line 17)
+LIBFTprintf_DIR = libftprintf/
 # environment
-SNAP_VERSION = 6d9b74a7
+EDITOR = mvim
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 20)
+LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
+# environment
+SECURITYSESSIONID = 186de
+# automatic
+^F = $(notdir $^)
 # default
 SUFFIXES := 
-# environment
-VSCODE_CLI = 1
-# environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
-# environment
-SNAP_COMMON = /var/snap/code/common
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
-# makefile (from 'Makefile', line 33)
-CC = gcc
+.INCLUDE_DIRS = /usr/local/include
 # environment
-SNAP_USER_DATA = /home/honey/snap/code/104
+MAKELEVEL := 0
 # environment
-XDG_MENU_PREFIX = gnome-
+LANG = C
 # environment
- 
-CONDA_EXE = /home/honey/anaconda3/bin/conda
-# environment
-_CE_CONDA = 
-# environment
-GDMSESSION = ubuntu
-# environment
-LC_IDENTIFICATION = fr_FR.UTF-8
-# environment
-SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+VSCODE_PID = 92548
 # variable set hash-table stats:
-# Load=147/1024=14%, Rehash=0, Collisions=11/183=6%
+# Load=83/1024=8%, Rehash=0, Collisions=3/112=3%
 
 # Pattern-specific Variable Values
 
@@ -315,145 +187,43 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2051, inode 25698368): 41 files, no impossibilities.
+# . (device 16777225, inode 1805954): 45 files, no impossibilities.
 
-# 41 files, no impossibilities in 1 directories.
+# 45 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  recipe to execute (from 'Makefile', line 42):
+#  commands to execute (from `Makefile', line 34):
 	${CC} ${CFLAGS} $(INCLUDES) -c $<
+	
 
 # 1 implicit rules, 0 (0.0%) terminal.
+
 # Files
 
-make_libftprintf:
+all: minishell
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
-# automatic
-# @ := make_libftprintf
-# automatic
-# * := 
-# automatic
-# < := 
-# automatic
-# + := 
-# automatic
-# % := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# automatic
-# | := 
 # variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
-#  recipe to execute (from 'Makefile', line 48):
-	make -C libftprintf
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
 
 debugfile: ctags
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 73):
+#  commands to execute (from `Makefile', line 65):
 	$(CC) $(CFLAGS) -g $(SRCS)  $(INCLUDES) -o $(DEBUG_NAME) -fsanitize=address
+	
 
-minishell: make_libftprintf make_libft
-#  Implicit rule search has not been done.
-#  Last modified 2022-08-14 12:57:35.749497329
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
-#  recipe to execute (from 'Makefile', line 38):
-	$(CC) $(CFLAGS) $(SRCS) $(LIBS)  $(INCLUDES) -o $(NAME)
-
-debug: debugfile
+.PHONY: ctags all clean fclean re
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 77):
-	lldb $(DEBUG_NAME)
-	rm -f $(DEBUG_NAME)
-
-# Not a target:
-Makefile:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-14 12:57:27.721561227
-#  File has been updated.
-#  Successfully updated.
-
-clean:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 55):
-	rm -f $(OBJS)
-	rm -f $(DEBUG_NAME)
-	make clean -C libft
-	make clean -C libftprintf
-
-make_libft:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 45):
-	make -C libft
-
-re: fclean all
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-
-# Not a target:
-.DEFAULT:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-all: minishell
-#  Phony target (prerequisite of .PHONY).
-#  Command line target.
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
-
-fclean: clean
- 
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 61):
-	rm -f $(NAME)
-	make fclean -C libft
-	make fclean -C libftprintf
-
-test: ctags
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 68):
-	${CC} $(CFLAGS) $(INCLUDES) ${SRCS} -o $(NAME)
-	./$(NAME)
-	rm  -f a.out
-
-ctags:
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 52):
-	ctags *
 
 # Not a target:
 .SUFFIXES:
@@ -461,25 +231,139 @@ ctags:
 #  Modification time never checked.
 #  File has not been updated.
 
-.PHONY: ctags all clean fclean re
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-23 14:57:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+make_libftprintf:
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := make_libftprintf
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/10=10%
+#  commands to execute (from `Makefile', line 40):
+	make -C libftprintf
+	
+
+debug: debugfile
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 69):
+	lldb $(DEBUG_NAME)
+	rm -f $(DEBUG_NAME)
+	
+
+test: ctags
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 60):
+	${CC} $(CFLAGS) $(INCLUDES) ${SRCS} -o $(NAME)
+	./$(NAME)
+	rm  -f a.out
+	
+
+minishell: make_libftprintf make_libft
+#  Implicit rule search has not been done.
+#  Last modified 2022-08-23 16:59:44
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/2=0%
+#  commands to execute (from `Makefile', line 30):
+	$(CC) $(CFLAGS) $(SRCS) $(LIBS)  $(INCLUDES) -o $(NAME)
+	
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 53):
+	rm -f $(NAME)
+	make fclean -C libft
+	make fclean -C libftprintf
+	
+
+# Not a target:
+.DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+ 
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	rm -f $(OBJS)
+	rm -f $(DEBUG_NAME)
+	make clean -C libft
+	make clean -C libftprintf
+	
+
+make_libft:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 37):
+	make -C libft
+	
+
+ctags:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 44):
+	ctags *
+	
+
 # files hash-table stats:
-# Load=15/1024=1%, Rehash=0, Collisions=0/46=0%
+# Load=15/1024=1%, Rehash=0, Collisions=0/44=0%
 # VPATH Search Paths
 
-# No 'vpath' search paths.
+# No `vpath' search paths.
 
-# No general ('VPATH' variable) search path.
+# No general (`VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 57 / storage = 501 B / avg = 8 B
-# current buf: size = 8162 B / used = 501 B / count = 57 / avg = 8 B
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# strcache performance: lookups = 93 / hit rate = 38%
-# hash-table stats:
-# Load=57/8192=1%, Rehash=0, Collisions=0/93=0%
-# Finished Make data base on Sun Aug 14 13:01:29 2022
+# Finished Make data base on Tue Aug 23 17:21:55 2022
 
  

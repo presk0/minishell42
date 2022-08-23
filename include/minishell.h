@@ -96,7 +96,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep);
 /* pipe */
 void	execute(t_data *param, int i, int *fd);
 void	execute_pipe(t_data *param, int i, int *fd);
-void	child_process(t_data *param, int i, int *fd);
+void	child_process(t_data *param, int i, int **fd);
 
 
 /*bultins*/
@@ -126,4 +126,5 @@ void    print_env_tri(t_data *param);
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 
+void	flush_stdin();
 #endif

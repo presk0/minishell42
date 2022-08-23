@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 12:00:38 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/23 17:49:13 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,8 @@ void	execute(t_data *param, int i, int *fd)
 		pid = fork();
 		if (pid == 0)
 		{
-			// if (fd[1] != 1)
-			// {
-			// 	dup2(fd[1], STDOUT_FILENO);
-			// }
-			// if (fd[0] != 0)
-			// {
-			// 	dup2(fd[0], STDIN_FILENO);
-			// }
+			close(fd[0]);
+			dup2(fd[1], STDOUT_FILENO);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
 			{
 				param->retour = 126;
@@ -52,7 +46,8 @@ void	execute(t_data *param, int i, int *fd)
 		}
 		else
 		{
-
+			dup2(fd[0], STDIN_FILENO);
+			close(fd[1]);
 			if (cmd)
 				ft_free_split(cmd);
 			cmd = NULL;
@@ -94,11 +89,11 @@ void	execute_pipe(t_data *param, int i, int *fd)
 	}
 }
 
-void	child_process(t_data *param, int i, int *fd)
+void	child_process(t_data *param, int i, int **fd)
 {
 	pid_t	pid;
 
-	if (pipe(fd) == -1)
+	if (pipe(*fd) == -1)
 		return ;
 	pid = fork();
 	if (pid == -1)
@@ -106,21 +101,18 @@ void	child_process(t_data *param, int i, int *fd)
 
 	if (pid == 0)
 	{
-		if (dup2(fd[1], 1) == -1)
+		close((*fd)[0]);
+		if (dup2((*fd)[1], STDOUT_FILENO) == -1)
 			fprintf(stderr, "redir file decr erreor \n");
-		close(fd[0]);
-		close (fd[1]);
 		//dup2(fd[1], STDOUT_FILENO);
 		//print_tab(param->f_matrix);
-		execute_pipe(param, i, fd);
+		execute_pipe(param, i, *fd);
 	}
 	else
 	{
-		if (dup2(fd[0], 0) == -1)
+		close((*fd)[1]);
+		if (dup2((*fd)[0], STDIN_FILENO) == -1)
 			printf("redir file decr erreor \n");
-		close(fd[0]);
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
 		waitpid(pid, NULL, 0);
 		//execute(param, i, fd);
 	}
