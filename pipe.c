@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/23 17:49:13 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:46:42 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	execute_pipe(t_data *param, int i, int *fd)
 	}
 	else
 	{
-
 		cmd_split_sw(param);
 		check_built(fd[1], param);
 	}
@@ -98,24 +97,21 @@ void	child_process(t_data *param, int i, int **fd)
 	pid = fork();
 	if (pid == -1)
 		return ;
-
-	if (pid == 0)
+	else if (pid == 0)
 	{
-		close((*fd)[0]);
 		if (dup2((*fd)[1], STDOUT_FILENO) == -1)
-			fprintf(stderr, "redir file decr erreor \n");
+			printf("redir file decr erreor \n");
+		close((*fd)[0]);
 		//dup2(fd[1], STDOUT_FILENO);
 		//print_tab(param->f_matrix);
 		execute_pipe(param, i, *fd);
 	}
 	else
 	{
-		close((*fd)[1]);
 		if (dup2((*fd)[0], STDIN_FILENO) == -1)
-			printf("redir file decr erreor \n");
-		waitpid(pid, NULL, 0);
-		//execute(param, i, fd);
+			fprintf(stderr, "redir file decr erreor \n");
+		close((*fd)[0]);
+		close((*fd)[1]);
+		waitpid(pid, NULL, WUNTRACED);
 	}
 }
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_filename.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/24 13:00:04 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
     int     j;
 
     cmd_cpy = param->cmds[i];
-    //f//printf(stderr, "[pop_name_from_sep] cmd_split, i = %d\n", i);
+    fprintf(stderr, "[pop_name_from_sep] cmd_split, i = %d\n", i);
     cmd_split = ft_split_multistrsep(cmd_cpy, sep, 1);
-    //print_tab(cmd_split);
+    print_tab(cmd_split);
     j = 1;
     fname_matrix = NULL;
-    if (cmd_split && cmd_split[j])
+    if (cmd_split[j])
     {
 	//f//printf(stderr, "cmd_split, i = %d\n", i);
 	//print_tab(cmd_split);
@@ -36,7 +36,6 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
         if (param->input_cleaned)
             free(param->input_cleaned);
         param->input_cleaned = matrix_to_str(cmd_split);
-	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
     }
     else
@@ -47,9 +46,8 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
             param->input_cleaned = NULL;
         }
         param->input_cleaned = matrix_to_str(cmd_split);
-	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
-
     }
+    fprintf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
     return (fname_matrix);
 }

@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/23 17:55:04 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:35:59 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,7 @@ int	get_input(t_data *param)
 	if (param->input)
 		free(param->input);
 	param->input = ((void *)0);
-	
-	fflush(stdin);
+	//fflush(stdin);
 	param->input = read_multilines("\e[033m42mminishell $ \e[39m");
 	if (param->input == NULL)
 		return (0);
