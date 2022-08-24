@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/24 14:51:31 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:43:20 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ void		parser(t_data *param)
 	}
 	param->f_matrix = pop_names_from_sep(param, i, sep);
 	fprintf(stderr, "[parser] param->cmds[i] =  %s\n", param->cmds[i]);
-	execute(param, 0, fd);
+	execute(param, 0, &fd);
 	if (param->cmds)
 		ft_free_split(param->cmds);
 	if (sep)
 		ft_free_split(sep);
-//	dup2(0, STDIN_FILENO);
 }
 

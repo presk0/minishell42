@@ -34,14 +34,9 @@ char    **new_env(char **envp, int i) // new env apres unset
         //printf("new[%d] = %s\n", k, new[k]);
         k++;
     }
-
-
     free(envp);
     return (new);
 }
-
-
-
 
 char	**copy_env(char **envp, int add)
 {
@@ -59,6 +54,7 @@ char	**copy_env(char **envp, int add)
 		cpy[i] = ft_strdup(envp[i]);
 	return (cpy);
 }
+
 char	*get_env(char **envp, char *env)
 {
 	int		i;

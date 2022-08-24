@@ -6,7 +6,7 @@
 /*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/23 17:38:18 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:30:52 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,21 +163,17 @@ int main(int argc, char **argv, char **envp)
 	*/
     while(42)
 	{
-
     // Configure readline to auto-complete paths when the tab key is hit.
 //    rl_bind_key('\t', rl_complete);
-
 		if (!get_input(param))
 			break;
 		if (!strcmp(param->input, ""))
 			continue;
 		else
 			add_history(param->input);
-		
-		if(check_error(param))
+				if(check_error(param))
 			return (-1);
 		parser(param);
-	
 	}
 	//freall();
 	exit(param->retour);
