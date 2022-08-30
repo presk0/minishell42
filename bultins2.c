@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bultins2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:41:51 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/26 10:37:05 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/30 17:05:18 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ char	**cmd_split_sw(t_data *param)
 	return (param->argv);
 }
 
-int check_built(t_data *param)
+int check_built(t_data *param, int fd)
 {
 	char	*pwd;
 	char	*path;
 	char	cwd[4097];
-	int  fd = 1;
+	
 	//printf(stderr, "[check_builtin] fd= %d\n", fd);
 	if (!ft_memcmp(param->argv[0], "echo", 5))
 		run_echo(fd, param);
@@ -98,6 +98,7 @@ int check_built(t_data *param)
 	else
 		return (0);
 	return (1);
+	
 }
 
 void	run_echo(int fd, t_data *param)
@@ -115,6 +116,8 @@ void	run_echo(int fd, t_data *param)
 	}
 	if (!(param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3)))
 		write(fd, "\n", 1);
+	printf("%d\n", fd);
+		
 }
 
 void	run_exit(t_data *param)

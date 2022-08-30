@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/08/16 13:05:27 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/30 15:57:15 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ int	redir_out(char **f_matrix)
 {
 	int		ret;
 	int 	len;
-	int last_redir;
 	int	fd;
 	int	i;
 
 (void) ret;
 	len = ft_matrixlen(f_matrix);
-	last_redir = 0;
 	i = 0;
 	fd = 1;
 	while (i < len)
@@ -54,15 +52,12 @@ int	redir_out(char **f_matrix)
 		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
 		}
-		if (!ft_memcmp(f_matrix[i], "<", 1))
-		{
-			if (last_redir)
-				close(last_redir);
-			last_redir = fd;
-		}
+
 		i++;
 	}
+	
 	return (fd);
+	
 }
 
 int	redir_in(char **f_matrix)

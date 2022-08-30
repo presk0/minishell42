@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/30 08:29:09 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/30 12:11:14 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,26 @@
 // 	rl_redisplay();
 // }
 
+void	    ctrlbacksl(int sig)
+{
 
+    (void)sig;
+    int pid = 0;
 
+    pid = getpid();
+    if (kill(pid, SIGKILL) != -1)
+	{
+		printf("^\\Quit: %d\n", sig);
+		//exit(1);
+    }
+    else
 
-
-
-//extern void	rl_replace_line(const char *text, int clear_undo);
-
-
-// void	    ctrlbacksl(int sig) {
-//
-//     (void)sig;
-//     int pid = 0;
-//
-//     pid = getpid();
-//     if (kill(pid, SIGKILL) != -1)
-// 	{
-// 		printf("^\\Quit: %d\n", sig);
-//
-//     }
-//     else
-//
-// 	exit(0);
-//     ft_putendl_fd("", 1);
-//     //rl_replace_line("", 0);
-//     rl_on_new_line();
-//     rl_redisplay();
-// }
+	exit(0);
+    ft_putendl_fd("", 1);
+    rl_replace_line("", 0);
+    rl_on_new_line();
+    rl_redisplay();
+}
 
 
 
@@ -58,7 +51,7 @@ void	ctrlc(int sig)
 
 
     ft_putendl_fd("", 1);
-    //rl_replace_line("", 0);
+    rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
@@ -93,7 +86,7 @@ int main(int argc, char **argv, char **envp)
 
     tcsetattr(0, 0, &tmp);
 	signal(SIGINT, ctrlc);
-    //signal(SIGQUIT, ctrlbacksl);
+    signal(SIGQUIT, ctrlbacksl);
     while(42)
 	{
     // Configure readline to auto-complete paths when the tab key is hit.

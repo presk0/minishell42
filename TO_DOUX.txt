@@ -25,5 +25,16 @@ Malloc / free :
 
 		
 
+• Gérer ctrl-C, ctrl-D et ctrl-\ qui doivent fonctionner comme dans bash.
 
+
+• En mode interactif :
+◦ ctrl-C affiche un nouveau prompt sur une nouvelle ligne.
+◦ ctrl-D quitte le shell.
+◦ ctrl-\ ne fait rien.
 	
+
+
+bash : ctrl \ sur prompt vide : rien
+				promt en cours : rien
+				sur cat -e : message + prompt

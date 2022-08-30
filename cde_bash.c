@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cde_bash.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 10:40:10 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/30 11:21:46 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 static char	*ft_strldup(const char *s, int len)
 {
