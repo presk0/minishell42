@@ -17,8 +17,10 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <dirent.h>
-# include "readline/readline.h"
-# include "readline/history.h"
+//# include <readline/readline.h"
+//# include "readline/history.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 //# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
@@ -26,6 +28,8 @@
 # define STDERR 2
 # define INFILE 0
 # define OUTFILE 1
+
+extern pid_t g_pid;
 
 typedef struct		s_data
 {
@@ -43,10 +47,11 @@ typedef struct		s_data
 	char	*input_cleaned;
 	char	**cmds;
 	int		pid;
+	int		pipe;
 	struct termios save;
 }	t_data;
 
-int	get_input(t_data *param);
+int		get_input(t_data *param);
 char	*read_multilines(char *prompt);
 char	**ft_append_tab(char **tableau, char *str);
 //bchar		**ft_split_mini(char *s, char c);
@@ -72,7 +77,7 @@ char    *return_first_word(char *str);
 char    *pop_first_wd(char **cmd);
 
 /* matrix */
-int	ft_matrixlen(char **matrix);
+int		ft_matrixlen(char **matrix);
 char	**free_matrix_line(char **matrix, int line_nb);
 char	*matrix_to_str(char **matrix);
 
@@ -83,7 +88,7 @@ char	*return_env_var(char *var, char *envp[]);
 int			exec_bin_to_fd(int fd, t_data *param); 
 
 /* parser */
-void		parser(t_data *param);
+void		parser2(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
@@ -94,16 +99,16 @@ int	redir_in(char **f_matrix);
 char **pop_names_from_sep(t_data *param, int i, char **sep);
 
 /* pipe */
-void	execute(t_data *param, int i, int *fd);
-void	execute_pipe(t_data *param, int i, int *fd);
-void	child_process(t_data *param, int i, int *fd);
+void	execute(t_data *param, int i);
+void	execute_pipe(t_data *param, int i);
+
 
 
 /*bultins*/
 
-char	**cmd_format2(char *str, char **envp);
+char	**cmd_format2(char **str, char **envp);
 char    **cmd_split_sw(t_data *param);
-int     check_built(int fd, t_data *param);
+int     check_built(t_data *param);
 void	run_echo(int fd, t_data *param);
 void	run_exit(t_data *param);
 char	**quotes_spaces_split(char *line);
@@ -122,8 +127,13 @@ char	*get_env(char **envp, char *env);
 char	**export_command(t_data *param, int j);
 int 	verif_bultin(t_data *param);
 void    print_env_tri(t_data *param);
+char	**export_command2(t_data *param, int j);
+
+
 /* signaux */
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
+void	ft_child_process(t_data *param, int i, int *end);
+void	ft_parent_process(int *end, int *fd);
 
 #endif

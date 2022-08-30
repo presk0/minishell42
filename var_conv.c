@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_conv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/15 14:34:15 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:51:38 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ char	*convert_var_in_line(char *line, char **envp)
 			{
 				new_line = convert_var(line, i, var_content, var_len);
 				free(var_content);
-				free(line);
+				//free(line);
+				var_content = NULL;
+				line = NULL;
 				line = new_line;
 			}
 		}

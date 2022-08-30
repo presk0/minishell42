@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 12:39:51 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/26 10:23:52 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ char	*read_multilines(char *prompt)
 	int		quote_type;
 
 	line = readline(prompt);
+	
 	if (!line)
-		return (NULL);
+		return (0);
 	quote_type = line_not_finished(line);
 	while (quote_type)
 	{
@@ -95,13 +96,9 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	//line_cpy = strdup(line);
-	//free(line);
-	//return (line_cpy);
+	line_cpy = strdup(line);
 	return (line);
 }
-
-
 
 int	get_input(t_data *param)
 {
@@ -109,13 +106,16 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	if (param->input)
-		free(param->input);
-	param->input = ((void *)0);
+	
+	
+	
+	//param->input = ((void *)0);
 	
 	input = read_multilines("\e[033m42mminishell $ \e[39m");
 	param->input = input;
-	if (!param->input)
-		return (0);
+
+
+	if (param->input == NULL)
+		printf("erreru\n");
 	return (ret);
 }

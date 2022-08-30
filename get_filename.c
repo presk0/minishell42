@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/23 14:20:32 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
         }
         if (param->input_cleaned)
             free(param->input_cleaned);
+        param->input_cleaned = NULL;
         param->input_cleaned = matrix_to_str(cmd_split);
 	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
@@ -42,10 +43,8 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
     else
     {
         if (param->input_cleaned)
-        {
             free(param->input_cleaned);
-            param->input_cleaned = NULL;
-        }
+
         param->input_cleaned = matrix_to_str(cmd_split);
 	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
         ft_free_split(cmd_split);
