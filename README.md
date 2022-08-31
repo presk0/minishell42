@@ -25,3 +25,5 @@ Parser2
 gestion du cat | ls pas sur de le faire
 
 echo $? doit renvoyer param->retour 
+
+space et entree affiche commande non valide mais devrait afficher un nouveau prompt
