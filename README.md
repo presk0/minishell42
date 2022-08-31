@@ -4,7 +4,7 @@ school project
 
 reste a faire : 
 
-nicolas ; gestion des reidrections et implementation heredoc -> voir le fichier command.c
+nicolas ; gestion des reidrections et implementation heredoc -> voir le fichier command.c   / le heredoc se trouve dans redir.c
 
 stephane ; signaux et ctrl d
 
