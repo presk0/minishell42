@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/30 10:04:33 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 11:59:25 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ int	get_input(t_data *param)
 	param->input = input;
 	
 	if (param->input == NULL)
-		printf("erreru\n");
+	{
+		write(1, "exit\n", 5);
+		exit (0);
+	
+	}
 	return (ret);
 }

@@ -4,7 +4,7 @@ NAME = minishell
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
 	var_conv.c exec_cmd.c get_filename.c pipe2.c bultins2.c env.c verif_bultin.c\
-	command.c bin.c export.c cde_bash.c pipe.c
+	command.c bin.c export.c cde_bash.c pipe.c signals.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -16,11 +16,9 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <dirent.h>
-//# include <readline/readline.h"
-//# include "readline/history.h"
 #include <readline/readline.h>
 #include <readline/history.h>
-//# include <sys/_types/_posix_vdisable.h>
+# include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
 # define STDOUT 1
@@ -28,7 +26,7 @@
 # define INFILE 0
 # define OUTFILE 1
 
-extern pid_t g_pid;
+pid_t g_pid;
 
 typedef struct		s_data
 {
@@ -130,8 +128,11 @@ char	**export_command2(t_data *param, int j);
 
 
 /* signaux */
-void	ctrlbacksl(int sig);
-void	ctrlc(int sig);
+void		sigint_handler(int sign_num);
+
+
+
+/* pipes */
 void	ft_child_process(t_data *param, int i, int *end);
 void	ft_parent_process(int *end, int *fd);
 

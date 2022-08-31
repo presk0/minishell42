@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/08/30 15:57:15 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/30 18:12:28 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,9 @@ int	redir_out(char **f_matrix)
 		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
 		}
-
 		i++;
 	}
-	
 	return (fd);
-	
 }
 
 int	redir_in(char **f_matrix)

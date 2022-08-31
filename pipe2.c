@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:21:26 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/30 14:06:14 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 09:11:03 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	ft_child_process(t_data *param, int i, int *end)
 {
-	
 	close(end[0]);
 	execute_pipe(param, i);
 }
 
 void	ft_parent_process(int *end, int *fd)
 {
-	
 	close(end[1]);
 	*fd = end[0];
 	wait(NULL);

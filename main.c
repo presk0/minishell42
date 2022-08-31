@@ -6,104 +6,63 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/30 12:11:14 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 12:26:56 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-// static void	sig_handler(int sig)
-// {
-// 	(void)sig;
-// 	//printf("\n");
-// 	rl_on_new_line();
-// 	rl_replace_line("", 0);
-// 	rl_redisplay();
-// }
 
-void	    ctrlbacksl(int sig)
+
+int	main(int argc, char **argv, char **envp)
 {
-
-    (void)sig;
-    int pid = 0;
-
-    pid = getpid();
-    if (kill(pid, SIGKILL) != -1)
-	{
-		printf("^\\Quit: %d\n", sig);
-		//exit(1);
-    }
-    else
-
-	exit(0);
-    ft_putendl_fd("", 1);
-    rl_replace_line("", 0);
-    rl_on_new_line();
-    rl_redisplay();
-}
-
-
-
-void	ctrlc(int sig)
-{
-	(void)sig;
-
-
-    ft_putendl_fd("", 1);
-    rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-int g_pid = 0;
-
-int main(int argc, char **argv, char **envp)
-{
-    
+    g_pid = 0;
 	t_data  *param;
-
 	char	**matrix;
 	char	**sep;
 	char	*str;
-	
-	
 	
 	(void)str;
 	(void)matrix;
 	(void)sep;
     (void)argc;
     (void)argv;
-
     struct termios  tmp;
 	(void)tmp;
 	param = init_param(envp);
 	matrix = NULL;
- 	tcgetattr(0, &tmp);
+ 	
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sigint_handler);
+	
+	
+	tcgetattr(0, &tmp);
     tmp.c_lflag &= ~ECHOCTL; 
     tmp.c_lflag |= ECHO;
     tcgetattr(0, &param->save);
-
     tcsetattr(0, 0, &tmp);
-	signal(SIGINT, ctrlc);
-    signal(SIGQUIT, ctrlbacksl);
-    while(42)
+    
+	while (42)
 	{
-    // Configure readline to auto-complete paths when the tab key is hit.
-	   // rl_bind_key('\t', rl_complete);
-		
+		//signal(SIGINT, sigint_handler);
+		//signal(SIGQUIT, SIG_IGN);
 		
 		if (!get_input(param))
-		  	break;
-
+			break ;
 		if (!strcmp(param->input, ""))
 			continue ;
+		// if (fgets (param->input, 4096, 0 ) == NULL) { // gestion du ctrl+D
+		// 		write(1, "\n", 1); 
+		// 		//freeMemory(0);
+		// 		exit(0); 
+		// } 	
 		add_history(param->input);
-		if(check_error(param))
-					return (-1);
+		if (check_error(param))
+			return (-1);
 		parser2(param);
-		
 	}
+	rl_clear_history();
 	//freall();
 	exit(param->retour);
 }

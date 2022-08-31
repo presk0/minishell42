@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/30 17:19:41 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 09:10:28 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,15 @@
 	 
  	if (!i)
  	{
- 		print_tab(param->f_matrix);
-		print_tab(param->cmds);
-		
-		printf("%d\n" , fd);
-		path = return_env_var("PATH", param->envp);
+ 		path = return_env_var("PATH", param->envp);
  		cmd = cmd_format(param->input_cleaned, path, 0);
  		free(path);
  		pid = fork();
+		g_pid = pid;
  		if (pid == 0)
  		{
- 			if (execve(cmd[0], cmd, param->envp) <= -1)
+ 			
+			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
  				ft_putstr_fd("pas commande bin valide", 2);
@@ -58,11 +56,10 @@
  		}
  		else
  		{
- 			if (cmd)
+ 			signal(SIGQUIT, sigint_handler);
+			if (cmd)
  				ft_free_split(cmd);
  			cmd = NULL;
- 			
-			
  			waitpid(pid, NULL, 0);
 			
  		}
