@@ -23,3 +23,5 @@ Parser2
                   ft_child process -> execute_pipe
                   ft_parent_process -> wait et close
 gestion du cat | ls pas sur de le faire
+
+echo $? doit renvoyer param->retour 
