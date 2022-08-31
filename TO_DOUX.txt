@@ -1,40 +1,12 @@
-Makefile:
-	reecrire *.c des sources en dur
+reste a faire ;
 
-fonctioni free_param 
-	ex :  check_error
-Malloc / free :
-	get_input
-		input = read_line // free main
+nico : redirection in et out
 
-	init_param
-		param  = (t_data *)malloc(sizeof(t_data));
-		param->envp = copy_env(envp, 0);
+stephane : signals 
 
-	copy_env
-		cpy = (char **)ft_calloc(sizeof(char *), (len + add + 1));
-		cpy[i] = ft_strdup(envp[i]);
-		
-		
-		
-		
-		https://github.com/lyutsiya91/pipex
+norme
 
 
 	
 
-		
 
-• Gérer ctrl-C, ctrl-D et ctrl-\ qui doivent fonctionner comme dans bash.
-
-
-• En mode interactif :
-◦ ctrl-C affiche un nouveau prompt sur une nouvelle ligne.
-◦ ctrl-D quitte le shell.
-◦ ctrl-\ ne fait rien.
-	
-
-
-bash : ctrl \ sur prompt vide : rien
-				promt en cours : rien
-				sur cat -e : message + prompt
