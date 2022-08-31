@@ -1,19 +1,12 @@
+reste a faire ;
 
+nico : redirection in et out
+
+stephane : signals 
+
+norme
 
 
 	
 
-		
-
-• Gérer ctrl-C, ctrl-D et ctrl-\ qui doivent fonctionner comme dans bash.
-
-
-• En mode interactif :
-◦ ctrl-C affiche un nouveau prompt sur une nouvelle ligne.
-◦ ctrl-D quitte le shell.
-◦ ctrl-\ ne fait rien.
-	
-
-
-ctrl \    ok fonctioni
 
