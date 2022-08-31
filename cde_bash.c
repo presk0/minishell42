@@ -97,7 +97,7 @@ void	cde_bash(t_data *param)
 		if (execve(path, param->argv, param->envp))
 		{
 			param->retour = 126;
-			ft_putstr_fd("pas commande bash valide", 2);
+			ft_putstr_fd("pas commande bash valide\n", 2);
 		}
 		exit(param->retour);
 	}

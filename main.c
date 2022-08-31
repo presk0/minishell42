@@ -6,14 +6,11 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/31 12:26:56 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 14:45:59 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -52,11 +49,6 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		if (!strcmp(param->input, ""))
 			continue ;
-		// if (fgets (param->input, 4096, 0 ) == NULL) { // gestion du ctrl+D
-		// 		write(1, "\n", 1); 
-		// 		//freeMemory(0);
-		// 		exit(0); 
-		// } 	
 		add_history(param->input);
 		if (check_error(param))
 			return (-1);

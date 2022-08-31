@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:41:51 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/30 17:05:18 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:20:16 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ void	run_echo(int fd, t_data *param)
 	}
 	if (!(param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3)))
 		write(fd, "\n", 1);
-	printf("%d\n", fd);
-		
+			
 }
 
 void	run_exit(t_data *param)

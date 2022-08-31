@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/22 15:59:04 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:57:22 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,11 @@ t_data	*init_param(char **envp)
 {
 	t_data	*param;
 
-	param  = (t_data *)malloc(sizeof(t_data));
+	param = (t_data *)malloc(sizeof(t_data));
 	param->envp = copy_env(envp, 0);
 	param->argv = NULL;
 	param->argc = 0;
 	param->retour = 0;
 	param->input_cleaned = NULL;
-	//param->input = NULL;
-	//param->var = 0;
 	return (param);
 }

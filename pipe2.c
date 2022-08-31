@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 12:21:26 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/31 09:11:03 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:17:56 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,19 @@ void	ft_child_process(t_data *param, int i, int *end)
 	execute_pipe(param, i);
 }
 
-void	ft_parent_process(int *end, int *fd)
+void	ft_parent_process(t_data *param, int *end, int *fd)
 {
 	close(end[1]);
 	*fd = end[0];
-	wait(NULL);
+	wait(&param->retour);
+	param->retour /= 256;
+
 }
 
-void		parser2(t_data *param)
+void	parser2(t_data *param)
 {
 	int		i;
-    char **sep;
-	
+	char	**sep;
 	pid_t	parent;
 	int		end[2];
 	int		fd;
@@ -66,7 +67,7 @@ void		parser2(t_data *param)
 				ft_child_process(param, i, end);
 
             } else
-                ft_parent_process(end, &fd);
+                ft_parent_process(param, end, &fd);
             i++;
         }
     }

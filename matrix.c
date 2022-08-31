@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 12:07:30 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 14:46:18 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**free_matrix_line(char **matrix, int line_nb)
 		return (NULL);
 	matrix_len = ft_matrixlen(matrix);
 	if (matrix_len < line_nb)
-		return(matrix);
+		return (matrix);
 	new_matrix = malloc(sizeof(char *) * matrix_len);
 	i = -1;
 	while (++i < line_nb)

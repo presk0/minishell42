@@ -6,14 +6,11 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/31 09:10:28 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:57:13 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// execute avec fork et eecute pipe sans fork
-
 
  void	execute(t_data *param, int i)
  {
@@ -61,8 +58,7 @@
  				ft_free_split(cmd);
  			cmd = NULL;
  			waitpid(pid, NULL, 0);
-			
- 		}
+		}
  	}
  	else
  	{

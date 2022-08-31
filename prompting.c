@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/31 11:59:25 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 13:24:21 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,19 +106,13 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	
-	
-	
 	//param->input = ((void *)0);
-	
 	input = read_multilines("42mminishell $ ");
 	param->input = input;
-	
 	if (param->input == NULL)
 	{
 		write(1, "exit\n", 5);
 		exit (0);
-	
 	}
 	return (ret);
 }

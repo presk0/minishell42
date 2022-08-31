@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:03:16 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/22 12:49:16 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 15:08:32 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,17 @@ static char	**tri_env(t_data *param)
 	return (tableau);
 }
 
-void    print_env_tri(t_data *param)
+void	print_env_tri(t_data *param)
 {
-    int i;
-    i = 0;
-    char **tabl;
+	int		i;
+	char	**tabl;
 
-    tabl = tri_env(param);
-
-
-    while(tabl[i] != NULL)
-    {
-        printf("declare -x ");
-        printf("%s\n", tabl[i]);
-        i++;
-
-    }
-
+	i = 0;
+	tabl = tri_env(param);
+	while (tabl[i] != NULL)
+	{
+		printf("declare -x ");
+		printf("%s\n", tabl[i]);
+		i++;
+	}
 }

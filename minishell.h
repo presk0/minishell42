@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/31 14:41:00 by swalter           #+#    #+#             */
+/*   Updated: 2022/08/31 16:49:54 by swalter          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -16,8 +27,8 @@
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <dirent.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 # include <sys/_types/_posix_vdisable.h>
 # include <errno.h>
 # define STDIN 0
@@ -26,26 +37,25 @@
 # define INFILE 0
 # define OUTFILE 1
 
-pid_t g_pid;
+pid_t	g_pid;
 
-typedef struct		s_data
+typedef struct	s_data
 {
-	int		argc;
-	char	**argv;
-	char	**f_matrix;
-	char	**envp;
-	char	*path; // PATH/cmd;
-	char	*args; // args passed to execve;
-	char	**i_fname;
-	char	**o_fname;
-//	char	**var;
-	int		retour;
-	char	*input;
-	char	*input_cleaned;
-	char	**cmds;
-	int		pid;
-	int		pipe;
-	struct termios save;
+	int			argc;
+	char		**argv;
+	char		**f_matrix;
+	char		**envp;
+	char		*path;
+	char		*args;
+	char		**i_fname;
+	char		**o_fname;
+	int			retour;
+	char		*input;
+	char		*input_cleaned;
+	char		**cmds;
+	int			pid;
+	int			pipe;
+	struct termios	save;
 }	t_data;
 
 int		get_input(t_data *param);
@@ -70,8 +80,8 @@ void	print_tab(char **tableau);
 
 /* strings */
 void	del_first_word(char **str);
-char    *return_first_word(char *str);
-char    *pop_first_wd(char **cmd);
+char	*return_first_word(char *str);
+char	*pop_first_wd(char **cmd);
 
 /* matrix */
 int		ft_matrixlen(char **matrix);
@@ -82,38 +92,32 @@ char	*matrix_to_str(char **matrix);
 char	*convert_var_in_line(char *line, char *envp[]);
 char	*return_env_var(char *var, char *envp[]);
 /* bin && initial */ /* format without path */
-int			exec_bin_to_fd(int fd, t_data *param); 
+int		exec_bin_to_fd(int fd, t_data *param);
 
 /* parser */
-void		parser2(t_data *param);
+void	parser2(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
-int	redir_out(char **f_matrix);
-int	redir_in(char **f_matrix);
+int		redir_out(char **f_matrix);
+int		redir_in(char **f_matrix);
 
 /* get filename */
-char **pop_names_from_sep(t_data *param, int i, char **sep);
-
-/* pipe */
-void	execute(t_data *param, int i);
-void	execute_pipe(t_data *param, int i);
-
-
+char	**pop_names_from_sep(t_data *param, int i, char **sep);
 
 /*bultins*/
 
 char	**cmd_format2(char **str, char **envp);
-char    **cmd_split_sw(t_data *param);
-int     check_built(t_data *param, int fd);
+char	**cmd_split_sw(t_data *param);
+int		check_built(t_data *param, int fd);
 void	run_echo(int fd, t_data *param);
 void	run_exit(t_data *param);
 char	**quotes_spaces_split(char *line);
 void	cd_command(t_data *param);
-char    **run_unset(t_data *param);
+char	**run_unset(t_data *param);
 void	run_env(t_data *param, int fd);
 void	error(t_data *param);
-char    **run_export(t_data *param);
+char	**run_export(t_data *param);
 void	set_in(char **argv);
 void	cde_bash(t_data *param);
 
@@ -122,18 +126,17 @@ char	**new_env(char **envp, int i);
 char	**copy_env(char **envp, int add);
 char	*get_env(char **envp, char *env);
 char	**export_command(t_data *param, int j);
-int 	verif_bultin(t_data *param);
-void    print_env_tri(t_data *param);
+int		verif_bultin(t_data *param);
+void	print_env_tri(t_data *param);
 char	**export_command2(t_data *param, int j);
 
-
 /* signaux */
-void		sigint_handler(int sign_num);
-
-
+void	sigint_handler(int sign_num);
 
 /* pipes */
 void	ft_child_process(t_data *param, int i, int *end);
-void	ft_parent_process(int *end, int *fd);
+void	ft_parent_process(t_data *param, int *end, int *fd);
+void	execute(t_data *param, int i);
+void	execute_pipe(t_data *param, int i);
 
 #endif
