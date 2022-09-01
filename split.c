@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/07/13 19:36:43 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/19 14:30:54 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init,
 char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)
 {
 	int			i;
-	char		is_quoted;
+	int			is_quoted;
 	char		**matrix_split;
 	char		**sep_init;
 

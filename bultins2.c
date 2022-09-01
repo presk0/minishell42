@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   bultins2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:41:51 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/31 16:20:16 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**cmd_format2(char *str, char **envp)
+char	**cmd_format2(char **str, char **envp)
 {
 	int		i;
 	int		new_i;
 	char	**cmd_split;
 
-	str = convert_var_in_line(str, envp);
-	cmd_split = quotes_spaces_split(str);
+	
+	*str = convert_var_in_line(*str, envp);
+	cmd_split = quotes_spaces_split(*str);
 	if (!cmd_split)
 		return (NULL);
 	new_i = 0;
@@ -47,7 +48,7 @@ char	**cmd_split_sw(t_data *param)
 	char	**argv;
 
 	i = 0;
-	argv = cmd_format2(param->input_cleaned, param->envp);
+	argv = cmd_format2(&param->input_cleaned, param->envp);
 	param->argv = argv;
 	while (param->argv[i])
 		i++;
@@ -55,12 +56,12 @@ char	**cmd_split_sw(t_data *param)
 	return (param->argv);
 }
 
-int check_built(int fd, t_data *param)
+int check_built(t_data *param, int fd)
 {
 	char	*pwd;
 	char	*path;
 	char	cwd[4097];
-
+	
 	//printf(stderr, "[check_builtin] fd= %d\n", fd);
 	if (!ft_memcmp(param->argv[0], "echo", 5))
 		run_echo(fd, param);
@@ -97,6 +98,7 @@ int check_built(int fd, t_data *param)
 	else
 		return (0);
 	return (1);
+	
 }
 
 void	run_echo(int fd, t_data *param)
@@ -114,6 +116,7 @@ void	run_echo(int fd, t_data *param)
 	}
 	if (!(param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3)))
 		write(fd, "\n", 1);
+			
 }
 
 void	run_exit(t_data *param)
@@ -228,6 +231,7 @@ char	**export_command(t_data *param, int j)
 	char	**cpy;
 
 	i = 0;
+	
 	while (param->envp[i] && ft_memcmp(param->envp[i], param->argv[j], ft_strlen(param->argv[j])))
 		i++;
 	if (!param->envp[i])
@@ -262,18 +266,6 @@ void	run_env(t_data *param, int fd)
 		write(fd, "\n", 1);
 		i++;
 	}
-}
-
-char	**run_export(t_data *param)
-{
-	char	**env;
-	
-	env = param->envp;
-	if (param->argv[1] == NULL)
-		print_env_tri(param);
-	else
-		param->envp = export_command(param, 1); 
-	return (env);
 }
 
 void	error(t_data *param)

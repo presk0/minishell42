@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/08/22 15:50:53 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,3 @@ char    *pop_first_wd(char **cmd)
     }
     return (first_word);
 }
-
-/* modify cmd in_place 
-char **pop_item(char **cmd, char *operand)
-{
-    char    *str;
-    int     ope_len;
-    int     found;
-    int     i;
-
-    i = ft_strlen(*cmd);
-    ope_len = ft_strlen(operand);
-    found = 0;
-    while (--i)
-    {
-        if (!ft_strncmp(*cmd[i], operand, ope_len) && !(found++))
-        {
-            str = pop(cmd, i, )
-        }
-    }
-}
-*/

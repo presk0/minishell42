@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/24 13:08:26 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:46:18 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**free_matrix_line(char **matrix, int line_nb)
 		return (NULL);
 	matrix_len = ft_matrixlen(matrix);
 	if (matrix_len < line_nb)
-		return(matrix);
+		return (matrix);
 	new_matrix = malloc(sizeof(char *) * matrix_len);
 	i = -1;
 	while (++i < line_nb)
@@ -82,15 +82,15 @@ void	print_tab(char **tableau)
 	int	i;
 
 	i = 0;
-	fprintf(stderr, "------------------------\n");
+	printf("------------------------\n");
 	if (tableau)
 	{
 		while (tableau[i])
 		{
-			fprintf(stderr, "%s*\n", tableau[i++]);
+			printf("%s*\n", tableau[i++]);
 		}
 	}
-	fprintf(stderr, "------------------------\n");
+	printf("------------------------\n");
 }
 
 char	*matrix_to_str(char **matrix)

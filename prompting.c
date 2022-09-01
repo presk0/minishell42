@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: supersko <supersko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/24 17:29:27 by supersko         ###   ########.fr       */
+/*   Updated: 2022/08/31 13:24:21 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ char	*read_multilines(char *prompt)
 	char	*line_cpy;
 	char	*tmp;
 	int		quote_type;
-
+	
 	line = readline(prompt);
+	
 	if (!line)
-		return (NULL);
+		return (0);
 	quote_type = line_not_finished(line);
 	while (quote_type)
 	{
@@ -95,24 +96,23 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	//line_cpy = strdup(line);
-	//free(line);
-	//return (line_cpy);
+	line_cpy = strdup(line);
 	return (line);
 }
 
 int	get_input(t_data *param)
 {
-	if (param->input)
-		free(param->input);
-	param->input = ((void *)0);
-	//fflush(stdin);
-//	param->input = readline("\e[033m42mminishell $ \e[39m");
-	param->input = read_multilines("\e[033m42mminishell $ \e[39m");
+	char	*input;
+	int		ret;
+
+	ret = 1;
+	//param->input = ((void *)0);
+	input = read_multilines("42mminishell $ ");
+	param->input = input;
 	if (param->input == NULL)
 	{
-		fprintf(stderr, "readline returns NULL\n");
-		return (0);
+		write(1, "exit\n", 5);
+		exit (0);
 	}
-	return (1);
+	return (ret);
 }
