@@ -1,59 +1,80 @@
-
-NAME = minishell
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: swalter <swalter@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
+#    Updated: 2022/08/16 16:07:33 by swalter          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
-	var_conv.c exec_cmd.c get_filename.c pipe2.c bultins2.c env.c verif_bultin.c\
-	command.c bin.c export.c cde_bash.c pipe.c signals.c
+	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c\
+	command.c bin.c export.c cde_bash.c signals.c pipe2.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS := ${SRCS:c=o}
 
-CC = gcc 
+#MAIN = main.c
 
-CFLAGS += -Wall -Werror -Wextra -g3 -fsanitize=address
-#CFLAGS += -g3 -fsanitize=address
-FLAGREADLINE = -L/Users/swalter/.brew/opt/readline/lib -lreadline
-CPPFLAGS= -I/Users/swalter/.brew/opt/readline/include
-RM = rm -rf
+NAME = minishell
+DEBUG_NAME = a.out
+HEADERS = include
+LIBFT_DIR = libft/
+LIBFTprintf_DIR = libftprintf/
+LIBFT_AR = libft.a
+LIBFTprintf_AR = libftprintf.a
+LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
 
-LIBFT = libft.a
-LIBFTDIR = libft/
-LIBFTLINK = -L $(LIBFTDIR) -lft
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
 
+CC = gcc
 
-all:		$(NAME)
+all: ${NAME}
 
-$(NAME):	complib  $(OBJS) 
-	$(CC) $(LIBFTLINK) $(FLAGREADLINE) $(CFLAGS) -o $@ $(OBJS) 
+${NAME}: make_libftprintf make_libft
+	$(CC) $(CFLAGS) $(SRCS) $(LIBS)  $(INCLUDES) -o $(NAME)
+#	$(CC) $(CFLAGS) $(SRCS) $(LIBS) $(MAIN) $(INCLUDES) -o $(NAME)
 
-complib:
-	$(MAKE) -C libft/
+%.o: %.c
+	${CC} ${CFLAGS} $(INCLUDES) -c $<
 
-%.o:		%.c
-	$(CC) -c $(CFLAGS) $(CPPFLAGS)  -o $@ $<
+make_libft:
+	make -C libft
 
+make_libftprintf:
+	make -C libftprintf
+
+.PHONY: ctags
+ctags:
+	ctags *
 
 clean:
-	$(MAKE) -C $(LIBFTDIR) clean
-	$(RM) $(OBJS)
+	rm -f $(OBJS)
+	rm -f $(DEBUG_NAME)
+	make clean -C libft
+	make clean -C libftprintf
 
 fclean: clean
-	$(MAKE) -C $(LIBFTDIR) fclean
-	$(RM) $(OBJS)
-	$(RM) $(NAME)
+	rm -f $(NAME)
+	make fclean -C libft
+	make fclean -C libftprintf
 
-re:		fclean all
+re: fclean all
 
-leaks:
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+test: ctags
+	${CC} $(CFLAGS) $(INCLUDES) ${SRCS} -o $(NAME)
+	./$(NAME)
+	rm  -f a.out
 
-git:
-	make fclean
-	git add .
-	git commit -m "make done"
-	git push
+debugfile: ctags
+	$(CC) $(CFLAGS) -g $(SRCS)  $(INCLUDES) -o $(DEBUG_NAME) -fsanitize=address
+#	$(CC) $(CFLAGS) -g $(SRCS) $(MAIN) $(INCLUDES) -o $(DEBUG_NAME) -fsanitize=address
 
-norme:
-	norminette ./srcs/* ./libft/*
+debug: debugfile
+	lldb $(DEBUG_NAME)
+	rm -f $(DEBUG_NAME)
 
-.PHONY:		all clean fclean re leaks git norme
+.PHONY: all clean fclean re

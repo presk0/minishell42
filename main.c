@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-    g_pid = 0;
+    	g_pid = 0;
 	t_data  *param;
 	char	**matrix;
 	char	**sep;

@@ -29,7 +29,7 @@
 # define INFILE 0
 # define OUTFILE 1
 
-extern pid_t g_pid;
+pid_t g_pid;
 
 typedef struct		s_data
 {
@@ -108,7 +108,6 @@ void	execute_pipe(t_data *param, int i);
 
 char	**cmd_format2(char **str, char **envp);
 char    **cmd_split_sw(t_data *param);
-int     check_built(t_data *param);
 void	run_echo(int fd, t_data *param);
 void	run_exit(t_data *param);
 char	**quotes_spaces_split(char *line);
@@ -134,6 +133,8 @@ char	**export_command2(t_data *param, int j);
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);
-void	ft_parent_process(int *end, int *fd);
+void	ft_parent_process(t_data *param, int *end, int *fd);
+void		sigint_handler(int sign_num);
+int check_built(t_data *param, int fd);
 
 #endif

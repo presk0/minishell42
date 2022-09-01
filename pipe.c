@@ -18,12 +18,11 @@
  	char	*path;
  	int		pid;
 	int fd = 1;
-	
+
  	(void)i;
  	i = verif_bultin(param);
 	fd = redir_out(param->f_matrix);
 	dup2(fd, 1);
-	 
  	if (!i)
  	{
  		path = return_env_var("PATH", param->envp);
@@ -33,7 +32,6 @@
 		g_pid = pid;
  		if (pid == 0)
  		{
- 			
 			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
@@ -45,11 +43,9 @@
  			{
  				ft_free_split(cmd);
  				cmd = NULL;
- 				
  			}
  			close (fd);
 			exit(param->retour);
-		
  		}
  		else
  		{
@@ -63,11 +59,8 @@
  	else
  	{
  		cmd_split_sw(param);
- 		check_built(param, fd);
-		
-
+ 		check_built(param, i);
  	}
-	
  }
 
 void	execute_pipe(t_data *param, int i)
@@ -75,7 +68,7 @@ void	execute_pipe(t_data *param, int i)
 	char	**cmd;
 	char	*path;
 	(void)i;
-	int fd = 1;
+	//int fd = 1;
 	
 	i = verif_bultin(param);
 	if (!i)
@@ -99,7 +92,7 @@ void	execute_pipe(t_data *param, int i)
 	else
 	{
 		cmd_split_sw(param);
-		check_built(param, fd);
+		check_built(param, i);
 		
 	}
 }

@@ -100,7 +100,7 @@ void		parser(t_data *param)
 	if (i == 1)
 	{
 		param->f_matrix = pop_names_from_sep(param, 0, sep);
-		execute(param, 0, fd);
+		execute(param, 0);
 	}	
 	else
 	{	
@@ -111,13 +111,13 @@ void		parser(t_data *param)
 			//fd[1] = redir_out(param->f_matrix);                   //redir
 			//fd[0] = redir_in(param->f_matrix);
 			param->f_matrix = pop_names_from_sep(param, i, sep);
-			child_process(param, i, fd);
+			ft_child_process(param, i, fd);
 			i++;
 		}
 		//fd[0] = redir_in(param->f_matrix);
 		//fd[1] = redir_out(param->f_matrix);
 		param->f_matrix = pop_names_from_sep(param, i, sep);
-		execute(param, j, fd);
+		execute(param, j);
 		//close(fd[0]);
 		close(fd[1]);		       
 		//si execute -> prompt et sortie si excecute_pipe -> sortie
