@@ -24,7 +24,6 @@ void	ft_parent_process(t_data *param, int *end, int *fd)
 	*fd = end[0];
 	wait(&param->retour);
 	param->retour /= 256;
-
 }
 
 void	parser2(t_data *param)
