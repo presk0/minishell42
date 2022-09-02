@@ -36,6 +36,8 @@ typedef struct		s_data
 	int		argc;
 	char	**argv;
 	char	**f_matrix;
+	int	fd_in[255];
+	int	fd_out[255];
 	char	**envp;
 	char	*path; // PATH/cmd;
 	char	*args; // args passed to execve;
@@ -92,8 +94,8 @@ void		parser2(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
-int	redir_out(char **f_matrix);
-int	redir_in(char **f_matrix);
+int	redir_out(t_data *param);
+int	redir_in(t_data *param);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);
