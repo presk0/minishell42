@@ -28,20 +28,21 @@ void	ft_parent_process(t_data *param, int *end, int *fd)
 
 void	parser2(t_data *param)
 {
-	int		i;
+	int	i;
 	char	**sep;
 	pid_t	parent;
-	int		end[2];
-	int		fd;
+	int	end[2];
+	int	fd;
+	int	nb_fd_in;
+	int	nb_fd_out;
+	(void)nb_fd_out;
 	
 	sep = ft_split("|", ' ');
 	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-
 	ft_free_split(sep);
 	sep = NULL;
 	i = 0;
 	sep = ft_split(">>,>,<<,<", ',');
-	//fd = redir_in(param->f_matrix);    //redir
 	while (param->cmds[i])
 		i++;
 	int j = i;
@@ -54,20 +55,29 @@ void	parser2(t_data *param)
     }
     else {
         while (i < j) {
-
             pipe(end);
             param->f_matrix = pop_names_from_sep(param, i, sep);
-	    fprintf(stderr, "[nb_redir_in] %d\n", redir_in(param));
-	    fprintf(stderr, "[nb_redir_out] %d\n", redir_out(param));
+	    nb_fd_in = redir_in(param);
+	    nb_fd_out = redir_out(param);
+	    if (nb_fd_in > 0)
+	    {
+		    fd = param->fd_in[nb_fd_in - 1];
+		    dup2(fd, end[0]);
+	    }
+	    else
+	    {
+		    dup2(STDIN_FILENO, end[0]);
+	    }
             parent = fork();
-            if (!parent) {
+            if (!parent)
+	    {
                 if (i < j - 1)
                     dup2(end[1], STDOUT_FILENO);
-				
-				ft_child_process(param, i, end);
-
+		ft_child_process(param, i, end);
             } else
+	    {
                 ft_parent_process(param, end, &fd);
+	    }
             i++;
         }
     }

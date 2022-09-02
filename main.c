@@ -29,22 +29,17 @@ int	main(int argc, char **argv, char **envp)
 	(void)tmp;
 	param = init_param(envp);
 	matrix = NULL;
- 	
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sigint_handler);
-	
-	
 	tcgetattr(0, &tmp);
     tmp.c_lflag &= ~ECHOCTL; 
     tmp.c_lflag |= ECHO;
     tcgetattr(0, &param->save);
     tcsetattr(0, 0, &tmp);
-    
 	while (42)
 	{
 		//signal(SIGINT, sigint_handler);
 		//signal(SIGQUIT, SIG_IGN);
-		
 		if (!get_input(param))
 			break ;
 		if (!strcmp(param->input, ""))
@@ -58,3 +53,4 @@ int	main(int argc, char **argv, char **envp)
 	//freall();
 	exit(param->retour);
 }
+
