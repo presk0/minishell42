@@ -21,7 +21,6 @@
 
  	(void)i;
  	i = verif_bultin(param);
-	fd = redir_out(param);
 	dup2(fd, 1);
  	if (!i)
  	{
