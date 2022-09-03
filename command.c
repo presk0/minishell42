@@ -33,51 +33,71 @@ void	set_in(char **argv)
 	}
 }
 
-int	redir_out(t_data *param)
+int	redir_out(char **f_matrix)
 {
+	int		ret;
 	int 	len;
+	int	fd;
 	int	i;
-	int	nb_redir;
 
-	len = ft_matrixlen(param->f_matrix);
+(void) ret;
+	len = ft_matrixlen(f_matrix);
 	i = 0;
-	nb_redir = 0;
+	fd = 1;
 	while (i < len)
 	{
-		if (!ft_memcmp(param->f_matrix[i], ">", 2))
+		if (!ft_memcmp(f_matrix[i], ">", 2))
+			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
+		else if (!ft_memcmp(f_matrix[i], ">>", 3))
 		{
-			if (nb_redir < 255)
-				param->fd_out[nb_redir++] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-		}
-		else if (!ft_memcmp(param->f_matrix[i], ">>", 3))
-		{
-			if (nb_redir < 255)
-				param->fd_out[nb_redir++] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
+			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
 		}
 		i++;
 	}
-	return (nb_redir);
+	return (fd);
 }
 
-int	redir_in(t_data *param)
+int	redir_in(char **f_matrix)
 {
+	int		ret;
 	int 	len;
+	int 	fd;
 	int	i;
-	int	nb_redir;
+	int last_redir;
 
-	len = ft_matrixlen(param->f_matrix);
+(void)ret;
+	len = ft_matrixlen(f_matrix);
 	i = 0;
-	nb_redir = 0;
-	while (i < len && param->f_matrix[i + 1] && param->f_matrix[i])
+	last_redir = 0;
+	fd = 0;
+	while (i < len && f_matrix[i + 1] && f_matrix[i])
 	{
-		if (!ft_memcmp(param->f_matrix[i], "<", 2))
+		if (!ft_memcmp(f_matrix[i], "<", 2))
 		{
-			if (nb_redir < 255)
-				param->fd_in[nb_redir++] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
+			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
+		}
+			/*
+		else if (!ft_memcmp(f_matrix[i], "<<", 3))
+		{
+			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
+			ret = 0;
+			while ((ret = read(fd, &c, 1)))
+				if (ret == -1)
+				{
+					write(2, "Couldn't read file\n", 19);
+					break ;
+				}
+		}
+		*/
+		if (!ft_memcmp(f_matrix[i], "<", 1))
+		{
+			if (last_redir)
+				close(last_redir);
+			last_redir = fd;
 		}
 		i++;
 	}
-	return (nb_redir);
-	//printf(stderr, "[redir_in] end fd);
+	//printf(stderr, "[redir_in] end fd[0] = %d\n", fd);
+	return (fd);
 }
 

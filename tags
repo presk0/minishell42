@@ -57,10 +57,10 @@ export_command2	export.c	/^char	**export_command2(t_data *param, int j)$/;"	f	ty
 fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
-ft_child_process	parser.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
+ft_child_process	pipe2.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
-ft_parent_process	parser.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void
+ft_parent_process	pipe2.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void
 ft_split_mini	ft_split_mini.c	/^char		**ft_split_mini(char *s, char c)$/;"	f	typeref:typename:char **
 ft_split_multistrsep	split.c	/^char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)$/;"	f	typeref:typename:char **
 ft_split_strsep	split.c	/^char	**ft_split_strsep(char *str, char *sep, int is_char)$/;"	f	typeref:typename:char **
@@ -70,6 +70,7 @@ get_env	env.c	/^char	*get_env(char **envp, char *env)$/;"	f	typeref:typename:cha
 get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
 get_path	exec_cmd.c	/^char	*get_path(char *cmd, char *PATH)$/;"	f	typeref:typename:char *
 heredoc	redir.c	/^int    heredoc(t_data *param, int i)$/;"	f	typeref:typename:int
+init_fd	parser.c	/^void init_fd(t_data *param, int **fd, int **io_fd)$/;"	f	typeref:typename:void
 init_param	init.c	/^t_data	*init_param(char **envp)$/;"	f	typeref:typename:t_data *
 init_vars	split.c	/^static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init, char **sep)$/;"	f	typeref:typename:void	file:
 is_blank	strings.c	/^int is_blank(char c)$/;"	f	typeref:typename:int
@@ -83,7 +84,8 @@ matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/;"	f	typeref:typena
 minishell42	README.md	/^# minishell42$/;"	c
 new_env	env.c	/^char    **new_env(char **envp, int i)$/;"	f	typeref:typename:char **
 number_str	ft_split_mini.c	/^static int	number_str(char *s, char c)$/;"	f	typeref:typename:int	file:
-parser2	parser.c	/^void	parser2(t_data *param)$/;"	f	typeref:typename:void
+parser	parser.c	/^void		parser(t_data *param)$/;"	f	typeref:typename:void
+parser2	pipe2.c	/^void	parser2(t_data *param)$/;"	f	typeref:typename:void
 pop_first_wd	strings.c	/^char    *pop_first_wd(char **cmd)$/;"	f	typeref:typename:char *
 pop_names_from_sep	get_filename.c	/^char **pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
 print_env_tri	export.c	/^void	print_env_tri(t_data *param)$/;"	f	typeref:typename:void
@@ -93,9 +95,10 @@ quote_empty	exec_cmd.c	/^int	quote_empty(char *first_quote)$/;"	f	typeref:typena
 quotes_spaces_split	exec_cmd.c	/^char	**quotes_spaces_split(char *line)$/;"	f	typeref:typename:char **
 re	Makefile	/^re: fclean all$/;"	t
 read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/;"	f	typeref:typename:char *
-redir_in	command.c	/^int	redir_in(t_data *param)$/;"	f	typeref:typename:int
-redir_out	command.c	/^int	redir_out(t_data *param)$/;"	f	typeref:typename:int
+redir_in	command.c	/^int	redir_in(char **f_matrix)$/;"	f	typeref:typename:int
+redir_out	command.c	/^int	redir_out(char **f_matrix)$/;"	f	typeref:typename:int
 refresh_matrix	split.c	/^static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)$/;"	f	typeref:typename:void	file:
+reinit_after_pipe	parser.c	/^void	reinit_after_pipe(t_data *param, int **io_fd)$/;"	f	typeref:typename:void
 return_env_var	var_conv.c	/^char	*return_env_var(char *var, char *envp[])$/;"	f	typeref:typename:char *
 return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void

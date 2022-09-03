@@ -12,7 +12,7 @@
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
 	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c\
-	command.c bin.c export.c cde_bash.c signals.c pipe2.c
+	command.c bin.c export.c cde_bash.c signals.c pipe2.c 
 
 OBJS := ${SRCS:c=o}
 

@@ -33,12 +33,21 @@ char	**copy_env(char **envp, int add)
 t_data	*init_param(char **envp)
 {
 	t_data	*param;
+    struct termios  tmp;
 
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sigint_handler);
+	tmp.c_lflag &= ~ECHOCTL; 
+	tmp.c_lflag |= ECHO;
+	tcgetattr(0, &tmp);
+	tcsetattr(0, 0, &tmp);
+	g_pid = 0;
 	param = (t_data *)malloc(sizeof(t_data));
 	param->envp = copy_env(envp, 0);
-	param->argv = NULL;
-	param->argc = 0;
+//	param->argv = NULL;
+//	param->argc = 0;
 	param->retour = 0;
 	param->input_cleaned = NULL;
+	tcgetattr(0, &param->save);
 	return (param);
 }

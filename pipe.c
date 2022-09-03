@@ -21,6 +21,7 @@
 
  	(void)i;
  	i = verif_bultin(param);
+	fd = redir_out(param->f_matrix);
 	dup2(fd, 1);
  	if (!i)
  	{

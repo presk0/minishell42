@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 char	**cmd_format2(char **str, char **envp)
 {
 	int		i;
@@ -52,7 +51,7 @@ char	**cmd_split_sw(t_data *param)
 	param->argv = argv;
 	while (param->argv[i])
 		i++;
-	param->argc = i;
+	//param->argc = i;
 	return (param->argv);
 }
 

@@ -14,28 +14,11 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-    	g_pid = 0;
 	t_data  *param;
-	char	**matrix;
-	char	**sep;
-	char	*str;
 	
-	(void)str;
-	(void)matrix;
-	(void)sep;
     (void)argc;
     (void)argv;
-    struct termios  tmp;
-	(void)tmp;
 	param = init_param(envp);
-	matrix = NULL;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sigint_handler);
-	tcgetattr(0, &tmp);
-    tmp.c_lflag &= ~ECHOCTL; 
-    tmp.c_lflag |= ECHO;
-    tcgetattr(0, &param->save);
-    tcsetattr(0, 0, &tmp);
 	while (42)
 	{
 		//signal(SIGINT, sigint_handler);
@@ -53,4 +36,3 @@ int	main(int argc, char **argv, char **envp)
 	//freall();
 	exit(param->retour);
 }
-
