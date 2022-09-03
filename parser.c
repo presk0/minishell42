@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 void init_fd(t_data *param, int **fd, int **io_fd)
 {
 	int		i;
@@ -74,6 +73,83 @@ void	reinit_after_pipe(t_data *param, int **io_fd)
 	}
 }
 
+void	ft_child_process(t_data *param, int i, int *end)
+{
+	close(end[0]);
+	execute_pipe(param, i);
+}
+
+void	ft_parent_process(t_data *param, int *end, int *fd)
+{
+	close(end[1]);
+	*fd = end[0];
+	wait(&param->retour);
+	param->retour /= 256;
+}
+
+/* returns cmds number */
+int	ft_pipe_split(t_data *param)
+{
+	char	**sep;
+	int	nb_cmd;
+
+	sep = ft_split("|", ' ');
+	param->cmds = ft_split_multistrsep(param->input, sep, 0);
+	ft_free_split(sep);
+	sep = NULL;
+	nb_cmd = 0;
+	while (param->cmds[nb_cmd])
+		nb_cmd++;
+	return (nb_cmd);
+}
+
+void	parser2(t_data *param)
+{
+	int		i;
+	int	nb_cmd;
+	char	**sep;
+	pid_t	parent;
+	int		end[2];
+	int		fd;
+
+	sep = ft_split(">>,>,<<,<", ',');
+	//fd = redir_in(param->f_matrix);    //redir
+	i = 0;
+	nb_cmd = ft_pipe_split(param);
+    if(nb_cmd == 1)
+    {
+        param->f_matrix = pop_names_from_sep(param, i, sep);
+		execute(param, nb_cmd);
+    }
+    else {
+        while (i < nb_cmd) {
+
+            pipe(end);
+            parent = fork();
+            if (!parent) {
+                dup2(fd, STDIN_FILENO);
+                if (i < nb_cmd - 1)
+                    dup2(end[1], STDOUT_FILENO);
+                param->f_matrix = pop_names_from_sep(param, i, sep);
+				
+				ft_child_process(param, i, end);
+
+            } else
+                ft_parent_process(param, end, &fd);
+            i++;
+        }
+    }
+	//fd[0] = redir_in(param->f_matrix);
+	//fd[1] = redir_out(param->f_matrix);
+	// free(param->input);
+	// free(param->f_matrix);	
+	if (param->cmds)
+		ft_free_split(param->cmds);
+	if (sep)
+		ft_free_split(sep);
+}
+
+/*
 void		parser(t_data *param)
 {
 	int		i;
@@ -130,4 +206,4 @@ void		parser(t_data *param)
 							
 	free(fd);
 }
-
+*/
