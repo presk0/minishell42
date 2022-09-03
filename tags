@@ -57,10 +57,11 @@ export_command2	export.c	/^char	**export_command2(t_data *param, int j)$/;"	f	ty
 fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
-ft_child_process	pipe2.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
+ft_child_process	parser.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
-ft_parent_process	pipe2.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void
+ft_parent_process	parser.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void
+ft_pipe_split	parser.c	/^int	ft_pipe_split(t_data *param)$/;"	f	typeref:typename:int
 ft_split_mini	ft_split_mini.c	/^char		**ft_split_mini(char *s, char c)$/;"	f	typeref:typename:char **
 ft_split_multistrsep	split.c	/^char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)$/;"	f	typeref:typename:char **
 ft_split_strsep	split.c	/^char	**ft_split_strsep(char *str, char *sep, int is_char)$/;"	f	typeref:typename:char **
@@ -84,8 +85,7 @@ matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/;"	f	typeref:typena
 minishell42	README.md	/^# minishell42$/;"	c
 new_env	env.c	/^char    **new_env(char **envp, int i)$/;"	f	typeref:typename:char **
 number_str	ft_split_mini.c	/^static int	number_str(char *s, char c)$/;"	f	typeref:typename:int	file:
-parser	parser.c	/^void		parser(t_data *param)$/;"	f	typeref:typename:void
-parser2	pipe2.c	/^void	parser2(t_data *param)$/;"	f	typeref:typename:void
+parser2	parser.c	/^void	parser2(t_data *param)$/;"	f	typeref:typename:void
 pop_first_wd	strings.c	/^char    *pop_first_wd(char **cmd)$/;"	f	typeref:typename:char *
 pop_names_from_sep	get_filename.c	/^char **pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
 print_env_tri	export.c	/^void	print_env_tri(t_data *param)$/;"	f	typeref:typename:void

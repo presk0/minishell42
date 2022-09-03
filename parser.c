@@ -116,29 +116,28 @@ void	parser2(t_data *param)
 	//fd = redir_in(param->f_matrix);    //redir
 	i = 0;
 	nb_cmd = ft_pipe_split(param);
-    if(nb_cmd == 1)
-    {
-        param->f_matrix = pop_names_from_sep(param, i, sep);
-		execute(param, nb_cmd);
-    }
-    else {
-        while (i < nb_cmd) {
-
+        while (i < nb_cmd)
+	{
             pipe(end);
             parent = fork();
-            if (!parent) {
+            if (parent)
+	    {
+                ft_parent_process(param, end, &fd);
+		//fd = end[0] after executtion of ft_parent_process
+		//without fd, the pipe does not finish
+	    }
+	    else
+	    {
                 dup2(fd, STDIN_FILENO);
                 if (i < nb_cmd - 1)
+		{
                     dup2(end[1], STDOUT_FILENO);
+		}
                 param->f_matrix = pop_names_from_sep(param, i, sep);
-				
-				ft_child_process(param, i, end);
-
-            } else
-                ft_parent_process(param, end, &fd);
+		ft_child_process(param, i, end);
+            }
             i++;
         }
-    }
 	//fd[0] = redir_in(param->f_matrix);
 	//fd[1] = redir_out(param->f_matrix);
 	// free(param->input);
