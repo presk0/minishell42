@@ -12,66 +12,77 @@
 
 #include "minishell.h"
 
-void init_fd(t_data *param, int **fd, int **io_fd)
+//from https://harm-smits.github.io/42docs/projects/minishell
+
+void	clean_and_set_f_matrix(t_data *param)
 {
-	int		i;
-	int		len;
-	(void)io_fd;
-	if (!fd)
-		return ;
-	i = 0;
-	if (!*fd)
-		return ;
-	(*fd)[0] = 0;
-	(*fd)[1] = 1;
-	(*io_fd)[0] = 0;
-	(*io_fd)[1] = 1;
-	if (param->f_matrix)
-	{
-		//printf(stderr, "[init_fd]\n");
-		//print_tab(param->f_matrix);
-		len = ft_matrixlen(param->f_matrix);
-		while (i < len)
-		{
-			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*io_fd)[1]);
-			}
-			else if(!ft_memcmp(param->f_matrix[i], ">>", 3) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*io_fd)[1]);
-			}
-			else if (!ft_memcmp(param->f_matrix[i], "<", 2) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[0]= %d\n", (*io_fd)[0]);
-			}
-			i++;
-		}
-		//printf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", (*fd)[0], (*fd)[1]);
-	}
-	dup2((*io_fd)[0], (*fd)[0]);
-	dup2((*io_fd)[1], (*fd)[1]);
+	char	**sep;
+
+	sep = ft_split(">>,>,<<,<", ',');
+	param->f_matrix = pop_names_from_sep(param, 0, sep);
+	free(sep);
+	sep = NULL;
 }
 
-void	reinit_after_pipe(t_data *param, int **io_fd)
-{
-	if (param->f_matrix)
-		ft_free_split(param->f_matrix);
-	param->f_matrix = NULL;
-	if ((*io_fd)[0] != STDIN_FILENO)
-	{
-		close((*io_fd)[0]);
-		(*io_fd)[0] = STDIN_FILENO;
-	}
-	if ((*io_fd)[1] != STDOUT_FILENO)
-	{
-		close((*io_fd)[1]);
-		(*io_fd)[1] = STDOUT_FILENO;
-	}
-}
+void	easy_redir(t_data *param)
+{ //save in/out
+	int tmpin=dup(0);
+	int tmpout=dup(1);
+	int ret;
+	int fdin;
+	int fdout;
+	int	nb_cmd;
+	int	i;
+
+	nb_cmd = ft_pipe_split(param);
+	i = 0;
+	while (i++ < nb_cmd) {
+		//redirect input
+		clean_and_set_f_matrix(param);
+		dup2(fdin, 0);
+		close(fdin);
+		//setup output
+		if (i == nb_cmd)
+		{
+		// Last simple command
+			if(outfile){
+				fdout = outfile;
+			}
+			else {
+			// Use default output
+			fdout=dup(tmpout);
+			}
+		}
+		else
+		{
+		// Not last
+		//simple command
+		//create pipe
+			int fdpipe[2];
+			pipe(fdpipe);
+			fdout=fdpipe[1];
+			fdin=fdpipe[0];
+		}// if/else
+		// Redirect output
+		dup2(fdout,1);
+		close(fdout);
+	// Create child process
+		ret=fork();
+		if(ret==0) {
+			execute_pipe(param, i);
+			_exit(1);
+		}
+	} // for
+	//restore in/out defaults
+	dup2(tmpin,0);
+	dup2(tmpout,1);
+	close(tmpin);
+	close(tmpout);
+//	if (!background) {
+//		// Wait for last command
+//		waitpid(ret, NULL, 0);
+//	}
+} // execute
 
 void	ft_child_process(t_data *param, int i, int *end)
 {
@@ -103,41 +114,49 @@ int	ft_pipe_split(t_data *param)
 	return (nb_cmd);
 }
 
+/*
 void	parser2(t_data *param)
 {
 	int		i;
-	int	nb_cmd;
+	int		nb_cmd;
 	char	**sep;
 	pid_t	parent;
-	int		end[2];
+	int		*end;
+	int		*fds;
 	int		fd;
 
 	sep = ft_split(">>,>,<<,<", ',');
 	//fd = redir_in(param->f_matrix);    //redir
 	i = 0;
+	end = malloc(sizeof(int) * 2);
+	fds = malloc(sizeof(int) * 2);
 	nb_cmd = ft_pipe_split(param);
-        while (i < nb_cmd)
+	while (i < nb_cmd)
 	{
-            pipe(end);
-            parent = fork();
-            if (parent)
-	    {
-                ft_parent_process(param, end, &fd);
+        pipe(end);
+		param->f_matrix = pop_names_from_sep(param, i, sep);
+		parent = fork();
+		if (parent)
+		{
+			init_fd(param, &fds, &end);
+			ft_parent_process(param, end, &fd);
 		//fd = end[0] after executtion of ft_parent_process
 		//without fd, the pipe does not finish
-	    }
-	    else
-	    {
-                dup2(fd, STDIN_FILENO);
-                if (i < nb_cmd - 1)
-		{
-                    dup2(end[1], STDOUT_FILENO);
 		}
-                param->f_matrix = pop_names_from_sep(param, i, sep);
-		ft_child_process(param, i, end);
-            }
-            i++;
-        }
+		else
+	    {
+			fd = end[0];
+			dup2(fd, STDIN_FILENO);
+			init_fd(param, &fds, &end);
+			if (i < nb_cmd - 1)
+			{
+				dup2(end[1], STDOUT_FILENO);
+			}
+			ft_child_process(param, i, end);
+		}
+//	    reinit_after_pipe(param, &fds);
+		i++;
+	}
 	//fd[0] = redir_in(param->f_matrix);
 	//fd[1] = redir_out(param->f_matrix);
 	// free(param->input);
@@ -146,7 +165,10 @@ void	parser2(t_data *param)
 		ft_free_split(param->cmds);
 	if (sep)
 		ft_free_split(sep);
+	free(fds);
+	free(end);
 }
+*/
 
 /*
 void		parser(t_data *param)

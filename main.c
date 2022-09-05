@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(param->input);
 		if (check_error(param))
 			return (-1);
-		parser2(param);
+		easy_redir(param);
 	}
 	rl_clear_history();
 	//freall();

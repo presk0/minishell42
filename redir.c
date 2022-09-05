@@ -2,14 +2,14 @@
 
 
 
-int	set_fd(t_data *param)
+int	set_fd_out(t_data *param)
 {
 	int		i;
 	int		fd;
     int     j;
     j = 0;
 	i = 0;
-	fd = 1;
+	fd = dup(1);
 	while (param->f_matrix[i] && ft_memcmp(param->f_matrix[i], ">", 2)
 		   && ft_memcmp(param->f_matrix[i], ">>", 3))
 		i++;

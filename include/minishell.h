@@ -136,5 +136,7 @@ void	ft_child_process(t_data *param, int i, int *end);
 void	ft_parent_process(t_data *param, int *end, int *fd);
 void		sigint_handler(int sign_num);
 int check_built(t_data *param, int fd);
+void	easy_redir(t_data *param);
+int	ft_pipe_split(t_data *param);
 
 #endif
