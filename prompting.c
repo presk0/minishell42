@@ -96,7 +96,7 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	line_cpy = strdup(line);
+//line_cpy = ft_strdup(line);
 	return (line);
 }
 
