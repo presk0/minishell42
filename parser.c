@@ -14,24 +14,70 @@
 
 //from https://harm-smits.github.io/42docs/projects/minishell
 
-void	clean_and_set_f_matrix(t_data *param)
+void	clean_and_set_f_matrix(t_data *param, int i)
 {
 	char	**sep;
 
 	sep = ft_split(">>,>,<<,<", ',');
-	param->f_matrix = pop_names_from_sep(param, 0, sep);
+	param->f_matrix = pop_names_from_sep(param, i, sep);
 	free(sep);
 	sep = NULL;
 }
 
+int	format_command_exec(t_data *param)
+{
+	char	*path;
+	int		is_bultin;
+	
+	is_bultin = verif_bultin(param);
+	if (!is_bultin)
+	{
+		path = return_env_var("PATH", param->envp);
+		param->cmd = cmd_format(param->input_cleaned, path, 0);
+		free(path);
+	}	
+	return (is_bultin);
+}
+
+void	exec_builtin(t_data * param)
+{
+	int		is_bultin;
+	
+	is_bultin = verif_bultin(param);
+	if (is_bultin)
+	{
+		cmd_split_sw(param);
+		check_built(param, is_bultin);
+	}
+}
+
+void	exec_bin(t_data *param)
+{
+	int		is_bultin;
+	
+	is_bultin = verif_bultin(param);
+	if (!is_bultin)
+	{
+		if (execve(param->cmd[0], param->cmd, param->envp) <= -1)
+		{
+			param->retour = 126;
+			ft_putstr_fd("pas commande bin valide", 2);
+            write(2, "\n", 2);
+			exit(param->retour);
+		}	
+	}	
+}
+
 void	easy_redir(t_data *param)
 { //save in/out
+	int fdpipe[2];
 	int tmpin;
 	int tmpout;
 	int ret;
 	int fdin;
 	int fdout;
 	int	nb_cmd;
+	int	is_bultin;
 	int	i;
 
 	nb_cmd = ft_pipe_split(param);
@@ -42,30 +88,39 @@ void	easy_redir(t_data *param)
 	while (i < nb_cmd)
 	{
 		//redirect input
-		clean_and_set_f_matrix(param);
+		clean_and_set_f_matrix(param, i);
 		dup2(fdin, 0);
 		close(fdin);
 		//setup output
 		if (i < nb_cmd)
 		{
-			int fdpipe[2];
-			pipe(fdpipe);
-			fdout=fdpipe[1];
-			fdin=fdpipe[0];
+			is_bultin = format_command_exec(param);
+			if (!is_bultin)
+			{
+				/* if not binary */
+				pipe(fdpipe);
+				fdout=fdpipe[1];
+				fdin=fdpipe[0];
+			}
 			tmpout = set_fd_out(param);
 			fdout = dup(tmpout);
 		}
 		// Redirect output
 		dup2(fdout,1);
 		close(fdout);
-	// Create child process
-		ret=fork();
-		if(ret==0) {
-			execute_pipe(param, i);
-			exit(1);
+		// Create child process
+		if (!is_bultin)
+		{
+			ret=fork();
+			if(ret==0) {
+				exec_bin(param);
+				exit(1);
+			}
 		}
 		else
-			waitpid(ret, NULL, 0);
+		{
+			exec_builtin(param);
+		}
 		i++;
 	} // for
 	//restore in/out defaults
@@ -73,22 +128,10 @@ void	easy_redir(t_data *param)
 	dup2(tmpout,1);
 	close(tmpin);
 	close(tmpout);
+	if (!is_bultin)
+		waitpid(ret, NULL, 0);
 //		// Wait for last command
 } // execute
-
-void	ft_child_process(t_data *param, int i, int *end)
-{
-	close(end[0]);
-	execute_pipe(param, i);
-}
-
-void	ft_parent_process(t_data *param, int *end, int *fd)
-{
-	close(end[1]);
-	*fd = end[0];
-	wait(&param->retour);
-	param->retour /= 256;
-}
 
 /* returns cmds number */
 int	ft_pipe_split(t_data *param)

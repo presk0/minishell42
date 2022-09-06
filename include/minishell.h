@@ -46,6 +46,7 @@ typedef struct		s_data
 	char	*input;
 	char	*input_cleaned;
 	char	**cmds;
+	char	**cmd;
 	int		pid;
 	int		pipe;
 	struct termios save;
