@@ -80,7 +80,7 @@ void	execute_pipe(t_data *param, int i)
 		{
 			param->retour = 126;
 			ft_putstr_fd("pas commande bin valide", 2);
-            write(1, "\n", 1);
+            write(1, "\n", 2);
 			exit(param->retour);
 		}	
 		if (cmd)
@@ -93,6 +93,5 @@ void	execute_pipe(t_data *param, int i)
 	{
 		cmd_split_sw(param);
 		check_built(param, i);
-		
 	}
 }

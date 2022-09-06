@@ -26,7 +26,7 @@ void	clean_and_set_f_matrix(t_data *param)
 
 void	easy_redir(t_data *param)
 { //save in/out
-	int tmpin=dup(0);
+	int tmpin;
 	int tmpout;
 	int ret;
 	int fdin;
@@ -35,25 +35,26 @@ void	easy_redir(t_data *param)
 	int	i;
 
 	nb_cmd = ft_pipe_split(param);
+	tmpin = dup(0);
+	fdin = dup(tmpin);
+	//set_fd_in
 	i = 0;
-	while (i < nb_cmd) {
+	while (i < nb_cmd)
+	{
 		//redirect input
 		clean_and_set_f_matrix(param);
 		dup2(fdin, 0);
 		close(fdin);
 		//setup output
-		if (i == nb_cmd)
-		{
-			tmpout = set_fd_out(param);
-			fdout = dup(tmpout);
-		}
-		else
+		if (i < nb_cmd)
 		{
 			int fdpipe[2];
 			pipe(fdpipe);
 			fdout=fdpipe[1];
 			fdin=fdpipe[0];
-		}// if/else
+			tmpout = set_fd_out(param);
+			fdout = dup(tmpout);
+		}
 		// Redirect output
 		dup2(fdout,1);
 		close(fdout);
@@ -63,6 +64,8 @@ void	easy_redir(t_data *param)
 			execute_pipe(param, i);
 			exit(1);
 		}
+		else
+			waitpid(ret, NULL, 0);
 		i++;
 	} // for
 	//restore in/out defaults
@@ -70,10 +73,7 @@ void	easy_redir(t_data *param)
 	dup2(tmpout,1);
 	close(tmpin);
 	close(tmpout);
-	if (i == nb_cmd) {
 //		// Wait for last command
-		waitpid(ret, NULL, 0);
-	}
 } // execute
 
 void	ft_child_process(t_data *param, int i, int *end)

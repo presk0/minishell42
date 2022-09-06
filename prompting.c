@@ -111,7 +111,7 @@ int	get_input(t_data *param)
 	param->input = input;
 	if (param->input == NULL)
 	{
-		write(1, "exit\n", 5);
+		write(2, "exit\n", 5);
 		exit (0);
 	}
 	return (ret);
