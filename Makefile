@@ -12,7 +12,8 @@
 
 SRCS = main.c prompting.c utils.c init.c debug.c split.c matrix.c strings.c\
 	var_conv.c parser.c exec_cmd.c get_filename.c pipe.c bultins2.c env.c verif_bultin.c\
-	command.c bin.c export.c cde_bash.c signals.c
+	command.c bin.c export.c cde_bash.c signals.c\
+	redir.c
 
 OBJS := ${SRCS:c=o}
 
@@ -27,15 +28,16 @@ LIBFT_AR = libft.a
 LIBFTprintf_AR = libftprintf.a
 LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
 
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
-CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address 
+INCLUDES =  -I./usr/include/readline -lcurses -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -g3
+#-fsanitize=address 
 
 CC = gcc
 
 all: ${NAME}
 
 ${NAME}: make_libftprintf make_libft
-	$(CC) $(CFLAGS) $(SRCS) $(LIBS)  $(INCLUDES) -o $(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(SRCS) $(LIBS) -o $(NAME) -lreadline 
 #	$(CC) $(CFLAGS) $(SRCS) $(LIBS) $(MAIN) $(INCLUDES) -o $(NAME)
 
 %.o: %.c

@@ -1,26 +1,36 @@
 #include "minishell.h"
 
-
-
 int	set_fd_out(t_data *param)
 {
 	int		i;
 	int		fd;
-    int     j;
-    j = 0;
+	int		last_fd;
+
 	i = 0;
 	fd = dup(1);
-	while (param->f_matrix[i] && ft_memcmp(param->f_matrix[i], ">", 2)
-		   && ft_memcmp(param->f_matrix[i], ">>", 3))
+	last_fd = 0;
+	while (param->f_matrix && param->f_matrix[i])
+	{
+		if(ft_memcmp(param->f_matrix[i], ">>", 3) && param->f_matrix[i+1])
+		{
+			fd = open(param->f_matrix[i + 1], O_APPEND);
+			if (last_fd)
+				close(last_fd);
+			last_fd = fd;
+		}
+		if(ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i+1])
+		{
+			fd = open(param->f_matrix[i + 1], O_CREAT, O_WRONLY);
+			if (last_fd)
+				close(last_fd);
+			last_fd = fd;
+		}
 		i++;
-    if (i == 1)
-        return (check_redir(param, i, fd));
-    else if(j == 1)
-//        return (check_heredoc(param, j, fd));
-    else
-        return (1);
+	}
+	return (fd);
 }
 
+/*
 static int	count_redir(t_data *param)
 {
 	int	count;
@@ -97,3 +107,4 @@ int    heredoc(t_data *param, int i)
     }
     return (fd);
 }
+*/

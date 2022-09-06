@@ -36,3 +36,21 @@ int	ft_is_quoted(char *c, int i)
 	}
 	return (0);
 }
+
+void	ft_free_split(char **ttab)
+{
+	int	i;
+
+	if (ttab)
+	{
+		i = 0;
+		while (ttab[i])
+		{
+			free(ttab[i]);
+			ttab[i++] = NULL;
+		}
+		free(ttab);
+		ttab = NULL;
+	}
+}
+

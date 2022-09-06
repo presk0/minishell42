@@ -1,6 +1,8 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# include <curses.h>
+# include <term.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <libft.h>
@@ -12,8 +14,6 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <termios.h>
-# include <curses.h>
-# include <term.h>
 # include <sys/ioctl.h>
 # include <sys/stat.h>
 # include <dirent.h>
@@ -80,6 +80,7 @@ char    *pop_first_wd(char **cmd);
 int		ft_matrixlen(char **matrix);
 char	**free_matrix_line(char **matrix, int line_nb);
 char	*matrix_to_str(char **matrix);
+void	ft_free_split(char **ttab);
 
 /* env */
 char	*convert_var_in_line(char *line, char *envp[]);
@@ -135,8 +136,11 @@ void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);
 void	ft_parent_process(t_data *param, int *end, int *fd);
 void		sigint_handler(int sign_num);
+
+/*	redir	*/
 int check_built(t_data *param, int fd);
 void	easy_redir(t_data *param);
 int	ft_pipe_split(t_data *param);
+int	set_fd_out(t_data *param);
 
 #endif
