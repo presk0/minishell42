@@ -9,12 +9,13 @@ ${NAME}	Makefile	/^${NAME}: make_libftprintf make_libft$/;"	t
 %.o	Makefile	/^%.o: %.c$/;"	t
 Attachments	eval.html	/^<h3 class="font-weight-bold mb-1">Attachments<\/h3>$/;"	j
 CC	Makefile	/^CC = gcc$/;"	m
-CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -lncurses -lreadline -g3$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
 Conclusion	eval.html	/^<h3 class="font-weight-bold mb-1">Conclusion<\/h3>$/;"	j
+DEBUGFLAGS	Makefile	/^DEBUGFLAGS = -g3 -fsanitize=address$/;"	m
 DEBUG_NAME	Makefile	/^DEBUG_NAME = a.out$/;"	m
 Guidelines	eval.html	/^<h3 class="font-weight-bold mb-1">Guidelines<\/h3>$/;"	j
 HEADERS	Makefile	/^HEADERS = include$/;"	m
-INCLUDES	Makefile	/^INCLUDES = -I.\/usr\/include -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFTprintf_DIR) -I.\/$(LIBFT_DIR)$/;"	m
+INCLUDES	Makefile	/^INCLUDES =  -I.\/usr\/include\/readline -lcurses -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFTprintf_DIR)/;"	m
 Introduction	eval.html	/^<h3 class="font-weight-bold mb-1">Introduction<\/h3>$/;"	j
 LIBFT_AR	Makefile	/^LIBFT_AR = libft.a$/;"	m
 LIBFT_DIR	Makefile	/^LIBFT_DIR = libft\/$/;"	m
@@ -45,6 +46,7 @@ convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(char *line, char **en
 copy_env	init.c	/^char	**copy_env(char **envp, int add)$/;"	f	typeref:typename:char **
 ctags	Makefile	/^ctags:$/;"	t
 debug	Makefile	/^debug: debugfile$/;"	t
+debug	Makefile	/^debug: make_libftprintf make_libft$/;"	t
 debugfile	Makefile	/^debugfile: ctags$/;"	t
 del_first_word	strings.c	/^void    del_first_word(char **str)$/;"	f	typeref:typename:void
 easy_redir	parser.c	/^void	easy_redir(t_data *param)$/;"	f	typeref:typename:void
@@ -57,7 +59,7 @@ fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
 ft_child_process	parser.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
-ft_free_split	utils.c	/^void	ft_free_split(char **tab)$/;"	f	typeref:typename:void
+ft_free_split	utils.c	/^void	ft_free_split(char **ttab)$/;"	f	typeref:typename:void
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
 ft_parent_process	parser.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void

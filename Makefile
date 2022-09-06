@@ -29,8 +29,8 @@ LIBFTprintf_AR = libftprintf.a
 LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
 
 INCLUDES =  -I./usr/include/readline -lcurses -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR)
-CFLAGS = -Wall -Wextra -Werror -g3
-#-fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror
+DEBUGFLAGS = -g3 -fsanitize=address
 
 CC = gcc
 
@@ -38,7 +38,9 @@ all: ${NAME}
 
 ${NAME}: make_libftprintf make_libft
 	$(CC) $(CFLAGS) $(INCLUDES) $(SRCS) $(LIBS) -o $(NAME) -lreadline 
-#	$(CC) $(CFLAGS) $(SRCS) $(LIBS) $(MAIN) $(INCLUDES) -o $(NAME)
+
+debug: make_libftprintf make_libft
+	$(CC) $(CFLAGS) $(DEBUGFLAGS) $(INCLUDES) $(SRCS) $(LIBS) -o $(NAME) -lreadline
 
 %.o: %.c
 	${CC} ${CFLAGS} $(INCLUDES) -c $<
@@ -74,9 +76,5 @@ test: ctags
 debugfile: ctags
 	$(CC) $(CFLAGS) -g $(SRCS)  $(INCLUDES) -o $(DEBUG_NAME) -fsanitize=address
 #	$(CC) $(CFLAGS) -g $(SRCS) $(MAIN) $(INCLUDES) -o $(DEBUG_NAME) -fsanitize=address
-
-debug: debugfile
-	lldb $(DEBUG_NAME)
-	rm -f $(DEBUG_NAME)
 
 .PHONY: all clean fclean re
