@@ -26,4 +26,11 @@ gestion du cat | ls pas sur de le faire
 
 echo $? doit renvoyer param->retour 
 
+-> echo $US\ER$USER. ne doit afficher que le user
+-> echo $USER"hello"$USER    ne pas mettre d expace entre les arg
+-> si echo $machin existe pas ne rien afficher
+
+
 space et entree affiche commande non valide mais devrait afficher un nouveau prompt
+
+rl_clear history avant chaque exit
