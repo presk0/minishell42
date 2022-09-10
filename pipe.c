@@ -31,6 +31,7 @@
  		if (pid == 0)
  		{
 		    dup2(redir_in(param->f_matrix), STDIN_FILENO);
+			dup2(redir_out(param->f_matrix), STDOUT_FILENO);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
