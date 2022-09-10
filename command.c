@@ -38,19 +38,29 @@ int	redir_out(char **f_matrix)
 	int		ret;
 	int 	len;
 	int	fd;
+	int	last_fd;
 	int	i;
 
 (void) ret;
 	len = ft_matrixlen(f_matrix);
 	i = 0;
 	fd = 1;
+	last_fd = 0;
 	while (i < len)
 	{
 		if (!ft_memcmp(f_matrix[i], ">", 2))
+		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
+			if (last_fd > 1)
+				close(last_fd);
+			last_fd = fd;
+		}
 		else if (!ft_memcmp(f_matrix[i], ">>", 3))
 		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
+			if (last_fd > 1)
+				close(last_fd);
+			last_fd = fd;
 		}
 		i++;
 	}
@@ -63,18 +73,21 @@ int	redir_in(char **f_matrix)
 	int 	len;
 	int 	fd;
 	int	i;
-	int last_redir;
+	int last_fd;
 
 (void)ret;
 	len = ft_matrixlen(f_matrix);
 	i = 0;
-	last_redir = 0;
+	last_fd = 0;
 	fd = 0;
 	while (i < len && f_matrix[i + 1] && f_matrix[i])
 	{
 		if (!ft_memcmp(f_matrix[i], "<", 2))
 		{
 			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
+			if (last_fd)
+				close(last_fd);
+			last_fd = fd;
 		}
 			/*
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
@@ -89,12 +102,6 @@ int	redir_in(char **f_matrix)
 				}
 		}
 		*/
-		if (!ft_memcmp(f_matrix[i], "<", 1))
-		{
-			if (last_redir)
-				close(last_redir);
-			last_redir = fd;
-		}
 		i++;
 	}
 	//printf(stderr, "[redir_in] end fd[0] = %d\n", fd);
