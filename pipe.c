@@ -21,8 +21,6 @@
 
  	(void)i;
  	i = verif_bultin(param);
-	fd = redir_out(param->f_matrix);
-	dup2(fd, 1);
  	if (!i)
  	{
  		path = return_env_var("PATH", param->envp);
@@ -32,6 +30,7 @@
 		g_pid = pid;
  		if (pid == 0)
  		{
+		    dup2(redir_in(param->f_matrix), STDIN_FILENO);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
