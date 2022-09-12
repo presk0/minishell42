@@ -105,6 +105,7 @@ void	run_echo(int fd, t_data *param)
 {
 	int	i;
 	i = 0;
+	fd = 1;
 
 	if (param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3))
 		i = 1;

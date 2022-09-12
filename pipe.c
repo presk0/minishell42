@@ -58,8 +58,29 @@
  	}
  	else
  	{
+		int	fd_in;
+		int	fd_out;
+		int	stdin_cpy;
+		int	stdout_cpy;
+
+		stdin_cpy = dup(0);
+		stdout_cpy = dup(1);
+		fd_in = redir_in(param->f_matrix);
+		fd_out = redir_out(param->f_matrix);
+		if (fd_in != 0)
+		{
+			dup2(fd_in, STDIN_FILENO);
+			close(fd_in);
+		}
+		if (fd_out != 1)
+		{
+			dup2(fd_out, STDOUT_FILENO);
+			close(fd_out);
+		}
  		cmd_split_sw(param);
  		check_built(param, i);
+		dup2(stdin_cpy, 0);
+		dup2(stdout_cpy, 1);
  	}
  }
 
@@ -93,6 +114,5 @@ void	execute_pipe(t_data *param, int i)
 	{
 		cmd_split_sw(param);
 		check_built(param, i);
-		
 	}
 }
