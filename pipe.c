@@ -41,7 +41,7 @@
 			}
  			if (cmd)
  			{
- 				ft_free_split(cmd);
+ 				ft_free_split(&cmd);
  				cmd = NULL;
  			}
  			close (fd);
@@ -51,7 +51,7 @@
  		{
  			signal(SIGQUIT, sigint_handler);
 			if (cmd)
- 				ft_free_split(cmd);
+ 				ft_free_split(&cmd);
  			cmd = NULL;
  			waitpid(pid, NULL, 0);
 		}
@@ -85,7 +85,7 @@ void	execute_pipe(t_data *param, int i)
 		}	
 		if (cmd)
 		{
-			ft_free_split(cmd);
+			ft_free_split(&cmd);
 			cmd = NULL;
 		}
 	}	

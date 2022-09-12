@@ -38,8 +38,7 @@ void	parser2(t_data *param)
 	
 	sep = ft_split("|", ' ');
 	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-
-	ft_free_split(sep);
+	ft_free_split(&sep);
 	sep = NULL;
 	i = 0;
 	sep = ft_split(">>,>,<<,<", ',');
@@ -77,7 +76,7 @@ void	parser2(t_data *param)
 				if (fds[0])
 					dup2(fds[0], end[0]);
 				ft_parent_process(param, end, &fd);
-				ft_free_split(param->f_matrix);
+				ft_free_split(&param->f_matrix);
 			}
 			i++;
         }
@@ -85,8 +84,8 @@ void	parser2(t_data *param)
 	// free(param->input);
 	// free(param->f_matrix);	
 	if (param->cmds)
-		ft_free_split(param->cmds);
+		ft_free_split(&param->cmds);
 	if (sep)
-		ft_free_split(sep);
+		ft_free_split(&sep);
 }
 

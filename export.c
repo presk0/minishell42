@@ -33,7 +33,7 @@ char	**export_command2(t_data *param, int j)
 	{
 		cpy = copy_env(param->envp, 1);
 		cpy[i] = param->argv[j];
-		ft_free_split(param->envp);
+		ft_free_split(&param->envp);
 	}
 	else
 	{

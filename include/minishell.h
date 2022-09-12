@@ -39,8 +39,8 @@ typedef struct		s_data
 	char	**envp;
 	char	*path; // PATH/cmd;
 	char	*args; // args passed to execve;
-	char	**i_fname;
-	char	**o_fname;
+//	char	**i_fname;
+//	char	**o_fname;
 //	char	**var;
 	int		retour;
 	char	*input;

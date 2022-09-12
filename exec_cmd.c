@@ -46,7 +46,7 @@ char	*get_path(char *cmd, char *PATH)
 		str = NULL;
 	}
 	//close(file_fd);
-	ft_free_split(env_tab);
+	ft_free_split(&env_tab);
 	free(cmd);
 	return (str);
 }

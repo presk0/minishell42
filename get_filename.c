@@ -38,7 +38,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
         param->input_cleaned = NULL;
         param->input_cleaned = matrix_to_str(cmd_split);
 	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
-        ft_free_split(cmd_split);
+        ft_free_split(&cmd_split);
     }
     else
     {
@@ -47,7 +47,7 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
 
         param->input_cleaned = matrix_to_str(cmd_split);
 	    //printf(stderr, "[input_cleaned in pop_manes_from_sep] %s\n", param->input_cleaned);
-        ft_free_split(cmd_split);
+        ft_free_split(&cmd_split);
 
     }
     return (fname_matrix);

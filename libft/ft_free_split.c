@@ -12,19 +12,19 @@
 
 #include "libft.h"
 
-void	ft_free_split(char **tab)
+void	ft_free_split(char ***tab)
 {
 	int	i;
 
-	if (tab)
+	if (*tab)
 	{
 		i = 0;
-		while (tab[i])
+		while ((*tab)[i])
 		{
-			free(tab[i]);
-			tab[i++] = NULL;
+			free((*tab)[i]);
+			(*tab)[i++] = NULL;
 		}
-		free(tab);
-		tab = NULL;
+		free(*tab);
+		*tab = NULL;
 	}
 }

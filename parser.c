@@ -60,7 +60,7 @@ void init_fd(t_data *param, int **fd, int **io_fd)
 void	reinit_after_pipe(t_data *param, int **io_fd)
 {
 	if (param->f_matrix)
-		ft_free_split(param->f_matrix);
+		ft_free_split(&param->f_matrix);
 	param->f_matrix = NULL;
 	if ((*io_fd)[0] != STDIN_FILENO)
 	{
@@ -89,7 +89,7 @@ void		parser(t_data *param)
 	sep = ft_split("|", ' ');
 	param->cmds = ft_split_multistrsep(param->input, sep, 0);
 
-	ft_free_split(sep);
+	ft_free_split(&sep);
 	sep = NULL;
 	i = 0;
 	sep = ft_split(">>,>,<<,<", ',');
@@ -123,9 +123,9 @@ void		parser(t_data *param)
 		//si execute -> prompt et sortie si excecute_pipe -> sortie
 	}
 	if (param->cmds)
-		ft_free_split(param->cmds);
+		ft_free_split(&param->cmds);
 	if (sep)
-		ft_free_split(sep);
+		ft_free_split(&sep);
 						//si on ferme -> sortie du programme
 							
 	free(fd);

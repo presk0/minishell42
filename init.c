@@ -40,5 +40,10 @@ t_data	*init_param(char **envp)
 	param->argc = 0;
 	param->retour = 0;
 	param->input_cleaned = NULL;
+	param->path = NULL;
+	param->args = NULL;
+	param->f_matrix = NULL;
+	param->input = NULL;
+	param->cmds = NULL;
 	return (param);
 }

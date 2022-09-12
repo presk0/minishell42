@@ -156,13 +156,13 @@ static void	change_dir(char *path, t_data *param)
 	if (chdir(path) == 0)
 	{
 		param->argc = 4;
-		ft_free_split(param->argv);
+		ft_free_split(&param->argv);
 		param->argv = (char **)ft_calloc(sizeof(char *), 4);
 		param->argv[0] = ft_strdup("export");
 		param->argv[1] = ft_strdup("OLDPWD=");
 		param->argv[2] = ft_strdup(oldpwd);
 		param->envp = export_command(param, 1);
-		ft_free_split(param->argv);
+		ft_free_split(&param->argv);
 		param->argv = (char **)ft_calloc(sizeof(char *), 4);
 		param->argv[0] = ft_strdup("export");
 		param->argv[1] = ft_strdup("PWD=");
@@ -238,7 +238,7 @@ char	**export_command(t_data *param, int j)
 	{
 		cpy = copy_env(param->envp, 1);
 		cpy[i] = param->argv[j];
-		ft_free_split(param->envp);
+		ft_free_split(&param->envp);
 	}
 	else
 	{
