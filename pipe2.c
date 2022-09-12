@@ -60,7 +60,6 @@ void	parser2(t_data *param)
 			param->f_matrix = pop_names_from_sep(param, i, sep);
 			fds[1] = redir_out(param->f_matrix);
 			fds[0] = redir_in(param->f_matrix);
-			(void)fds;
 			parent = fork();
 			if (!parent)
 			{

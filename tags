@@ -50,6 +50,7 @@ debug	Makefile	/^debug: debugfile$/;"	t
 debugfile	Makefile	/^debugfile: ctags$/;"	t
 del_first_word	strings.c	/^void    del_first_word(char **str)$/;"	f	typeref:typename:void
 error	bultins2.c	/^void	error(t_data *param)$/;"	f	typeref:typename:void
+exec_bultins	pipe.c	/^void	exec_bultins(t_data *param)$/;"	f	typeref:typename:void
 execute	pipe.c	/^ void	execute(t_data *param, int i)$/;"	f	typeref:typename:void
 execute_pipe	pipe.c	/^void	execute_pipe(t_data *param, int i)$/;"	f	typeref:typename:void
 export_command	bultins2.c	/^char	**export_command(t_data *param, int j)$/;"	f	typeref:typename:char **
@@ -99,6 +100,7 @@ redir_in	command.c	/^int	redir_in(char **f_matrix)$/;"	f	typeref:typename:int
 redir_out	command.c	/^int	redir_out(char **f_matrix)$/;"	f	typeref:typename:int
 refresh_matrix	split.c	/^static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)$/;"	f	typeref:typename:void	file:
 reinit_after_pipe	parser.c	/^void	reinit_after_pipe(t_data *param, int **io_fd)$/;"	f	typeref:typename:void
+reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
 return_env_var	var_conv.c	/^char	*return_env_var(char *var, char *envp[])$/;"	f	typeref:typename:char *
 return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void
