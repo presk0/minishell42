@@ -12,14 +12,14 @@
 
 #include "minishell.h"
 
-char	**cmd_format2(char **str, char **envp)
+char	**cmd_format2(t_data *param, char **str, char **envp)
 {
 	int		i;
 	int		new_i;
 	char	**cmd_split;
 
 	
-	*str = convert_var_in_line(*str, envp);
+	*str = convert_var_in_line(param, *str, envp);
 	cmd_split = quotes_spaces_split(*str);
 	if (!cmd_split)
 		return (NULL);
@@ -48,7 +48,7 @@ char	**cmd_split_sw(t_data *param)
 	char	**argv;
 
 	i = 0;
-	argv = cmd_format2(&param->input_cleaned, param->envp);
+	argv = cmd_format2(param, &param->input_cleaned, param->envp);
 	param->argv = argv;
 	while (param->argv[i])
 		i++;

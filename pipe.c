@@ -50,7 +50,7 @@ void	exec_bultins(t_data *param)
  	i = verif_bultin(param);
  	if (!i)
  	{
- 		path = return_env_var("PATH", param->envp);
+ 		path = return_env_var(param, "PATH", param->envp);
  		cmd = cmd_format(param->input_cleaned, path, 0);
  		free(path);
  		pid = fork();
@@ -101,7 +101,7 @@ void	execute_pipe(t_data *param, int i)
 	i = verif_bultin(param);
 	if (!i)
 	{
-		path = return_env_var("PATH", param->envp);
+		path = return_env_var(param, "PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);
 		if (execve(cmd[0], cmd, param->envp) <= -1)

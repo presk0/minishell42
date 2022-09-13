@@ -82,8 +82,8 @@ char	**free_matrix_line(char **matrix, int line_nb);
 char	*matrix_to_str(char **matrix);
 
 /* env */
-char	*convert_var_in_line(char *line, char *envp[]);
-char	*return_env_var(char *var, char *envp[]);
+char	*convert_var_in_line(t_data *param, char *line, char *envp[]);
+char	*return_env_var(t_data *param, char *var, char *envp[]);
 /* bin && initial */ /* format without path */
 int			exec_bin_to_fd(int fd, t_data *param); 
 
@@ -107,7 +107,7 @@ void	execute_pipe(t_data *param, int i);
 
 /*bultins*/
 
-char	**cmd_format2(char **str, char **envp);
+char	**cmd_format2(t_data *param, char **str, char **envp);
 char    **cmd_split_sw(t_data *param);
 void	run_echo(int fd, t_data *param);
 void	run_exit(t_data *param);

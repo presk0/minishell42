@@ -17,6 +17,8 @@ size_t	ft_var_len(char *var_start)
 	size_t	len;
 
 	len = 0;
+	if (!ft_strncmp(var_start, "?", 2))
+		return (1);
 	if (var_start)
 	{
 		while (*var_start && (ft_isalnum(*var_start) || *var_start == '_'))
@@ -28,7 +30,7 @@ size_t	ft_var_len(char *var_start)
 	return (len);
 }
 
-char	*return_env_var(char *var, char *envp[])
+char	*return_env_var(t_data *param, char *var, char *envp[])
 {
 	size_t	i;
 	size_t var_len;
@@ -38,6 +40,8 @@ char	*return_env_var(char *var, char *envp[])
 	i = 0;
 	if (!var || !envp)
 		return (NULL);
+	if (!ft_strncmp(var, "?", 2))
+		return (ft_itoa(param->retour));
 	while (envp[i])
 	{
 		spliter_index = ft_strlen_char(envp[i], '=');
@@ -79,7 +83,7 @@ char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)
 	return (replacing_line);
 }
 
-char	*convert_var_in_line(char *line, char **envp)
+char	*convert_var_in_line(t_data *param, char *line, char **envp)
 {
 	int		i;
 	int		is_quoted;
@@ -95,7 +99,7 @@ char	*convert_var_in_line(char *line, char **envp)
 		if (line[i] == '$' && (is_quoted == 0 || is_quoted == 2))
 		{
 			var_len = ft_var_len(&line[i + 1]);
-			var_content = return_env_var(&line[i + 1], envp);
+			var_content = return_env_var(param, &line[i + 1], envp);
 			if (var_content)
 			{
 				new_line = convert_var(line, i, var_content, var_len);
