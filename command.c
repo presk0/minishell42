@@ -97,7 +97,8 @@ int	heredoc(char *stop_str)
 		first_loop = 0;
 	}
 	fd = open("heredoc", O_WRONLY | O_CREAT, 0666);
-	write(fd, text, ft_strlen(text));
+	if (text)
+		write(fd, text, ft_strlen(text));
 	close(fd);
 	free(text);
 	free(line);

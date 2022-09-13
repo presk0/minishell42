@@ -65,8 +65,30 @@ void rm_heredoc_file(void)
 		}
 		else
 			wait(NULL);
-		ft_free_split(&rm_cmd);
 	}
+	ft_free_split(&rm_cmd);
+}
+
+int	check_f_matrix(char **f_matrix)
+{
+	int	i;
+
+	i = 1;
+	if (f_matrix)
+	{
+		while (f_matrix[i])
+		{
+			if (!strncmp(f_matrix[i], "", 2))
+			{
+				write(2, "syntax error near unexpected token `newline'\n", 45);
+				return (0);
+			}
+			if (!f_matrix[++i])
+				return (1);
+			i++;
+		}
+	}
+	return (1);
 }
 
 void	parser2(t_data *param)
@@ -85,6 +107,11 @@ void	parser2(t_data *param)
     if( j == 1)
     {
         param->f_matrix = pop_names_from_sep(param, i, sep);
+		if (!check_f_matrix(param->f_matrix))
+		{
+			ft_free_split(&sep);
+			return ;
+		}
 		execute(param, j);
     }
     else
@@ -92,6 +119,11 @@ void	parser2(t_data *param)
         while (i < j) {
             pipe(end);
 			param->f_matrix = pop_names_from_sep(param, i, sep);
+		if (!check_f_matrix(param->f_matrix))
+		{
+			ft_free_split(&sep);
+			return ;
+		}
 			fds[1] = redir_out(param->f_matrix);
 			fds[0] = redir_in(param->f_matrix);
 			parent = fork();

@@ -86,7 +86,7 @@ void	exec_bultins(t_data *param)
 			dup2(dup(1), STDIN_FILENO);
 		}
  	}
- 	else
+ 	else if (i ==1)
  	{
 		exec_bultins(param);
  	}
@@ -97,7 +97,6 @@ void	execute_pipe(t_data *param, int i)
 	char	**cmd;
 	char	*path;
 	(void)i;
-	//int fd = 1;
 	
 	i = verif_bultin(param);
 	if (!i)
@@ -118,7 +117,7 @@ void	execute_pipe(t_data *param, int i)
 			cmd = NULL;
 		}
 	}	
-	else
+	else if (i == 1)
 	{
 		exec_bultins(param);
 		exit(0);
