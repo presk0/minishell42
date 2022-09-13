@@ -35,6 +35,7 @@ change_dir	bultins2.c	/^static void	change_dir(char *path, t_data *param)$/;"	f	
 check_built	bultins2.c	/^int check_built(t_data *param, int fd)$/;"	f	typeref:typename:int
 check_error	prompting.c	/^int	check_error(t_data *param)$/;"	f	typeref:typename:int
 check_exit	check_exit.c	/^void	check_exit(t_data *param)$/;"	f	typeref:typename:void
+check_f_matrix	pipe2.c	/^int	check_f_matrix(char **f_matrix)$/;"	f	typeref:typename:int
 check_heredoc	redir.c	/^int check_heredoc(t_data *param, int i, int fd)$/;"	f	typeref:typename:int
 clean	Makefile	/^clean:$/;"	t
 cmd_format	exec_cmd.c	/^char	**cmd_format(char *str, char *PATH, int is_builtin)$/;"	f	typeref:typename:char **
@@ -104,6 +105,7 @@ reinit_after_pipe	parser.c	/^void	reinit_after_pipe(t_data *param, int **io_fd)$
 reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
 return_env_var	var_conv.c	/^char	*return_env_var(char *var, char *envp[])$/;"	f	typeref:typename:char *
 return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
+rm_heredoc_file	pipe2.c	/^void rm_heredoc_file(void)$/;"	f	typeref:typename:void
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void
 run_env	bultins2.c	/^void	run_env(t_data *param, int fd)$/;"	f	typeref:typename:void
 run_exit	bultins2.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
@@ -111,6 +113,7 @@ run_exit	check_exit.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
 run_export	export.c	/^char	**run_export(t_data *param)$/;"	f	typeref:typename:char **
 run_unset	bultins2.c	/^char	**run_unset(t_data *param)$/;"	f	typeref:typename:char **
 set_cmds	pipe2.c	/^int	set_cmds(t_data *param)$/;"	f	typeref:typename:int
+set_f_matrix	pipe2.c	/^int	set_f_matrix(t_data *param, int i)$/;"	f	typeref:typename:int
 set_fd	redir.c	/^int	set_fd(t_data *param)$/;"	f	typeref:typename:int
 set_filename	cde_bash.c	/^static void	set_filename(int len, char **new, char *str)$/;"	f	typeref:typename:void	file:
 set_in	command.c	/^void	set_in(char **argv)$/;"	f	typeref:typename:void

@@ -91,39 +91,47 @@ int	check_f_matrix(char **f_matrix)
 	return (1);
 }
 
+int	set_f_matrix(t_data *param, int i)
+{
+	char	**sep;
+
+	sep = ft_split(">>,>,<<,<", ',');
+    param->f_matrix = pop_names_from_sep(param, i, sep);
+	if (!check_f_matrix(param->f_matrix))
+	{
+		ft_free_split(&sep);
+		return (-1);
+	}
+	else
+	{
+		ft_free_split(&sep);
+		return (1);
+	}
+}
+
 void	parser2(t_data *param)
 {
 	int		i;
 	int		j;
-	char	**sep;
 	pid_t	parent;
 	int		end[2];
 	int		fds[2];
 	int		fd;
 	
 	j = set_cmds(param);
-	sep = ft_split(">>,>,<<,<", ',');
 	i = 0;
     if( j == 1)
     {
-        param->f_matrix = pop_names_from_sep(param, i, sep);
-		if (!check_f_matrix(param->f_matrix))
-		{
-			ft_free_split(&sep);
+		if (set_f_matrix(param, i) == -1)
 			return ;
-		}
 		execute(param, j);
     }
     else
 	{
         while (i < j) {
             pipe(end);
-			param->f_matrix = pop_names_from_sep(param, i, sep);
-		if (!check_f_matrix(param->f_matrix))
-		{
-			ft_free_split(&sep);
-			return ;
-		}
+			if (set_f_matrix(param, i) == -1)
+				return ;
 			fds[1] = redir_out(param->f_matrix);
 			fds[0] = redir_in(param->f_matrix);
 			parent = fork();
@@ -150,12 +158,8 @@ void	parser2(t_data *param)
 			i++;
         }
     }
-	// free(param->input);
-	// free(param->f_matrix);	
 	if (param->cmds)
 		ft_free_split(&param->cmds);
-	if (sep)
-		ft_free_split(&sep);
 	rm_heredoc_file();
 }
 
