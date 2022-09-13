@@ -27,27 +27,34 @@ void	ft_parent_process(t_data *param, int *end, int *fd)
 
 }
 
+int	set_cmds(t_data *param)
+{
+	char	**sep;
+	int		i;
+
+	i = 0;
+	sep = ft_split("|", ' ');
+	param->cmds = ft_split_multistrsep(param->input, sep, 0);
+	ft_free_split(&sep);
+	sep = NULL;
+	while (param->cmds[i])
+		i++;
+	return (i);
+}
+
 void	parser2(t_data *param)
 {
 	int		i;
+	int		j;
 	char	**sep;
 	pid_t	parent;
 	int		end[2];
 	int		fds[2];
 	int		fd;
 	
-	sep = ft_split("|", ' ');
-	param->cmds = ft_split_multistrsep(param->input, sep, 0);
-	ft_free_split(&sep);
-	sep = NULL;
-	i = 0;
+	j = set_cmds(param);
 	sep = ft_split(">>,>,<<,<", ',');
-	//fd = redir_in(param->f_matrix);    //redir
-	while (param->cmds[i])
-		i++;
-	int j = i;
 	i = 0;
-
     if( j == 1)
     {
         param->f_matrix = pop_names_from_sep(param, i, sep);
@@ -63,7 +70,10 @@ void	parser2(t_data *param)
 			parent = fork();
 			if (!parent)
 			{
-                dup2(fd, STDIN_FILENO);
+				if (!fds[0])
+					dup2(fd, STDIN_FILENO);
+				else
+					dup2(fds[0], STDIN_FILENO);
 				if (fds[1] != 1)
 					dup2(fds[1], STDOUT_FILENO);
 				else if (i < j - 1)

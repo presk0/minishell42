@@ -74,13 +74,14 @@ int check_heredoc(t_data *param, int i, int fd)
     return (fd);
 }
 
+/*
 int    heredoc(t_data *param, int i)
 {
     int fd;
     char *input;
     int len;
 
-    fd = open("/tmp/heredoc", O_RDWR | O_CREAT | O_TRUNC, 0666);
+    fd = open("heredoc", O_RDWR | O_CREAT | O_TRUNC, 0666);
     input = readline("heredoc>");
     if(!input)
         return (0);
@@ -97,3 +98,4 @@ int    heredoc(t_data *param, int i)
     }
     return (fd);
 }
+*/

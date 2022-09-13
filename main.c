@@ -61,9 +61,6 @@ int	main(int argc, char **argv, char **envp)
 	init_sig(&tmp, param);
 	while ("pas vu pas pirs")
 	{
-		//signal(SIGINT, sigint_handler);
-		//signal(SIGQUIT, SIG_IGN);
-		
 		if (!get_input(param))
 			break ;
 		if (!strcmp(param->input, ""))
@@ -76,6 +73,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	rl_clear_history();
 	reset_param(param);
-	//freall();
 	exit(0);
 }

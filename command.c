@@ -67,6 +67,44 @@ int	redir_out(char **f_matrix)
 	return (fd);
 }
 
+int	heredoc(char *stop_str)
+{
+	int		fd;
+	int		first_loop;
+	char	*line;
+	char	*text;
+	char	*tmp;
+
+	first_loop = 1;
+	text = NULL;
+	while (first_loop || ft_strncmp(line, stop_str, ft_strlen(stop_str)))
+	{
+		if (!first_loop)
+		{
+			tmp = line;
+			line = ft_strjoin(line, "\n");
+			free(tmp);
+			tmp = text;
+			if (text)
+			{
+				text = ft_strjoin(text, line);
+				free(tmp);
+			}
+			else
+				text = line;
+		}
+		line = readline("> ");
+		first_loop = 0;
+	}
+	fd = open("heredoc", O_WRONLY | O_CREAT, 00666);
+	write(fd, text, ft_strlen(text));
+	close(fd);
+	free(text);
+	free(line);
+	fd = open("heredoc", O_RDONLY);
+	return (fd);
+}
+
 int	redir_in(char **f_matrix)
 {
 	int		ret;
@@ -89,87 +127,23 @@ int	redir_in(char **f_matrix)
 				close(last_fd);
 			last_fd = fd;
 		}
-			/*
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
 		{
-			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
-			ret = 0;
-			while ((ret = read(fd, &c, 1)))
-				if (ret == -1)
-				{
-					write(2, "Couldn't read file\n", 19);
-					break ;
-				}
+			fd = heredoc(f_matrix[i + 1]);
+			if (last_fd)
+				close(last_fd);
+			last_fd = fd;
 		}
-		*/
 		i++;
 	}
-	//printf(stderr, "[redir_in] end fd[0] = %d\n", fd);
 	return (fd);
 }
-
-/*
-static int	set_fd(t_data *param)
-{
-	int		i;
-	int		fd;
-
-	i = 0;
-	fd = 1;
-	while (param->argv[i] && ft_memcmp(param->argv[i], ">", 2)
-			&& ft_memcmp(param->argv[i], ">>", 3))
-		i++;
-	if (!param->argv[i])
-		return (1);
-	return (redirect(param, i, fd));
-}
-
-static int	count_redir(t_data *param)
-{
-	int	count;
-	int	i;
-
-	i = -1;
-	count = 0;
-	while (++i < param->argc)
-	{
-		if (!ft_memcmp(param->argv[i], ">", 2) ||
-			!ft_memcmp(param->argv[i], ">>", 3))
-		{
-			count++;
-			i++;
-		}
-	}
-	return (count);
-}
-
-static void	copy_args1(t_data *param)
-{
-	int		i;
-	int		j;
-	char	**args;
-
-	param->argc -= count_redir(param) * 2;
-	args = (char **)ft_calloc(sizeof(char *), param->argc + 1);
-	i = 0;
-	j = 0;
-	while (j < param->argc)
-	{
-		if (!ft_memcmp(param->argv[i], ">", 2) ||
-			!ft_memcmp(param->argv[i], ">>", 3))
-			i += 2;
-		else
-			args[j++] = ft_strdup(param->argv[i++]);
-	}
-	free_matrix(param->argv);
-	param->argv = args;
-}
-*/
 
 /*
 char		**check_command(char *str, t_data *param)
 {
 	int		fd;
+}}
 
 	if (param->argv[0] && *(param->argv[0]))
 	{

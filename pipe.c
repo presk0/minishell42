@@ -44,7 +44,7 @@ void	exec_bultins(t_data *param)
  	char	**cmd;
  	char	*path;
  	int		pid;
-	int fd = 1;
+	int fds[2];
 
  	(void)i;
  	i = verif_bultin(param);
@@ -57,8 +57,10 @@ void	exec_bultins(t_data *param)
 		g_pid = pid;
  		if (pid == 0)
  		{
-			dup2(redir_out(param->f_matrix), STDOUT_FILENO);
-			dup2(redir_in(param->f_matrix), STDIN_FILENO);
+			fds[0] = dup(redir_in(param->f_matrix));
+			fds[1] = dup(redir_out(param->f_matrix));
+			dup2(fds[0], STDIN_FILENO);
+			dup2(fds[1], STDOUT_FILENO);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
@@ -71,7 +73,6 @@ void	exec_bultins(t_data *param)
  				ft_free_split(&cmd);
  				cmd = NULL;
  			}
- 			close (fd);
 			exit(param->retour);
  		}
  		else
@@ -81,6 +82,8 @@ void	exec_bultins(t_data *param)
  				ft_free_split(&cmd);
  			cmd = NULL;
  			waitpid(pid, NULL, 0);
+			dup2(dup(0), STDIN_FILENO);
+			dup2(dup(1), STDIN_FILENO);
 		}
  	}
  	else

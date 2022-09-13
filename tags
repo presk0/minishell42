@@ -70,9 +70,10 @@ ft_var_len	var_conv.c	/^size_t	ft_var_len(char *var_start)$/;"	f	typeref:typenam
 get_env	env.c	/^char	*get_env(char **envp, char *env)$/;"	f	typeref:typename:char *
 get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
 get_path	exec_cmd.c	/^char	*get_path(char *cmd, char *PATH)$/;"	f	typeref:typename:char *
-heredoc	redir.c	/^int    heredoc(t_data *param, int i)$/;"	f	typeref:typename:int
+heredoc	command.c	/^int	heredoc(char *stop_str)$/;"	f	typeref:typename:int
 init_fd	parser.c	/^void init_fd(t_data *param, int **fd, int **io_fd)$/;"	f	typeref:typename:void
 init_param	init.c	/^t_data	*init_param(char **envp)$/;"	f	typeref:typename:t_data *
+init_sig	main.c	/^void	init_sig(struct termios *tmp, t_data *param)$/;"	f	typeref:typename:void
 init_vars	split.c	/^static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init, char **sep)$/;"	f	typeref:typename:void	file:
 is_blank	strings.c	/^int is_blank(char c)$/;"	f	typeref:typename:int
 is_bonus	prompting.c	/^static int	is_bonus(char *str, int i)$/;"	f	typeref:typename:int	file:
@@ -109,6 +110,7 @@ run_exit	bultins2.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
 run_exit	check_exit.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
 run_export	export.c	/^char	**run_export(t_data *param)$/;"	f	typeref:typename:char **
 run_unset	bultins2.c	/^char	**run_unset(t_data *param)$/;"	f	typeref:typename:char **
+set_cmds	pipe2.c	/^int	set_cmds(t_data *param)$/;"	f	typeref:typename:int
 set_fd	redir.c	/^int	set_fd(t_data *param)$/;"	f	typeref:typename:int
 set_filename	cde_bash.c	/^static void	set_filename(int len, char **new, char *str)$/;"	f	typeref:typename:void	file:
 set_in	command.c	/^void	set_in(char **argv)$/;"	f	typeref:typename:void
