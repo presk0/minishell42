@@ -45,6 +45,7 @@ void	exec_bultins(t_data *param)
  	char	*path;
  	int		pid;
 	int fds[2];
+	int		ret;
 
  	(void)i;
  	i = verif_bultin(param);
@@ -81,7 +82,8 @@ void	exec_bultins(t_data *param)
 			if (cmd)
  				ft_free_split(&cmd);
  			cmd = NULL;
- 			waitpid(pid, NULL, 0);
+ 			waitpid(pid, &ret, 0);
+			param->retour = WEXITSTATUS(ret);
 			dup2(dup(0), STDIN_FILENO);
 			dup2(dup(1), STDIN_FILENO);
 		}

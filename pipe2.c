@@ -20,11 +20,12 @@ void	ft_child_process(t_data *param, int i, int *end)
 
 void	ft_parent_process(t_data *param, int *end, int *fd)
 {
+	int	ret;
+
 	close(end[1]);
 	*fd = end[0];
-	wait(&param->retour);
-	param->retour /= 256;
-
+	wait(&ret);
+	param->retour = WEXITSTATUS(ret);
 }
 
 int	set_cmds(t_data *param)
