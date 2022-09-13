@@ -39,7 +39,6 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
     {
         if (param->input_cleaned)
             free(param->input_cleaned);
-
         param->input_cleaned = matrix_to_str(cmd_split);
         ft_free_split(&cmd_split);
 

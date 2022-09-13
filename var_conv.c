@@ -104,7 +104,7 @@ char	*convert_var_in_line(t_data *param, char *line, char **envp)
 			{
 				new_line = convert_var(line, i, var_content, var_len);
 				free(var_content);
-				//free(line);
+				free(line);
 				var_content = NULL;
 				line = NULL;
 				line = new_line;
