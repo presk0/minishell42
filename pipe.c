@@ -117,9 +117,9 @@ void	execute_pipe(t_data *param, int i)
 			cmd = NULL;
 		}
 	}	
-	else if (i == 1)
-	{
-		exec_bultins(param);
-		exit(0);
-	}
+//	else if (i == 1)
+//	{
+//		exec_bultins(param);
+//		exit(0);
+//	}
 }

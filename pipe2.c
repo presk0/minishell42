@@ -132,26 +132,32 @@ void	parser2(t_data *param)
             pipe(end);
 			if (set_f_matrix(param, i) == -1)
 				return ;
-			pid = fork();
-			if (pid == 0)
-			{
-				fds[1] = redir_out(param->f_matrix);
-				fds[0] = redir_in(param->f_matrix);
-				if (fds[0] == 0)
-					fds[0] = fd;
-				dup2(fds[0], STDIN_FILENO);
-				if (fds[1] != 1)
-					dup2(fds[1], STDOUT_FILENO);
-				else if (i < j - 1)
-                    dup2(end[1], STDOUT_FILENO);
-				ft_child_process(param, i, end);
-            }
+
+			if (verif_bultin(param))
+				execute(param, i);
 			else
 			{
-				if (fds[0])
-					dup2(fds[0], end[0]);
-				ft_parent_process(param, end, &fd);
-				ft_free_split(&param->f_matrix);
+				pid = fork();
+				if (pid == 0)
+				{
+					fds[1] = redir_out(param->f_matrix);
+					fds[0] = redir_in(param->f_matrix);
+					if (fds[0] == 0)
+						fds[0] = fd;
+					dup2(fds[0], STDIN_FILENO);
+					if (fds[1] != 1)
+						dup2(fds[1], STDOUT_FILENO);
+					else if (i < j - 1)
+            	        dup2(end[1], STDOUT_FILENO);
+					ft_child_process(param, i, end);
+            	}
+				else
+				{
+					if (fds[0])
+						dup2(fds[0], end[0]);
+					ft_parent_process(param, end, &fd);
+					ft_free_split(&param->f_matrix);
+				}
 			}
 			rm_heredoc_file();
 			i++;
