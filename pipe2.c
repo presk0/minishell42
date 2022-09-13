@@ -42,6 +42,33 @@ int	set_cmds(t_data *param)
 	return (i);
 }
 
+void rm_heredoc_file(void)
+{
+	int		fd;
+	int		pid;
+	char	**rm_cmd;
+
+	rm_cmd = ft_split("/bin/rm heredoc", ' ');
+	fd = open(rm_cmd[1], O_RDONLY);
+	if (fd != -1)
+	{
+		close(fd);
+		pid = fork();
+		if (pid == -1)
+		{
+			write(2, "rm_heredoc_file error\n", 22);
+		}
+		else if (pid == 0)
+		{
+			execve(rm_cmd[0], rm_cmd, NULL);
+			exit(1);
+		}
+		else
+			wait(NULL);
+		ft_free_split(&rm_cmd);
+	}
+}
+
 void	parser2(t_data *param)
 {
 	int		i;
@@ -87,6 +114,7 @@ void	parser2(t_data *param)
 				ft_parent_process(param, end, &fd);
 				ft_free_split(&param->f_matrix);
 			}
+			rm_heredoc_file();
 			i++;
         }
     }
@@ -96,5 +124,6 @@ void	parser2(t_data *param)
 		ft_free_split(&param->cmds);
 	if (sep)
 		ft_free_split(&sep);
+	rm_heredoc_file();
 }
 

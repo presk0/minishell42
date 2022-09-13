@@ -94,6 +94,7 @@ void		parser2(t_data *param);
 char	**cmd_format(char *str, char *PATH, int is_builtin);
 int	redir_out(char **f_matrix);
 int	redir_in(char **f_matrix);
+void rm_heredoc_file(void);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);
