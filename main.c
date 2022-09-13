@@ -46,30 +46,27 @@ void	reset_param(t_data *param)
 	param->cmds = NULL;
 }
 
+void	init_sig(struct termios *tmp, t_data *param)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sigint_handler);
+	tcgetattr(0, tmp);
+    tmp->c_lflag &= ~ECHOCTL; 
+    tmp->c_lflag |= ECHO;
+    tcgetattr(0, &param->save);
+    tcsetattr(0, 0, tmp);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-    	g_pid = 0;
+    g_pid = 0;
 	t_data  *param;
-	char	**matrix;
-	char	**sep;
-	char	*str;
-	(void)str;
-	(void)matrix;
-	(void)sep;
     (void)argc;
     (void)argv;
     struct termios  tmp;
-	(void)tmp;
 	param = init_param(envp);
-	matrix = NULL;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sigint_handler);
-	tcgetattr(0, &tmp);
-    tmp.c_lflag &= ~ECHOCTL; 
-    tmp.c_lflag |= ECHO;
-    tcgetattr(0, &param->save);
-    tcsetattr(0, 0, &tmp);
-	while (42)
+	init_sig(&tmp, param);
+	while ("pas vu pas pirs")
 	{
 		//signal(SIGINT, sigint_handler);
 		//signal(SIGQUIT, SIG_IGN);
@@ -87,5 +84,5 @@ int	main(int argc, char **argv, char **envp)
 	rl_clear_history();
 	reset_param(param);
 	//freall();
-	exit(param->retour);
+	exit(0);
 }
