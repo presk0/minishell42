@@ -133,7 +133,6 @@ void	parser2(t_data *param)
             pipe(end);
 			if (set_f_matrix(param, i) == -1)
 				return ;
-
 			if (verif_bultin(param))
 				execute(param, i);
 			else

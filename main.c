@@ -50,6 +50,23 @@ void	init_sig(struct termios *tmp, t_data *param)
     tcsetattr(0, 0, tmp);
 }
 
+int	ft_only_blank(t_data *param)
+{
+	int	i;
+
+	i = 0;
+	if (!strcmp(param->input, ""))
+		return (1);
+	while (param->input[i])
+	{
+		if (param->input[i] != ' ' && param->input[i] != '\t')
+			return (0);
+		i++;
+	}
+	free(param->input);
+	param->input = NULL;
+	return (1);
+}
 int	main(int argc, char **argv, char **envp)
 {
     g_pid = 0;
@@ -63,7 +80,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (!get_input(param))
 			break ;
-		if (!strcmp(param->input, ""))
+		if (ft_only_blank(param))
 			continue ;
 		add_history(param->input);
 		if (check_error(param))
