@@ -113,7 +113,7 @@ void	parser2(t_data *param)
 {
 	int		i;
 	int		j;
-	pid_t	parent;
+	pid_t	pid;
 	int		end[2];
 	int		fds[2];
 	int		fd;
@@ -132,15 +132,14 @@ void	parser2(t_data *param)
             pipe(end);
 			if (set_f_matrix(param, i) == -1)
 				return ;
-			fds[1] = redir_out(param->f_matrix);
-			fds[0] = redir_in(param->f_matrix);
-			parent = fork();
-			if (!parent)
+			pid = fork();
+			if (pid == 0)
 			{
-				if (!fds[0])
-					dup2(fd, STDIN_FILENO);
-				else
-					dup2(fds[0], STDIN_FILENO);
+				fds[1] = redir_out(param->f_matrix);
+				fds[0] = redir_in(param->f_matrix);
+				if (fds[0] == 0)
+					fds[0] = fd;
+				dup2(fds[0], STDIN_FILENO);
 				if (fds[1] != 1)
 					dup2(fds[1], STDOUT_FILENO);
 				else if (i < j - 1)
