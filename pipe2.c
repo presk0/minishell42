@@ -18,13 +18,17 @@ void	ft_child_process(t_data *param, int i, int *end)
 	execute_pipe(param, i);
 }
 
-void	ft_parent_process(t_data *param, int *end, int *fd)
+void	ft_parent_process(t_data *param, int pid, int *end, int *fd)
 {
 	int	ret;
 
 	close(end[1]);
 	*fd = end[0];
-	wait(&ret);
+	usleep(10000);
+	waitpid(pid, &ret, WUNTRACED | WNOHANG);
+	if (!WIFEXITED(ret))
+		kill(pid, SIGTERM);
+//	fprintf(stderr, "[parent_process] %s : %d\n", param->cmds[0], WIFEXITED(ret));
 	param->retour = WEXITSTATUS(ret);
 }
 
@@ -155,7 +159,7 @@ void	parser2(t_data *param)
 				{
 					if (fds[0])
 						dup2(fds[0], end[0]);
-					ft_parent_process(param, end, &fd);
+					ft_parent_process(param, pid, end, &fd);
 					ft_free_split(&param->f_matrix);
 				}
 			}

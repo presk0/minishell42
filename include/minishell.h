@@ -134,7 +134,7 @@ char	**export_command2(t_data *param, int j);
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);
-void	ft_parent_process(t_data *param, int *end, int *fd);
+void	ft_parent_process(t_data *param, int pid, int *end, int *fd);
 void		sigint_handler(int sign_num);
 int check_built(t_data *param, int fd);
 

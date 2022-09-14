@@ -44,7 +44,7 @@ void	exec_bultins(t_data *param)
  	char	**cmd;
  	char	*path;
  	int		pid;
-	int fds[2];
+	int		fds[2];
 	int		ret;
 
  	(void)i;
@@ -83,7 +83,7 @@ void	exec_bultins(t_data *param)
  			waitpid(pid, &ret, 0);
 			param->retour = WEXITSTATUS(ret);
 			dup2(dup(0), STDIN_FILENO);
-			dup2(dup(1), STDIN_FILENO);
+			dup2(dup(1), STDOUT_FILENO);
 		}
  	}
  	else if (i ==1)
@@ -92,18 +92,49 @@ void	exec_bultins(t_data *param)
  	}
  }
 
+/*
+ int	cmd_bloquante(char **cmd, int i)
+ {
+	 char	*trimed;
+	 char	**path_split;
+	 int	matrix_len;
+
+	 if (cmd && cmd[0] && i == 0)
+	 {
+		 matrix_len = ft_matrixlen(cmd);
+		 path_split = ft_split(cmd[0], '/');
+		 if (!ft_strncmp(path_split[ft_matrixlen(path_split) -1], "cat", 4))
+		 {
+			ft_free_split(&path_split);
+			trimed = ft_strtrim(cmd[matrix_len - 1], " \t");
+			if (matrix_len == 1 || trimed[0] == '-')
+			{
+				ft_free_split(&cmd);
+				free(trimed);
+				write(2, "\n", 1);
+				return (1);
+			}
+		 }
+	 }
+	 return (0);
+ }
+ */
+
 void	execute_pipe(t_data *param, int i)
 {
 	char	**cmd;
 	char	*path;
+	int		j;
 	(void)i;
 	
-	i = verif_bultin(param);
-	if (!i)
+	j = verif_bultin(param);
+	if (!j)
 	{
 		path = return_env_var(param, "PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);
+		//if (cmd_bloquante(cmd, i))
+		//	exit(0);
 		if (execve(cmd[0], cmd, param->envp) <= -1)
 		{
 			param->retour = 126;
