@@ -160,6 +160,7 @@ void	parser2(t_data *param)
 				}
 			}
 			rm_heredoc_file();
+			ft_free_split(&param->argv);
 			i++;
         }
     }

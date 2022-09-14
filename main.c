@@ -84,7 +84,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		add_history(param->input);
 		if (check_error(param))
-			return (-1);
+			continue ;
 		parser2(param);
 		reset_param(param);
 	}

@@ -37,6 +37,7 @@ int	check_error(t_data *param)
 			param->retour = 2;
 			free(param->input);
 			param->input = NULL;
+			write(2, "Aux chiottes les bonus\n", 23);
 			return (1);
 		}	
 		i++;

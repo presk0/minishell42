@@ -14,6 +14,11 @@
 
 int	verif_bultin(t_data *param)
 {
+	char	*to_trim;
+
+	to_trim = param->input_cleaned;
+	param->input_cleaned = ft_strtrim(to_trim, " \t");
+	free(to_trim);
 	if (param->input_cleaned)
 	{
 		if (!ft_memcmp("echo", param->input_cleaned, 4))
