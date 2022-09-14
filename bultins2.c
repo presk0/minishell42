@@ -226,6 +226,7 @@ char	**run_unset(t_data *param)
 	return (param->envp);
 }
 
+/*
 char	**export_command(t_data *param, int j)
 {
 	int		i;
@@ -249,7 +250,7 @@ char	**export_command(t_data *param, int j)
 	}
 	return (cpy);
 }
-
+*/
 void	run_env(t_data *param, int fd)
 {
 	int	i;

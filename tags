@@ -39,10 +39,10 @@ check_f_matrix	pipe2.c	/^int	check_f_matrix(char **f_matrix)$/;"	f	typeref:typen
 check_heredoc	redir.c	/^int check_heredoc(t_data *param, int i, int fd)$/;"	f	typeref:typename:int
 clean	Makefile	/^clean:$/;"	t
 cmd_format	exec_cmd.c	/^char	**cmd_format(char *str, char *PATH, int is_builtin)$/;"	f	typeref:typename:char **
-cmd_format2	bultins2.c	/^char	**cmd_format2(char **str, char **envp)$/;"	f	typeref:typename:char **
+cmd_format2	bultins2.c	/^char	**cmd_format2(t_data *param, char **str, char **envp)$/;"	f	typeref:typename:char **
 cmd_split_sw	bultins2.c	/^char	**cmd_split_sw(t_data *param)$/;"	f	typeref:typename:char **
 convert_var	var_conv.c	/^char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)$/;"	f	typeref:typename:char *
-convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(char *line, char **envp)$/;"	f	typeref:typename:char *
+convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(t_data *param, char **line, char **envp)$/;"	f	typeref:typename:char *
 copy_args1	redir.c	/^void	copy_args1(t_data *param)$/;"	f	typeref:typename:void
 copy_env	init.c	/^char	**copy_env(char **envp, int add)$/;"	f	typeref:typename:char **
 count_redir	redir.c	/^static int	count_redir(t_data *param)$/;"	f	typeref:typename:int	file:
@@ -54,7 +54,7 @@ error	bultins2.c	/^void	error(t_data *param)$/;"	f	typeref:typename:void
 exec_bultins	pipe.c	/^void	exec_bultins(t_data *param)$/;"	f	typeref:typename:void
 execute	pipe.c	/^ void	execute(t_data *param, int i)$/;"	f	typeref:typename:void
 execute_pipe	pipe.c	/^void	execute_pipe(t_data *param, int i)$/;"	f	typeref:typename:void
-export_command	bultins2.c	/^char	**export_command(t_data *param, int j)$/;"	f	typeref:typename:char **
+export_command	export.c	/^char	**export_command(t_data *param, int j)$/;"	f	typeref:typename:char **
 export_command2	export.c	/^char	**export_command2(t_data *param, int j)$/;"	f	typeref:typename:char **
 fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
@@ -62,6 +62,7 @@ ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	ty
 ft_child_process	pipe2.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
+ft_only_blank	main.c	/^int	ft_only_blank(t_data *param)$/;"	f	typeref:typename:int
 ft_parent_process	pipe2.c	/^void	ft_parent_process(t_data *param, int *end, int *fd)$/;"	f	typeref:typename:void
 ft_split_mini	ft_split_mini.c	/^char		**ft_split_mini(char *s, char c)$/;"	f	typeref:typename:char **
 ft_split_multistrsep	split.c	/^char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)$/;"	f	typeref:typename:char **
@@ -103,7 +104,7 @@ redir_out	command.c	/^int	redir_out(char **f_matrix)$/;"	f	typeref:typename:int
 refresh_matrix	split.c	/^static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)$/;"	f	typeref:typename:void	file:
 reinit_after_pipe	parser.c	/^void	reinit_after_pipe(t_data *param, int **io_fd)$/;"	f	typeref:typename:void
 reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
-return_env_var	var_conv.c	/^char	*return_env_var(char *var, char *envp[])$/;"	f	typeref:typename:char *
+return_env_var	var_conv.c	/^char	*return_env_var(t_data *param, char *var, char *envp[])$/;"	f	typeref:typename:char *
 return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
 rm_heredoc_file	pipe2.c	/^void rm_heredoc_file(void)$/;"	f	typeref:typename:void
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void

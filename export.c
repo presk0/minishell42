@@ -44,6 +44,43 @@ char	**export_command2(t_data *param, int j)
 	return (cpy);
 }
 
+char	**export_command(t_data *param, int j)
+{
+	int		i;
+	char	*new_var;
+	int		spliter_index;
+	char	**quote_split;
+
+	i = 0;
+	new_var = param->argv[j]; //test=blabla
+	// if test='bla bla', ce qui est entre quote est stocke dans l;argument suivant
+	if (new_var[ft_strlen(new_var) - 1] == '=' && param->argv[j + 1])
+	{
+		new_var = ft_strjoin(param->argv[j], param->argv[j + 1]);
+		free(param->argv[j]);
+		param->argv[j] = NULL;
+		free(param->argv[j + 1]);
+		param->argv[j + 1] = NULL;
+		param->argv[j] = new_var;
+	}
+	quote_split = quotes_spaces_split(new_var);
+	new_var = matrix_to_str(quote_split);
+	ft_free_split(&quote_split);
+	spliter_index = ft_strlen_char(new_var, '=');
+	while (param->envp[i])
+	{
+		if (!ft_strncmp(new_var, param->envp[i], spliter_index + 1))
+		{
+			param->envp = free_matrix_line(param->envp, i);
+			break ;
+		}
+		i++;
+	}
+	param->envp = ft_append_tab(param->envp, new_var);
+	return (param->envp);
+}
+
+/*
 char	**run_export(t_data *param)
 {
 	char	**env;
@@ -53,6 +90,18 @@ char	**run_export(t_data *param)
 		print_env_tri(param);
 	else
 		param->envp = export_command2(param, 1); 
+	return (env);
+}
+*/
+char	**run_export(t_data *param)
+{
+	char	**env;
+
+	env = param->envp;
+	if (param->argv[1] == NULL)
+		print_env_tri(param);
+	else
+		param->envp = export_command(param, 1); 
 	return (env);
 }
 
