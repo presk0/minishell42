@@ -106,7 +106,6 @@ char	**quotes_spaces_split(char *line)
 	{
 		matrix[i] = ft_strdup(&line[next]);
 		next += ft_strlen(&line[next]) + 1;
-		//tmp = f//printf(stderr, "%s\n", &line[next]);
 		i++;
 	}
 	matrix[i] = NULL;

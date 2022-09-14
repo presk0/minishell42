@@ -82,7 +82,7 @@ char	**free_matrix_line(char **matrix, int line_nb);
 char	*matrix_to_str(char **matrix);
 
 /* env */
-char	*convert_var_in_line(t_data *param, char *line, char *envp[]);
+char	*convert_var_in_line(t_data *param, char **line, char *envp[]);
 char	*return_env_var(t_data *param, char *var, char *envp[]);
 /* bin && initial */ /* format without path */
 int			exec_bin_to_fd(int fd, t_data *param); 

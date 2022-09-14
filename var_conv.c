@@ -83,7 +83,7 @@ char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)
 	return (replacing_line);
 }
 
-char	*convert_var_in_line(t_data *param, char *line, char **envp)
+char	*convert_var_in_line(t_data *param, char **line, char **envp)
 {
 	int		i;
 	int		is_quoted;
@@ -93,24 +93,24 @@ char	*convert_var_in_line(t_data *param, char *line, char **envp)
 	
 	i = 0;
 	ft_is_quoted(NULL, 0);
-	while (line && line[i])
+	while (*line && (*line)[i])
 	{
-		is_quoted = ft_is_quoted(line, i);
-		if (line[i] == '$' && (is_quoted == 0 || is_quoted == 2))
+		is_quoted = ft_is_quoted(*line, i);
+		if ((*line)[i] == '$' && (is_quoted == 0 || is_quoted == 2))
 		{
-			var_len = ft_var_len(&line[i + 1]);
-			var_content = return_env_var(param, &line[i + 1], envp);
+			var_len = ft_var_len(&((*line)[i + 1]));
+			var_content = return_env_var(param, &((*line)[i + 1]), envp);
 			if (var_content)
 			{
-				new_line = convert_var(line, i, var_content, var_len);
+				new_line = convert_var(*line, i, var_content, var_len);
 				free(var_content);
-				free(line);
+				free(*line);
 				var_content = NULL;
-				line = NULL;
-				line = new_line;
+				*line = NULL;
+				*line = new_line;
 			}
 		}
 		i++;
 	}
-	return (line);
+	return (*line);
 }

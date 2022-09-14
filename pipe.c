@@ -65,9 +65,7 @@ void	exec_bultins(t_data *param)
 			if (execve(cmd[0], cmd, param->envp) <= -1)
  			{
  				param->retour = 126;
- 				ft_putstr_fd("pas commande bin valide", 2);
-				write(1, "\n", 1);
-				exit(param->retour);
+ 				ft_putstr_fd("pas commande bin valide\n", 2);
 			}
  			if (cmd)
  			{
