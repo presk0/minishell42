@@ -37,9 +37,10 @@ void	ft_parent_process(t_data *param, int pid, int *end, int *fd)
 	close(end[1]);
 	*fd = end[0];
 	j = 0;
-	while (!waitpid(pid, &ret, WUNTRACED | WNOHANG) && j++ < 3000000)
+	while (!waitpid(pid, &ret, WUNTRACED | WNOHANG) && j++ < 2000000)
 		hard_wait();
-	kill(pid, SIGTERM);
+	if (!WIFEXITED(ret))
+		kill(pid, SIGTERM);
 	param->retour = WEXITSTATUS(ret);
 }
 
