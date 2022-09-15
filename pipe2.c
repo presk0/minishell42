@@ -41,7 +41,7 @@ void	ft_parent_process(t_data *param, int pid, int *end, int *fd)
 		hard_wait();
 	if (!WIFEXITED(ret))
 	{
-		write(2, "\n");
+		write(2, "\n", 1);
 		kill(pid, SIGTERM);
 	}
 	param->retour = WEXITSTATUS(ret);

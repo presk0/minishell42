@@ -55,7 +55,9 @@ static int	line_not_finished(char *line)
 	squote = 0;
 	dquote = 0;
 	i = 0;
-	while (line && line[i])
+	if (!line)
+		return (0);
+	while (line[i])
 	{
 		if (line[i] == '\'' && !dquote)
 			squote = !squote;
@@ -78,7 +80,6 @@ char	*read_multilines(char *prompt)
 	int		quote_type;
 	
 	line = readline(prompt);
-	
 	if (!line)
 		return (0);
 	quote_type = line_not_finished(line);
@@ -95,7 +96,6 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	//line_cpy = strdup(line);
 	return (line);
 }
 
@@ -105,7 +105,6 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	//param->input = ((void *)0);
 	input = read_multilines("42mminishell $ ");
 	param->input = input;
 	if (param->input == NULL)
