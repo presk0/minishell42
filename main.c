@@ -14,7 +14,7 @@
 
 void	reset_param(t_data *param)
 {
-	if (param->argv)
+	if (param->argv && rm_heredoc_file())
 		ft_free_split(&param->argv);
 	if (param->f_matrix)
 		ft_free_split(&param->f_matrix);
@@ -85,7 +85,7 @@ int	main(int argc, char **argv, char **envp)
 		add_history(param->input);
 		if (check_error(param))
 			continue ;
-		parser2(param);
+		parser(param);
 		reset_param(param);
 	}
 	rl_clear_history();

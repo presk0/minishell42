@@ -90,13 +90,13 @@ char	*return_env_var(t_data *param, char *var, char *envp[]);
 int			exec_bin_to_fd(int fd, t_data *param); 
 
 /* parser */
-void		parser2(t_data *param);
+void		parser(t_data *param);
 
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
 int	redir_out(char **f_matrix);
 int	redir_in(char **f_matrix);
-void rm_heredoc_file(void);
+int rm_heredoc_file(void);
 
 /* get filename */
 char **pop_names_from_sep(t_data *param, int i, char **sep);
@@ -136,7 +136,7 @@ char	**export_command2(t_data *param, int j);
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);
-void	ft_parent_process(t_data *param, int pid, int *end, int *fd);
+void	ft_parent_process(t_data *param, int pid, int (*fds)[2], int (*end)[2], int *fd);
  int	cmd_bloquante(char **cmd, int i);
 void		sigint_handler(int sign_num);
 int check_built(t_data *param, int fd);

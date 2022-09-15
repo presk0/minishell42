@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+${NAME}	Makefile	/^${NAME}: make_libftprintf make_libft$/;"	t
+%.o	Makefile	/^%.o: %.c$/;"	t
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+DEBUG_NAME	Makefile	/^DEBUG_NAME = a.out$/;"	m
+HEADERS	Makefile	/^HEADERS = include$/;"	m
+INCLUDES	Makefile	/^INCLUDES = -I.\/usr\/include -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFTprintf_DIR) -I.\/$(LIBFT_DIR)$/;"	m
+LIBFT_AR	Makefile	/^LIBFT_AR = libft.a$/;"	m
+LIBFT_DIR	Makefile	/^LIBFT_DIR = libft\/$/;"	m
+LIBFTprintf_AR	Makefile	/^LIBFTprintf_AR = libftprintf.a$/;"	m
+LIBFTprintf_DIR	Makefile	/^LIBFTprintf_DIR = libftprintf\/$/;"	m
+LIBS	Makefile	/^LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)$/;"	m
+NAME	Makefile	/^NAME = minishell$/;"	m
+OBJS	Makefile	/^OBJS := ${SRCS:c=o}$/;"	m
+SRCS	Makefile	/^SRCS = *.c$/;"	m
+all	Makefile	/^all: ${NAME}$/;"	t
+check_error	prompting.c	/^int	check_error(t_data *param)$/;"	f	typeref:typename:int
+check_f_matrix	pipe2.c	/^int	check_f_matrix(char **f_matrix)$/;"	f	typeref:typename:int
+clean	Makefile	/^clean:$/;"	t
+ctags	Makefile	/^ctags:$/;"	t
+debug	Makefile	/^debug: debugfile$/;"	t
+debugfile	Makefile	/^debugfile: ctags$/;"	t
+fclean	Makefile	/^fclean: clean$/;"	t
+ft_child_process	pipe2.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
+ft_only_blank	main.c	/^int	ft_only_blank(t_data *param)$/;"	f	typeref:typename:int
+ft_parent_process	pipe2.c	/^void	ft_parent_process(t_data *param, int pid, int *end, int *fd)$/;"	f	typeref:typename:void
+get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
+hard_wait	pipe2.c	/^void	hard_wait(void)$/;"	f	typeref:typename:void
+init_sig	main.c	/^void	init_sig(struct termios *tmp, t_data *param)$/;"	f	typeref:typename:void
+is_bonus	prompting.c	/^static int	is_bonus(char *str, int i)$/;"	f	typeref:typename:int	file:
+line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/;"	f	typeref:typename:int	file:
+main	main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f	typeref:typename:int
+make_libft	Makefile	/^make_libft:$/;"	t
+make_libftprintf	Makefile	/^make_libftprintf:$/;"	t
+parser2	pipe2.c	/^void	parser2(t_data *param)$/;"	f	typeref:typename:void
+re	Makefile	/^re: fclean all$/;"	t
+read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/;"	f	typeref:typename:char *
+reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
+rm_heredoc_file	pipe2.c	/^void rm_heredoc_file(void)$/;"	f	typeref:typename:void
+set_cmds	pipe2.c	/^int	set_cmds(t_data *param)$/;"	f	typeref:typename:int
+set_f_matrix	pipe2.c	/^int	set_f_matrix(t_data *param, int i)$/;"	f	typeref:typename:int
+test	Makefile	/^test: ctags$/;"	t
