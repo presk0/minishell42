@@ -3,6 +3,10 @@
 # define MINISHELL_H
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
+# include <sys/stat.h>
+# include <sys/time.h>
+# include <sys/resource.h>
 # include <libft.h>
 # include <libftprintf.h>
 # include <stdio.h>
@@ -14,8 +18,6 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
-# include <sys/ioctl.h>
-# include <sys/stat.h>
 # include <dirent.h>
 //# include <readline/readline.h"
 //# include "readline/history.h"
@@ -135,6 +137,7 @@ void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);
 void	ft_parent_process(t_data *param, int pid, int *end, int *fd);
+ int	cmd_bloquante(char **cmd, int i);
 void		sigint_handler(int sign_num);
 int check_built(t_data *param, int fd);
 

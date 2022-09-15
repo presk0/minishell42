@@ -92,7 +92,6 @@ void	exec_bultins(t_data *param)
  	}
  }
 
-/*
  int	cmd_bloquante(char **cmd, int i)
  {
 	 char	*trimed;
@@ -118,7 +117,6 @@ void	exec_bultins(t_data *param)
 	 }
 	 return (0);
  }
- */
 
 void	execute_pipe(t_data *param, int i)
 {
@@ -133,8 +131,6 @@ void	execute_pipe(t_data *param, int i)
 		path = return_env_var(param, "PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);
-		//if (cmd_bloquante(cmd, i))
-		//	exit(0);
 		if (execve(cmd[0], cmd, param->envp) <= -1)
 		{
 			param->retour = 126;
