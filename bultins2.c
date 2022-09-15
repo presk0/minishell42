@@ -20,11 +20,9 @@ char	**cmd_format2(t_data *param, char **str, char **envp)
 	
 	*str = convert_var_in_line(param, str, envp);
 	cmd_split = quotes_spaces_split(*str);
-	if (!cmd_split)
-		return (NULL);
 	new_i = 0;
 	i = 0;
-	while (cmd_split[i])
+	while (cmd_split && cmd_split[i])
 	{
 		if (*cmd_split[i] != '\0')
 		{
@@ -36,8 +34,8 @@ char	**cmd_format2(t_data *param, char **str, char **envp)
 			free(cmd_split[i]);
 		i++;
 	}
-	cmd_split[new_i] = NULL;
-	//free(cmd_split[0]);
+	if (cmd_split)
+		cmd_split[new_i] = NULL;
 	return (cmd_split);
 }
 

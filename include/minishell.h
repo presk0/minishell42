@@ -102,12 +102,13 @@ int rm_heredoc_file(void);
 char **pop_names_from_sep(t_data *param, int i, char **sep);
 
 /* pipe */
-void	execute(t_data *param, int i);
+void	execute_single(t_data *param);
 void	execute_pipe(t_data *param, int i);
 
 
 
 /*bultins*/
+void	exec_bultins(t_data *param);
 
 char	**cmd_format2(t_data *param, char **str, char **envp);
 char    **cmd_split_sw(t_data *param);

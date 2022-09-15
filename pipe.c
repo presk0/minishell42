@@ -12,15 +12,11 @@
 
 #include "minishell.h"
 
-void	exec_bultins(t_data *param)
+void	redir_bultin(t_data *param)
 {
 	int	fd_in;
 	int	fd_out;
-	int	stdin_cpy;
-	int	stdout_cpy;
 
-	stdin_cpy = dup(0);
-	stdout_cpy = dup(1);
 	fd_in = redir_in(param->f_matrix);
 	fd_out = redir_out(param->f_matrix);
 	if (fd_in != 0)
@@ -33,62 +29,87 @@ void	exec_bultins(t_data *param)
 		dup2(fd_out, STDOUT_FILENO);
 		close(fd_out);
 	}
+}
+
+void	exec_bultins(t_data *param)
+{
+	int	stdin_cpy;
+	int	stdout_cpy;
+
+	stdin_cpy = dup(0);
+	stdout_cpy = dup(1);
+	redir_bultin(param);
 	cmd_split_sw(param);
 	check_built(param, 1);
 	dup2(stdin_cpy, 0);
 	dup2(stdout_cpy, 1);
 }
 
- void	execute(t_data *param, int i)
+char	**cmd_format_add_path(t_data *param)
+{
+	char	*path;
+	char	**cmd;
+
+ 	path = return_env_var(param, "PATH", param->envp);
+ 	cmd = cmd_format(param->input_cleaned, path, 0);
+ 	free(path);
+	return (cmd);
+}
+
+void	redir_execute_single(t_data *param, int (*fds)[2])
+{
+	(*fds)[0] = dup(redir_in(param->f_matrix));
+	(*fds)[1] = dup(redir_out(param->f_matrix));
+	dup2((*fds)[0], STDIN_FILENO);
+	dup2((*fds)[1], STDOUT_FILENO);
+}
+
+void	command_failed(t_data *param, char **cmd)
+{
+ 	param->retour = 126;
+ 	ft_putstr_fd("command not found\n", 2);
+ 	if (cmd)
+ 	{
+ 		ft_free_split(&cmd);
+ 		cmd = NULL;
+ 	}
+	exit(param->retour);
+}
+
+void	wait_single_command(t_data *param, char **cmd, int pid)
+{
+	int	ret;
+	signal(SIGQUIT, sigint_handler);
+	if (cmd)
+		ft_free_split(&cmd);
+	cmd = NULL;
+	waitpid(pid, &ret, 0);
+	param->retour = WEXITSTATUS(ret);
+	dup2(dup(0), STDIN_FILENO);
+	dup2(dup(1), STDOUT_FILENO);
+}
+
+ void	execute_single(t_data *param)
  {
  	char	**cmd;
- 	char	*path;
  	int		pid;
 	int		fds[2];
-	int		ret;
-
- 	(void)i;
- 	i = verif_bultin(param);
- 	if (!i)
+ 	
+ 	if (verif_bultin(param))
+		exec_bultins(param);
+	else
  	{
- 		path = return_env_var(param, "PATH", param->envp);
- 		cmd = cmd_format(param->input_cleaned, path, 0);
- 		free(path);
+		cmd = cmd_format_add_path(param);
  		pid = fork();
 		g_pid = pid;
  		if (pid == 0)
  		{
-			fds[0] = dup(redir_in(param->f_matrix));
-			fds[1] = dup(redir_out(param->f_matrix));
-			dup2(fds[0], STDIN_FILENO);
-			dup2(fds[1], STDOUT_FILENO);
+			redir_execute_single(param, &fds);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
- 			{
- 				param->retour = 126;
- 				ft_putstr_fd("pas commande bin valide\n", 2);
-			}
- 			if (cmd)
- 			{
- 				ft_free_split(&cmd);
- 				cmd = NULL;
- 			}
-			exit(param->retour);
+				command_failed(param, cmd);
  		}
  		else
- 		{
- 			signal(SIGQUIT, sigint_handler);
-			if (cmd)
- 				ft_free_split(&cmd);
- 			cmd = NULL;
- 			waitpid(pid, &ret, 0);
-			param->retour = WEXITSTATUS(ret);
-			dup2(dup(0), STDIN_FILENO);
-			dup2(dup(1), STDOUT_FILENO);
-		}
- 	}
- 	else if (i ==1)
- 	{
-		exec_bultins(param);
+			wait_single_command(param, cmd, pid);
  	}
  }
 

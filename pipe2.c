@@ -148,11 +148,11 @@ void	redir_fd_child(int fds[2], int end[2], int i, int j)
         dup2(end[1], STDOUT_FILENO);
 }
 
-void	single_cmd(t_data *param, int nb_cmd)
+void	single_cmd(t_data *param)
 {
 	if (set_f_matrix(param, 0) == -1)
 		return ;
-	execute(param, nb_cmd);
+	execute_single(param);
 }
 
 void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
@@ -164,7 +164,7 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	if (set_f_matrix(param, i) == -1)
 		return ;
 	if (verif_bultin(param))
-		execute(param, i);
+		exec_bultins(param);
 	else
 	{
 		pid = fork();
@@ -191,7 +191,7 @@ void	parser(t_data *param)
 	j = set_cmds(param);
 	i = 0;
     if(j == 1)
-		single_cmd(param, j);
+		single_cmd(param);
     else
 	{
         while (i < j)

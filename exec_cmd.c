@@ -113,31 +113,39 @@ char	**quotes_spaces_split(char *line)
 	return (matrix);
 }
 
+int	rm_null_lines(char ***cmd_split)
+{
+	int	new_i;
+	int	i;
+
+	new_i = 0;
+	i = 0;
+	while ((*cmd_split)[i])
+	{
+		if (*(*cmd_split)[i] != '\0')
+		{
+			if (i != new_i)
+				(*cmd_split)[new_i] = (*cmd_split)[i];
+			new_i++;
+		}
+		else
+			free((*cmd_split)[i]);
+		i++;
+	}
+	return (new_i);
+}
+
 char	**cmd_format(char *str, char *PATH, int is_builtin)
 {
-	int 	i;
-	int 	new_i;
+	int 	last_i;
 	char	*cmd_path;
 	char	**cmd_split;
 
 	cmd_split = quotes_spaces_split(str);
 	if (!cmd_split)
 		return (NULL);
-	new_i = 0;
-	i = 0;
-	while (cmd_split[i])
-	{
-		if (*cmd_split[i] != '\0')
-		{
-			if (i != new_i)
-				cmd_split[new_i] = cmd_split[i];
-			new_i++;
-		}
-		else
-			free(cmd_split[i]);
-		i++;
-	}
-	cmd_split[new_i] = NULL;
+	last_i = rm_null_lines(&cmd_split);
+	cmd_split[last_i] = NULL;
 	if (!is_builtin)
 	{
 		cmd_path = get_path(cmd_split[0], PATH);
