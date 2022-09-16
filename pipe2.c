@@ -32,20 +32,21 @@ void	hard_wait(void)
 void	ft_parent_process(t_data *param, int pid, int (*fds)[2], int (*end)[2], int *fd)
 {
 	int	ret;
-	int	j;
+	//int	j;
 
 	if ((*fds)[0])
 		dup2((*fds)[0], (*end)[0]);
 	close((*end)[1]);
 	*fd = (*end)[0];
-	j = 0;
-	while (!waitpid(pid, &ret, WUNTRACED | WNOHANG) && j++ < 2000000)
-		hard_wait();
-	if (!WIFEXITED(ret))
-	{
-		write(2, "\n", 1);
-		kill(pid, SIGTERM);
-	}
+	waitpid(pid, &ret, 0);
+	//j = 0;
+	//while (!waitpid(pid, &ret, WUNTRACED | WNOHANG) && j++ < 2000000)
+	//	hard_wait();
+	//if (!WIFEXITED(ret))
+	//{
+	//	write(2, "\n", 1);
+	//	kill(pid, SIGTERM);
+	//}
 	param->retour = WEXITSTATUS(ret);
 	ft_free_split(&param->f_matrix);
 }
