@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split)
+{
+	if (param->input_cleaned)
+		free(param->input_cleaned);
+	param->input_cleaned = NULL;
+	param->input_cleaned = matrix_to_str(*cmd_split);
+	ft_free_split(cmd_split);
+}
 
 char **pop_names_from_sep(t_data *param, int i, char **sep)
 {
@@ -29,19 +37,9 @@ char **pop_names_from_sep(t_data *param, int i, char **sep)
         {
             fname_matrix = ft_append_tab(fname_matrix, pop_first_wd(&cmd_split[j++]));
         }
-        if (param->input_cleaned)
-            free(param->input_cleaned);
-        param->input_cleaned = NULL;
-        param->input_cleaned = matrix_to_str(cmd_split);
-        ft_free_split(&cmd_split);
+        pop_names_from_sep_refresh(param, &cmd_split);
     }
     else
-    {
-        if (param->input_cleaned)
-            free(param->input_cleaned);
-        param->input_cleaned = matrix_to_str(cmd_split);
-        ft_free_split(&cmd_split);
-
-    }
+        pop_names_from_sep_refresh(param, &cmd_split);
     return (fname_matrix);
 }
