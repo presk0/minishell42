@@ -161,6 +161,7 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	pid_t	pid;
 	int		fd;
 
+	fd = dup((*end)[0]);
     pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
