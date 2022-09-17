@@ -88,8 +88,6 @@ int check_built(t_data *param, int fd)
 	}
 	else if (!ft_memcmp(param->argv[0], "env", 4))
 		run_env(param, fd);
-	else if (!ft_memcmp(param->argv[0], "/", 1) || !ft_memcmp(param->argv[0], "./", 2) || !ft_memcmp(param->argv[0], "../", 3))
-		cde_bash(param);
 	else if (!ft_memcmp(param->argv[0], "$?", 3))
 		error(param);
 	else

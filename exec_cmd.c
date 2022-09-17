@@ -15,21 +15,65 @@
 // getenv output cannot be free (not malloc)
 // return NULL if path doesn't exist
 
+int ft_file_exists(const char *fname)
+{
+    FILE *file;
+    if ((file = fopen(fname, "r")))
+    {
+        fclose(file);
+        return 1;
+    }
+    return 0;
+}
+
+/*
+int	format_relative_path(t_data *param, char **str)
+{
+	char	*pwd;
+	char	**pwd_split;
+	int		pwd_level;
+	int		path_ind;
+	char	*new_path;
+	int i;
+
+	path_ind = 0;
+	pwd_level = 0;
+	pwd = get_env("PWD", param->envp);
+	pwd_split = ft_split(pwd, '/');
+	pwd_level = ft_matrixlen(pwd_split) - 1;
+	while (pwd_level >= 0 && pwd_split[pwd_level])
+	{
+		if (!ft_strncmp(&str[path_ind], "../", 3))
+			path_ind += 3;
+		else
+			break ;
+		pwd_level--;
+	}
+	new_path = "/";
+	i = 0;
+	while (pwd_level--)
+	{
+		new_path = ft_strjoin(new_path, pwd_split[i++];
+	}
+	free(pwd);
+	ft_free_split(&pwd_split);
+}
+*/
 //int			exec_bin_to_fd
 char	*get_path(char *cmd, char *PATH)
 {
 	char	*str;
 	char	**env_tab;
 	int		i;
-	int		file_fd;
 
 	if (!cmd)
 		return (NULL);
-	if ((file_fd = open(cmd, O_RDONLY)) != -1)
-	{
-		close(file_fd);
+	if (!ft_memcmp(cmd, "/", 1) && ft_file_exists(cmd))
 		return (ft_strdup(cmd));
-	}
+	if (!ft_memcmp(cmd, "./", 2))
+		return (ft_strdup(&cmd[2]));
+//	if (!ft_memcmp(cmd, "../", 3))
+//		return (ft_strdup(&cmd[3]));
 	str = PATH;
 	env_tab = ft_split(str, ':');
 	i = 0;
@@ -37,22 +81,15 @@ char	*get_path(char *cmd, char *PATH)
 	while (env_tab[i])
 	{
 		str = ft_strjoin(env_tab[i], cmd);
-		file_fd = open(str, O_RDONLY);
-		if (file_fd != -1)
+		if (ft_file_exists(str))
 			break ;
-		close(file_fd);
 		i++;
 		free(str);
 		str = NULL;
 	}
 	//close(file_fd);
-	free(cmd);
-	if (!env_tab[i])
-	{
-		ft_free_split(&env_tab);
-		return (NULL);
-	}
 	ft_free_split(&env_tab);
+	free(cmd);
 	return (str);
 }
 
@@ -154,11 +191,8 @@ char	**cmd_format(char *str, char *PATH, int is_builtin)
 	if (!is_builtin)
 	{
 		cmd_path = get_path(cmd_split[0], PATH);
-		if (cmd_path)
-		{
-			free(cmd_split[0]);
-			cmd_split[0] = cmd_path;
-		}
+		free(cmd_split[0]);
+		cmd_split[0] = cmd_path;
 	}
 	return (cmd_split);
 }
