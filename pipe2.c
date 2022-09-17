@@ -195,5 +195,8 @@ void	parser(t_data *param)
 			i++;
         }
     }
+	i = 3;
+	while (i < 256)
+		close(i++);
 }
 
