@@ -77,7 +77,9 @@ int	heredoc(char *stop_str)
 
 	first_loop = 1;
 	text = NULL;
-	while (first_loop || ft_strncmp(line, stop_str, ft_strlen(stop_str)))
+	//signal(SIGQUIT, sigint_handler);
+	line = NULL;
+	while (first_loop || !line || ft_strncmp(line, stop_str, ft_strlen(stop_str)))
 	{
 		if (!first_loop)
 		{
@@ -87,13 +89,22 @@ int	heredoc(char *stop_str)
 			tmp = text;
 			if (text)
 			{
-				text = ft_strjoin(text, line);
+			//	if (line)
+					text = ft_strjoin(text, line);
 				free(tmp);
 			}
 			else
 				text = line;
+			//if (first_loop == -1)
+			//	break ;
 		}
 		line = readline("> ");
+		if (!line)
+		{
+			write(2, "\nwarning: here-document at line 32 delimited by end-of-file", 60);
+			break ;
+			//first_loop = -1;
+		}
 		first_loop = 0;
 	}
 	fd = open("heredoc", O_WRONLY | O_CREAT, 0666);

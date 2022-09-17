@@ -76,6 +76,7 @@ void	command_failed(t_data *param, char ***cmd)
 void	wait_single_command(t_data *param, char **cmd, int pid)
 {
 	int	ret;
+
 	signal(SIGQUIT, sigint_handler);
 	if (cmd)
 		ft_free_split(&cmd);

@@ -74,6 +74,7 @@ int	main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
     struct termios  tmp;
+
 	param = init_param(envp);
 	init_sig(&tmp, param);
 	while ("pas vu pas pirs")

@@ -1,7 +1,6 @@
 #include "minishell.h"
 
-
-
+/*
 int	set_fd(t_data *param)
 {
 	int		i;
@@ -20,6 +19,7 @@ int	set_fd(t_data *param)
     else
         return (1);
 }
+*/
 
 static int	count_redir(t_data *param)
 {
@@ -66,7 +66,8 @@ void	copy_args1(t_data *param)
 
 int check_heredoc(t_data *param, int i, int fd)
 {
-    while(param->argv[i] != NULL) {
+    while(param->argv[i] != NULL)
+	{
         if (!ft_memcmp(param->argv[i], "<<", 3))
             heredoc(param,  i );
         i++;
