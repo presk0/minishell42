@@ -101,7 +101,7 @@ int	heredoc(char *stop_str)
 		line = readline("> ");
 		if (!line)
 		{
-			write(2, "\nwarning: here-document at line 32 delimited by end-of-file", 60);
+			write(2, "\nwarning: here-document delimited by end-of-file\n", 50);
 			break ;
 			//first_loop = -1;
 		}
