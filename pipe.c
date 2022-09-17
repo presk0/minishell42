@@ -64,15 +64,12 @@ void	redir_execute_single(t_data *param, int (*fds)[2])
 	dup2((*fds)[1], STDOUT_FILENO);
 }
 
-void	command_failed(t_data *param, char **cmd)
+void	command_failed(t_data *param, char ***cmd)
 {
  	param->retour = 126;
  	ft_putstr_fd("command not found\n", 2);
- 	if (cmd)
- 	{
- 		ft_free_split(&cmd);
- 		cmd = NULL;
- 	}
+ 	ft_free_split(cmd);
+ 	//*cmd = NULL;
 	exit(param->retour);
 }
 
@@ -106,7 +103,7 @@ void	wait_single_command(t_data *param, char **cmd, int pid)
  		{
 			redir_execute_single(param, &fds);
 			if (execve(cmd[0], cmd, param->envp) <= -1)
-				command_failed(param, cmd);
+				command_failed(param, &cmd);
  		}
  		else
 			wait_single_command(param, cmd, pid);
@@ -153,17 +150,7 @@ void	execute_pipe(t_data *param, int i)
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);
 		if (execve(cmd[0], cmd, param->envp) <= -1)
-		{
-			param->retour = 126;
-			ft_putstr_fd("pas commande bin valide", 2);
-            write(1, "\n", 1);
-			exit(param->retour);
-		}	
-		if (cmd)
-		{
-			ft_free_split(&cmd);
-			cmd = NULL;
-		}
+			command_failed(param, &cmd);
 	}	
 //	else if (i == 1)
 //	{

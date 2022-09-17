@@ -46,8 +46,13 @@ char	*get_path(char *cmd, char *PATH)
 		str = NULL;
 	}
 	//close(file_fd);
-	ft_free_split(&env_tab);
 	free(cmd);
+	if (!env_tab[i])
+	{
+		ft_free_split(&env_tab);
+		return (NULL);
+	}
+	ft_free_split(&env_tab);
 	return (str);
 }
 
@@ -149,8 +154,11 @@ char	**cmd_format(char *str, char *PATH, int is_builtin)
 	if (!is_builtin)
 	{
 		cmd_path = get_path(cmd_split[0], PATH);
-		free(cmd_split[0]);
-		cmd_split[0] = cmd_path;
+		if (cmd_path)
+		{
+			free(cmd_split[0]);
+			cmd_split[0] = cmd_path;
+		}
 	}
 	return (cmd_split);
 }
