@@ -146,7 +146,6 @@ void	execute_pipe(t_data *param, int i)
 	j = verif_bultin(param);
 	if (!j)
 	{
-		cde_bash(param);
 		path = return_env_var(param, "PATH", param->envp);
 		cmd = cmd_format(param->input_cleaned, path, 0);
 		free(path);

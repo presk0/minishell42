@@ -72,22 +72,17 @@ char	*get_path(char *cmd, char *PATH)
 		return (ft_strdup(cmd));
 	if (!ft_memcmp(cmd, "./", 2))
 		return (ft_strdup(&cmd[2]));
-//	if (!ft_memcmp(cmd, "../", 3))
-//		return (ft_strdup(&cmd[3]));
-	str = PATH;
-	env_tab = ft_split(str, ':');
+	env_tab = ft_split(PATH, ':');
 	i = 0;
 	cmd = ft_strjoin("/", cmd);
 	while (env_tab[i])
 	{
-		str = ft_strjoin(env_tab[i], cmd);
+		str = ft_strjoin(env_tab[i++], cmd);
 		if (ft_file_exists(str))
 			break ;
-		i++;
 		free(str);
 		str = NULL;
 	}
-	//close(file_fd);
 	ft_free_split(&env_tab);
 	free(cmd);
 	return (str);
