@@ -12,36 +12,13 @@
 
 #include "minishell.h"
 
-void	set_in(char **argv)
-{
-	int		fd;
-	int		i;
-
-	i = 0;
-	while (argv[i] && ft_memcmp(argv[i], "<", 2))
-		i++;
-	if (argv[i])
-	{
-		fd = open(argv[i + 1], O_RDONLY, 0666);
-		if (fd < 0)
-		{
-			ft_putstr_fd("Couldn't read from file.\n", 2);
-			return ;
-		}
-		dup2(fd, 0);
-		close(fd);
-	}
-}
-
 int	redir_out(char **f_matrix)
 {
-	int		ret;
 	int 	len;
 	int	fd;
 	int	last_fd;
 	int	i;
 
-(void) ret;
 	len = ft_matrixlen(f_matrix);
 	i = 0;
 	fd = 1;
@@ -67,20 +44,21 @@ int	redir_out(char **f_matrix)
 	return (fd);
 }
 
-int	heredoc(char *stop_str)
+int	heredoc(t_data *param, char *stop_str)
 {
 	int		fd;
 	int		first_loop;
 	char	*line;
 	char	*text;
 	char	*tmp;
+	struct termios	term;
 
 	first_loop = 1;
 	text = NULL;
-	//signal(SIGQUIT, sigint_handler);
 	line = NULL;
 	while (first_loop || !line || ft_strncmp(line, stop_str, ft_strlen(stop_str)))
 	{
+		init_sig(&term, param);
 		if (!first_loop)
 		{
 			tmp = line;
@@ -107,6 +85,7 @@ int	heredoc(char *stop_str)
 		}
 		first_loop = 0;
 	}
+	init_sig(&term, param);
 	fd = open("heredoc", O_WRONLY | O_CREAT, 0666);
 	if (text)
 		write(fd, text, ft_strlen(text));
@@ -117,15 +96,13 @@ int	heredoc(char *stop_str)
 	return (fd);
 }
 
-int	redir_in(char **f_matrix)
+int	redir_in(t_data* param, char **f_matrix)
 {
-	int		ret;
 	int 	len;
 	int 	fd;
 	int	i;
 	int last_fd;
 
-(void)ret;
 	len = ft_matrixlen(f_matrix);
 	i = 0;
 	last_fd = 0;
@@ -141,7 +118,7 @@ int	redir_in(char **f_matrix)
 		}
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
 		{
-			fd = heredoc(f_matrix[i + 1]);
+			fd = heredoc(param, f_matrix[i + 1]);
 			if (last_fd)
 				close(last_fd);
 			last_fd = fd;
@@ -151,25 +128,3 @@ int	redir_in(char **f_matrix)
 	return (fd);
 }
 
-/*
-char		**check_command(char *str, t_data *param)
-{
-	int		fd;
-}}
-
-	if (param->argv[0] && *(param->argv[0]))
-	{
-		fd = set_fd(param);
-		copy_args1(param);
-		param->ret = check_builtins(fd, param);
-		if (param->ret == 127 && (param->ret = check_bin(fd, param)) == 127)
-		{
-			ft_putstrs_fd(0, str, ": command not found.\n", 2);
-			param->ret = 127;
-		}
-		if (fd != 1)
-			close(fd);
-	}
-	return (param->envp);
-}
-*/

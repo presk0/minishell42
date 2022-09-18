@@ -95,7 +95,7 @@ void		parser(t_data *param);
 /* cmd format */
 char	**cmd_format(char *str, char *PATH, int is_builtin);
 int	redir_out(char **f_matrix);
-int	redir_in(char **f_matrix);
+int	redir_in(t_data *param, char **f_matrix);
 int rm_heredoc_file(void);
 
 /* get filename */
@@ -134,6 +134,7 @@ char	**export_command2(t_data *param, int j);
 
 
 /* signaux */
+void	init_sig(struct termios *tmp, t_data *param);
 void	ctrlbacksl(int sig);
 void	ctrlc(int sig);
 void	ft_child_process(t_data *param, int i, int *end);

@@ -128,7 +128,7 @@ int	set_f_matrix(t_data *param, int i)
 void	init_fd_child(t_data *param, int (*fds)[2], int fd)
 {
 	(*fds)[1] = redir_out(param->f_matrix);
-	(*fds)[0] = redir_in(param->f_matrix);
+	(*fds)[0] = redir_in(param, param->f_matrix);
 	if ((*fds)[0] == 0)
 		(*fds)[0] = fd;
 }
