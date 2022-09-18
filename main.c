@@ -14,7 +14,7 @@
 
 void	reset_param(t_data *param)
 {
-	if (param->argv && rm_heredoc_file())
+	if (param->argv)
 		ft_free_split(&param->argv);
 	if (param->f_matrix)
 		ft_free_split(&param->f_matrix);
@@ -67,6 +67,14 @@ int	ft_only_blank(t_data *param)
 	param->input = NULL;
 	return (1);
 }
+
+void	clean_exit(t_data *param)
+{
+	rl_clear_history();
+	reset_param(param);
+	exit(0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
     g_pid = 0;
@@ -87,9 +95,8 @@ int	main(int argc, char **argv, char **envp)
 		if (check_error(param))
 			continue ;
 		parser(param);
+		rm_heredoc_file();
 		reset_param(param);
 	}
-	rl_clear_history();
-	reset_param(param);
-	exit(0);
+	clean_exit(param);
 }
