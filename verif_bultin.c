@@ -28,8 +28,6 @@ int	ft_is_bultin(t_data *param)
 		return (1);
 	else if (!ft_strncmp("exit", param->input_cleaned, 4))
 		return (1);
-	//else if (!ft_memcmp(param->input_cleaned, "/", 1) || !ft_memcmp(param->input_cleaned, "./", 2) || !ft_memcmp(param->input_cleaned, "../", 3))
-//			return (1);	
 	else
 		return (0);
 }

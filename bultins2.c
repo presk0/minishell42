@@ -17,7 +17,7 @@ char	**cmd_format2(t_data *param, char **str, char **envp)
 	int		i;
 	int		new_i;
 	char	**cmd_split;
-	
+
 	*str = convert_var_in_line(param, str, envp);
 	cmd_split = quotes_spaces_split(*str);
 	new_i = 0;
