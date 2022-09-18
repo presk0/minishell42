@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int rm_heredoc_file(void)
+int	rm_heredoc_file(void)
 {
 	int		fd;
 	int		pid;
