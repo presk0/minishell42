@@ -143,4 +143,6 @@ void	ft_parent_process(t_data *param, int pid, int (*fds)[2], int (*end)[2], int
 void		sigint_handler(int sign_num);
 int check_built(t_data *param, int fd);
 
+int	rm_null_lines(char ***cmd_split);
+int	heredoc(t_data *param, char *stop_str);
 #endif

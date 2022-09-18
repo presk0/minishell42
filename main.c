@@ -44,10 +44,10 @@ void	init_sig(struct termios *tmp, t_data *param)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sigint_handler);
 	tcgetattr(0, tmp);
-    tmp->c_lflag &= ~ECHOCTL; 
-    tmp->c_lflag |= ECHO;
-    tcgetattr(0, &param->save);
-    tcsetattr(0, 0, tmp);
+	tmp->c_lflag &= ~ECHOCTL;
+	tmp->c_lflag |= ECHO;
+	tcgetattr(0, &param->save);
+	tcsetattr(0, 0, tmp);
 }
 
 int	ft_only_blank(t_data *param)
@@ -77,12 +77,12 @@ void	clean_exit(t_data *param)
 
 int	main(int argc, char **argv, char **envp)
 {
-    g_pid = 0;
-	t_data  *param;
-    (void)argc;
-    (void)argv;
-    struct termios  tmp;
+	t_data			*param;
+	struct termios	tmp;
 
+	(void)argc;
+	(void)argv;
+	g_pid = 0;
 	param = init_param(envp);
 	init_sig(&tmp, param);
 	while ("pas vu pas pirs")

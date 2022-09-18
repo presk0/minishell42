@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+/*
 void	check_exit(t_data *param)
 {
 	if (!ft_memcmp(param->argv[0], "exit", 5))
@@ -45,3 +46,4 @@ void	run_exit(t_data *param)
 		exit(i);
 	}
 }
+*/

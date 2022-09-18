@@ -1,5 +1,6 @@
 #include "minishell.h"
 
+/*
 static int	number_str(char *s, char c)
 {
 	int		n[2];
@@ -97,3 +98,4 @@ char		**ft_split_mini(char *s, char c)
 	set_mat(mat, s, c, n);
 	return (mat);
 }
+*/

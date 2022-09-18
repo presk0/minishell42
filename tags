@@ -36,14 +36,15 @@ check_built	bultins2.c	/^int check_built(t_data *param, int fd)$/;"	f	typeref:ty
 check_error	prompting.c	/^int	check_error(t_data *param)$/;"	f	typeref:typename:int
 check_exit	check_exit.c	/^void	check_exit(t_data *param)$/;"	f	typeref:typename:void
 check_f_matrix	pipe2.c	/^int	check_f_matrix(char **f_matrix)$/;"	f	typeref:typename:int
-check_heredoc	redir.c	/^int check_heredoc(t_data *param, int i, int fd)$/;"	f	typeref:typename:int
+check_heredoc	redir.c	/^int	check_heredoc(t_data *param, int i, int fd)$/;"	f	typeref:typename:int
 clean	Makefile	/^clean:$/;"	t
+clean_exit	main.c	/^void	clean_exit(t_data *param)$/;"	f	typeref:typename:void
 cmd_bloquante	pipe.c	/^ int	cmd_bloquante(char **cmd, int i)$/;"	f	typeref:typename:int
 cmd_format	exec_cmd.c	/^char	**cmd_format(char *str, char *PATH, int is_builtin)$/;"	f	typeref:typename:char **
 cmd_format2	bultins2.c	/^char	**cmd_format2(t_data *param, char **str, char **envp)$/;"	f	typeref:typename:char **
 cmd_format_add_path	pipe.c	/^char	**cmd_format_add_path(t_data *param)$/;"	f	typeref:typename:char **
 cmd_split_sw	bultins2.c	/^char	**cmd_split_sw(t_data *param)$/;"	f	typeref:typename:char **
-command_failed	pipe.c	/^void	command_failed(char **cmd)$/;"	f	typeref:typename:void
+command_failed	pipe.c	/^void	command_failed(t_data *param, char ***cmd)$/;"	f	typeref:typename:void
 convert_var	var_conv.c	/^char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len)$/;"	f	typeref:typename:char *
 convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(t_data *param, char **line, char **envp)$/;"	f	typeref:typename:char *
 copy_args1	redir.c	/^void	copy_args1(t_data *param)$/;"	f	typeref:typename:void
@@ -64,6 +65,8 @@ fclean	Makefile	/^fclean: clean$/;"	t
 free_matrix_line	matrix.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
 ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
 ft_child_process	pipe2.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
+ft_file_exists	exec_cmd.c	/^int	ft_file_exists(const char *fname)$/;"	f	typeref:typename:int
+ft_is_bultin	verif_bultin.c	/^int	ft_is_bultin(t_data *param)$/;"	f	typeref:typename:int
 ft_is_quoted	utils.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
 ft_matrixlen	matrix.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
 ft_only_blank	main.c	/^int	ft_only_blank(t_data *param)$/;"	f	typeref:typename:int
@@ -75,18 +78,20 @@ ft_strldup	cde_bash.c	/^static char	*ft_strldup(const char *s, int len)$/;"	f	ty
 ft_var_len	var_conv.c	/^size_t	ft_var_len(char *var_start)$/;"	f	typeref:typename:size_t
 get_env	env.c	/^char	*get_env(char **envp, char *env)$/;"	f	typeref:typename:char *
 get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
+get_new_var	export.c	/^char	*get_new_var(t_data *param, int j)$/;"	f	typeref:typename:char *
 get_path	exec_cmd.c	/^char	*get_path(char *cmd, char *PATH)$/;"	f	typeref:typename:char *
 hard_wait	pipe2.c	/^void	hard_wait(void)$/;"	f	typeref:typename:void
-heredoc	command.c	/^int	heredoc(char *stop_str)$/;"	f	typeref:typename:int
+heredoc	command.c	/^int	heredoc(t_data *param, char *stop_str)$/;"	f	typeref:typename:int
 init_fd	parser.c	/^void init_fd(t_data *param, int **fd, int **io_fd)$/;"	f	typeref:typename:void
 init_fd_child	pipe2.c	/^void	init_fd_child(t_data *param, int (*fds)[2], int fd)$/;"	f	typeref:typename:void
 init_param	init.c	/^t_data	*init_param(char **envp)$/;"	f	typeref:typename:t_data *
 init_sig	main.c	/^void	init_sig(struct termios *tmp, t_data *param)$/;"	f	typeref:typename:void
 init_vars	split.c	/^static void	init_vars(int *i, char ***matrix_split, char *str, char ***sep_init, char **sep)$/;"	f	typeref:typename:void	file:
+is_available_var_name	export.c	/^int	is_available_var_name(char *var, int i)$/;"	f	typeref:typename:int
 is_blank	strings.c	/^int is_blank(char c)$/;"	f	typeref:typename:int
 is_bonus	prompting.c	/^static int	is_bonus(char *str, int i)$/;"	f	typeref:typename:int	file:
 line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/;"	f	typeref:typename:int	file:
-line_presplit	exec_cmd.c	/^int	line_presplit(char *cmd)$/;"	f	typeref:typename:int
+line_presplit	quoting.c	/^int	line_presplit(char *cmd)$/;"	f	typeref:typename:int
 main	main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f	typeref:typename:int
 make_libft	Makefile	/^make_libft:$/;"	t
 make_libftprintf	Makefile	/^make_libftprintf:$/;"	t
@@ -96,24 +101,28 @@ new_env	env.c	/^char    **new_env(char **envp, int i)$/;"	f	typeref:typename:cha
 number_str	ft_split_mini.c	/^static int	number_str(char *s, char c)$/;"	f	typeref:typename:int	file:
 parser	pipe2.c	/^void	parser(t_data *param)$/;"	f	typeref:typename:void
 pop_first_wd	strings.c	/^char    *pop_first_wd(char **cmd)$/;"	f	typeref:typename:char *
-pop_names_from_sep	get_filename.c	/^char **pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
+pop_names_from_sep	get_filename.c	/^char	**pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
+pop_names_from_sep_refresh	get_filename.c	/^void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split)$/;"	f	typeref:typename:void
 print_env_tri	export.c	/^void	print_env_tri(t_data *param)$/;"	f	typeref:typename:void
 print_tab	matrix.c	/^void	print_tab(char **tableau)$/;"	f	typeref:typename:void
 process	signals.c	/^static void	process(int sign_num)$/;"	f	typeref:typename:void	file:
-quote_empty	exec_cmd.c	/^int	quote_empty(char *first_quote)$/;"	f	typeref:typename:int
-quotes_spaces_split	exec_cmd.c	/^char	**quotes_spaces_split(char *line)$/;"	f	typeref:typename:char **
+quote_empty	quoting.c	/^int	quote_empty(char *first_quote)$/;"	f	typeref:typename:int
+quotes_spaces_split	quoting.c	/^char	**quotes_spaces_split(char *line)$/;"	f	typeref:typename:char **
 re	Makefile	/^re: fclean all$/;"	t
 read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/;"	f	typeref:typename:char *
+redir_bultin	pipe.c	/^void	redir_bultin(t_data *param)$/;"	f	typeref:typename:void
 redir_execute_single	pipe.c	/^void	redir_execute_single(t_data *param, int (*fds)[2])$/;"	f	typeref:typename:void
 redir_fd_child	pipe2.c	/^void	redir_fd_child(int fds[2], int end[2], int i, int j)$/;"	f	typeref:typename:void
-redir_in	command.c	/^int	redir_in(char **f_matrix)$/;"	f	typeref:typename:int
+redir_in	command.c	/^int	redir_in(t_data* param, char **f_matrix)$/;"	f	typeref:typename:int
 redir_out	command.c	/^int	redir_out(char **f_matrix)$/;"	f	typeref:typename:int
+refresh_fd	command.c	/^static void	refresh_fd(int *last_fd, int *fd)$/;"	f	typeref:typename:void	file:
 refresh_matrix	split.c	/^static void refresh_matrix(char *str, char ***matrix, char *sep, int i, int keep_sep)$/;"	f	typeref:typename:void	file:
 reinit_after_pipe	parser.c	/^void	reinit_after_pipe(t_data *param, int **io_fd)$/;"	f	typeref:typename:void
 reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
 return_env_var	var_conv.c	/^char	*return_env_var(t_data *param, char *var, char *envp[])$/;"	f	typeref:typename:char *
 return_first_word	strings.c	/^char    *return_first_word(char *str)$/;"	f	typeref:typename:char *
 rm_heredoc_file	pipe2.c	/^int rm_heredoc_file(void)$/;"	f	typeref:typename:int
+rm_null_lines	quoting.c	/^int	rm_null_lines(char ***cmd_split)$/;"	f	typeref:typename:int
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void
 run_env	bultins2.c	/^void	run_env(t_data *param, int fd)$/;"	f	typeref:typename:void
 run_exit	bultins2.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
@@ -122,9 +131,7 @@ run_export	export.c	/^char	**run_export(t_data *param)$/;"	f	typeref:typename:ch
 run_unset	bultins2.c	/^char	**run_unset(t_data *param)$/;"	f	typeref:typename:char **
 set_cmds	pipe2.c	/^int	set_cmds(t_data *param)$/;"	f	typeref:typename:int
 set_f_matrix	pipe2.c	/^int	set_f_matrix(t_data *param, int i)$/;"	f	typeref:typename:int
-set_fd	redir.c	/^int	set_fd(t_data *param)$/;"	f	typeref:typename:int
 set_filename	cde_bash.c	/^static void	set_filename(int len, char **new, char *str)$/;"	f	typeref:typename:void	file:
-set_in	command.c	/^void	set_in(char **argv)$/;"	f	typeref:typename:void
 set_mat	ft_split_mini.c	/^static void	set_mat(char **mat, char *s, char c, int n)$/;"	f	typeref:typename:void	file:
 set_path	cde_bash.c	/^static void	set_path(char *str, char **path)$/;"	f	typeref:typename:void	file:
 set_str_len	ft_split_mini.c	/^static int	set_str_len(char *s, char c)$/;"	f	typeref:typename:int	file:
@@ -133,4 +140,4 @@ single_cmd	pipe2.c	/^void	single_cmd(t_data *param)$/;"	f	typeref:typename:void
 test	Makefile	/^test: ctags$/;"	t
 tri_env	export.c	/^static char	**tri_env(t_data *param)$/;"	f	typeref:typename:char **	file:
 verif_bultin	verif_bultin.c	/^int	verif_bultin(t_data *param)$/;"	f	typeref:typename:int
-wait_single_command	pipe.c	/^void	wait_single_command(char **cmd, int pid)$/;"	f	typeref:typename:void
+wait_single_command	pipe.c	/^void	wait_single_command(t_data *param, char **cmd, int pid)$/;"	f	typeref:typename:void

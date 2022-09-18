@@ -12,32 +12,33 @@
 
 #include "minishell.h"
 
+static void	refresh_fd(int *last_fd, int *fd)
+{
+	if (*last_fd > 1)
+		close(*last_fd);
+	*last_fd = *fd;
+}
+
 int	redir_out(char **f_matrix)
 {
-	int 	len;
 	int	fd;
 	int	last_fd;
 	int	i;
 
-	len = ft_matrixlen(f_matrix);
 	i = 0;
 	fd = 1;
 	last_fd = 0;
-	while (i < len)
+	while (i < ft_matrixlen(f_matrix))
 	{
 		if (!ft_memcmp(f_matrix[i], ">", 2))
 		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-			if (last_fd > 1)
-				close(last_fd);
-			last_fd = fd;
+			refresh_fd(&last_fd, &fd);
 		}
 		else if (!ft_memcmp(f_matrix[i], ">>", 3))
 		{
 			fd = open(f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-			if (last_fd > 1)
-				close(last_fd);
-			last_fd = fd;
+			refresh_fd(&last_fd, &fd);
 		}
 		i++;
 	}
