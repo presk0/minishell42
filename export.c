@@ -62,16 +62,12 @@ int	is_available_var_name(char *var, int i)
 	return (1);
 }
 
-char	**export_command(t_data *param, int j)
+char	*get_new_var(t_data *param, int j)
 {
-	int		i;
-	char	*new_var;
-	int		spliter_index;
 	char	**quote_split;
+	char	*new_var;
 
-	i = 0;
-	new_var = param->argv[j]; //test=blabla
-	// if test='bla bla', ce qui est entre quote est stocke dans l;argument suivant
+	new_var = param->argv[j];
 	if (new_var[ft_strlen(new_var) - 1] == '=' && param->argv[j + 1])
 	{
 		new_var = ft_strjoin(param->argv[j], param->argv[j + 1]);
@@ -84,6 +80,17 @@ char	**export_command(t_data *param, int j)
 	quote_split = quotes_spaces_split(new_var);
 	new_var = matrix_to_str(quote_split);
 	ft_free_split(&quote_split);
+	return (new_var);
+}
+
+char	**export_command(t_data *param, int j)
+{
+	int		i;
+	char	*new_var;
+	int		spliter_index;
+
+	i = 0;
+	new_var = get_new_var(param, j);
 	spliter_index = ft_strlen_char(new_var, '=');
 	if (is_available_var_name(new_var, spliter_index))
 	{
@@ -101,19 +108,6 @@ char	**export_command(t_data *param, int j)
 	return (param->envp);
 }
 
-/*
-char	**run_export(t_data *param)
-{
-	char	**env;
-
-	env = param->envp;
-	if (param->argv[1] == NULL)
-		print_env_tri(param);
-	else
-		param->envp = export_command2(param, 1); 
-	return (env);
-}
-*/
 char	**run_export(t_data *param)
 {
 	char	**env;
