@@ -186,8 +186,11 @@ char	**cmd_format(char *str, char *PATH, int is_builtin)
 	if (!is_builtin)
 	{
 		cmd_path = get_path(cmd_split[0], PATH);
-		free(cmd_split[0]);
-		cmd_split[0] = cmd_path;
+		if (cmd_path)
+		{
+			free(cmd_split[0]);
+			cmd_split[0] = cmd_path;
+		}
 	}
 	return (cmd_split);
 }
