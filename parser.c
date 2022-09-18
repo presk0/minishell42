@@ -12,65 +12,27 @@
 
 #include "minishell.h"
 
-
-void init_fd(t_data *param, int **fd, int **io_fd)
+void	parser(t_data *param)
 {
 	int		i;
-	int		len;
-	(void)io_fd;
-	if (!fd)
-		return ;
+	int		j;
+	int		end[2];
+	int		fds[2];
+	
+	j = set_cmds(param);
 	i = 0;
-	if (!*fd)
-		return ;
-	(*fd)[0] = 0;
-	(*fd)[1] = 1;
-	(*io_fd)[0] = 0;
-	(*io_fd)[1] = 1;
-	if (param->f_matrix)
+    if(j == 1)
+		single_cmd(param);
+    else
 	{
-		//printf(stderr, "[init_fd]\n");
-		//print_tab(param->f_matrix);
-		len = ft_matrixlen(param->f_matrix);
-		while (i < len)
+        while (i < j)
 		{
-			if (!ft_memcmp(param->f_matrix[i], ">", 2) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_TRUNC, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*io_fd)[1]);
-			}
-			else if(!ft_memcmp(param->f_matrix[i], ">>", 3) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[1] = open(param->f_matrix[i + 1], O_RDWR | O_CREAT | O_APPEND, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[1]= %d\n", (*io_fd)[1]);
-			}
-			else if (!ft_memcmp(param->f_matrix[i], "<", 2) && param->f_matrix[i + 1])
-			{
-				(*io_fd)[0] = open(param->f_matrix[i + 1], O_RDONLY, 0666);
-				//printf(stderr, "[init_fd] file opened: fd[0]= %d\n", (*io_fd)[0]);
-			}
+			exec_pipes(param, &end, &fds, i, j);
 			i++;
-		}
-		//printf(stderr, "[init_fd] before_check: fd[0]= %d, fd[1]=%d\n", (*fd)[0], (*fd)[1]);
-	}
-	dup2((*io_fd)[0], (*fd)[0]);
-	dup2((*io_fd)[1], (*fd)[1]);
-}
-
-void	reinit_after_pipe(t_data *param, int **io_fd)
-{
-	if (param->f_matrix)
-		ft_free_split(&param->f_matrix);
-	param->f_matrix = NULL;
-	if ((*io_fd)[0] != STDIN_FILENO)
-	{
-		close((*io_fd)[0]);
-		(*io_fd)[0] = STDIN_FILENO;
-	}
-	if ((*io_fd)[1] != STDOUT_FILENO)
-	{
-		close((*io_fd)[1]);
-		(*io_fd)[1] = STDOUT_FILENO;
-	}
+        }
+    }
+	i = 3;
+	while (i < 256)
+		close(i++);
 }
 

@@ -33,7 +33,6 @@ int	check_error(t_data *param)
 		is_quoted = ft_is_quoted(param->input, i);
 		if (!is_quoted && is_bonus(param->input, i))
 		{
-			//printf("minishell: error arg ; || &&\n");
 			param->retour = 2;
 			free(param->input);
 			param->input = NULL;
@@ -76,9 +75,8 @@ char	*read_multilines(char *prompt)
 	char	*line_cpy;
 	char	*tmp;
 	int		quote_type;
-	
+
 	line = readline(prompt);
-	
 	if (!line)
 		return (0);
 	quote_type = line_not_finished(line);
@@ -95,7 +93,6 @@ char	*read_multilines(char *prompt)
 		free(tmp);
 		quote_type = line_not_finished(line);
 	}
-	//line_cpy = strdup(line);
 	return (line);
 }
 
@@ -105,7 +102,6 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	//param->input = ((void *)0);
 	input = read_multilines("42mminishell $ ");
 	param->input = input;
 	if (param->input == NULL)

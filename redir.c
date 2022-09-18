@@ -71,3 +71,38 @@ int	redir_in(t_data	*param, char **f_matrix)
 	return (fd);
 }
 
+void	redir_bultin(t_data *param)
+{
+	int	fd_in;
+	int	fd_out;
+
+	fd_in = redir_in(param, param->f_matrix);
+	fd_out = redir_out(param->f_matrix);
+	if (fd_in != 0)
+	{
+		dup2(fd_in, STDIN_FILENO);
+		close(fd_in);
+	}
+	if (fd_out != 1)
+	{
+		dup2(fd_out, STDOUT_FILENO);
+		close(fd_out);
+	}
+}
+
+void	init_fd_child(t_data *param, int (*fds)[2], int fd)
+{
+	(*fds)[1] = redir_out(param->f_matrix);
+	(*fds)[0] = redir_in(param, param->f_matrix);
+	if ((*fds)[0] == 0)
+		(*fds)[0] = fd;
+}
+
+void	redir_fd_child(int fds[2], int end[2], int i, int j)
+{
+	dup2(fds[0], STDIN_FILENO);
+	if (fds[1] != 1)
+		dup2(fds[1], STDOUT_FILENO);
+	else if (i < j - 1)
+        dup2(end[1], STDOUT_FILENO);
+}

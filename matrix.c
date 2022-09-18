@@ -12,6 +12,46 @@
 
 #include "minishell.h"
 
+int	check_f_matrix(char **f_matrix)
+{
+	int	i;
+
+	i = 1;
+	if (f_matrix)
+	{
+		while (f_matrix[i])
+		{
+			if (!strncmp(f_matrix[i], "", 2))
+			{
+				write(2, "syntax error near unexpected token `newline'\n", 45);
+				return (0);
+			}
+			if (!f_matrix[++i])
+				return (1);
+			i++;
+		}
+	}
+	return (1);
+}
+
+int	set_f_matrix(t_data *param, int i)
+{
+	char	**sep;
+
+	sep = ft_split(">>,>,<<,<", ',');
+    param->f_matrix = pop_names_from_sep(param, i, sep);
+	if (!check_f_matrix(param->f_matrix))
+	{
+		ft_free_split(&sep);
+		return (-1);
+	}
+	else
+	{
+		ft_free_split(&sep);
+		return (1);
+	}
+}
+
 char	**ft_append_tab(char **matrix, char *str)
 {
 	int		tab_len;

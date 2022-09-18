@@ -1,5 +1,29 @@
 #include "minishell.h"
 
+int	ft_is_quoted(char *c, int i)
+{
+	static int	squote;
+	static int	dquote;
+
+	if (!c)
+	{
+		squote = 0;
+		dquote = 0;
+	}
+	else
+	{
+		if (c[i] == '\'' && !dquote)
+			squote = !squote;
+		else if (c[i] == '\"' && !squote)
+			dquote = !dquote;
+		if (dquote)
+			return (2);
+		if (squote)
+			return (1);
+	}
+	return (0);
+}
+
 int	quote_empty(char *first_quote)
 {
 	if (first_quote)
