@@ -44,6 +44,24 @@ char	**export_command2(t_data *param, int j)
 	return (cpy);
 }
 
+int	is_available_var_name(char *var, int i)
+{
+	int j;
+
+	j = 0;
+	while (j < i)
+	{
+		if (!(ft_isalnum(var[j]) || var[j] == '_'))
+		{
+			free(var);
+			write(2, "not a valid identifier\n", 23);
+			return (0);
+		}
+		j++;
+	}
+	return (1);
+}
+
 char	**export_command(t_data *param, int j)
 {
 	int		i;
@@ -67,16 +85,19 @@ char	**export_command(t_data *param, int j)
 	new_var = matrix_to_str(quote_split);
 	ft_free_split(&quote_split);
 	spliter_index = ft_strlen_char(new_var, '=');
-	while (param->envp[i])
+	if (is_available_var_name(new_var, spliter_index))
 	{
-		if (!ft_strncmp(new_var, param->envp[i], spliter_index + 1))
+		while (param->envp[i])
 		{
-			param->envp = free_matrix_line(param->envp, i);
-			break ;
+			if (!ft_strncmp(new_var, param->envp[i], spliter_index + 1))
+			{
+				param->envp = free_matrix_line(param->envp, i);
+				break ;
+			}
+			i++;
 		}
-		i++;
+		param->envp = ft_append_tab(param->envp, new_var);
 	}
-	param->envp = ft_append_tab(param->envp, new_var);
 	return (param->envp);
 }
 
