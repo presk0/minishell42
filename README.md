@@ -42,5 +42,5 @@ command not found
 ==68583==ERROR: LeakSanitizer: detected memory leaks.      //il faudrait corriger ca va etre teste sur
 
 
-
+norminette dans libft et printf a refaire ;)
 
