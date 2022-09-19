@@ -70,7 +70,7 @@ void	cd_command(t_data *param)
 	errno = 0;
 	if (param->argc <= 2)
 	{
-		if (!param->argv[1] || !ft_strncmp(param->argv[1], "--", 3) ||
+		if (!param->argv[1] || !ft_strncmp(param->argv[1], "--", 3) || \
 			!ft_strncmp(param->argv[1], "~", 2))
 			path = get_env(param->envp, "HOME");
 		else if (!ft_strncmp(param->argv[1], "-", 2))

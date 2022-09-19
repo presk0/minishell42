@@ -38,26 +38,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	*substr = '\0';
 	return (return_val);
 }
-
-/*
-//
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-// MAIN
-
-int	main(void)
-{
-	char	str[100];
-	char	*output;
-	int		start;
-	int		len;
-
-	strcpy(str, "une chaine");
-	start	= 1;
-	len		= 3;
-	output = ft_substr(str, start, len);
-	f//printf(stderr, "ft_substr(\"%s\", %d, %d) => [%s]\n", str, start, len, output);
-}
-*/
