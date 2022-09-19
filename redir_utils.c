@@ -45,6 +45,22 @@ int	redir_out(char **f_matrix)
 	return (fd);
 }
 
+static int	redir_if_file_exist(int *fd, char **f_matrix, int *last_fd, int i)
+{
+	*fd = open(f_matrix[i + 1], O_RDONLY, 0666);
+	if (*fd != -1)
+	{
+		refresh_fd(last_fd, fd);
+		return (1);
+	}
+	else
+	{
+		write(2, "No such file or directory\n", 27);
+		*fd = 0;
+		return (0);
+	}
+}
+
 int	redir_in(t_data	*param, char **f_matrix)
 {
 	int	fd;
@@ -58,8 +74,7 @@ int	redir_in(t_data	*param, char **f_matrix)
 	{
 		if (!ft_memcmp(f_matrix[i], "<", 2))
 		{
-			fd = open(f_matrix[i + 1], O_RDONLY, 0666);
-			refresh_fd(&last_fd, &fd);
+			redir_if_file_exist(&fd, f_matrix, &last_fd, i);
 		}
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
 		{
