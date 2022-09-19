@@ -74,7 +74,8 @@ int	redir_in(t_data	*param, char **f_matrix)
 	{
 		if (!ft_memcmp(f_matrix[i], "<", 2))
 		{
-			redir_if_file_exist(&fd, f_matrix, &last_fd, i);
+			if (!redir_if_file_exist(&fd, f_matrix, &last_fd, i))
+				break ;
 		}
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
 		{
