@@ -1,28 +1,12 @@
-si possible
-	- signaux et ctrl d dans le heredoc
-	- finir norminette
+ft_string_split_multisep.c: Error!
+Error: TOO_MANY_ARGS        (line:  16, col:  18):      Function has more than 4 arguments
+Error: TOO_MANY_ARGS        (line:  34, col:  34):      Function has more than 4 arguments
 
-supprimer fichiers inutiles
-mettre les noms de fichiers dans le Makefile
-/!\ makefile hardcode avec swalter, verifier que le programme fonctionne sur tt les macs
-retirer les flags avec sanitizer
 
-Le rend-on en l'etat ?
+split.c: Error!
+Error: TOO_MANY_ARGS        (line:  16, col:  34):      Function has more than 4 arguments
+Error: TOO_MANY_ARGS        (line:  31, col:  43):      Function has more than 4 arguments
 
-bugs :
-
-2mminishell $ env asdf
-/usr/bin/env: ‘asdf’: No such file or directory
-
-42mminishell $ cat << fin
-> $PATH
-> fin
-$PATH
-
-2mminishell $ export sdf = p
-42mminishell $ env
-[ ... ] 
-OLDPWD=/home/me2
-_=./minishell
-sdf
-
+dans le heredoc ; 42mminishell $ <<t
+> t
+command not found
