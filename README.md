@@ -11,7 +11,9 @@ Le rend-on en l'etat ?
 bugs :
 
 2mminishell $ env asdf
-/usr/bin/env: ‘asdf’: No such file or directory // pas d'arguments pour env donc ok
+/usr/bin/env: ‘asdf’: No such file or directory 
+// utilise un path alors que la commande est un bultin
+
 
 42mminishell $ cat << fin
 > $PATH
@@ -25,22 +27,7 @@ OLDPWD=/home/me2
 _=./minishell
 sdf
 
-2mminishell $ cat -e << e < redir.c       // puet etre mieux en corrigant le suivant
-> e
-AddressSanitizer:DEADLYSIGNAL
-=================================================================
-==67767==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000
-
-2mminishell $ <<e
-> sd
-> sdf
-> sdf 
-> sdf 
-> e
-command not found
-=================================================================
-==68583==ERROR: LeakSanitizer: detected memory leaks.      //il faudrait corriger ca va etre teste sur
-
-
 norminette dans libft et printf a refaire ;)
+=> ou copier / coller une bibliotheque existante
+(a moins qu'ils aient modifies les normes)
 
