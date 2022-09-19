@@ -1,0 +1,128 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+${NAME}	Makefile	/^${NAME}: make_libftprintf make_libft$/;"	t
+%.o	Makefile	/^%.o: %.c$/;"	t
+Attachments	eval.html	/^<h3 class="font-weight-bold mb-1">Attachments<\/h3>$/;"	j
+CC	Makefile	/^CC = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -lreadline -g3 -fsanitize=address $/;"	m
+Conclusion	eval.html	/^<h3 class="font-weight-bold mb-1">Conclusion<\/h3>$/;"	j
+DEBUG_NAME	Makefile	/^DEBUG_NAME = a.out$/;"	m
+Guidelines	eval.html	/^<h3 class="font-weight-bold mb-1">Guidelines<\/h3>$/;"	j
+HEADERS	Makefile	/^HEADERS = include$/;"	m
+INCLUDES	Makefile	/^INCLUDES = -I.\/usr\/include -I.\/$(HEADERS) $(LIBS) -I.\/$(LIBFTprintf_DIR) -I.\/$(LIBFT_DIR)$/;"	m
+Introduction	eval.html	/^<h3 class="font-weight-bold mb-1">Introduction<\/h3>$/;"	j
+LIBFT_AR	Makefile	/^LIBFT_AR = libft.a$/;"	m
+LIBFT_DIR	Makefile	/^LIBFT_DIR = libft\/$/;"	m
+LIBFTprintf_AR	Makefile	/^LIBFTprintf_AR = libftprintf.a$/;"	m
+LIBFTprintf_DIR	Makefile	/^LIBFTprintf_DIR = libftprintf\/$/;"	m
+LIBS	Makefile	/^LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)$/;"	m
+NAME	Makefile	/^NAME = minishell$/;"	m
+OBJS	Makefile	/^OBJS := ${SRCS:c=o}$/;"	m
+Partie bonus	eval.html	/^<h3 class="font-weight-bold mb-1">Partie bonus<\/h3>$/;"	j
+Partie obligatoire	eval.html	/^<h3 class="font-weight-bold mb-1">Partie obligatoire<\/h3>$/;"	j
+Ratings	eval.html	/^<h3 class="font-weight-bold mb-1">Ratings<\/h3>$/;"	j
+SRCS	Makefile	/^SRCS = *.c$/;"	m
+Scale for project minishell	eval.html	/^<\/h3>$/;"	j
+all	Makefile	/^all: ${NAME}$/;"	t
+cd_command	bultins2.c	/^void	cd_command(t_data *param)$/;"	f	typeref:typename:void
+change_dir	bultins2.c	/^static void	change_dir(char *path, t_data *param)$/;"	f	typeref:typename:void	file:
+check_built	bultins2.c	/^int check_built(t_data *param, int fd)$/;"	f	typeref:typename:int
+check_error	prompting.c	/^int	check_error(t_data *param)$/;"	f	typeref:typename:int
+check_f_matrix	matrix.c	/^int	check_f_matrix(char **f_matrix)$/;"	f	typeref:typename:int
+clean	Makefile	/^clean:$/;"	t
+clean_exit	main.c	/^void	clean_exit(t_data *param)$/;"	f	typeref:typename:void
+cmd_format	exec_cmd.c	/^char	**cmd_format(char *str, char *PATH, int is_builtin)$/;"	f	typeref:typename:char **
+cmd_format2	bultins2.c	/^char	**cmd_format2(t_data *param, char **str, char **envp)$/;"	f	typeref:typename:char **
+cmd_format_add_path	cmd_format.c	/^char	**cmd_format_add_path(t_data *param)$/;"	f	typeref:typename:char **
+cmd_split_sw	bultins2.c	/^char	**cmd_split_sw(t_data *param)$/;"	f	typeref:typename:char **
+command_failed	exec_utils.c	/^void	command_failed(t_data *param, char ***cmd)$/;"	f	typeref:typename:void
+convert_var	var_conv.c	/^char	*convert_var(char *line, int i_dollar, \\$/;"	f	typeref:typename:char *
+convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(t_data *param, char **line, char **envp)$/;"	f	typeref:typename:char *
+convvarinline_loop	var_conv.c	/^static void	convvarinline_loop(t_data *param, char **line, char **envp, int i)$/;"	f	typeref:typename:void	file:
+copy_env	init.c	/^char	**copy_env(char **envp, int add)$/;"	f	typeref:typename:char **
+ctags	Makefile	/^ctags:$/;"	t
+debug	Makefile	/^debug: debugfile$/;"	t
+debugfile	Makefile	/^debugfile: ctags$/;"	t
+del_first_word	strings.c	/^void	del_first_word(char **str)$/;"	f	typeref:typename:void
+error	bultins2.c	/^void	error(t_data *param)$/;"	f	typeref:typename:void
+exec_bultins	pipe.c	/^void	exec_bultins(t_data *param)$/;"	f	typeref:typename:void
+exec_pipes	pipe.c	/^void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)$/;"	f	typeref:typename:void
+execute_pipe	pipe.c	/^void	execute_pipe(t_data *param, int i)$/;"	f	typeref:typename:void
+execute_single	exec_single.c	/^void	execute_single(t_data *param)$/;"	f	typeref:typename:void
+export_command	export.c	/^char	**export_command(t_data *param, int j)$/;"	f	typeref:typename:char **
+fclean	Makefile	/^fclean: clean$/;"	t
+free_matrix_line	matrix_utils.c	/^char	**free_matrix_line(char **matrix, int line_nb)$/;"	f	typeref:typename:char **
+ft_append_tab	matrix.c	/^char	**ft_append_tab(char **matrix, char *str)$/;"	f	typeref:typename:char **
+ft_child_process	pipe.c	/^void	ft_child_process(t_data *param, int i, int *end)$/;"	f	typeref:typename:void
+ft_file_exists	exec_cmd.c	/^int	ft_file_exists(const char *fname)$/;"	f	typeref:typename:int
+ft_is_bultin	verif_bultin.c	/^int	ft_is_bultin(t_data *param)$/;"	f	typeref:typename:int
+ft_is_quoted	quoting.c	/^int	ft_is_quoted(char *c, int i)$/;"	f	typeref:typename:int
+ft_matrixlen	matrix_utils.c	/^int	ft_matrixlen(char **matrix)$/;"	f	typeref:typename:int
+ft_only_blank	main.c	/^int	ft_only_blank(t_data *param)$/;"	f	typeref:typename:int
+ft_parent_process	pipe.c	/^void	ft_parent_process(t_data *param, int pid, int (*fds)[2], \\$/;"	f	typeref:typename:void
+ft_split_multistrsep	ft_string_split_multisep.c	/^char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)$/;"	f	typeref:typename:char **
+ft_split_strsep	split.c	/^char	**ft_split_strsep(char *str, char *sep, int is_char)$/;"	f	typeref:typename:char **
+ft_var_len	var_conv.c	/^size_t	ft_var_len(char *var_start)$/;"	f	typeref:typename:size_t
+get_env	env.c	/^char	*get_env(char **envp, char *env)$/;"	f	typeref:typename:char *
+get_input	prompting.c	/^int	get_input(t_data *param)$/;"	f	typeref:typename:int
+get_new_var	export.c	/^char	*get_new_var(t_data *param, int j)$/;"	f	typeref:typename:char *
+get_path	exec_cmd.c	/^char	*get_path(char *cmd, char *PATH)$/;"	f	typeref:typename:char *
+heredoc	heredoc.c	/^int	heredoc(t_data *param, char *stop_str)$/;"	f	typeref:typename:int
+heredoc_fd	heredoc.c	/^int	heredoc_fd(char **text, char **line)$/;"	f	typeref:typename:int
+heredoc_loop	heredoc.c	/^char	*heredoc_loop(int *first_loop, char **line, char **tmp, char **text)$/;"	f	typeref:typename:char *
+init_fd_child	redir.c	/^void	init_fd_child(t_data *param, int (*fds)[2], int fd)$/;"	f	typeref:typename:void
+init_param	init.c	/^t_data	*init_param(char **envp)$/;"	f	typeref:typename:t_data *
+init_sig	main.c	/^void	init_sig(struct termios *tmp, t_data *param)$/;"	f	typeref:typename:void
+init_vars	ft_string_split_multisep.c	/^static void	init_vars(int *i, char ***matrix_split, char *str, \\$/;"	f	typeref:typename:void	file:
+init_vars_split_strsep	split.c	/^static void	init_vars_split_strsep(int is_char, char *sep, int *sep_len, \\$/;"	f	typeref:typename:void	file:
+is_available_var_name	strings.c	/^int	is_available_var_name(char *var, int i)$/;"	f	typeref:typename:int
+is_blank	strings.c	/^int	is_blank(char c)$/;"	f	typeref:typename:int
+is_bonus	prompting.c	/^static int	is_bonus(char *str, int i)$/;"	f	typeref:typename:int	file:
+line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/;"	f	typeref:typename:int	file:
+line_presplit	quoting.c	/^int	line_presplit(char *cmd)$/;"	f	typeref:typename:int
+main	main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f	typeref:typename:int
+make_libft	Makefile	/^make_libft:$/;"	t
+make_libftprintf	Makefile	/^make_libftprintf:$/;"	t
+matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/;"	f	typeref:typename:char *
+new_env	env.c	/^char	**new_env(char **envp, int i)$/;"	f	typeref:typename:char **
+norminette_sucks	split.c	/^static void	norminette_sucks(char **str, int *i, char ***matrix_split, \\$/;"	f	typeref:typename:void	file:
+parser	parser.c	/^void	parser(t_data *param)$/;"	f	typeref:typename:void
+pop_first_wd	strings.c	/^char	*pop_first_wd(char **cmd)$/;"	f	typeref:typename:char *
+pop_names_from_sep	get_filename.c	/^char	**pop_names_from_sep(t_data *param, int i, char **sep)$/;"	f	typeref:typename:char **
+pop_names_from_sep_refresh	get_filename.c	/^void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split)$/;"	f	typeref:typename:void
+print_env_tri	export.c	/^void	print_env_tri(t_data *param)$/;"	f	typeref:typename:void
+process	signals.c	/^static void	process(int sign_num)$/;"	f	typeref:typename:void	file:
+quote_empty	quoting.c	/^int	quote_empty(char *first_quote)$/;"	f	typeref:typename:int
+quotes_spaces_split	quoting.c	/^char	**quotes_spaces_split(char *line)$/;"	f	typeref:typename:char **
+re	Makefile	/^re: fclean all$/;"	t
+read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/;"	f	typeref:typename:char *
+redir_bultin	redir.c	/^void	redir_bultin(t_data *param)$/;"	f	typeref:typename:void
+redir_execute_single	redir.c	/^void	redir_execute_single(t_data *param, int (*fds)[2])$/;"	f	typeref:typename:void
+redir_fd_child	redir.c	/^void	redir_fd_child(int fds[2], int end[2], int i, int j)$/;"	f	typeref:typename:void
+redir_in	redir_utils.c	/^int	redir_in(t_data	*param, char **f_matrix)$/;"	f	typeref:typename:int
+redir_out	redir_utils.c	/^int	redir_out(char **f_matrix)$/;"	f	typeref:typename:int
+refresh_fd	redir_utils.c	/^static void	refresh_fd(int *last_fd, int *fd)$/;"	f	typeref:typename:void	file:
+refresh_matrix	ft_string_split_multisep.c	/^static void	refresh_matrix(char *str, char ***matrix, char *sep, int i, \\$/;"	f	typeref:typename:void	file:
+reset_param	main.c	/^void	reset_param(t_data *param)$/;"	f	typeref:typename:void
+return_env_var	var_conv.c	/^char	*return_env_var(t_data *param, char *var, char *envp[])$/;"	f	typeref:typename:char *
+return_first_word	strings.c	/^char	*return_first_word(char *str)$/;"	f	typeref:typename:char *
+rm_heredoc_file	heredoc.c	/^int	rm_heredoc_file(void)$/;"	f	typeref:typename:int
+rm_null_lines	quoting.c	/^int	rm_null_lines(char ***cmd_split)$/;"	f	typeref:typename:int
+run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/;"	f	typeref:typename:void
+run_env	bultins2.c	/^void	run_env(t_data *param, int fd)$/;"	f	typeref:typename:void
+run_exit	bultins2.c	/^void	run_exit(t_data *param)$/;"	f	typeref:typename:void
+run_export	export.c	/^char	**run_export(t_data *param)$/;"	f	typeref:typename:char **
+run_unset	bultins2.c	/^char	**run_unset(t_data *param)$/;"	f	typeref:typename:char **
+set_cmds	cmd_format.c	/^int	set_cmds(t_data *param)$/;"	f	typeref:typename:int
+set_f_matrix	matrix.c	/^int	set_f_matrix(t_data *param, int i)$/;"	f	typeref:typename:int
+sigint_handler	signals.c	/^void	sigint_handler(int sign_num)$/;"	f	typeref:typename:void
+single_cmd	exec_single.c	/^void	single_cmd(t_data *param)$/;"	f	typeref:typename:void
+test	Makefile	/^test: ctags$/;"	t
+tri_env	export.c	/^static char	**tri_env(t_data *param)$/;"	f	typeref:typename:char **	file:
+verif_bultin	verif_bultin.c	/^int	verif_bultin(t_data *param)$/;"	f	typeref:typename:int
+wait_single_command	exec_single.c	/^void	wait_single_command(t_data *param, char **cmd, int pid)$/;"	f	typeref:typename:void
