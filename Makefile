@@ -20,10 +20,8 @@ NAME = minishell
 DEBUG_NAME = a.out
 HEADERS = include
 LIBFT_DIR = libft/
-LIBFTprintf_DIR = libftprintf/
 LIBFT_AR = libft.a
-LIBFTprintf_AR = libftprintf.a
-LIBS = $(LIBFTprintf_DIR)$(LIBFTprintf_AR) $(LIBFT_DIR)$(LIBFT_AR)
+LIBS = $(LIBFT_DIR)$(LIBFT_AR)
 
 INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR) -I/Users/swalter/.brew/opt/readline/include
 CFLAGS = -Wall -Wextra -Werror -L/Users/swalter/.brew/opt/readline/lib -lreadline -g3 -fsanitize=address 
@@ -32,7 +30,7 @@ CC = gcc
 
 all: ${NAME}
 
-${NAME}: make_libftprintf make_libft
+${NAME}: make_libft
 	$(CC) $(CFLAGS) $(SRCS) $(LIBS)  $(INCLUDES) -o $(NAME)
 #	$(CC) $(CFLAGS) $(SRCS) $(LIBS) $(MAIN) $(INCLUDES) -o $(NAME)
 
@@ -42,9 +40,6 @@ ${NAME}: make_libftprintf make_libft
 make_libft:
 	make -C libft
 
-make_libftprintf:
-	make -C libftprintf
-
 .PHONY: ctags
 ctags:
 	ctags *
@@ -53,12 +48,10 @@ clean:
 	rm -f $(OBJS)
 	rm -f $(DEBUG_NAME)
 	make clean -C libft
-	make clean -C libftprintf
 
 fclean: clean
 	rm -f $(NAME)
 	make fclean -C libft
-	make fclean -C libftprintf
 
 re: fclean all
 

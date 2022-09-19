@@ -1,9 +1,10 @@
 si possible
 	- signaux et ctrl d dans le heredoc
-	- finir norminette (j'ai fais le plus gros)
+	- finir norminette
 
 supprimer fichiers inutiles
 mettre les noms de fichiers dans le Makefile
+/!\ makefile hardcode avec swalter, verifier que le programme fonctionne sur tt les macs
 retirer les flags avec sanitizer
 
 Le rend-on en l'etat ?
@@ -24,20 +25,4 @@ $PATH
 OLDPWD=/home/me2
 _=./minishell
 sdf
-
-2mminishell $ cat -e << e < redir.c 
-> e
-AddressSanitizer:DEADLYSIGNAL
-=================================================================
-==67767==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000
-
-2mminishell $ <<e
-> sd
-> sdf
-> sdf 
-> sdf 
-> e
-command not found
-=================================================================
-==68583==ERROR: LeakSanitizer: detected memory leaks
 
