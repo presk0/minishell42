@@ -11,21 +11,21 @@ Le rend-on en l'etat ?
 bugs :
 
 2mminishell $ env asdf
-/usr/bin/env: ‘asdf’: No such file or directory
+/usr/bin/env: ‘asdf’: No such file or directory // pas d'arguments pour env donc ok
 
 42mminishell $ cat << fin
 > $PATH
 > fin
-$PATH
+$PATH				// on tente sans 
 
-2mminishell $ export sdf = p
+2mminishell $ export sdf = p.   // je pense qu on laisse ;)
 42mminishell $ env
 [ ... ] 
 OLDPWD=/home/me2
 _=./minishell
 sdf
 
-2mminishell $ cat -e << e < redir.c 
+2mminishell $ cat -e << e < redir.c       // puet etre mieux en corrigant le suivant
 > e
 AddressSanitizer:DEADLYSIGNAL
 =================================================================
@@ -39,5 +39,8 @@ AddressSanitizer:DEADLYSIGNAL
 > e
 command not found
 =================================================================
-==68583==ERROR: LeakSanitizer: detected memory leaks
+==68583==ERROR: LeakSanitizer: detected memory leaks.      //il faudrait corriger ca va etre teste sur
+
+
+
 
