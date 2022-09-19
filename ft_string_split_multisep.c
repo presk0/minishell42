@@ -12,32 +12,48 @@
 
 #include "minishell.h"
 
-static void	refresh_matrix(char *str, char ***matrix, char *sep, int i, \
-	int keep_sep)
+static void	refresh_matrix_keep_sep(char *str, char ***matrix, char *sep, int i)
 {
 	char	*str_split[3];
 	int		sep_len;
 
 	sep_len = ft_strlen(sep);
 	str_split[0] = ft_substr(str, 0, i);
-	if (keep_sep)
-		str_split[1] = ft_substr(str, i, sep_len);
+	str_split[1] = ft_substr(str, i, sep_len);
 	str_split[2] = ft_substr(str, i + sep_len, ft_strlen(str));
 	*matrix = free_matrix_line(*matrix, ft_matrixlen(*matrix) - 1);
 	*matrix = ft_append_tab(*matrix, str_split[0]);
-	if (keep_sep)
-		*matrix = ft_append_tab(*matrix, str_split[1]);
+	*matrix = ft_append_tab(*matrix, str_split[1]);
 	*matrix = ft_append_tab(*matrix, str_split[2]);
 }
 
-static void	init_vars(int *i, char ***matrix_split, char *str, \
-	char ***sep_init, char **sep)
+static void	refresh_matrix_no_sep(char *str, char ***matrix, char *sep, int i)
+{
+	char	*str_split[3];
+	int		sep_len;
+
+	sep_len = ft_strlen(sep);
+	str_split[0] = ft_substr(str, 0, i);
+	str_split[2] = ft_substr(str, i + sep_len, ft_strlen(str));
+	*matrix = free_matrix_line(*matrix, ft_matrixlen(*matrix) - 1);
+	*matrix = ft_append_tab(*matrix, str_split[0]);
+	*matrix = ft_append_tab(*matrix, str_split[2]);
+}
+
+static char	**init_vars(int *i, char ***matrix_split, char *str, \
+	char **sep)
 {
 	ft_is_quoted(NULL, 0);
 	*matrix_split = NULL;
 	*matrix_split = ft_append_tab(*matrix_split, ft_strdup(str));
 	*i = -1;
-	*sep_init = sep;
+	return (sep);
+}
+
+static char	**init_loop(int *is_quoted, char **str, int *i, char **sep_init)
+{
+	*is_quoted = ft_is_quoted(*str, *i);
+	return (sep_init);
 }
 
 char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)
@@ -47,18 +63,19 @@ char	**ft_split_multistrsep(char *str, char **sep, int keep_sep)
 	char		**matrix_split;
 	char		**sep_init;
 
-	init_vars(&i, &matrix_split, str, &sep_init, sep);
+	sep_init = init_vars(&i, &matrix_split, str, sep);
 	while (str && ++i < (int)ft_strlen(str))
 	{
-		is_quoted = ft_is_quoted(str, i);
-		sep = sep_init;
+		sep = init_loop(&is_quoted, &str, &i, sep_init);
 		while (sep && *sep)
 		{
 			if (!is_quoted && !ft_strncmp(&str[i], *sep, ft_strlen(*sep)))
 			{
-				refresh_matrix(str, &matrix_split, *sep, i, keep_sep);
-				str = matrix_split[ft_matrixlen(matrix_split) - 1];
-				i = -1;
+				if (keep_sep)
+					refresh_matrix_keep_sep(str, &matrix_split, *sep, i);
+				else
+					refresh_matrix_no_sep(str, &matrix_split, *sep, i);
+				bloody_normi(&str, &matrix_split, &i);
 			}
 			sep++;
 		}

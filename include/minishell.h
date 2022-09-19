@@ -147,4 +147,5 @@ void	wait_single_command(t_data *param, char **cmd, int pid);
 void	run_pwd(int fd);
 void	run_cd(t_data *param, int fd);
 void	change_dir(char *path, t_data *param);
+void	bloody_normi(char **str, char ***matrix_split, int *i);
 #endif

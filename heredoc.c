@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
+/*   Updated: 2022/08/19 14:30:54 by swalter          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	rm_heredoc_file(void)
@@ -74,7 +86,6 @@ int	heredoc(t_data *param, char *stop_str)
 	char			*line;
 	char			*text;
 	char			*tmp;
-	//struct termios	term;
 
 	(void)param;
 	first_loop = 1;
@@ -83,11 +94,8 @@ int	heredoc(t_data *param, char *stop_str)
 	while (first_loop || !line || \
 		ft_strncmp(line, stop_str, ft_strlen(stop_str) + 1))
 	{
-		//init_sig(&term, param);
 		if (heredoc_loop(&first_loop, &line, &tmp, &text) == NULL)
 			break ;
 	}
-	//init_sig(&term, param);
 	return (heredoc_fd(&text, &line));
 }
-
