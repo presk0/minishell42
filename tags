@@ -137,9 +137,10 @@ verif_bultin	verif_bultin.c	/^int	verif_bultin(t_data *param)$/;"	f	typeref:type
 wait_single_command	exec_single.c	/^void	wait_single_command(t_data *param, char **cmd, int pid)$/;"	f	typeref:typename:void
 =======
 Mmain	main.c	/^int	main(int argc, char **argv, char **envp)$/
-cd_command	bultins2.c	/^void	cd_command(t_data *param)$/
-change_dir	bultins2.c	/^static void	change_dir(char *path, t_data *param)$/
-check_built	bultins2.c	/^int check_built(t_data *param, int fd)$/
+bloody_normi	split.c	/^void	bloody_normi(char **str, char ***matrix_split/
+cd_command	bultins.c	/^void	cd_command(t_data *param)$/
+change_dir	bultins.c	/^void	change_dir(char *path, t_data *param)$/
+check_built	bultins2.c	/^int	check_built(t_data *param, int fd)$/
 check_error	prompting.c	/^int	check_error(t_data *param)$/
 check_f_matrix	matrix.c	/^int	check_f_matrix(char **f_matrix)$/
 clean_exit	main.c	/^void	clean_exit(t_data *param)$/
@@ -153,7 +154,7 @@ convert_var_in_line	var_conv.c	/^char	*convert_var_in_line(t_data *param, char *
 convvarinline_loop	var_conv.c	/^static void	convvarinline_loop(t_data *param, char/
 copy_env	init.c	/^char	**copy_env(char **envp, int add)$/
 del_first_word	strings.c	/^void	del_first_word(char **str)$/
-error	bultins2.c	/^void	error(t_data *param)$/
+error	bultins3.c	/^void	error(t_data *param)$/
 exec_bultins	pipe.c	/^void	exec_bultins(t_data *param)$/
 exec_pipes	pipe.c	/^void	exec_pipes(t_data *param, int (*end)[2], int /
 execute_pipe	pipe.c	/^void	execute_pipe(t_data *param, int i)$/
@@ -180,9 +181,10 @@ heredoc	heredoc.c	/^int	heredoc(t_data *param, char *stop_str)$/
 heredoc_fd	heredoc.c	/^int	heredoc_fd(char **text, char **line)$/
 heredoc_loop	heredoc.c	/^char	*heredoc_loop(int *first_loop, char **line, c/
 init_fd_child	redir.c	/^void	init_fd_child(t_data *param, int (*fds)[2], i/
+init_loop	ft_string_split_multisep.c	/^static char	**init_loop(int *is_quoted, char **str/
 init_param	init.c	/^t_data	*init_param(char **envp)$/
 init_sig	main.c	/^void	init_sig(struct termios *tmp, t_data *param)$/
-init_vars	ft_string_split_multisep.c	/^static void	init_vars(int *i, char ***matrix_split/
+init_vars	ft_string_split_multisep.c	/^static char	**init_vars(int *i, char ***matrix_spl/
 init_vars_split_strsep	split.c	/^static void	init_vars_split_strsep(int is_char, ch/
 is_available_var_name	strings.c	/^int	is_available_var_name(char *var, int i)$/
 is_blank	strings.c	/^int	is_blank(char c)$/
@@ -191,7 +193,6 @@ line_not_finished	prompting.c	/^static int	line_not_finished(char *line)$/
 line_presplit	quoting.c	/^int	line_presplit(char *cmd)$/
 matrix_to_str	matrix.c	/^char	*matrix_to_str(char **matrix)$/
 new_env	env.c	/^char	**new_env(char **envp, int i)$/
-norminette	README.md	/^	- finir norminette (j'ai fais le plus gros)$/
 norminette_sucks	split.c	/^static void	norminette_sucks(char **str, int *i, c/
 parser	parser.c	/^void	parser(t_data *param)$/
 pop_first_wd	strings.c	/^char	*pop_first_wd(char **cmd)$/
@@ -205,20 +206,24 @@ read_multilines	prompting.c	/^char	*read_multilines(char *prompt)$/
 redir_bultin	redir.c	/^void	redir_bultin(t_data *param)$/
 redir_execute_single	redir.c	/^void	redir_execute_single(t_data *param, int (*fds/
 redir_fd_child	redir.c	/^void	redir_fd_child(int fds[2], int end[2], int i,/
+redir_if_file_exist	redir_utils.c	/^static int	redir_if_file_exist(int *fd, char **f_m/
 redir_in	redir_utils.c	/^int	redir_in(t_data	*param, char **f_matrix)$/
 redir_out	redir_utils.c	/^int	redir_out(char **f_matrix)$/
 refresh_fd	redir_utils.c	/^static void	refresh_fd(int *last_fd, int *fd)$/
-refresh_matrix	ft_string_split_multisep.c	/^static void	refresh_matrix(char *str, char ***matr/
+refresh_matrix_keep_sep	ft_string_split_multisep.c	/^static void	refresh_matrix_keep_sep(char *str, cha/
+refresh_matrix_no_sep	ft_string_split_multisep.c	/^static void	refresh_matrix_no_sep(char *str, char /
 reset_param	main.c	/^void	reset_param(t_data *param)$/
 return_env_var	var_conv.c	/^char	*return_env_var(t_data *param, char *var, cha/
 return_first_word	strings.c	/^char	*return_first_word(char *str)$/
 rm_heredoc_file	heredoc.c	/^int	rm_heredoc_file(void)$/
 rm_null_lines	quoting.c	/^int	rm_null_lines(char ***cmd_split)$/
+run_cd	bultins.c	/^void	run_cd(t_data *param, int fd)$/
 run_echo	bultins2.c	/^void	run_echo(int fd, t_data *param)$/
-run_env	bultins2.c	/^void	run_env(t_data *param, int fd)$/
+run_env	bultins3.c	/^void	run_env(t_data *param, int fd)$/
 run_exit	bultins2.c	/^void	run_exit(t_data *param)$/
 run_export	export.c	/^char	**run_export(t_data *param)$/
-run_unset	bultins2.c	/^char	**run_unset(t_data *param)$/
+run_pwd	bultins.c	/^void	run_pwd(int fd)$/
+run_unset	bultins.c	/^char	**run_unset(t_data *param)$/
 set_cmds	cmd_format.c	/^int	set_cmds(t_data *param)$/
 set_f_matrix	matrix.c	/^int	set_f_matrix(t_data *param, int i)$/
 sigint_handler	signals.c	/^void	sigint_handler(int sign_num)$/
