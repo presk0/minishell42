@@ -101,7 +101,7 @@ void	ft_parent_process(t_data *param, int pid, int (*fds)[2], \
 	}
 	close((*end)[1]);
 	*fd = (*end)[0];
-	waitpid(pid, &ret, 0);
+	waitpid(pid, &ret, WCONTINUED);
 	param->retour = WEXITSTATUS(ret);
 	ft_free_split(&param->f_matrix);
 }
