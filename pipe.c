@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/09/19 08:23:10 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 12:51:39 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	if (set_f_matrix(param, i) == -1)
 		return ;
 	if (verif_bultin(param))
+	{
 		exec_bultins(param);
+		close((*end)[1]);
+		(*end)[1] = (*end)[0];
+	}
 	else
 	{
 		pid = fork();
