@@ -26,17 +26,31 @@ void	exec_bultins(t_data *param)
 	dup2(stdout_cpy, 1);
 }
 
+void	exec_bultins_pipes(t_data *param, int fd)
+{
+	redir_bultin(param);
+	cmd_split_sw(param);
+	check_built(param, fd);
+}
+
 void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 {
 	pid_t	pid;
 	int		fd;
 
-	fd = dup((*end)[0]);
+	dup2(fd, (*end)[0]);
+	//fd = dup((*end)[0]);
 	pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
 	if (verif_bultin(param))
-		exec_bultins(param);
+	{
+		int tmp = dup(STDOUT_FILENO);
+		dup2((*end)[1], tmp);
+		exec_bultins_pipes(param, (*end)[1]);
+		close((*end)[1]);
+		//(*fds)[0] = dup((*end)[0]);
+	}
 	else
 	{
 		pid = fork();

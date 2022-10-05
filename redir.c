@@ -41,10 +41,15 @@ void	redir_execute_single(t_data *param, int (*fds)[2])
 
 void	init_fd_child(t_data *param, int (*fds)[2], int fd)
 {
+	int	fd_tmp;
+
+	fd_tmp = 0;
 	(*fds)[1] = redir_out(param->f_matrix);
-	(*fds)[0] = redir_in(param, param->f_matrix);
-	if ((*fds)[0] == 0)
+	fd_tmp = redir_in(param, param->f_matrix);
+	if (fd_tmp == 0)
 		(*fds)[0] = fd;
+	else
+		(*fds)[0] = fd_tmp;
 }
 
 void	redir_fd_child(int fds[2], int end[2], int i, int j)

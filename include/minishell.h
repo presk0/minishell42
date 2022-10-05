@@ -148,4 +148,7 @@ void	run_pwd(int fd);
 void	run_cd(t_data *param, int fd);
 void	change_dir(char *path, t_data *param);
 void	bloody_normi(char **str, char ***matrix_split, int *i);
+void	heredoc_init_sig(struct termios *tmp, t_data *param);
+void	heredoc_sigint_handler(int sign_num);
+void	handler_heredoc(int sig);
 #endif

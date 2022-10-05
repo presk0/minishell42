@@ -12,16 +12,21 @@
 
 #include "minishell.h"
 
-static void	process(int sign_num)
+void	handler_heredoc(int sig)
+{
+	(void)sig;
+	ft_putstr_fd("\b\b  \b\b\n", 1);
+	rl_on_new_line();
+}
+
+static void	heredoc_process(int sign_num)
 {
 	if (!kill(g_pid, sign_num))
 	{
 		if (sign_num == SIGQUIT)
 		{
-			//ft_putstr_fd("^\\Quit: 3\n", 1);
-			rl_on_new_line();
-			rl_replace_line("", 0);
-			rl_redisplay();
+			//rl_on_new_line();
+			//rl_redisplay();
 		}
 		else if (sign_num == SIGINT)
 			ft_putchar_fd('\n', 1);
@@ -29,31 +34,37 @@ static void	process(int sign_num)
 	else if (sign_num == SIGINT)
 	{
 		ft_putendl_fd("", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		//rl_on_new_line();
+		//rl_redisplay();
 	}
 }
 
-void	sigint_handler(int sign_num)
+void	heredoc_sigint_handler(int sign_num)
 {
 	if ((sign_num == SIGINT || sign_num == SIGQUIT) && g_pid != 0)
-		process(sign_num);
-	else
+		heredoc_process(sign_num);
+	if (sign_num == SIGINT)
 	{
-		if (sign_num == SIGINT)
-		{
-			ft_putendl_fd("", 1);
-			rl_replace_line("", 0);
-			rl_on_new_line();
-			rl_redisplay();
-		}
-		else if (sign_num == SIGQUIT)
-		{
-			ft_putendl_fd("", 1);
-			rl_replace_line("", 0);
-			rl_on_new_line();
-			rl_redisplay();
-		}
+		ft_putendl_fd("", 1);
+		//rl_on_new_line();
+		//rl_redisplay();
+	}
+	else if (sign_num == SIGQUIT)
+	{
+		ft_putendl_fd("", 1);
+		//rl_on_new_line();
+		//rl_redisplay();
 	}
 }
+
+void	heredoc_init_sig(struct termios *tmp, t_data *param)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, heredoc_sigint_handler);
+	tcgetattr(0, tmp);
+	tmp->c_lflag &= ~ECHOCTL;
+	tmp->c_lflag |= ECHO;
+	tcgetattr(0, &param->save);
+	tcsetattr(0, 0, tmp);
+}
+

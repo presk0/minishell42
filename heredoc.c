@@ -65,7 +65,7 @@ char	*heredoc_loop(int *first_loop, char **line, char **tmp, char **text)
 	return (*line);
 }
 
-int	heredoc_fd(char **text, char **line)
+void	heredoc_write(char **text, char **line)
 {
 	int	fd;
 
@@ -76,11 +76,10 @@ int	heredoc_fd(char **text, char **line)
 	free(*text);
 	if (*line)
 		free(*line);
-	fd = open("heredoc", O_RDONLY);
-	return (fd);
+	close(fd);
 }
 
-int	heredoc(t_data *param, char *stop_str)
+void	heredoc_func(t_data *param, char *stop_str)
 {
 	int				first_loop;
 	char			*line;
@@ -97,5 +96,35 @@ int	heredoc(t_data *param, char *stop_str)
 		if (heredoc_loop(&first_loop, &line, &tmp, &text) == NULL)
 			break ;
 	}
-	return (heredoc_fd(&text, &line));
+	heredoc_write(&text, &line);
+}
+
+int	heredoc(t_data *param, char *stop_str)
+{
+	int				pid;
+	static int		child_pid;
+	int				main_pid;
+	int				fd;
+	struct termios	tmp;
+
+	main_pid = g_pid;
+	fd = -1;
+	pid = fork();
+	if (pid)
+		child_pid = pid;
+	if (!pid)
+	{
+		g_pid = child_pid;
+		signal(SIGINT, &handler_heredoc);
+		heredoc_func(param, stop_str);
+		exit(0);
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+		g_pid = main_pid;
+		init_sig(&tmp, param);
+	}
+	fd = open("heredoc", O_RDONLY);
+	return (fd);
 }
