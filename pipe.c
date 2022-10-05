@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/09/19 08:23:10 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 12:51:39 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_bultins(t_data *param)
 
 void	exec_bultins_pipes(t_data *param, int fd)
 {
-	redir_bultin(param);
+	//redir_bultin(param);
 	cmd_split_sw(param);
 	check_built(param, fd);
 }
@@ -43,14 +43,8 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
-	if (verif_bultin(param))
-	{
-		int tmp = dup(STDOUT_FILENO);
-		dup2((*end)[1], tmp);
-		exec_bultins_pipes(param, (*end)[1]);
-		close((*end)[1]);
-		//(*fds)[0] = dup((*end)[0]);
-	}
+	if (verif_bultin(param) == 1)
+		exec_bultins_pipes(param, 1);
 	else
 	{
 		pid = fork();
@@ -83,6 +77,11 @@ void	execute_pipe(t_data *param, int i)
 		if (execve(cmd[0], cmd, param->envp) <= -1)
 			command_failed(param, &cmd);
 	}	
+	else
+	{
+		exec_bultins_pipes(param, 1);
+		exit(0);
+	}
 }
 
 void	ft_child_process(t_data *param, int i, int *end)
