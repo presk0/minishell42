@@ -79,20 +79,26 @@ static char	**tri_env(t_data *param)
 {
 	char	**tableau;
 	int		i;
+	int		j;
 	char	*temp;
 
 	tableau = param->envp;
-	i = 0;
-	while (tableau[i] && tableau[i + 1])
+	j = 0;
+	while (tableau[j] && tableau[j + 1])
 	{
-		if (strcmp(tableau[i], tableau[i + 1]) > 0)
+		i = j;
+		while (tableau[i] && tableau[i + 1])
 		{
-			temp = tableau[i];
-			tableau[i] = tableau[i + 1];
-			tableau[i + 1] = temp;
-			i = -1;
+			if (strcmp(tableau[i], tableau[i + 1]) > 0)
+			{
+				temp = tableau[i];
+				tableau[i] = tableau[i + 1];
+				tableau[i + 1] = temp;
+				i = -1;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
 	return (tableau);
 }
