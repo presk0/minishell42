@@ -1,0 +1,5 @@
+make: Entering directory `/Users/ndionis/minishell42'
+make -C libft
+gcc -Wall -Wextra -Werror -L//Users/ndionis/.brew/opt/readline/lib -lreadline -g3 -fsanitize=address  *.c libft/libft.a  -I./usr/include -I./include libft/libft.a -I./ -I./libft/ -I//Users/ndionis/.brew/opt/readline/include -o minishell
+make: Leaving directory `/Users/ndionis/minishell42'
+ 

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/09/19 08:25:00 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:17:29 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_var_len(char *var_start)
 	size_t	len;
 
 	len = 0;
-	if (!ft_strncmp(var_start, "?", 2))
+	if (!ft_strncmp(var_start, "?", 1))
 		return (1);
 	if (var_start)
 	{
@@ -40,7 +40,7 @@ char	*return_env_var(t_data *param, char *var, char *envp[])
 	i = 0;
 	if (!var || !envp)
 		return (NULL);
-	if (!ft_strncmp(var, "?", 2))
+	if (!ft_strncmp(var, "?", 1))
 		return (ft_itoa(param->retour));
 	while (envp[i])
 	{

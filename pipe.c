@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/05 12:51:39 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:10:40 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 		return ;
 	if (verif_bultin(param))
 	{
-		exec_bultins(param);
-		close((*end)[1]);
-		(*end)[1] = (*end)[0];
+		dup2((*fds)[1], (*end)[0]);
+		cmd_split_sw(param);
+		check_built(param, (*end)[1]);
+		dup2((*end)[0], (*end)[1]);
 	}
 	else
 	{

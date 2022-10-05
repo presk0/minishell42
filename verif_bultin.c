@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 08:26:00 by swalter           #+#    #+#             */
-/*   Updated: 2022/08/17 11:41:08 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:20:44 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_is_bultin(t_data *param)
 {
 	if (!ft_memcmp("echo", param->input_cleaned, 4))
 		return (1);
-	else if (!ft_memcmp(param->input_cleaned, "pwd", 4))
+	else if (!ft_strncmp(param->input_cleaned, "pwd", 3))
 		return (1);
 	else if (!ft_memcmp(param->input_cleaned, "export", 6))
 		return (1);
