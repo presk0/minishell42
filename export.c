@@ -45,7 +45,7 @@ char	**export_command(t_data *param, int j)
 	i = 0;
 	new_var = get_new_var(param, j);
 	spliter_index = ft_strlen_char(new_var, '=');
-	if (is_available_var_name(new_var, spliter_index))
+	if (is_available_var_name(new_var, spliter_index) && ft_strchr(new_var, '='))
 	{
 		while (param->envp[i])
 		{
@@ -58,6 +58,8 @@ char	**export_command(t_data *param, int j)
 		}
 		param->envp = ft_append_tab(param->envp, new_var);
 	}
+	else
+		free(new_var);
 	return (param->envp);
 }
 
