@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:41:51 by swalter           #+#    #+#             */
-/*   Updated: 2022/09/19 09:32:01 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:12:54 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	run_echo(int fd, t_data *param)
 	int	i;
 
 	i = 0;
-	//fd = 1;
+	fd = 1;
 	if (param->argc > 1 && !ft_memcmp(param->argv[1], "-n", 3))
 		i = 1;
 	while (i++ < param->argc)

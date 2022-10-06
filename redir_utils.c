@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:24:05 by swalter           #+#    #+#             */
-/*   Updated: 2022/09/19 08:24:09 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/03 15:50:32 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	redir_if_file_exist(int *fd, char **f_matrix, int *last_fd, int i)
 	}
 }
 
-int	redir_in(t_data	*param, char **f_matrix)
+int	redir_in(char **f_matrix)
 {
 	int	fd;
 	int	i;
@@ -79,7 +79,7 @@ int	redir_in(t_data	*param, char **f_matrix)
 		}
 		else if (!ft_memcmp(f_matrix[i], "<<", 3))
 		{
-			fd = heredoc(param, f_matrix[i + 1]);
+			fd = heredoc(f_matrix[i + 1]);
 			refresh_fd(&last_fd, &fd);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/08/31 14:45:59 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 12:03:12 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,6 @@ void	reset_param(t_data *param)
 	param->cmds = NULL;
 }
 
-void	init_sig(struct termios *tmp, t_data *param)
-{
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sigint_handler);
-	tcgetattr(0, tmp);
-	tmp->c_lflag &= ~ECHOCTL;
-	tmp->c_lflag |= ECHO;
-	tcgetattr(0, &param->save);
-	tcsetattr(0, 0, tmp);
-}
-
 int	ft_only_blank(t_data *param)
 {
 	int	i;
@@ -72,21 +61,24 @@ void	clean_exit(t_data *param)
 {
 	rl_clear_history();
 	reset_param(param);
+	rm_heredoc_file();
 	exit(0);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data			*param;
-	struct termios	tmp;
 
-	(void)argc;
-	(void)argv;
-	g_pid = 0;
+	(void)argc, (void)argv;
 	param = init_param(envp);
-	init_sig(&tmp, param);
-	while ("pas vu pas pirs")
+	while (1)
 	{
+		init_sig();
+		if (isatty(param->save_in))
+		{
+			while (wait(NULL) != -1 || errno != ECHILD)
+				;
+		}		
 		if (!get_input(param))
 			break ;
 		if (ft_only_blank(param))
@@ -94,7 +86,8 @@ int	main(int argc, char **argv, char **envp)
 		add_history(param->input);
 		if (check_error(param))
 			continue ;
-		parser(param);
+		if (ft_ctrl_d_handler(param->input, *param) && param->input != 0)
+			parser(param);
 		rm_heredoc_file();
 		reset_param(param);
 	}

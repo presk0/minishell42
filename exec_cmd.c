@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/09/19 08:19:19 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/03 15:29:13 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_path(char *cmd, char *PATH)
 	char	**env_tab;
 	int		i;
 
-	if (!cmd)
+	if (!PATH || !cmd)
 		return (NULL);
 	if (!ft_memcmp(cmd, "/", 1) && ft_file_exists(cmd))
 		return (ft_strdup(cmd));

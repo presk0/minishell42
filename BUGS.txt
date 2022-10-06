@@ -1,0 +1,20 @@
+export PATH=  -> segfault
+| ls
+cd msg erreur
+newline quotes
+redirection vers fichier ou on a pas les perms
+
+export $aa=sdf
+
+cd - affiche pathe (et pas les autres
+
+./minishell | ./minishell
+
+signaux ( ctr-c
+convert var  non gere dans le here doc
+
+echo \t blabla
+
+/!\ valgrind
+
+

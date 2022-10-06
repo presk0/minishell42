@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_bultin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swalter <swalter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 08:26:00 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/05 16:20:44 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:04:15 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_is_bultin(t_data *param)
 {
 	if (!ft_memcmp("echo", param->input_cleaned, 4))
 		return (2);
-	else if (!ft_memcmp(param->input_cleaned, "pwd", 4))
+	else if (!ft_strncmp(param->input_cleaned, "pwd", 3))
 		return (2);
 	else if (!ft_memcmp(param->input_cleaned, "export", 6))
 		return (1);
@@ -27,7 +27,7 @@ int	ft_is_bultin(t_data *param)
 	else if (!ft_strncmp("cd", param->input_cleaned, 2))
 		return (1);
 	else if (!ft_strncmp("exit", param->input_cleaned, 4))
-		return (1);
+		return (2);
 	else
 		return (0);
 }

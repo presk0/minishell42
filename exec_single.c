@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:18:47 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/05 16:55:04 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:14:48 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	wait_single_command(t_data *param, char **cmd, int pid)
 {
 	int	ret;
 
-	signal(SIGQUIT, sigint_handler);
+	signal(SIGQUIT, ft_sig_handler);
 	if (cmd)
 		ft_free_split(&cmd);
 	cmd = NULL;
@@ -38,7 +38,6 @@ void	execute_single(t_data *param)
 	{
 		cmd = cmd_format_add_path(param);
 		pid = fork();
-		g_pid = pid;
 		if (pid == 0)
 		{
 			redir_execute_single(param, &fds);

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/05 17:10:40 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:10:08 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,11 @@ void	exec_bultins(t_data *param)
 	dup2(stdout_cpy, 1);
 }
 
-void	exec_bultins_pipes(t_data *param, int fd)
-{
-	//redir_bultin(param);
-	cmd_split_sw(param);
-	check_built(param, fd);
-}
-
 void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 {
 	pid_t	pid;
 	int		fd;
 
-	//dup2(fd, (*end)[0]);
 	fd = dup((*end)[0]);
 	close((*end)[0]);
 	pipe(*end);
@@ -54,7 +46,7 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 			init_fd_child(param, fds, fd);
 			redir_fd_child((*fds), (*end), i, j);
 			ft_child_process(param, i, (*end));
-		}
+		}	
 		else
 			ft_parent_process(param, pid, fds, end, &fd);
 	}
@@ -77,12 +69,12 @@ void	execute_pipe(t_data *param, int i)
 		free(path);
 		if (execve(cmd[0], cmd, param->envp) <= -1)
 			command_failed(param, &cmd);
-	}	
+	}
 	else
 	{
 		exec_bultins_pipes(param, 1);
 		exit(0);
-	}
+	}	
 }
 
 void	ft_child_process(t_data *param, int i, int *end)
@@ -102,7 +94,11 @@ void	ft_parent_process(t_data *param, int pid, int (*fds)[2], \
 	}
 	close((*end)[1]);
 	*fd = (*end)[0];
+<<<<<<< HEAD
 	waitpid(pid, &ret, WCONTINUED);// & WCONTINUED & WNOHANG);
+=======
+	waitpid(pid, &ret, 0);
+>>>>>>> 7a911838c149574d4f7ee782a752156fa01391d8
 	param->retour = WEXITSTATUS(ret);
 	ft_free_split(&param->f_matrix);
 }
