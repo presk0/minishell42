@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:27:36 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/06 09:57:09 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:24:56 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	hard_wait(void);
 void	init_fd_child(t_data *param, int (*fds)[2], int fd);
 void	init_fd(t_data *param, int **fd, int **io_fd);
 void	parser(t_data *param);
+int            rm_heredoc_file(void);
 void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split);
 void	print_env_tri(t_data *param);
 void	print_tab(char **tableau);

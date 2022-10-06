@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:25:12 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/05 11:46:02 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:46:39 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	heredoc(char *c)
 	char	*input;
 	int		len;
 
+	if (isatty(0))
+	{
+		while (wait(NULL) != -1 || errno != ECHILD)
+			;
+	}		
 	if (signal(SIGINT, &sig_heredoc) == SIG_ERR
 		|| signal(SIGQUIT, &sig_heredoc) == SIG_ERR)
 		return (-1);
@@ -39,4 +44,30 @@ int	heredoc(char *c)
 	}
 	fd = open("heredoc", O_RDWR);
 	return (fd);
+}
+
+int    rm_heredoc_file(void)
+{
+       int             fd;
+       int             pid;
+       char    **rm_cmd;
+
+       rm_cmd = ft_split("/bin/rm heredoc", ' ');
+       fd = open(rm_cmd[1], O_RDONLY);
+       if (fd != -1)
+       {
+               close(fd);
+               pid = fork();
+               if (pid == -1)
+                       write(2, "rm_heredoc_file error\n", 22);
+               else if (pid == 0)
+               {
+                       execve(rm_cmd[0], rm_cmd, NULL);
+                       exit(1);
+               }
+               else
+                       wait(NULL);
+       }
+       ft_free_split(&rm_cmd);
+       return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/06 09:58:56 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:10:08 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	int		fd;
 
 	fd = dup((*end)[0]);
+	close((*end)[0]);
 	pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
-	if (verif_bultin(param))
+	if (verif_bultin(param) == 1)
 		exec_bultins_pipes(param, 1);
 	else
 	{
@@ -49,6 +50,7 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 		else
 			ft_parent_process(param, pid, fds, end, &fd);
 	}
+	rm_heredoc_file();
 	ft_free_split(&param->argv);
 }
 

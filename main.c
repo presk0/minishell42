@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/06 08:43:33 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:24:05 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	clean_exit(t_data *param)
 {
 	rl_clear_history();
 	reset_param(param);
+	rm_heredoc_file();
 	exit(0);
 }
 
@@ -88,6 +89,7 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (ft_ctrl_d_handler(param->input, *param) && param->input != 0)
 			parser(param);
+		rm_heredoc_file();
 		reset_param(param);
 	}
 	clean_exit(param);

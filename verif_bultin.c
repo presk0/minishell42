@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 08:26:00 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/05 13:57:35 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/06 11:20:03 by supersko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 int	ft_is_bultin(t_data *param)
 {
 	if (!ft_memcmp("echo", param->input_cleaned, 4))
-		return (1);
+		return (2);
 	else if (!ft_strncmp(param->input_cleaned, "pwd", 3))
-		return (1);
+		return (2);
 	else if (!ft_memcmp(param->input_cleaned, "export", 6))
 		return (1);
 	else if (!ft_memcmp(param->input_cleaned, "env", 4))
-		return (1);
+		return (2);
 	else if (!ft_memcmp(param->input_cleaned, "unset", 5))
 		return (1);
 	else if (!ft_strncmp("cd", param->input_cleaned, 2))
 		return (1);
 	else if (!ft_strncmp("exit", param->input_cleaned, 4))
-		return (1);
+		return (2);
 	else
 		return (0);
 }
@@ -35,14 +35,16 @@ int	ft_is_bultin(t_data *param)
 int	verif_bultin(t_data *param)
 {
 	char	*to_trim;
+	char    built_type;
 
 	to_trim = param->input_cleaned;
 	param->input_cleaned = ft_strtrim(to_trim, " \t");
 	free(to_trim);
 	if (param->input_cleaned)
 	{
-		if (ft_is_bultin(param))
-			return (1);
+		built_type = ft_is_bultin(param);
+		if (built_type)
+			return (built_type);
 		else
 			return (0);
 	}

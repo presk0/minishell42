@@ -6,7 +6,7 @@
 #    By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 15:16:38 by supersko          #+#    #+#              #
-#    Updated: 2022/10/06 08:40:56 by swalter          ###   ########.fr        #
+#    Updated: 2022/10/06 11:20:27 by supersko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,9 @@ LIBFT_DIR = libft/
 LIBFT_AR = libft.a
 LIBS = $(LIBFT_DIR)$(LIBFT_AR)
 
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR) -I/Users/swalter/.brew/opt/readline/include
-CFLAGS = -Wall -Wextra -Werror -L/Users/swalter/.brew/opt/readline/lib -lreadline -g3 -fsanitize=address 
-#-Wall -Wextra -Werror-g3 -fsanitize=address 
-CC = gcc
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR) -I/$(HOME)/.brew/opt/readline/include
+CFLAGS = -Wall -Wextra -Werror -L/$(HOME)/.brew/opt/readline/lib -lreadline
+#-g3 -fsanitize=address
 
 all: ${NAME}
 
