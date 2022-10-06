@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/06 11:24:05 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:03:12 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data			*param;
 
-	(void)argc;
-	(void)argv;
+	(void)argc, (void)argv;
 	param = init_param(envp);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:27:36 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/06 11:24:56 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:05:50 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ char	**cmd_format2(t_data *param, char **str, char **envp);
 char	**cmd_format_add_path(t_data *param);
 char	**cmd_format(char *str, char *PATH, int is_builtin);
 char	**cmd_split_sw(t_data *param);
-char	*convert_var(char *line, int i_dollar, char *var_substitution, int var_len);
+char	*convert_var(char *line, int i_dollar, \
+			char *var_substitution, int var_len);
 char	*convert_var_in_line(t_data *param, char **line, char **envp);
 char	**copy_env(char **envp, int add);
 char	**export_command2(t_data *param, int j);
@@ -120,12 +121,13 @@ void	exec_bultins(t_data *param);
 void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j);
 void	execute_pipe(t_data *param, int i);
 void	ft_child_process(t_data *param, int i, int *end);
-void	ft_parent_process(t_data *param, int pid, int (*fds)[2], int (*end)[2], int *fd);
+void	ft_parent_process(t_data *param, int pid, int (*fds)[2], \
+		int (*end)[2], int *fd);
 void	hard_wait(void);
 void	init_fd_child(t_data *param, int (*fds)[2], int fd);
 void	init_fd(t_data *param, int **fd, int **io_fd);
 void	parser(t_data *param);
-int            rm_heredoc_file(void);
+int		rm_heredoc_file(void);
 void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split);
 void	print_env_tri(t_data *param);
 void	print_tab(char **tableau);

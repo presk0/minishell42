@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 08:26:00 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/06 11:20:03 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:04:15 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_is_bultin(t_data *param)
 int	verif_bultin(t_data *param)
 {
 	char	*to_trim;
-	char    built_type;
+	char	built_type;
 
 	to_trim = param->input_cleaned;
 	param->input_cleaned = ft_strtrim(to_trim, " \t");

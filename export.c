@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 09:03:16 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/06 11:03:35 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:01:33 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ char	**export_command(t_data *param, int j)
 	i = 0;
 	new_var = get_new_var(param, j);
 	spliter_index = ft_strlen_char(new_var, '=');
-	if (is_available_var_name(new_var, spliter_index) && ft_strchr(new_var, '='))
+	if (is_available_var_name(new_var, spliter_index)
+		&& ft_strchr(new_var, '='))
 	{
 		while (param->envp[i])
 		{

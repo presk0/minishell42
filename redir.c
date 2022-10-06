@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/06 11:17:13 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:03:58 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	init_fd_child(t_data *param, int (*fds)[2], int fd)
 		(*fds)[0] = fd;
 	else
 		(*fds)[0] = fd_tmp;
-
 }
 
 void	redir_fd_child(int fds[2], int end[2], int i, int j)
