@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:24:45 by supersko          #+#    #+#             */
-/*   Updated: 2022/10/05 17:10:40 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 10:02:36 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	pid_t	pid;
 	int		fd;
 
-	dup2(fd, (*end)[0]);
-	//fd = dup((*end)[0]);
+	//dup2(fd, (*end)[0]);
+	fd = dup((*end)[0]);
+	close((*end)[0]);
 	pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
