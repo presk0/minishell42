@@ -23,8 +23,8 @@ LIBFT_DIR = libft/
 LIBFT_AR = libft.a
 LIBS = $(LIBFT_DIR)$(LIBFT_AR)
 
-INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR) -I/$(HOME)/.brew/opt/readline/include
-CFLAGS = -Wall -Wextra -Werror -L/$(HOME)/.brew/opt/readline/lib -lreadline
+INCLUDES = -I./usr/include -I./$(HEADERS) $(LIBS) -I./$(LIBFTprintf_DIR) -I./$(LIBFT_DIR) -I/$(HOME)/.brew/opt/readline/include -lreadline
+CFLAGS = -Wall -Wextra -Werror -L/$(HOME)/.brew/opt/readline/lib
 #-g3 -fsanitize=address 
 
 CC = gcc

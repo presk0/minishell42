@@ -38,8 +38,9 @@ void	exec_pipes(t_data *param, int (*end)[2], int (*fds)[2], int i, int j)
 	pid_t	pid;
 	int		fd;
 
-	dup2(fd, (*end)[0]);
-	//fd = dup((*end)[0]);
+	//dup2(fd, (*end)[0]);
+	fd = dup((*end)[0]);
+	close((*end)[0]);
 	pipe(*end);
 	if (set_f_matrix(param, i) == -1)
 		return ;
@@ -101,7 +102,7 @@ void	ft_parent_process(t_data *param, int pid, int (*fds)[2], \
 	}
 	close((*end)[1]);
 	*fd = (*end)[0];
-	waitpid(pid, &ret, WCONTINUED);
+	waitpid(pid, &ret, WCONTINUED);// & WCONTINUED & WNOHANG);
 	param->retour = WEXITSTATUS(ret);
 	ft_free_split(&param->f_matrix);
 }
