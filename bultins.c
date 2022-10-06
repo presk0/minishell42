@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:30:27 by swalter           #+#    #+#             */
-/*   Updated: 2022/09/19 09:31:19 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 16:26:48 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**run_unset(t_data *param)
 		return (param->envp);
 	env = param->argv[1];
 	j = ft_strlen(env);
-	while (param->envp)
+	while (param->envp[i])
 	{
 		if (!ft_memcmp(env, param->envp[i], j))
 		{

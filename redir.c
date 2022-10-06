@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 18:22:40 by marvin            #+#    #+#             */
-/*   Updated: 2022/10/05 17:00:35 by supersko         ###   ########.fr       */
+/*   Updated: 2022/09/22 10:16:02 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	redir_bultin(t_data *param)
 	int	fd_in;
 	int	fd_out;
 
-	fd_in = redir_in(param, param->f_matrix);
+	fd_in = redir_in(param->f_matrix);
 	fd_out = redir_out(param->f_matrix);
 	if (fd_in != 0)
 	{
@@ -33,7 +33,7 @@ void	redir_bultin(t_data *param)
 
 void	redir_execute_single(t_data *param, int (*fds)[2])
 {
-	(*fds)[0] = dup(redir_in(param, param->f_matrix));
+	(*fds)[0] = dup(redir_in(param->f_matrix));
 	(*fds)[1] = dup(redir_out(param->f_matrix));
 	dup2((*fds)[0], STDIN_FILENO);
 	dup2((*fds)[1], STDOUT_FILENO);
@@ -41,15 +41,10 @@ void	redir_execute_single(t_data *param, int (*fds)[2])
 
 void	init_fd_child(t_data *param, int (*fds)[2], int fd)
 {
-	int	fd_tmp;
-
-	fd_tmp = 0;
 	(*fds)[1] = redir_out(param->f_matrix);
-	fd_tmp = redir_in(param, param->f_matrix);
-	if (fd_tmp == 0)
+	(*fds)[0] = redir_in(param->f_matrix);
+	if ((*fds)[0] == 0)
 		(*fds)[0] = fd;
-	else
-		(*fds)[0] = fd_tmp;
 }
 
 void	redir_fd_child(int fds[2], int end[2], int i, int j)

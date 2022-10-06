@@ -6,54 +6,66 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:24:22 by swalter           #+#    #+#             */
-/*   Updated: 2022/09/19 08:24:28 by swalter          ###   ########.fr       */
+/*   Updated: 2022/10/05 08:57:40 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	process(int sign_num)
+void	sig_heredoc(int sig)
 {
-	if (!kill(g_pid, sign_num))
+	if (sig == SIGINT)
 	{
-		if (sign_num == SIGQUIT)
-		{
-			//ft_putstr_fd("^\\Quit: 3\n", 1);
-			rl_on_new_line();
-			rl_replace_line("", 0);
-			rl_redisplay();
-		}
-		else if (sign_num == SIGINT)
-			ft_putchar_fd('\n', 1);
+		write(1, "\n", 1);
+		close(STDIN_FILENO);
 	}
-	else if (sign_num == SIGINT)
+	if (sig == SIGQUIT)
+		return ;
+}
+
+void	ft_sig_handler(int sig)
+{
+	if (sig == SIGINT)
 	{
-		ft_putendl_fd("", 1);
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
 		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	if (sig == SIGQUIT)
+	{
 		rl_on_new_line();
 		rl_redisplay();
 	}
 }
 
-void	sigint_handler(int sign_num)
+void	init_sig(void)
 {
-	if ((sign_num == SIGINT || sign_num == SIGQUIT) && g_pid != 0)
-		process(sign_num);
-	else
+	if (signal(SIGINT, &ft_sig_handler) == SIG_ERR || signal(SIGQUIT,
+			&ft_sig_handler) == SIG_ERR)
 	{
-		if (sign_num == SIGINT)
+		ft_putstr_fd("42minishell", 2);
+		ft_putstr_fd(": signal problem. \n", 2);
+		exit(1);
+	}	
+}
+
+int	ft_ctrl_d_handler(char *str, t_data param)
+{
+	if (str == NULL)
+	{
+		if (isatty(param.save_in))
 		{
-			ft_putendl_fd("", 1);
-			rl_replace_line("", 0);
-			rl_on_new_line();
-			rl_redisplay();
+			printf("\033[2D");
+			printf("\033[1A");
+			printf("\033[10C");
+			printf("exit\n");
 		}
-		else if (sign_num == SIGQUIT)
-		{
-			ft_putendl_fd("", 1);
-			rl_replace_line("", 0);
-			rl_on_new_line();
-			rl_redisplay();
-		}
+		if (isatty(param.save_in))
+			exit(0);
+		else
+			exit(param.retour);
 	}
+	else
+		return (1);
 }

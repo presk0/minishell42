@@ -6,7 +6,7 @@
 /*   By: swalter <swalter@student.42mulhouse.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 08:27:36 by swalter           #+#    #+#             */
-/*   Updated: 2022/10/05 16:54:32 by supersko         ###   ########.fr       */
+/*   Updated: 2022/10/06 09:57:09 by swalter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@
 # include <curses.h>
 # include <term.h>
 # include <dirent.h>
-#include "readline/readline.h"
-#include "readline/history.h"
+# include "readline/readline.h"
+# include "readline/history.h"
 # include <errno.h>
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
 # define INFILE 0
 # define OUTFILE 1
-
-pid_t g_pid;
 
 typedef struct s_data
 {
@@ -55,6 +53,7 @@ typedef struct s_data
 	int				pid;
 	int				pipe;
 	struct termios	save;
+	int				save_in;
 }	t_data;
 
 char	**cmd_format2(t_data *param, char **str, char **envp);
@@ -77,7 +76,6 @@ char	**ft_split_strsep(char *str, char *sep, int is_char);
 char	*get_env(char **envp, char *env);
 char	*get_new_var(t_data *param, int j);
 char	*get_path(char *cmd, char *PATH);
-char	*heredoc_loop(int *first_loop, char **line, char **tmp, char **text);
 char	*matrix_to_str(char **matrix);
 char	**new_env(char **envp, int i);
 char	*pop_first_wd(char **cmd);
@@ -97,13 +95,12 @@ int		ft_is_quoted(char *c, int i);
 int		ft_matrixlen(char **matrix);
 int		ft_only_blank(t_data *param);
 int		get_input(t_data *param);
-int		heredoc_fd(char **text, char **line);
-int		heredoc(t_data *param, char *stop_str);
+int		heredoc(char *c);
 int		is_available_var_name(char *var, int i);
 int		is_blank(char c);
 int		line_presplit(char *cmd);
 int		quote_empty(char *first_quote);
-int		redir_in(t_data	*param, char **f_matrix);
+int		redir_in(char **f_matrix);
 int		redir_out(char **f_matrix);
 int		rm_heredoc_file(void);
 int		rm_null_lines(char ***cmd_split);
@@ -127,7 +124,6 @@ void	ft_parent_process(t_data *param, int pid, int (*fds)[2], int (*end)[2], int
 void	hard_wait(void);
 void	init_fd_child(t_data *param, int (*fds)[2], int fd);
 void	init_fd(t_data *param, int **fd, int **io_fd);
-void	init_sig(struct termios *tmp, t_data *param);
 void	parser(t_data *param);
 void	pop_names_from_sep_refresh(t_data *param, char ***cmd_split);
 void	print_env_tri(t_data *param);
@@ -148,7 +144,10 @@ void	run_pwd(int fd);
 void	run_cd(t_data *param, int fd);
 void	change_dir(char *path, t_data *param);
 void	bloody_normi(char **str, char ***matrix_split, int *i);
-void	heredoc_init_sig(struct termios *tmp, t_data *param);
-void	heredoc_sigint_handler(int sign_num);
-void	handler_heredoc(int sig);
+void	sig_heredoc(int sig);
+void	init_sig(void);
+void	ft_sig_handler(int sig);
+int		ft_ctrl_d_handler(char *str, t_data param);
+void	exec_bultins_pipes(t_data *param, int fd);
+
 #endif

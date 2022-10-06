@@ -102,7 +102,7 @@ int	get_input(t_data *param)
 	int		ret;
 
 	ret = 1;
-	input = read_multilines("42minishell $ ");
+	input = read_multilines("42mminishell $ ");
 	param->input = input;
 	if (param->input == NULL)
 	{

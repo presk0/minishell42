@@ -45,7 +45,7 @@ char	**export_command(t_data *param, int j)
 	i = 0;
 	new_var = get_new_var(param, j);
 	spliter_index = ft_strlen_char(new_var, '=');
-	if (is_available_var_name(new_var, spliter_index) && ft_strchr(new_var, '='))
+	if (is_available_var_name(new_var, spliter_index))
 	{
 		while (param->envp[i])
 		{
@@ -58,8 +58,6 @@ char	**export_command(t_data *param, int j)
 		}
 		param->envp = ft_append_tab(param->envp, new_var);
 	}
-	else
-		free(new_var);
 	return (param->envp);
 }
 
@@ -79,26 +77,20 @@ static char	**tri_env(t_data *param)
 {
 	char	**tableau;
 	int		i;
-	int		j;
 	char	*temp;
 
 	tableau = param->envp;
-	j = 0;
-	while (tableau[j] && tableau[j + 1])
+	i = 0;
+	while (tableau[i] && tableau[i + 1])
 	{
-		i = j;
-		while (tableau[i] && tableau[i + 1])
+		if (strcmp(tableau[i], tableau[i + 1]) > 0)
 		{
-			if (strcmp(tableau[i], tableau[i + 1]) > 0)
-			{
-				temp = tableau[i];
-				tableau[i] = tableau[i + 1];
-				tableau[i + 1] = temp;
-				i = -1;
-			}
-			i++;
+			temp = tableau[i];
+			tableau[i] = tableau[i + 1];
+			tableau[i + 1] = temp;
+			i = -1;
 		}
-		j++;
+		i++;
 	}
 	return (tableau);
 }
